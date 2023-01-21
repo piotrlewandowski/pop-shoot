@@ -126,13 +126,11 @@ export class Scene {
         }
 
         // PLAYER
-        if (!WeatherController.disappear) {
-            this.ctx.drawImage(
-                game.player.sprite,
-                SceneHelpers.offsetCoordinates(game.player).x + glitchOffset.x,
-                SceneHelpers.offsetCoordinates(game.player).y + glitchOffset.y
-            );
-        }
+        this.ctx.drawImage(
+            game.player.sprite,
+            SceneHelpers.offsetCoordinates(game.player).x + glitchOffset.x,
+            SceneHelpers.offsetCoordinates(game.player).y + glitchOffset.y
+        );
 
         // SHIELD
         if (game.player.shield.isCharged() && !game.state.variables.invincibility) {

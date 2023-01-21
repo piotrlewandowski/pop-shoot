@@ -34,7 +34,6 @@ import {
     VORTEXSOUND,
     GLITCHSOUND,
     MATRIXSOUND,
-    DISAPPEARSOUND,
     PHASESOUND,
     SPLASHSOUND,
     PHEWSOUND,
@@ -242,10 +241,6 @@ export class AudioController {
 
     stopMatrixSound() {
         MATRIXSOUND.pause();
-    }
-
-    playDisappearSound() {
-        DISAPPEARSOUND.cloneNode(true).play();
     }
 
     playSwooshSound() {

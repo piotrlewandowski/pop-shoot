@@ -54,7 +54,6 @@ export const SANDFXSOUND = document.getElementById('sandfx_sound');
 
 // VORTEX
 export const VORTEXSOUND = document.getElementById('vortex_sound');
-export const DISAPPEARSOUND = document.getElementById('disappear_sound');
 
 // MATRIX
 export const MATRIXSOUND = document.getElementById('matrix_sound');

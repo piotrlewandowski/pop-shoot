@@ -16,10 +16,6 @@ export class WeatherController {
     // in Scene.js to draw the player at an offset
     static glitchOffset = { x: 0, y: 0 };
 
-    // Disappear variable used by 'vortex' weather. This will be used
-    // in Scene.js to disappear the player at intervals
-    static disappear = false;
-
     static startWeather() {
         if (game.state.stage === 0) {
             weather = new Rain();

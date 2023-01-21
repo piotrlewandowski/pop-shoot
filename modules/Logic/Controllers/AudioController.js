@@ -34,6 +34,7 @@ import {
     VORTEXSOUND,
     GLITCHSOUND,
     MATRIXSOUND,
+    ANXIETYSOUND,
     PHASESOUND,
     SPLASHSOUND,
     PHEWSOUND,
@@ -241,6 +242,10 @@ export class AudioController {
 
     stopMatrixSound() {
         MATRIXSOUND.pause();
+    }
+
+    playAnxietySound() {
+        ANXIETYSOUND.cloneNode(true).play();
     }
 
     playSwooshSound() {

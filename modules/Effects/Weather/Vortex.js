@@ -12,6 +12,7 @@ import {
 import { game } from '../../../app.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { flashScreen } from '../../Logic/Helpers.js';
+import { Shake } from '../../Logic/Helpers.js';
 
 const SPRITE = [
     VORTEX0SPRITE,
@@ -24,6 +25,9 @@ const SPRITE = [
     VORTEX7SPRITE,
     VORTEX8SPRITE,
 ];
+
+const ANXIETYFREQUENCY = 1000; // in ticks, higher = longer
+const ANXIETYTIME = 4000; // in ms
 
 export class Vortex {
     constructor() {
@@ -39,6 +43,17 @@ export class Vortex {
     move() {
         this.ticks++;
         this.sprite = SPRITE[this.ticks % SPRITE.length];
+
+        if (this.ticks % ANXIETYFREQUENCY === 0) {
+            flashScreen();
+            Shake.addShake(4, ANXIETYTIME / 1000);
+            game.audiocontroller.playAnxietySound();
+
+            setTimeout(() => {
+                flashScreen();
+                game.audiocontroller.playAnxietySound();
+            }, ANXIETYTIME);
+        }
     }
 
     stop() {

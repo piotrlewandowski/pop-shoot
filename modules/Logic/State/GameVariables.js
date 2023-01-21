@@ -96,6 +96,7 @@ export class GameVariables {
         this.muteenemies = false;
         this.noslowmo = false;
         this.blankbullets = false;
+        this.thorshammer = false;
 
         // repetitive
         this.dmgMultiplier = 1;

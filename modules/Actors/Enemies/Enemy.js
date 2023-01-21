@@ -28,6 +28,9 @@ export class Enemy {
         if (!game.state.variables.blankbullets) {
             this.hp -= damage;
         }
+        if (game.state.variables.thorshammer) {
+            this.stun();
+        }
     }
 
     pushBack() {

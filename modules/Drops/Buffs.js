@@ -41,4 +41,9 @@ export class Buffs {
         game.state.variables.blankbullets = true;
         return () => (game.state.variables.blankbullets = false);
     }
+
+    static _thorshammer() {
+        game.state.variables.thorshammer = true;
+        return () => (game.state.variables.thorshammer = false);
+    }
 }

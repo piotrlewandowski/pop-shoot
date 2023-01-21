@@ -13,6 +13,7 @@ const BUFFS = [
     { text: 'ENEMIES MUTED !', buff: Buffs._muteenemies },
     { text: 'NO SLOW-MO !', buff: Buffs._noslowmo },
     { text: 'BLANK BULLETS !', buff: Buffs._blankbullets },
+    { text: `THOR'S HAMMER !`, buff: Buffs._thorshammer },
 ];
 export class BuffController {
     constructor() {

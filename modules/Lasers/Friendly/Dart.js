@@ -10,9 +10,9 @@ export class Dart extends BlueLaser {
         super();
         this.x = game.player.x + randomInRange(-20, +20);
         this.y = game.player.y + randomInRange(-50, 0);
-        this.sprite = SPRITE[randomInRange(1, SPRITE.length - 1)];
+        this.sprite = SPRITE[randomInRange(0, SPRITE.length - 1)];
 
         this.speed = randomInRange(10, 20);
-        this.damage *= game.state.variables.dronesrate;
+        this.damage *= game.state.variables.dartsrate;
     }
 }

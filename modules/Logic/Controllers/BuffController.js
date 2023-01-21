@@ -12,6 +12,7 @@ const BUFFS = [
     { text: 'NO SHIELD !', buff: Buffs._noshield },
     { text: 'ENEMIES MUTED !', buff: Buffs._muteenemies },
     { text: 'NO SLOW-MO !', buff: Buffs._noslowmo },
+    { text: 'BLANK BULLETS !', buff: Buffs._blankbullets },
 ];
 export class BuffController {
     constructor() {

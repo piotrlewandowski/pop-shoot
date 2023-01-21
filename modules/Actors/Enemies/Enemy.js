@@ -25,7 +25,9 @@ export class Enemy {
     }
 
     takeDamage(damage) {
-        this.hp -= damage;
+        if (!game.state.variables.blankbullets) {
+            this.hp -= damage;
+        }
     }
 
     pushBack() {

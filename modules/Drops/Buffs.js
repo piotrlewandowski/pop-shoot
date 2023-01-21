@@ -36,4 +36,9 @@ export class Buffs {
         game.state.variables.noslowmo = true;
         return () => (game.state.variables.noslowmo = false);
     }
+
+    static _blankbullets() {
+        game.state.variables.blankbullets = true;
+        return () => (game.state.variables.blankbullets = false);
+    }
 }

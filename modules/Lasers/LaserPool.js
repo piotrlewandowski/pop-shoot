@@ -1,5 +1,6 @@
 import { CANVAS } from '../Assets/OtherGfx.js';
 import { game } from '../../app.js';
+import { Debris } from './Friendly/Debris.js';
 
 export class LaserPool {
     constructor() {
@@ -39,10 +40,29 @@ export class LaserPool {
         laser.speed /= game.state.variables.slowmorate;
     }
 
-    // Only keep lasers that are not shattered and still on-screen
+    // Only keep lasers that meet the below conditions:
+    // - Not shattered
+    // - Still on-screen
+    // - Out of screen, but is a space debris
     refresh() {
-        this.liveLasers = this.liveLasers.filter(
-            (laser) => laser.y >= 0 && laser.y <= CANVAS.height && laser.x >= 0 && laser.x <= CANVAS.width && !laser.shattered
-        );
+        this.liveLasers = this.liveLasers.filter((laser) => {
+            const isShattered = laser.shattered;
+            const isDebris = laser.constructor === Debris;
+            const isInScreen = laser.y >= 0 && laser.y <= CANVAS.height && laser.x >= 0 && laser.x <= CANVAS.width;
+
+            if (isShattered) {
+                return false;
+            }
+
+            if (isDebris) {
+                return true;
+            }
+
+            if (!isInScreen) {
+                return false;
+            }
+
+            return true;
+        });
     }
 }

@@ -60,6 +60,9 @@ import {
     AIRSTRIKE_ICON,
     AIRSTRIKE_PAUSE,
     AIRSTRIKE_NOTIFICATION,
+    DEBRIS_ICON,
+    DEBRIS_PAUSE,
+    DEBRIS_NOTIFICATION,
 } from '../../Assets/Hud.js';
 
 const DRAWINGS = {
@@ -81,6 +84,7 @@ const DRAWINGS = {
     seekers: { icon: SEEKERS_ICON, pause: SEEKERS_PAUSE, notification: SEEKERS_NOTIFICATION },
     clock: { icon: CLOCK_ICON, pause: CLOCK_PAUSE, notification: CLOCK_NOTIFICATION },
     airstrike: { icon: AIRSTRIKE_ICON, pause: AIRSTRIKE_PAUSE, notification: AIRSTRIKE_NOTIFICATION },
+    debris: { icon: DEBRIS_ICON, pause: DEBRIS_PAUSE, notification: DEBRIS_NOTIFICATION },
 };
 
 const NOTIFICATIONX = 860;
@@ -97,7 +101,7 @@ export class ItemController {
         // ITEM PREPARATIONS
 
         this.pool1 = [Items._uraniumfuel, Items._timefreeze];
-        this.pool2 = [Items._clock, Items._greed, Items._loopers];
+        this.pool2 = [Items._clock, Items._greed, Items._loopers, Items._debris];
 
         this.randompool1 = this.pool1[randomInRange(0, this.pool1.length - 1)];
         this.randompool2 = this.pool2[randomInRange(0, this.pool2.length - 1)];

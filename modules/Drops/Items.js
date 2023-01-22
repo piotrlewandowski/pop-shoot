@@ -1,4 +1,5 @@
 import { game } from '../../app.js';
+import { Debris } from '../Lasers/Friendly/Debris.js';
 import { randomInRange } from '../Logic/Helpers.js';
 
 export class Items {
@@ -137,6 +138,22 @@ export class Items {
         // Graphics
         game.state.variables.clockIconPosition = game.itemcontroller.icons.length; // Get icon position
         game.itemcontroller.drawAll('clock');
+    }
+
+    static _debris() {
+        // Action
+        const MAXDEBRIS = 50;
+        Debris.count = 0;
+
+        setInterval(() => {
+            if (Debris.count < MAXDEBRIS) {
+                game.bluelasers.add(new Debris());
+                Debris.count++;
+            }
+        }, 100);
+
+        // Graphics
+        game.itemcontroller.drawAll('debris');
     }
 
     static _multiplydamage() {

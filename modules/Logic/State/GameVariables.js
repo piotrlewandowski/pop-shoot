@@ -11,6 +11,7 @@ const DRONESNUMBER = 5; // Number of drones released
 const DARTSSTUNCHANCE = 15; // Percentage chance to stun enemy when darts is upgraded
 const DARTSSTUNTIME = 750; // Time to stun enemies in ms (1000 = 1 second)
 const DARTSRATE = 0.3; // Damage rate dealt by darts when stun successful (1 = full damage)
+const DEBRISRATE = 0.3; // Damage rate dealt by debris
 const MACHINEGUNRATE = 110; // Shooting rate of the machine gun. Lower = Faster (rate without upgrade is 150)
 const BOMBRATE = 0.2; // Damage rate dealt to other enemies on screen (1 = full damage)
 const TOXICRATE = 0.4; // Damage rate dealt to enemies in slowmo (1 = full damage)
@@ -68,6 +69,9 @@ export class GameVariables {
         this.drones = false;
         this.dronesrate = DRONESRATE;
         this.dronesnumber = DRONESNUMBER;
+
+        // debris
+        this.debrisrate = DEBRISRATE;
 
         // shield
         this.metalshield = false;

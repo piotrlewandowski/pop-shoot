@@ -3,7 +3,7 @@ import { game } from '../../../app.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { randomInRange } from '../../Logic/Helpers.js';
-import { BOMBSPRITE, LASERSPRITE, QUADSPRITE } from '../../Assets/Lasers.js';
+import { BOMBSPRITE, LASERSPRITE, QUADSPRITE, THORSPRITE } from '../../Assets/Lasers.js';
 
 const SPEED = 10;
 const RADIUS = 5;
@@ -38,11 +38,14 @@ export class BlueLaser {
     }
 
     setSprite() {
-        if (game.state.variables.bomb) {
-            this.sprite = BOMBSPRITE;
-        }
         if (game.state.variables.quaddamage) {
-            this.sprite = QUADSPRITE;
+            return (this.sprite = QUADSPRITE);
+        }
+        if (game.state.variables.thorshammer) {
+            return (this.sprite = THORSPRITE);
+        }
+        if (game.state.variables.bomb) {
+            return (this.sprite = BOMBSPRITE);
         }
     }
 

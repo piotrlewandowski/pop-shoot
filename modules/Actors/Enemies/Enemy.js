@@ -44,7 +44,7 @@ export class Enemy {
             game.effects.add(new Animation(this.x, this.y - 30, 'smoke_normal'));
             setTimeout(() => {
                 this.stunned = false;
-            }, game.state.variables.dartsstuntime);
+            }, game.state.variables.stuntime);
         }
     }
 
@@ -55,7 +55,7 @@ export class Enemy {
             flip = !flip;
         }, 40);
 
-        setTimeout(() => clearInterval(shakeInterval), game.state.variables.dartsstuntime);
+        setTimeout(() => clearInterval(shakeInterval), game.state.variables.stuntime);
     }
 
     // All enemies have a steps variable in parallel with y.

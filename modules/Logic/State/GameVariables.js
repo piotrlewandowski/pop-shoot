@@ -9,8 +9,8 @@ const ROCKETDAMAGE = 3; // Rocket damage multiplier
 const DRONESRATE = 0.2; // Damage rate dealt by drones (1 = full damage)
 const DRONESNUMBER = 5; // Number of drones released
 const DARTSSTUNCHANCE = 15; // Percentage chance to stun enemy when darts is upgraded
-const DARTSSTUNTIME = 750; // Time to stun enemies in ms (1000 = 1 second)
 const DARTSRATE = 0.3; // Damage rate dealt by darts when stun successful (1 = full damage)
+const STUNTIME = 1250; // Time to stun enemies in ms (1000 = 1 second)
 const DEBRISRATE = 0.5; // Damage rate dealt by debris
 const MACHINEGUNRATE = 110; // Shooting rate of the machine gun. Lower = Faster (rate without upgrade is 150)
 const BOMBRATE = 0.2; // Damage rate dealt to other enemies on screen (1 = full damage)
@@ -35,8 +35,10 @@ export class GameVariables {
         // darts
         this.darts = false;
         this.dartsstunchance = DARTSSTUNCHANCE;
-        this.dartsstuntime = DARTSSTUNTIME;
         this.dartsrate = DARTSRATE;
+
+        // stun
+        this.stuntime = STUNTIME;
 
         // loopers
         this.loopers = false;
@@ -110,6 +112,9 @@ export class GameVariables {
     get damageMultiplier() {
         if (game.state.variables.quaddamage) {
             return this.dmgMultiplier * 4;
+        }
+        if (game.state.variables.thorshammer) {
+            return this.dmgMultiplier * 2;
         }
         return this.dmgMultiplier;
     }

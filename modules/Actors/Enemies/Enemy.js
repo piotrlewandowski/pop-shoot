@@ -25,9 +25,7 @@ export class Enemy {
     }
 
     takeDamage(damage) {
-        if (!game.state.variables.blankbullets) {
-            this.hp -= damage;
-        }
+        this.hp -= damage;
         if (game.state.variables.thorshammer) {
             this.stun();
         }

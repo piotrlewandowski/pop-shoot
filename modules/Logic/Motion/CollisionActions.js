@@ -10,47 +10,48 @@ import { Slash } from '../../Effects/Misc/Slash.js';
 export class CollisionActions {
     // BLUELASERS AND ENEMIES
     static BluelasersEnemies(enemy, laser) {
-        // Pushback & play sound if the laser is not a drone
-        if (laser.constructor !== Drone && laser.constructor !== Dart) {
-            enemy.pushBack();
-            game.audiocontroller.playHitSound(enemy);
-        }
+        if (!game.state.variables.blankbullets) {
+            // Pushback & play sound if the laser is not a drone
+            if (laser.constructor !== Drone && laser.constructor !== Dart) {
+                enemy.pushBack();
+                game.audiocontroller.playHitSound(enemy);
+            }
 
-        enemy.takeDamage(laser.damage);
-        game.effects.add(new DamageNumber(enemy.x, enemy.y, laser.damage));
-        game.effects.add(new Slash(enemy.x, enemy.y));
+            enemy.takeDamage(laser.damage);
+            game.effects.add(new DamageNumber(enemy.x, enemy.y, laser.damage));
+            game.effects.add(new Slash(enemy.x, enemy.y));
 
-        // Check if Bomb upgraded
-        if (game.state.variables.bomb) {
-            game.enemies.damageAll(laser.damage * game.state.variables.bombdamagerate);
-        }
+            // Check if Bomb upgraded
+            if (game.state.variables.bomb) {
+                game.enemies.damageAll(laser.damage * game.state.variables.bombdamagerate);
+            }
 
-        // Airstrike
-        if (game.state.variables.airstrike) {
-            const airstrikeroll = randomInRange(0, 100);
-            if (
-                game.enemies.enemiesOnScreen() &&
-                airstrikeroll < game.state.variables.airstrikechance &&
-                laser.constructor !== Airstrike &&
-                laser.constructor !== Drone
-            ) {
-                game.enemies.liveEnemies.forEach((enemy, index) => {
-                    setTimeout(() => {
-                        game.bluelasers.add(new Airstrike(enemy));
-                    }, 100 * index);
-                });
+            // Airstrike
+            if (game.state.variables.airstrike) {
+                const airstrikeroll = randomInRange(0, 100);
+                if (
+                    game.enemies.enemiesOnScreen() &&
+                    airstrikeroll < game.state.variables.airstrikechance &&
+                    laser.constructor !== Airstrike &&
+                    laser.constructor !== Drone
+                ) {
+                    game.enemies.liveEnemies.forEach((enemy, index) => {
+                        setTimeout(() => {
+                            game.bluelasers.add(new Airstrike(enemy));
+                        }, 100 * index);
+                    });
+                }
+            }
+
+            // Darts
+            if (game.state.variables.darts && !enemy.name) {
+                const stunroll = randomInRange(0, 100);
+                if (stunroll < game.state.variables.dartsstunchance) {
+                    enemy.stun();
+                    enemy.takeDamage(laser.damage * game.state.variables.dartsrate);
+                }
             }
         }
-
-        // Darts
-        if (game.state.variables.darts && !enemy.name) {
-            const stunroll = randomInRange(0, 100);
-            if (stunroll < game.state.variables.dartsstunchance) {
-                enemy.stun();
-                enemy.takeDamage(laser.damage * game.state.variables.dartsrate);
-            }
-        }
-
         laser.shatter();
     }
 

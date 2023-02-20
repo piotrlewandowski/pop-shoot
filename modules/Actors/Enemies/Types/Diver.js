@@ -4,9 +4,8 @@ import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
-import { Shake } from '../../../Logic/Helpers.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { randomInRange } from '../../../Logic/Helpers.js';
+import { randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 
 // MOVEMENT
 const SPEED = 5;
@@ -70,7 +69,7 @@ export class Diver extends Enemy {
     die() {
         game.audiocontroller.playAnimationSound('phew');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
-        Shake.addShake(3, 0.2);
+        shakeScreen(3, 0.2);
         this.explode();
         super.die();
     }

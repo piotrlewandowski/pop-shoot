@@ -4,8 +4,7 @@ import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { CANVAS } from '../../../Assets/OtherGfx.js';
-import { flashScreen, randomInRange } from '../../../Logic/Helpers.js';
-import { Shake } from '../../../Logic/Helpers.js';
+import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 import { METALEMPERORHARDENEDSPRITE, METALEMPERORSPRITE } from '../../../Assets/Enemies.js';
 
 // MOVEMENT
@@ -93,7 +92,7 @@ export class MetalEmperor extends Enemy {
 
     shootBulletWall() {
         if (!this.hardened) {
-            Shake.addShake(6, 0.75);
+            shakeScreen(6, 0.75);
 
             const gapstart = randomInRange(0, CANVAS.width - GAPSIZE);
             for (let i = 0; i < CANVAS.width; i += 15) {
@@ -127,7 +126,7 @@ export class MetalEmperor extends Enemy {
         this.radius = RADIUS;
         flashScreen();
         this.sprite = METALEMPERORSPRITE;
-        Shake.addShake(3, 0.5);
+        shakeScreen(3, 0.5);
     }
 
     harden() {
@@ -136,7 +135,7 @@ export class MetalEmperor extends Enemy {
         this.radius = -1;
         flashScreen();
         this.sprite = METALEMPERORHARDENEDSPRITE;
-        Shake.addShake(3, 0.5);
+        shakeScreen(3, 0.5);
 
         setTimeout(() => {
             this.soften();
@@ -146,7 +145,7 @@ export class MetalEmperor extends Enemy {
     die() {
         game.audiocontroller.playAnimationSound('exp_big');
         super.die();
-        Shake.addShake(6, 2);
+        shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

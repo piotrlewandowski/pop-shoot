@@ -2,7 +2,7 @@ import { Enemy } from '../Enemy.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { CANVAS } from '../../../Assets/OtherGfx.js';
-import { flashScreen, randomInRange, Shake } from '../../../Logic/Helpers.js';
+import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 import { ABUSERSPRITE } from '../../../Assets/Enemies.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 
@@ -70,7 +70,7 @@ export class Abuser extends Enemy {
 
     shoot() {
         if (!this.hardened) {
-            Shake.addShake(2, 0.25);
+            shakeScreen(2, 0.25);
             this.fireBurst();
             this.fireRow();
         }
@@ -109,7 +109,7 @@ export class Abuser extends Enemy {
             }
         } else {
             for (let i = 20; i <= 160; i += 20) {
-                Shake.addShake(20, 0.25);
+                shakeScreen(20, 0.25);
                 game.firelasers.add(new FireLaser(this.x + randomInRange(-2, 2), this.y, i, randomInRange(5, 10)));
             }
         }
@@ -134,7 +134,7 @@ export class Abuser extends Enemy {
         clearInterval(this.flashInterval);
         game.audiocontroller.stopSirenSound();
         flashScreen();
-        Shake.addShake(3, 0.5);
+        shakeScreen(3, 0.5);
     }
 
     harden() {
@@ -142,7 +142,7 @@ export class Abuser extends Enemy {
         this.hardened = true;
         this.flashInterval = setInterval(flashScreen, 1000);
         flashScreen();
-        Shake.addShake(3, 0.5);
+        shakeScreen(3, 0.5);
 
         setTimeout(() => {
             this.soften();
@@ -160,7 +160,7 @@ export class Abuser extends Enemy {
     die() {
         super.die();
         game.audiocontroller.playAnimationSound('exp_big');
-        Shake.addShake(6, 2);
+        shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

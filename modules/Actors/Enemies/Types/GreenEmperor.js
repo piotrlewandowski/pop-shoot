@@ -3,7 +3,7 @@ import { GREENEMPERORSPRITE } from '../../../Assets/Enemies.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { Shake } from '../../../Logic/Helpers.js';
+import { shakeScreen } from '../../../Logic/Helpers.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
 
@@ -43,7 +43,7 @@ export class GreenEmperor extends Enemy {
     die() {
         game.audiocontroller.playAnimationSound('exp_normal');
         game.effects.add(new Animation(this.x, this.y, 'explosion_big'));
-        Shake.addShake(3, 0.2);
+        shakeScreen(3, 0.2);
         super.die();
     }
 }

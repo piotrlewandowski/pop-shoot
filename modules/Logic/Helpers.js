@@ -10,7 +10,7 @@ export function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// converts game time to MM:SS format
+// Converts game time to MM:SS format
 export function getGametimeToMMSS() {
     let minutes = Math.floor(game.state.time / 60);
     let seconds = game.state.time % 60;
@@ -24,7 +24,7 @@ export function getGametimeToMMSS() {
     return `${minutes}:${seconds}`;
 }
 
-// returns the closest enemy to entity
+// Returns the closest enemy to entity
 export function getClosestEnemyTo(entity) {
     let distance = 9999;
     let closestEnemy;
@@ -43,20 +43,17 @@ export function getClosestEnemyTo(entity) {
     return closestEnemy;
 }
 
-// white screen-flash
+// White screen-flash
 export function flashScreen() {
     game.effects.add(new Notification(CANVAS.width / 2, CANVAS.height / 2, WHITESCREENSPRITE, 5));
 }
 
-// shake screen
-export class Shake {
-    // duration in seconds
-    static addShake(intensity, duration) {
-        const shake = setInterval(() => (game.scene.shake = randomInRange(-intensity, intensity)), 16);
+// Screen-shake effect
+export function shakeScreen(intensity, duration) {
+    const shake = setInterval(() => (game.scene.shake = randomInRange(-intensity, intensity)), 16);
 
-        setTimeout(() => {
-            game.scene.shake = 0;
-            clearInterval(shake);
-        }, duration * 1000);
-    }
+    setTimeout(() => {
+        game.scene.shake = 0;
+        clearInterval(shake);
+    }, duration * 1000);
 }

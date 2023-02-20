@@ -3,7 +3,7 @@ import { BLACKEMPERORSPRITE } from '../../../Assets/Enemies.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { Shake } from '../../../Logic/Helpers.js';
+import { shakeScreen } from '../../../Logic/Helpers.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
 
@@ -48,7 +48,7 @@ export class BlackEmperor extends Enemy {
     die() {
         game.audiocontroller.playAnimationSound('exp_normal');
         game.effects.add(new Animation(this.x, this.y, 'explosion_big'));
-        Shake.addShake(6, 0.75);
+        shakeScreen(6, 0.75);
         super.die();
     }
 }

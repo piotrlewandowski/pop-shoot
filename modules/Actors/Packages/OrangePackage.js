@@ -3,9 +3,9 @@
 import { Enemy } from '../Enemies/Enemy.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
-import { Shake } from '../../Logic/Helpers.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { ORANGEPACKAGESPRITE } from '../../Assets/Enemies.js';
+import { shakeScreen } from '../../Logic/Helpers.js';
 
 // MOVEMENT
 const SPEED = 0.5;
@@ -33,6 +33,6 @@ export class OrangePackage extends Enemy {
         game.audiocontroller.playAnimationSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.buffcontroller.drop();
-        Shake.addShake(4, 0.5);
+        shakeScreen(4, 0.5);
     }
 }

@@ -3,8 +3,7 @@ import { BLUEUFOSPRITE } from '../../../Assets/Enemies.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { randomInRange } from '../../../Logic/Helpers.js';
-import { Shake } from '../../../Logic/Helpers.js';
+import { randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
 
@@ -49,7 +48,7 @@ export class BlueUfo extends Enemy {
     die() {
         game.audiocontroller.playAnimationSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
-        Shake.addShake(4, 0.5);
+        shakeScreen(4, 0.5);
         this.explode();
         super.die();
     }

@@ -8,11 +8,10 @@ import {
     GLASSSTAGE5SPRITE,
 } from '../../Assets/Hud.js';
 import { Notification } from '../../Effects/Misc/Notification.js';
-import { Shake } from '../Helpers.js';
 import { GameVariables } from './GameVariables.js';
 import { SlowMo } from './SlowMo.js';
 import { ScoreController } from '../Controllers/ScoreController.js';
-import { flashScreen } from '../Helpers.js';
+import { flashScreen, shakeScreen } from '../Helpers.js';
 import { Clock } from '../../Drops/Clock.js';
 import { BuffController } from '../Controllers/BuffController.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
@@ -58,7 +57,7 @@ export class GameState {
             SlowMo.start();
             game.audiocontroller.playTrack('slowmo');
         } else {
-            Shake.addShake(2, 0.25);
+            shakeScreen(2, 0.25);
             game.effects.add(new Animation(game.player.x, game.player.y + 20, 'smoke_normal'));
             game.audiocontroller.playSlowmoEmptySound();
         }
@@ -80,7 +79,7 @@ export class GameState {
         if (!this.boss) {
             WeatherController.stopWeather();
             flashScreen();
-            Shake.addShake(6, 0.75);
+            shakeScreen(6, 0.75);
             this.boss = true;
             game.audiocontroller.playTrack(`boss${this.stage}`);
         } else {

@@ -4,8 +4,7 @@ import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { CANVAS } from '../../../Assets/OtherGfx.js';
-import { randomInRange } from '../../../Logic/Helpers.js';
-import { Shake } from '../../../Logic/Helpers.js';
+import { randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 import { EYEINTHESKYSPRITE } from '../../../Assets/Enemies.js';
 
 // MOVEMENT
@@ -59,7 +58,7 @@ export class EyeInTheSky extends Enemy {
     }
 
     shoot() {
-        Shake.addShake(4, 0.5);
+        shakeScreen(4, 0.5);
 
         // Set the number of lasers to shoot according to boss phase
         let bulletsnumber = BULLETSNUMBER;
@@ -94,7 +93,7 @@ export class EyeInTheSky extends Enemy {
     die() {
         super.die();
         game.audiocontroller.playAnimationSound('exp_big');
-        Shake.addShake(6, 2);
+        shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

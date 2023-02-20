@@ -4,7 +4,7 @@ import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { CANVAS } from '../../../Assets/OtherGfx.js';
-import { flashScreen, randomInRange, Shake } from '../../../Logic/Helpers.js';
+import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 import { FAMILIARSIGHTHARDENEDSPRITE, FAMILIARSIGHTSPRITE } from '../../../Assets/Enemies.js';
 
 // MOVEMENT
@@ -113,7 +113,7 @@ export class FamiliarSight extends Enemy {
     }
 
     fireShower() {
-        Shake.addShake(5, 0.25);
+        shakeScreen(5, 0.25);
 
         const randomdirection = randomInRange(0, 180);
         for (let i = 0; i <= 6; i += 2) {
@@ -123,7 +123,7 @@ export class FamiliarSight extends Enemy {
 
     takeDamage(damage) {
         super.takeDamage(damage);
-        Shake.addShake(2, 0.25);
+        shakeScreen(2, 0.25);
     }
 
     step() {
@@ -142,7 +142,7 @@ export class FamiliarSight extends Enemy {
         this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL / game.state.variables.slowmorate : FIRINGRATE_NORMAL;
         this.hardened = false;
         flashScreen();
-        Shake.addShake(3, 0.5);
+        shakeScreen(3, 0.5);
     }
 
     harden() {
@@ -153,7 +153,7 @@ export class FamiliarSight extends Enemy {
         this.hardened = true;
         game.enemies.clear();
         flashScreen();
-        Shake.addShake(3, 0.5);
+        shakeScreen(3, 0.5);
 
         setTimeout(() => {
             this.soften();
@@ -163,7 +163,7 @@ export class FamiliarSight extends Enemy {
     die() {
         super.die();
         game.audiocontroller.playAnimationSound('exp_big');
-        Shake.addShake(6, 2);
+        shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

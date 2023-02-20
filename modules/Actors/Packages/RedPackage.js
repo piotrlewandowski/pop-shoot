@@ -3,10 +3,10 @@
 import { Enemy } from '../Enemies/Enemy.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
-import { Shake } from '../../Logic/Helpers.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { REDPACKAGESPRITE } from '../../Assets/Enemies.js';
 import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
+import { shakeScreen } from '../../Logic/Helpers.js';
 
 // MOVEMENT
 const SPEED = 0.5;
@@ -34,7 +34,7 @@ export class RedPackage extends Enemy {
         game.audiocontroller.playAnimationSound('reload');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.itemcontroller.drop();
-        Shake.addShake(4, 0.5);
+        shakeScreen(4, 0.5);
 
         // Weather
         if (!game.state.boss) {

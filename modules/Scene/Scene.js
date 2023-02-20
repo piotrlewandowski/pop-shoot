@@ -66,7 +66,7 @@ export class Scene {
         // Background offset is used to scroll the background for parallax effect
         this.backgroundScrollOffset = 0;
 
-        // shake is set by the Shake class. Used for screen-shake effect
+        // Set by the shakeScreen helper function. Used for screen-shake effect
         this.shake = 0;
     }
 

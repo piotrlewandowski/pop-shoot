@@ -11,8 +11,7 @@ import {
 } from '../../Assets/Effects.js';
 import { game } from '../../../app.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
-import { flashScreen } from '../../Logic/Helpers.js';
-import { Shake } from '../../Logic/Helpers.js';
+import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
 
 const SPRITE = [
     VORTEX0SPRITE,
@@ -46,7 +45,7 @@ export class Vortex {
 
         if (this.ticks % ANXIETYFREQUENCY === 0) {
             flashScreen();
-            Shake.addShake(4, ANXIETYTIME / 1000);
+            shakeScreen(4, ANXIETYTIME / 1000);
             game.audiocontroller.playAnxietySound();
 
             setTimeout(() => {

@@ -11,8 +11,7 @@ import {
 } from '../../Assets/Effects.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { game } from '../../../app.js';
-import { flashScreen } from '../../Logic/Helpers.js';
-import { Shake } from '../../Logic/Helpers.js';
+import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
 
 const SPRITE = [
     SAND0SPRITE,
@@ -44,7 +43,7 @@ export class Sand {
         this.sprite = SPRITE[this.ticks % SPRITE.length];
 
         if (this.ticks % MIRAGEFREQUENCY === 0) {
-            Shake.addShake(500, 0.25);
+            shakeScreen(500, 0.25);
             game.audiocontroller.playSandFxSound();
             flashScreen();
         }

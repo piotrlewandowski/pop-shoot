@@ -3,8 +3,7 @@ import { GREENPLACERSPRITE } from '../../../Assets/Enemies.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { randomInRange } from '../../../Logic/Helpers.js';
-import { Shake } from '../../../Logic/Helpers.js';
+import { randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
 
@@ -51,7 +50,7 @@ export class GreenPlacer extends Enemy {
     die() {
         game.audiocontroller.playAnimationSound('phew');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
-        Shake.addShake(3, 0.2);
+        shakeScreen(3, 0.2);
         this.explode();
         super.die();
     }

@@ -5,7 +5,7 @@ import { Sand } from '../../Effects/Weather/Sand.js';
 import { Vortex } from '../../Effects/Weather/Vortex.js';
 import { Wind } from '../../Effects/Weather/Wind.js';
 
-let weather;
+const weathers = [Rain, Wind, Sand, Vortex, Matrix];
 
 export class WeatherController {
     // General weather variables
@@ -17,34 +17,19 @@ export class WeatherController {
     static glitchOffset = { x: 0, y: 0 };
 
     static startWeather() {
-        if (game.state.stage === 0) {
-            weather = new Rain();
-            this.weatherActive = 'rain';
-        }
-        if (game.state.stage === 1) {
-            weather = new Wind();
-            this.weatherActive = 'wind';
-        }
-        if (game.state.stage === 2) {
-            weather = new Sand();
-            this.weatherActive = 'sand';
-        }
-        if (game.state.stage === 3) {
-            weather = new Vortex();
-            this.weatherActive = 'vortex';
-        }
-        if (game.state.stage === 4) {
-            weather = new Matrix();
-            this.weatherActive = 'matrix';
-        }
-        game.effects.add(weather);
+        // get weather according to stage
+        const stageWeather = weathers[game.state.stage];
+
+        // activate weather
+        this.weatherActive = new stageWeather();
+        game.effects.add(this.weatherActive);
     }
 
     static stopWeather() {
-        if (weather) {
-            weather.stop();
+        if (this.weatherActive) {
+            this.weatherActive.stop();
+            this.weatherActive = false;
         }
-        this.weatherActive = false;
     }
 
     static startDarkness() {

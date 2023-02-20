@@ -29,6 +29,7 @@ import {
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
+import { Vortex } from '../Effects/Weather/Vortex.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -97,7 +98,7 @@ export class Scene {
 
         // FRONTPART - Draw the front part of the background
         this.ctx.drawImage(this.backgroundfront, this.shake, this.shake);
-        if (WeatherController.weatherActive === 'vortex') {
+        if (WeatherController.weatherActive.constructor === Vortex) {
             this.ctx.drawImage(HIEROGLYPHSPRITE, this.shake, this.shake);
         }
 

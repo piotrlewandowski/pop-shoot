@@ -3,7 +3,7 @@ import { BlueLaser } from '../../Lasers/Friendly/BlueLaser.js';
 import { PLAYERSPRITE } from '../../Assets/Player.js';
 import { Shield } from './Shield.js';
 import { Flame } from './Flame.js';
-import { closestEnemyTo, randomInRange } from '../../Logic/Helpers.js';
+import { getClosestEnemyTo, randomInRange } from '../../Logic/Helpers.js';
 import { Rocket } from '../../Lasers/Friendly/Rocket.js';
 import { Seeker } from '../../Lasers/Friendly/Seeker.js';
 import { Clock } from '../../Drops/Clock.js';
@@ -66,7 +66,7 @@ export class Player {
 
             // Seekers
             if (game.enemies.enemiesOnScreen() && game.state.variables.seekers) {
-                game.bluelasers.add(new Seeker(this.x, this.y, closestEnemyTo(this)));
+                game.bluelasers.add(new Seeker(this.x, this.y, getClosestEnemyTo(this)));
             }
 
             // Drones

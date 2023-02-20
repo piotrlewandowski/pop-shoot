@@ -11,7 +11,7 @@ export function randomInRange(min, max) {
 }
 
 // converts game time to MM:SS format
-export function convertedTime() {
+export function getGametimeToMMSS() {
     let minutes = Math.floor(game.state.time / 60);
     let seconds = game.state.time % 60;
 
@@ -25,7 +25,7 @@ export function convertedTime() {
 }
 
 // returns the closest enemy to entity
-export function closestEnemyTo(entity) {
+export function getClosestEnemyTo(entity) {
     let distance = 9999;
     let closestEnemy;
     game.enemies.liveEnemies.forEach((enemy) => {

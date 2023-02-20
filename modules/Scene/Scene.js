@@ -1,7 +1,7 @@
 import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
 import { SceneHelpers } from './SceneHelpers.js';
-import { convertedTime } from '../Logic/Helpers.js';
+import { getGametimeToMMSS } from '../Logic/Helpers.js';
 import {
     CANVAS,
     FOG,
@@ -217,7 +217,7 @@ export class Scene {
         this.ctx.drawImage(GLASSGAMEOVERSPRITE, 320, 205);
         this.ctx.filter = 'drop-shadow(1px 1px 0 black)';
         SceneHelpers.drawText(`GAMEOVER !`, 370, 245, FONTXLARGE);
-        SceneHelpers.drawText(`YOU SURVIVED ${convertedTime()} MINUTES`, 330, 270, FONTMEDIUM);
+        SceneHelpers.drawText(`YOU SURVIVED ${getGametimeToMMSS()} MINUTES`, 330, 270, FONTMEDIUM);
         SceneHelpers.drawText(`YOU DIED AT STAGE ${game.state.stage + 1}`, 380, 290, FONTMEDIUM);
         SceneHelpers.drawText(`YOUR SCORE: ${game.scorecontroller.score}`, 405, 310, FONTMEDIUM);
         SceneHelpers.drawText(`PRESS SPACE TO REPLAY`, 355, 340, FONTMEDIUM);
@@ -300,7 +300,7 @@ export class Scene {
         this.ctx.drawImage(GLASSRIGHTSPRITE, CANVAS.width - 120, CANVAS.height - 30);
         SceneHelpers.drawText(`STAGE ${game.state.stage + 1}`, CANVAS.width - 105, CANVAS.height - 9, FONTMEDIUM);
         if (!game.state.boss) {
-            SceneHelpers.drawText(convertedTime(), CANVAS.width - 100, CANVAS.height - 34, FONTLARGE);
+            SceneHelpers.drawText(getGametimeToMMSS(), CANVAS.width - 100, CANVAS.height - 34, FONTLARGE);
         } else {
             SceneHelpers.drawText(`BOSS FIGHT`, CANVAS.width - 100, CANVAS.height - 34, FONTSMALL);
         }

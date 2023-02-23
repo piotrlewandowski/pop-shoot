@@ -5,7 +5,16 @@ import { Sand } from '../../Effects/Weather/Sand.js';
 import { Vortex } from '../../Effects/Weather/Vortex.js';
 import { Wind } from '../../Effects/Weather/Wind.js';
 
-const weathers = [Rain, Wind, Sand, Vortex, Matrix];
+// Each stage has a corresponding weather
+// Stage1 -> Rain, Stage2 -> Wind etc...
+// Counting starts from 0, so Stage1 = 0, Stage2 = 1 etc...
+const weathers = {
+    0: Rain,
+    1: Wind,
+    2: Sand,
+    3: Vortex,
+    4: Matrix,
+};
 
 export class WeatherController {
     // General weather variables

@@ -1,8 +1,8 @@
-version: "3"
+version: '3'
 services:
-  nginx:
-    image: nginx:1.23
-    ports:
-      - 8080:80
-    volumes:
-      - ./:/usr/share/nginx/html
+    nginx:
+        image: nginx:1.23
+        ports:
+            - 8080:80
+        volumes:
+            - ./:/usr/share/nginx/html

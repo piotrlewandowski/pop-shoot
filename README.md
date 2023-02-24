@@ -2,10 +2,11 @@
 
 # pop-shoot
 
-Synthwave styled arcade shooter, written in Javascript.  
-The game includes 5 stages & bosses, as well as many cool features such as bullet-time, randomized item drops, weather effects and an awesome soundtrack.
+A synthwave styled space shooter, inspired by the 80s arcades. Written in plain Javascript.  
+The game includes 5 stages & bosses, as well as many cool features such as bullet-time, randomized item drops, weather effects and an awesome soundtrack by TeknoAxe.
 
-:joystick: <a href="https://kiwphi.github.io/pop-shoot/">Play</a> (F11 to toggle full-screen)
+:joystick: [Play](https://kiwphi.github.io/pop-shoot/) (F11 to toggle full-screen)  
+:beetle: [Report Bug](https://github.com/kiwphi/pop-shoot/issues)
 
 # screenshots
 
@@ -16,7 +17,7 @@ The game includes 5 stages & bosses, as well as many cool features such as bulle
 
 # acknowledgments
 
-:musical_note: Music by <a href="https://open.spotify.com/artist/0Hyqsw7GWssXIOVgy36ohS">TeknoAXE</a>  
-:art: Original background images by <a href="https://co.pinterest.com/paulcraftone/">Paul Craft</a> & <a href="https://natewren.com">Nate Wren</a>  
-:flying_saucer: Sprites & Audio by <a href="https://kenney.nl">Kenney.nl</a> & <a href="https://opengameart.org">OpenGameArt</a>  
-:pencil2: Fonts by <a href="https://www.dafont.com/thaleahfat.font">Rick Hoppmann</a>, <a href="https://www.dafont.com/handwriting-5.font">Asiyah</a> & <a href="https://photofunia.com/">Photofunia</a>
+:musical_note: Music by [TeknoAxe](https://open.spotify.com/artist/0Hyqsw7GWssXIOVgy36ohS)  
+:art: Original background images by [Paul Craft](https://co.pinterest.com/paulcraftone/) & [Nate Wren](https://natewren.com)  
+:flying_saucer: Sprites & Audio by [Kenney.nl](https://kenney.nl) & [OpenGameArt](https://opengameart.org)  
+:pencil2: Fonts by [Rick Hoppman](https://www.dafont.com/thaleahfat.font), [Asiyah](https://www.dafont.com/handwriting-5.font) & [Photofunia](https://photofunia.com)

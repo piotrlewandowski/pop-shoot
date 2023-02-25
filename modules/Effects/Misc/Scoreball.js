@@ -1,7 +1,7 @@
 import { SCOREBALLSPRITE } from '../../Assets/Effects.js';
+import { randomInRange } from '../../Logic/Helpers.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 
-const SPEED = 15;
 const DESTINATION_X = 30;
 const DESTINATION_Y = 520;
 const SPRITE = SCOREBALLSPRITE;
@@ -12,7 +12,7 @@ export class Scoreball {
         this.y = y;
 
         this.sprite = SPRITE;
-        this.speed = SPEED;
+        this.speed = randomInRange(30, 50);
 
         // Scoreball will be rendered on screen as long as duration is > 0
         // It will be flipped to 0 once destination is reached
@@ -24,7 +24,7 @@ export class Scoreball {
         this.x += Movement.moveTowards(this.x, this.y, DESTINATION_X, DESTINATION_Y, this.speed).x;
         this.y += Movement.moveTowards(this.x, this.y, DESTINATION_X, DESTINATION_Y, this.speed).y;
 
-        if (this.x <= DESTINATION_X + 10 && this.y <= DESTINATION_Y + 10) {
+        if (this.x <= DESTINATION_X + 30 && this.y <= DESTINATION_Y + 30) {
             // +10 because exact destination will never be reached
             this.duration = 0;
         }

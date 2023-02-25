@@ -5,13 +5,13 @@ const DURATION = 20; // When DURATION reaches 0, the damage number will be remov
 const SPEED = 5;
 
 export class DamageNumber {
-    constructor(x, y, text) {
+    constructor(x, y, damage) {
         this.x = x;
         this.y = y;
 
         this.speed = SPEED;
         this.duration = DURATION;
-        this.text = Math.round(text);
+        this.text = Math.round(damage);
         this.direction = randomInRange(0, 360);
     }
 

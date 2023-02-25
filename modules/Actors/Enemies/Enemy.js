@@ -1,7 +1,6 @@
 import { game } from '../../../app.js';
 import { randomInRange } from '../../Logic/Helpers.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
-import { Scoreball } from '../../Effects/Misc/Scoreball.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { ScoreNumber } from '../../Effects/Misc/ScoreNumber.js';
 
@@ -72,23 +71,22 @@ export class Enemy {
     // Release scoreballs when killed.
     // Some enemies & bosses have extra behaviour for this method.
     die() {
-        // SCOREBALLS
+        // SCORE
         let scoreReceived = this.scoreballs;
 
-        // Roll a dice to calculate greed chance
+        // GREED - Roll a dice to calculate greed chance
         const greedroll = randomInRange(0, 100);
         if (game.state.variables.greed && greedroll < game.state.variables.greedchance) {
             scoreReceived *= 2;
         }
 
+        // Display score number where enemy died
+        game.effects.add(new ScoreNumber(this.x, this.y, scoreReceived));
+
+        // Increase player's score
         for (let i = 0; i < scoreReceived; i++) {
             game.scorecontroller.incrementScore();
             game.scorecontroller.checkPlayerScore();
-            game.effects.add(new ScoreNumber(this.x, this.y, scoreReceived));
-            if (i < 10) {
-                // limit max scoreballs to 10 to prevent ugly effect
-                game.effects.add(new Scoreball(this.x + randomInRange(-80, 80), this.y + randomInRange(-80, 80)));
-            }
         }
     }
 }

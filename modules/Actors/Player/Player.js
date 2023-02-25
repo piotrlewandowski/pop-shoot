@@ -69,7 +69,7 @@ export class Player {
                 game.bluelasers.add(new Seeker(this.x, this.y, getClosestEnemyTo(this)));
             }
 
-            // Quad-Damage
+            // Quad-Damage & Thor's hammer
             if (game.state.variables.quaddamage || game.state.variables.thorshammer) {
                 shakeScreen(3, 0.25);
             }

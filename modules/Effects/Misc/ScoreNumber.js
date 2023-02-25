@@ -3,7 +3,7 @@ import { Movement } from '../../Logic/Motion/Movement.js';
 import { Scoreball } from './Scoreball.js';
 
 const DURATION = 50; // When DURATION reaches 0, the damage number will be removed by refresh()
-const ANIMATIONSPEED = 10; // lower = faster
+const ANIMATIONSPEED = 12; // higher = faster
 const INITIALSIZE = 100;
 const FINALSIZE = 30;
 const MOVESPEED = 0;
@@ -23,10 +23,10 @@ export class ScoreNumber {
 
         this.animation = setInterval(() => {
             if (this.fontSize > FINALSIZE) {
+                this.fontSize -= ANIMATIONSPEED;
                 this.x--;
-                this.fontSize -= 5;
             }
-        }, ANIMATIONSPEED);
+        }, 10);
     }
 
     move() {

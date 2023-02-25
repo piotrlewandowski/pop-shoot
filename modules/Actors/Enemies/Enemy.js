@@ -3,6 +3,7 @@ import { randomInRange } from '../../Logic/Helpers.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { Scoreball } from '../../Effects/Misc/Scoreball.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
+import { ScoreNumber } from '../../Effects/Misc/ScoreNumber.js';
 
 export class Enemy {
     constructor(radius, hp, scoreballs, sprite, speed, firingrate) {
@@ -83,6 +84,7 @@ export class Enemy {
         for (let i = 0; i < scoreReceived; i++) {
             game.scorecontroller.incrementScore();
             game.scorecontroller.checkPlayerScore();
+            game.effects.add(new ScoreNumber(this.x, this.y, scoreReceived));
             if (i < 10) {
                 // limit max scoreballs to 10 to prevent ugly effect
                 game.effects.add(new Scoreball(this.x + randomInRange(-80, 80), this.y + randomInRange(-80, 80)));

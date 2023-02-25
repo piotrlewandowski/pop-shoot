@@ -1,5 +1,6 @@
 import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
+import { ScoreNumber } from '../Effects/Misc/ScoreNumber.js';
 import { SceneHelpers } from './SceneHelpers.js';
 import { getGametimeToMMSS } from '../Logic/Helpers.js';
 import {
@@ -198,8 +199,8 @@ export class Scene {
     // LASERS AND EFFECTS
     drawEntity(entity) {
         entity.forEach((entity) => {
-            if (entity.constructor === DamageNumber) {
-                SceneHelpers.drawText(entity.text, entity.x, entity.y, FONTMEDIUM);
+            if (entity.constructor === DamageNumber || entity.constructor === ScoreNumber) {
+                return SceneHelpers.drawText(entity.text, entity.x, entity.y, FONTMEDIUM);
             } else {
                 this.ctx.drawImage(
                     entity.sprite,

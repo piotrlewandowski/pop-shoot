@@ -43,6 +43,7 @@ const FONTSMALL = '20px thaleahfatmedium';
 const FONTMEDIUM = '30px thaleahfatmedium';
 const FONTLARGE = '40px thaleahfatmedium';
 const FONTXLARGE = '60px thaleahfatmedium';
+const FONTCUSTOM = 'px thaleahfatmedium';
 
 // BACKGROUNDS
 const BACKGROUNDS = {
@@ -199,15 +200,17 @@ export class Scene {
     // LASERS AND EFFECTS
     drawEntity(entity) {
         entity.forEach((entity) => {
-            if (entity.constructor === DamageNumber || entity.constructor === ScoreNumber) {
+            if (entity.constructor === DamageNumber) {
                 return SceneHelpers.drawText(entity.text, entity.x, entity.y, FONTMEDIUM);
-            } else {
-                this.ctx.drawImage(
-                    entity.sprite,
-                    SceneHelpers.offsetCoordinates(entity).x,
-                    SceneHelpers.offsetCoordinates(entity).y
-                );
             }
+            if (entity.constructor === ScoreNumber) {
+                return SceneHelpers.drawText(entity.text, entity.x, entity.y, `${entity.fontSize}${FONTCUSTOM}`);
+            }
+            this.ctx.drawImage(
+                entity.sprite,
+                SceneHelpers.offsetCoordinates(entity).x,
+                SceneHelpers.offsetCoordinates(entity).y
+            );
         });
     }
 

@@ -1,6 +1,7 @@
 import { game } from '../../app.js';
 import { Scoreball } from './Misc/Scoreball.js';
 import { DamageNumber } from './Misc/DamageNumber.js';
+import { ScoreNumber } from './Misc/ScoreNumber.js';
 
 export class EffectsPool {
     constructor() {
@@ -12,7 +13,12 @@ export class EffectsPool {
 
         // If the effect is a damage number & game is in slow-mo state,
         // apply slowmo rates to its duration & speed
-        if (game.state.slowmo && (effect.constructor === DamageNumber || effect.constructor === Scoreball)) {
+        if (
+            game.state.slowmo &&
+            (effect.constructor === DamageNumber ||
+                effect.constructor === Scoreball ||
+                effect.constructor === ScoreNumber)
+        ) {
             this.applySlowmoToOne(effect);
         }
     }
@@ -23,7 +29,11 @@ export class EffectsPool {
 
     applySlowmoToAll() {
         this.liveEffects.forEach((effect) => {
-            if (effect.constructor === DamageNumber || effect.constructor === Scoreball) {
+            if (
+                effect.constructor === DamageNumber ||
+                effect.constructor === Scoreball ||
+                effect.constructor === ScoreNumber
+            ) {
                 this.applySlowmoToOne(effect);
             }
         });
@@ -31,7 +41,11 @@ export class EffectsPool {
 
     removeSlowmoFromAll() {
         this.liveEffects.forEach((effect) => {
-            if (effect.constructor === DamageNumber || effect.constructor === Scoreball) {
+            if (
+                effect.constructor === DamageNumber ||
+                effect.constructor === Scoreball ||
+                effect.constructor === ScoreNumber
+            ) {
                 this.removeSlowmoFromOne(effect);
             }
         });

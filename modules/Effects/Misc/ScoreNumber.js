@@ -2,31 +2,18 @@ import { game } from '../../../app.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { Scoreball } from './Scoreball.js';
 
-const DURATION = 50; // When DURATION reaches 0, the damage number will be removed by refresh()
-const ANIMATIONSPEED = 12; // higher = faster
-const INITIALSIZE = 100;
-const FINALSIZE = 30;
-const MOVESPEED = 0;
+const DURATION = 40; // When DURATION reaches 0, the score-number will be removed by refresh()
+const MOVESPEED = 1;
 
 export class ScoreNumber {
     constructor(x, y, scoreReceived) {
         this.x = x;
         this.y = y;
 
-        this.scoreReceived = scoreReceived;
-        this.text = `+${scoreReceived}`;
-        this.fontSize = INITIALSIZE;
-
         this.speed = MOVESPEED;
         this.duration = DURATION;
+        this.text = this.scoreReceived = scoreReceived;
         this.direction = 270; // NORTH
-
-        this.animation = setInterval(() => {
-            if (this.fontSize > FINALSIZE) {
-                this.fontSize -= ANIMATIONSPEED;
-                this.x--;
-            }
-        }, 10);
     }
 
     move() {

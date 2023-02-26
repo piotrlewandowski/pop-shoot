@@ -38,12 +38,10 @@ const RATIO = 16 / 9;
 
 // DEFAULT DRAWING & FONT STYLES
 const FILLSTYLE = '#FFFFFF';
-const STROKESTYLE = '#FFFFFF';
 const FONTSMALL = '20px thaleahfatmedium';
 const FONTMEDIUM = '30px thaleahfatmedium';
 const FONTLARGE = '40px thaleahfatmedium';
 const FONTXLARGE = '60px thaleahfatmedium';
-const FONTCUSTOM = 'px thaleahfatmedium';
 
 // BACKGROUNDS
 const BACKGROUNDS = {
@@ -62,9 +60,8 @@ export class Scene {
         this.canvas.height = CANVASWIDTH / RATIO;
         this.ctx = this.canvas.getContext('2d');
 
-        // Fill & Stroke styles
+        // Fill Style
         this.ctx.fillStyle = FILLSTYLE;
-        this.ctx.strokeStyle = STROKESTYLE;
 
         // Background offset is used to scroll the background for parallax effect
         this.backgroundScrollOffset = 0;
@@ -204,7 +201,7 @@ export class Scene {
                 return SceneHelpers.drawText(entity.text, entity.x, entity.y, FONTMEDIUM);
             }
             if (entity.constructor === ScoreNumber) {
-                return SceneHelpers.drawText(entity.text, entity.x, entity.y, `${entity.fontSize}${FONTCUSTOM}`);
+                return SceneHelpers.drawStrokedText(entity.text, entity.x, entity.y, FONTMEDIUM);
             }
             this.ctx.drawImage(
                 entity.sprite,

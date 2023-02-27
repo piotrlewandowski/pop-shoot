@@ -1,4 +1,5 @@
 import { game } from '../../../app.js';
+import { COINSPRITE } from '../../Assets/Effects.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { Scoreball } from './Scoreball.js';
 
@@ -9,7 +10,7 @@ export class ScoreNumber {
     constructor(x, y, scoreReceived) {
         this.x = x;
         this.y = y;
-
+        this.sprite = COINSPRITE;
         this.speed = MOVESPEED;
         this.duration = DURATION;
         this.text = this.scoreReceived = scoreReceived;

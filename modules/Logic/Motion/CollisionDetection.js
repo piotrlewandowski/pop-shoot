@@ -44,6 +44,13 @@ export class CollisionDetection {
             });
         });
 
+        // COINS AND PLAYER
+        game.effects.liveEffects.forEach((effect) => {
+            if (this.areColliding(effect, game.player)) {
+                effect.remove();
+            }
+        });
+
         // ENEMIES AND CANVAS LIMITS
         game.enemies.liveEnemies.forEach((enemy) => {
             CollisionActions.EnemyCanvas(enemy);

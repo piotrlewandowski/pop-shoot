@@ -1,4 +1,4 @@
-import { COINSPRITE, SCOREBALLSPRITE } from '../../Assets/Effects.js';
+import { COINSPRITE } from '../../Assets/Effects.js';
 import { randomInRange } from '../../Logic/Helpers.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
@@ -19,18 +19,33 @@ export class Scoreball {
         this.sprite = SPRITE;
         this.speed = randomInRange(15, 40);
 
+        this.direction = randomInRange(0, 360);
+
+        this.toplayer = false;
+
+        setTimeout(() => {
+            this.toplayer = true;
+        }, 1000);
+
         // Scoreball will be rendered on screen as long as duration is > 0
         // It will be flipped to 0 once destination is reached
         this.duration = 1;
     }
 
-    // Move the scoreball towards the scoreboard
     move() {
-        this.x += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).x;
-        this.y += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).y;
+        // Move the scoreball towards the player
+        if (this.toplayer) {
+            this.x += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).x;
+            this.y += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).y;
+        } else {
+            this.x += Movement.move(this.direction, 0.5).x;
+            this.y += Movement.move(this.direction, 0.5).y;
+        }
     }
 
-    remove() {
+    removeAndCount() {
+        game.scorecontroller.incrementScore();
+        game.scorecontroller.checkPlayerScore();
         this.duration = 0;
     }
 }

@@ -2,7 +2,7 @@ import { game } from '../../../app.js';
 import { randomInRange } from '../../Logic/Helpers.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
-import { ScoreNumber } from '../../Effects/Misc/ScoreNumber.js';
+import { Scoreball } from '../../Effects/Misc/Scoreball.js';
 
 export class Enemy {
     constructor(radius, hp, scoreballs, sprite, speed, firingrate) {
@@ -80,13 +80,9 @@ export class Enemy {
             scoreReceived *= 2;
         }
 
-        // Display score number where enemy died
-        game.effects.add(new ScoreNumber(this.x, this.y, scoreReceived));
-
-        // Increase player's score
+        // Release ScoreBalls
         for (let i = 0; i < scoreReceived; i++) {
-            game.scorecontroller.incrementScore();
-            game.scorecontroller.checkPlayerScore();
+            game.effects.add(new Scoreball(this.x, this.y));
         }
     }
 }

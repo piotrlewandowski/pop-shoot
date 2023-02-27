@@ -6,7 +6,7 @@ import { EnemyPool } from './Actors/Enemies/EnemyPool.js';
 import { EffectsPool } from './Effects/EffectsPool.js';
 import { GameState } from './Logic/State/GameState.js';
 import { AudioController } from './Logic/Controllers/AudioController.js';
-import { ScoreController } from './Logic/Controllers/ScoreController.js';
+import { CashController } from './Logic/Controllers/CashController.js';
 import { EnemyController } from './Logic/Controllers/EnemyController.js';
 import { ItemController } from './Logic/Controllers/ItemController.js';
 import { BuffController } from './Logic/Controllers/BuffController.js';
@@ -30,7 +30,7 @@ export class Game {
         this.itemcontroller = new ItemController();
         this.buffcontroller = new BuffController();
         this.audiocontroller = new AudioController();
-        this.scorecontroller = new ScoreController();
+        this.cashcontroller = new CashController();
         this.enemycontroller = new EnemyController();
     }
 

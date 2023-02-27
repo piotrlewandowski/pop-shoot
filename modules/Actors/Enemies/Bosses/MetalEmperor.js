@@ -28,7 +28,7 @@ const HARDEN_TIME = 10000; // in ms
 
 // STATE
 const HP = 8000;
-const SCOREBALLS = 30;
+const COINS = 30;
 const RADIUS = 50;
 const SPRITE = METALEMPERORSPRITE;
 const NAME = 'METAL EMPEROR';
@@ -39,7 +39,7 @@ const PHASE2_HP = 0.25;
 
 export class MetalEmperor extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         this.x = 250;
         this.y = -this.radius;
 

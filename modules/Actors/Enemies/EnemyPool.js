@@ -41,7 +41,7 @@ export class EnemyPool {
     }
 
     // If replay variable is set to true, the enemies array will be cleared (used for replay after game-over)
-    // If set to false, the enemies will be killed normally & score counted (used after killing bosses)
+    // If set to false, the enemies will be killed normally & cash will be counted (used after killing bosses)
     clear(replay) {
         if (replay) {
             this.liveEnemies = [];

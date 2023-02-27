@@ -2,14 +2,14 @@ import { game } from '../../../app.js';
 import { randomInRange } from '../../Logic/Helpers.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
-import { ScoreNumber } from '../../Effects/Misc/ScoreNumber.js';
+import { Coin } from '../../Effects/Misc/Coin.js';
 
 export class Enemy {
-    constructor(radius, hp, scoreballs, sprite, speed, firingrate) {
+    constructor(radius, hp, coins, sprite, speed, firingrate) {
         // Base stats
         this.radius = radius;
         this.hp = this.maxhp = hp;
-        this.scoreballs = scoreballs;
+        this.coins = coins;
         this.sprite = sprite;
         this.speed = speed;
         this.firingrate = firingrate;
@@ -68,25 +68,21 @@ export class Enemy {
         }
     }
 
-    // Release scoreballs when killed.
+    // Release coins when killed.
     // Some enemies & bosses have extra behaviour for this method.
     die() {
-        // SCORE
-        let scoreReceived = this.scoreballs;
+        // CASH
+        let cashReceived = this.coins;
 
         // GREED - Roll a dice to calculate greed chance
         const greedroll = randomInRange(0, 100);
         if (game.state.variables.greed && greedroll < game.state.variables.greedchance) {
-            scoreReceived *= 2;
+            cashReceived *= 2;
         }
 
-        // Display score number where enemy died
-        game.effects.add(new ScoreNumber(this.x, this.y, scoreReceived));
-
-        // Increase player's score
-        for (let i = 0; i < scoreReceived; i++) {
-            game.scorecontroller.incrementScore();
-            game.scorecontroller.checkPlayerScore();
+        // Release Coins
+        for (let i = 0; i < cashReceived; i++) {
+            game.effects.add(new Coin(this.x, this.y));
         }
     }
 }

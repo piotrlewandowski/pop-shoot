@@ -1,6 +1,5 @@
 import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
-import { ScoreNumber } from '../Effects/Misc/ScoreNumber.js';
 import { SceneHelpers } from './SceneHelpers.js';
 import { getGametimeToMMSS } from '../Logic/Helpers.js';
 import {
@@ -29,7 +28,7 @@ import {
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
+import { BLACKSCREENSPRITE, COINSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 
 // CANVAS
@@ -38,6 +37,7 @@ const RATIO = 16 / 9;
 
 // DEFAULT DRAWING & FONT STYLES
 const FILLSTYLE = '#FFFFFF';
+const STROKESTYLE = '#FFFFFF';
 const FONTSMALL = '20px thaleahfatmedium';
 const FONTMEDIUM = '30px thaleahfatmedium';
 const FONTLARGE = '40px thaleahfatmedium';
@@ -60,8 +60,9 @@ export class Scene {
         this.canvas.height = CANVASWIDTH / RATIO;
         this.ctx = this.canvas.getContext('2d');
 
-        // Fill Style
+        // Fill & Stroke styles
         this.ctx.fillStyle = FILLSTYLE;
+        this.ctx.strokeStyle = STROKESTYLE;
 
         // Background offset is used to scroll the background for parallax effect
         this.backgroundScrollOffset = 0;
@@ -200,9 +201,6 @@ export class Scene {
             if (entity.constructor === DamageNumber) {
                 return SceneHelpers.drawText(entity.text, entity.x, entity.y, FONTMEDIUM);
             }
-            if (entity.constructor === ScoreNumber) {
-                return SceneHelpers.drawStrokedText(entity.text, entity.x, entity.y, FONTMEDIUM);
-            }
             this.ctx.drawImage(
                 entity.sprite,
                 SceneHelpers.offsetCoordinates(entity).x,
@@ -221,7 +219,7 @@ export class Scene {
         SceneHelpers.drawText(`GAMEOVER !`, 370, 245, FONTXLARGE);
         SceneHelpers.drawText(`YOU SURVIVED ${getGametimeToMMSS()} MINUTES`, 330, 270, FONTMEDIUM);
         SceneHelpers.drawText(`YOU DIED AT STAGE ${game.state.stage + 1}`, 380, 290, FONTMEDIUM);
-        SceneHelpers.drawText(`YOUR SCORE: ${game.scorecontroller.score}`, 405, 310, FONTMEDIUM);
+        SceneHelpers.drawText(`EARNED CASH: ${game.cashcontroller.cash}`, 405, 310, FONTMEDIUM);
         SceneHelpers.drawText(`PRESS SPACE TO REPLAY`, 355, 340, FONTMEDIUM);
         this.ctx.filter = 'none';
     }
@@ -250,10 +248,11 @@ export class Scene {
     }
 
     drawHud() {
-        // LEFT SIDE (SCORE)
+        // LEFT SIDE (CASH)
         this.ctx.drawImage(GLASSLEFTSPRITE, 3, CANVAS.height - 30);
-        SceneHelpers.drawText(`SCORE`, 12, CANVAS.height - 9, FONTMEDIUM);
-        SceneHelpers.drawText(game.scorecontroller.score, 10, CANVAS.height - 34, FONTLARGE);
+        this.ctx.drawImage(COINSPRITE, 10, CANVAS.height - 25);
+        SceneHelpers.drawText(`CASH`, 28, CANVAS.height - 9, FONTMEDIUM);
+        SceneHelpers.drawText(game.cashcontroller.cash, 10, CANVAS.height - 34, FONTLARGE);
 
         // MIDDLE (UPGRADES)
         const dmgPos = game.state.variables.dmgIconPosition;
@@ -296,7 +295,7 @@ export class Scene {
         // MIDDLE - NEXT-PACKAGE BAR
         this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
         SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
-        SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.scorecontroller.levelBarPercentage);
+        SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
 
         // RIGHT SIDE (STAGE + TIME)
         this.ctx.drawImage(GLASSRIGHTSPRITE, CANVAS.width - 120, CANVAS.height - 30);

@@ -23,13 +23,13 @@ const LASERDIRECTION5 = 100; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = Difficulty.baseInvaderHp * Difficulty.redHpMultiplier;
-const SCOREBALLS = Difficulty.baseInvaderScore * Difficulty.redScoreMultiplier;
+const COINS = Difficulty.baseInvaderCash * Difficulty.redCashMultiplier;
 const RADIUS = 17;
 const SPRITE = REDINVADERSPRITE;
 
 export class RedInvader extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

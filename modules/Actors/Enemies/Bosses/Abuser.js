@@ -32,7 +32,7 @@ const HARDEN_TIME = 15000; // in ms
 
 // STATE
 const HP = 100000;
-const SCOREBALLS = 240;
+const COINS = 240;
 const RADIUS = 50;
 const SPRITE = ABUSERSPRITE;
 const NAME = 'EMOTIONAL ABUSER';
@@ -46,7 +46,7 @@ const PHASE4_HP = 0.25;
 
 export class Abuser extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         this.x = CANVAS.width / 2;
 
         // BOSS SPECIFIC ------------

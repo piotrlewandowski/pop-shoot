@@ -18,13 +18,13 @@ const BULLETSNUMBER = 4;
 
 // STATE
 const HP = Difficulty.baseUfoHp * Difficulty.redHpMultiplier;
-const SCOREBALLS = Difficulty.baseUfoScore * Difficulty.redScoreMultiplier;
+const COINS = Difficulty.baseUfoCash * Difficulty.redCashMultiplier;
 const RADIUS = 17;
 const SPRITE = REDUFOSPRITE;
 
 export class RedUfo extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

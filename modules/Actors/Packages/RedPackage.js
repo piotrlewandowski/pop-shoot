@@ -14,13 +14,13 @@ const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = 150;
-const SCOREBALLS = 0;
+const COINS = 0;
 const RADIUS = 17;
 const SPRITE = REDPACKAGESPRITE;
 
 export class RedPackage extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED);
+        super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.hitsound = 'metal';
         game.audiocontroller.playBeepRedSound();
     }

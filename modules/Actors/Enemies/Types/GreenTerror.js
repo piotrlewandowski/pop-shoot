@@ -18,13 +18,13 @@ const LASERDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = Difficulty.baseTerrorHp;
-const SCOREBALLS = Difficulty.baseTerrorScore;
+const COINS = Difficulty.baseTerrorCash;
 const RADIUS = 19;
 const SPRITE = GREENTERRORSPRITE;
 
 export class GreenTerror extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

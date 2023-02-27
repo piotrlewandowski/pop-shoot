@@ -24,7 +24,7 @@ const HARDEN_BULLETSPEED = 3;
 
 // STATE
 const HP = 50000;
-const SCOREBALLS = 120;
+const COINS = 120;
 const RADIUS = 50;
 const SPRITE = FK77SPRITE;
 const NAME = '4K77';
@@ -37,7 +37,7 @@ const PHASE3_HP = 0.25;
 
 export class Fk77 extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED);
+        super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.x = XPOS;
 
         // BOSS SPECIFIC ------------

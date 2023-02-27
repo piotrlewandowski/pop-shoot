@@ -10,7 +10,7 @@ import {
 import { Notification } from '../../Effects/Misc/Notification.js';
 import { GameVariables } from './GameVariables.js';
 import { SlowMo } from './SlowMo.js';
-import { ScoreController } from '../Controllers/ScoreController.js';
+import { CashController } from '../Controllers/CashController.js';
 import { flashScreen, shakeScreen } from '../Helpers.js';
 import { Clock } from '../../Drops/Clock.js';
 import { BuffController } from '../Controllers/BuffController.js';
@@ -157,7 +157,7 @@ export class GameState {
         game.player.clock = new Clock();
         game.itemcontroller = new ItemController();
         game.buffcontroller = new BuffController();
-        game.scorecontroller = new ScoreController();
+        game.cashcontroller = new CashController();
 
         // GRAPHICS
         flashScreen();

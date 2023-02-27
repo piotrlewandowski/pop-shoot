@@ -6,41 +6,45 @@ import { game } from '../../../app.js';
 const SPRITE = COINSPRITE;
 const RADIUS = 10;
 
+// FLOATING PHASE
+const FLOATSPEED = 0.5;
+const FLOATDURATION = 1000;
+
 export class Coin {
     constructor(x, y) {
         this.x = x;
         this.y = y;
 
-        this.destination_x = game.player.x;
-        this.destination_y = game.player.y;
-
+        this.sprite = SPRITE;
         this.radius = RADIUS;
 
-        this.sprite = SPRITE;
-        this.speed = randomInRange(15, 40);
-
+        // Floating Phase
         this.direction = randomInRange(0, 360);
-
-        this.toplayer = false;
+        this.isFloating = true;
 
         setTimeout(() => {
-            this.toplayer = true;
-        }, 1000);
+            this.isFloating = false;
+        }, FLOATDURATION);
+
+        // Towards-Player phase
+        this.destination_x = game.player.x;
+        this.destination_y = game.player.y;
+        this.speed = randomInRange(15, 40);
 
         // Coin will be rendered on screen as long as duration is > 0
-        // It will be flipped to 0 once destination is reached
+        // Duration be flipped to 0 after collision with player
         this.duration = 1;
     }
 
     move() {
-        // Move the coin towards the player
-        if (this.toplayer) {
+        if (this.isFloating) {
+            // Move slowly in random direction on enemy's death
+            this.x += Movement.move(this.direction, FLOATSPEED).x;
+            this.y += Movement.move(this.direction, FLOATSPEED).y;
+        } else {
+            // Move towards player
             this.x += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).x;
             this.y += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).y;
-        } else {
-            // Move slowly in random direction on enemy's death
-            this.x += Movement.move(this.direction, 0.5).x;
-            this.y += Movement.move(this.direction, 0.5).y;
         }
     }
 

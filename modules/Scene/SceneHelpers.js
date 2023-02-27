@@ -8,7 +8,6 @@ export class SceneHelpers {
         game.scene.ctx.fill();
         game.scene.ctx.beginPath();
         game.scene.ctx.rect(x - 2, y - 2, width + 4, height + 4);
-        game.scene.ctx.strokeStyle = '#FFFFFF';
         game.scene.ctx.stroke();
     }
 
@@ -22,13 +21,6 @@ export class SceneHelpers {
     static drawText(text, x, y, font) {
         game.scene.ctx.font = font;
         game.scene.ctx.fillText(text, x, y);
-    }
-
-    static drawStrokedText(text, x, y, font) {
-        game.scene.ctx.font = font;
-        game.scene.ctx.fillText(text, x, y);
-        game.scene.ctx.strokeStyle = '#FF0000';
-        game.scene.ctx.strokeText(text, x, y);
     }
 
     // Canvas.drawImage draws an image starting from the top-left corner of the image,

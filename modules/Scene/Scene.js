@@ -37,6 +37,7 @@ const RATIO = 16 / 9;
 
 // DEFAULT DRAWING & FONT STYLES
 const FILLSTYLE = '#FFFFFF';
+const STROKESTYLE = '#FFFFFF';
 const FONTSMALL = '20px thaleahfatmedium';
 const FONTMEDIUM = '30px thaleahfatmedium';
 const FONTLARGE = '40px thaleahfatmedium';
@@ -59,8 +60,9 @@ export class Scene {
         this.canvas.height = CANVASWIDTH / RATIO;
         this.ctx = this.canvas.getContext('2d');
 
-        // Fill Style
+        // Fill & Stroke styles
         this.ctx.fillStyle = FILLSTYLE;
+        this.ctx.strokeStyle = STROKESTYLE;
 
         // Background offset is used to scroll the background for parallax effect
         this.backgroundScrollOffset = 0;

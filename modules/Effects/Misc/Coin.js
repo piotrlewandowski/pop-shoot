@@ -2,6 +2,7 @@ import { COINSPRITE } from '../../Assets/Effects.js';
 import { randomInRange } from '../../Logic/Helpers.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
+import { Animation } from './Animation.js';
 
 const SPRITE = COINSPRITE;
 const RADIUS = 10;
@@ -51,6 +52,7 @@ export class Coin {
     removeAndCount() {
         game.cashcontroller.incrementCash();
         game.cashcontroller.checkPlayerCash();
+        game.effects.add(new Animation(this.x, this.y, 'smoke_small'));
         this.duration = 0;
     }
 }

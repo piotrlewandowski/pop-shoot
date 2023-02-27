@@ -18,7 +18,7 @@ const BULLETSNUMBER = 3;
 
 // STATE
 const HP = Difficulty.baseUfoHp * Difficulty.blueHpMultiplier;
-const COINS = Difficulty.baseUfoScore * Difficulty.blueScoreMultiplier;
+const COINS = Difficulty.baseUfoCash * Difficulty.blueCashMultiplier;
 const RADIUS = 17;
 const SPRITE = BLUEUFOSPRITE;
 

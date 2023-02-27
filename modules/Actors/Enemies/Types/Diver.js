@@ -14,7 +14,7 @@ const DELAY = 60; // Delay entry to screen so that sound effect plays first (in 
 
 // STATE
 const HP = Difficulty.baseDiverHp;
-const COINS = Difficulty.baseDiverScore;
+const COINS = Difficulty.baseDiverCash;
 const RADIUS = 20;
 const SPRITE = DIVERSPRITE;
 
@@ -22,15 +22,15 @@ export class Diver extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
         if (game.state.stage === 1) {
-            this.coins *= Difficulty.blueScoreMultiplier;
+            this.coins *= Difficulty.blueCashMultiplier;
             this.hp *= Difficulty.blueHpMultiplier;
         }
         if (game.state.stage === 2) {
-            this.coins *= Difficulty.redScoreMultiplier;
+            this.coins *= Difficulty.redCashMultiplier;
             this.hp *= Difficulty.redHpMultiplier;
         }
         if (game.state.stage >= 3) {
-            this.coins *= Difficulty.blackScoreMultiplier;
+            this.coins *= Difficulty.blackCashMultiplier;
             this.hp *= Difficulty.blackHpMultiplier;
         }
 

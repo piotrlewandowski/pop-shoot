@@ -45,8 +45,8 @@ export class Coin {
     }
 
     removeAndCount() {
-        game.scorecontroller.incrementScore();
-        game.scorecontroller.checkPlayerScore();
+        game.cashcontroller.incrementCash();
+        game.cashcontroller.checkPlayerCash();
         this.duration = 0;
     }
 }

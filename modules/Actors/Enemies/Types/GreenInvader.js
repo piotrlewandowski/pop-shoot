@@ -19,7 +19,7 @@ const LASERDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = Difficulty.baseInvaderHp;
-const COINS = Difficulty.baseInvaderScore;
+const COINS = Difficulty.baseInvaderCash;
 const RADIUS = 17;
 const SPRITE = GREENINVADERSPRITE;
 

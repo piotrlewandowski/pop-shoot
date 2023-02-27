@@ -18,7 +18,7 @@ const BULLETSNUMBER = 5;
 
 // STATE
 const HP = Difficulty.basePlacerHp * Difficulty.blackHpMultiplier;
-const COINS = Difficulty.basePlacerScore * Difficulty.blackScoreMultiplier;
+const COINS = Difficulty.basePlacerCash * Difficulty.blackCashMultiplier;
 const RADIUS = 17;
 const SPRITE = BLACKPLACERSPRITE;
 

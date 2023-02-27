@@ -217,7 +217,7 @@ export class Scene {
         SceneHelpers.drawText(`GAMEOVER !`, 370, 245, FONTXLARGE);
         SceneHelpers.drawText(`YOU SURVIVED ${getGametimeToMMSS()} MINUTES`, 330, 270, FONTMEDIUM);
         SceneHelpers.drawText(`YOU DIED AT STAGE ${game.state.stage + 1}`, 380, 290, FONTMEDIUM);
-        SceneHelpers.drawText(`YOUR SCORE: ${game.scorecontroller.score}`, 405, 310, FONTMEDIUM);
+        SceneHelpers.drawText(`EARNED CASH: ${game.cashcontroller.cash}`, 405, 310, FONTMEDIUM);
         SceneHelpers.drawText(`PRESS SPACE TO REPLAY`, 355, 340, FONTMEDIUM);
         this.ctx.filter = 'none';
     }
@@ -246,11 +246,11 @@ export class Scene {
     }
 
     drawHud() {
-        // LEFT SIDE (SCORE)
+        // LEFT SIDE (CASH)
         this.ctx.drawImage(GLASSLEFTSPRITE, 3, CANVAS.height - 30);
         this.ctx.drawImage(COINSPRITE, 10, CANVAS.height - 25);
         SceneHelpers.drawText(`CASH`, 28, CANVAS.height - 9, FONTMEDIUM);
-        SceneHelpers.drawText(game.scorecontroller.score, 10, CANVAS.height - 34, FONTLARGE);
+        SceneHelpers.drawText(game.cashcontroller.cash, 10, CANVAS.height - 34, FONTLARGE);
 
         // MIDDLE (UPGRADES)
         const dmgPos = game.state.variables.dmgIconPosition;
@@ -293,7 +293,7 @@ export class Scene {
         // MIDDLE - NEXT-PACKAGE BAR
         this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
         SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
-        SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.scorecontroller.levelBarPercentage);
+        SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
 
         // RIGHT SIDE (STAGE + TIME)
         this.ctx.drawImage(GLASSRIGHTSPRITE, CANVAS.width - 120, CANVAS.height - 30);

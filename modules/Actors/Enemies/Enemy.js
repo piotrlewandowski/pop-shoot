@@ -77,7 +77,7 @@ export class Enemy {
         // GREED - Roll a dice to calculate greed chance
         const greedroll = randomInRange(0, 100);
         if (game.state.variables.greed && greedroll < game.state.variables.greedchance) {
-            scoreReceived *= 2;
+            cashReceived *= 2;
         }
 
         // Release Coins

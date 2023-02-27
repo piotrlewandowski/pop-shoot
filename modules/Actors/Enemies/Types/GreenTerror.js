@@ -18,7 +18,7 @@ const LASERDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = Difficulty.baseTerrorHp;
-const COINS = Difficulty.baseTerrorScore;
+const COINS = Difficulty.baseTerrorCash;
 const RADIUS = 19;
 const SPRITE = GREENTERRORSPRITE;
 

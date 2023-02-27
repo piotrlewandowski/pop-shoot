@@ -18,7 +18,7 @@ const LASERDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = Difficulty.baseEmperorHp * Difficulty.blackHpMultiplier;
-const COINS = Difficulty.baseEmperorScore * Difficulty.blackScoreMultiplier;
+const COINS = Difficulty.baseEmperorCash * Difficulty.blackCashMultiplier;
 const RADIUS = 25;
 const SPRITE = BLACKEMPERORSPRITE;
 

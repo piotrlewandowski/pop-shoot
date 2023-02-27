@@ -29,7 +29,7 @@ import {
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
+import { BLACKSCREENSPRITE, COINSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 
 // CANVAS
@@ -252,7 +252,8 @@ export class Scene {
     drawHud() {
         // LEFT SIDE (SCORE)
         this.ctx.drawImage(GLASSLEFTSPRITE, 3, CANVAS.height - 30);
-        SceneHelpers.drawText(`SCORE`, 12, CANVAS.height - 9, FONTMEDIUM);
+        this.ctx.drawImage(COINSPRITE, 10, CANVAS.height - 25);
+        SceneHelpers.drawText(`CASH`, 28, CANVAS.height - 9, FONTMEDIUM);
         SceneHelpers.drawText(game.scorecontroller.score, 10, CANVAS.height - 34, FONTLARGE);
 
         // MIDDLE (UPGRADES)

@@ -18,13 +18,13 @@ const BULLETSNUMBER = 4;
 
 // STATE
 const HP = Difficulty.basePlacerHp * Difficulty.redHpMultiplier;
-const SCOREBALLS = Difficulty.basePlacerScore * Difficulty.redScoreMultiplier;
+const COINS = Difficulty.basePlacerScore * Difficulty.redScoreMultiplier;
 const RADIUS = 17;
 const SPRITE = REDPLACERSPRITE;
 
 export class RedPlacer extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

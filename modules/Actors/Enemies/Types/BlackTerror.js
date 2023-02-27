@@ -20,13 +20,13 @@ const LASERDIRECTION3 = 95; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = Difficulty.baseTerrorHp * Difficulty.blackHpMultiplier;
-const SCOREBALLS = Difficulty.baseTerrorScore * Difficulty.blackScoreMultiplier;
+const COINS = Difficulty.baseTerrorScore * Difficulty.blackScoreMultiplier;
 const RADIUS = 19;
 const SPRITE = BLACKTERRORSPRITE;
 
 export class BlackTerror extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

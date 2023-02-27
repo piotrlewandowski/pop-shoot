@@ -18,13 +18,13 @@ const BULLETSNUMBER = 3;
 
 // STATE
 const HP = Difficulty.basePlacerHp * Difficulty.blueHpMultiplier;
-const SCOREBALLS = Difficulty.basePlacerScore * Difficulty.blueScoreMultiplier;
+const COINS = Difficulty.basePlacerScore * Difficulty.blueScoreMultiplier;
 const RADIUS = 17;
 const SPRITE = BLUEPLACERSPRITE;
 
 export class BluePlacer extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

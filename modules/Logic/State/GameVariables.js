@@ -24,7 +24,7 @@ const EMPRATE = 0.2; // Multiplier to damage dealt to enemies when player is hit
 const METALSHIELDTIME = 2; // Invincibility time after being hit. In seconds (time without upgrade is 1)
 const NITROGENRATE = 2; // How much faster should shield recharge. (default without upgrade is 1)
 const URANIUMRATE = 0.6; // How much slower should slowmo deplete. (lower = slower. default without upgrade is 0.75)
-const GREEDCHANCE = 20; // Percentage chance of receiving double scoreballs
+const GREEDCHANCE = 20; // Percentage chance of receiving double coins
 
 export class GameVariables {
     constructor() {

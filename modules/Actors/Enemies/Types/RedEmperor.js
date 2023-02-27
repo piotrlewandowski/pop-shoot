@@ -18,13 +18,13 @@ const LASERDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 // STATE
 const HP = Difficulty.baseEmperorHp * Difficulty.redHpMultiplier;
-const SCOREBALLS = Difficulty.baseEmperorScore * Difficulty.redScoreMultiplier;
+const COINS = Difficulty.baseEmperorScore * Difficulty.redScoreMultiplier;
 const RADIUS = 25;
 const SPRITE = REDEMPERORSPRITE;
 
 export class RedEmperor extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

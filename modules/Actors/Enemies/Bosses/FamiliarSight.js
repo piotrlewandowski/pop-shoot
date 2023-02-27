@@ -34,14 +34,14 @@ const HARDEN_TIME = 10000; // in ms
 
 // STATE
 const HP = 15000;
-const SCOREBALLS = 60;
+const COINS = 60;
 const RADIUS = 40;
 const SPRITE = FAMILIARSIGHTSPRITE;
 const NAME = 'FAMILIAR SIGHT';
 
 export class FamiliarSight extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE_NORMAL);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE_NORMAL);
         // BOSS SPECIFIC ------------
         this.name = NAME;
         game.state.toggleBoss();

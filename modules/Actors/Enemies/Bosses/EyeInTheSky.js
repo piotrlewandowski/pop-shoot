@@ -18,7 +18,7 @@ const BULLETSNUMBER = 15;
 
 // STATE
 const HP = 1500;
-const SCOREBALLS = 15;
+const COINS = 15;
 const RADIUS = 50;
 const SPRITE = EYEINTHESKYSPRITE;
 const NAME = 'EYE IN THE SKY';
@@ -40,7 +40,7 @@ const PHASE4_BULLETS = 60;
 
 export class EyeInTheSky extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         this.x = CANVAS.width / 2;
 
         // BOSS SPECIFIC ------------

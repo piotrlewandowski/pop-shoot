@@ -1,5 +1,5 @@
 import { game } from '../../../app.js';
-import { Scoreball } from '../../Effects/Misc/Scoreball.js';
+import { Coin } from '../../Effects/Misc/Coin.js';
 import { CollisionActions } from './CollisionActions.js';
 
 export class CollisionDetection {
@@ -47,7 +47,7 @@ export class CollisionDetection {
 
         // COINS AND PLAYER
         game.effects.liveEffects.forEach((effect) => {
-            if (this.areColliding(effect, game.player) && effect.constructor === Scoreball) {
+            if (this.areColliding(effect, game.player) && effect.constructor === Coin) {
                 CollisionActions.CoinPlayer(effect, game.player);
             }
         });

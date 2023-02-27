@@ -18,13 +18,13 @@ const BULLETSNUMBER = 2;
 
 // STATE
 const HP = Difficulty.basePlacerHp;
-const SCOREBALLS = Difficulty.basePlacerScore;
+const COINS = Difficulty.basePlacerScore;
 const RADIUS = 17;
 const SPRITE = GREENPLACERSPRITE;
 
 export class GreenPlacer extends Enemy {
     constructor() {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
     }
 
     move() {

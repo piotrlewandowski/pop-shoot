@@ -18,13 +18,13 @@ const BULLETSNUMBER = 6;
 
 // STATE
 const HP = Difficulty.baseUfoHp * Difficulty.blackHpMultiplier;
-const SCOREBALLS = Difficulty.baseUfoScore * Difficulty.blackScoreMultiplier;
+const COINS = Difficulty.baseUfoScore * Difficulty.blackScoreMultiplier;
 const RADIUS = 17;
 const SPRITE = YELLOWUFOSPRITE;
 
 export class YellowUfo extends Enemy {
     constructor(x) {
-        super(RADIUS, HP, SCOREBALLS, SPRITE, SPEED, FIRINGRATE);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         if (x) {
             this.x = x;
         }

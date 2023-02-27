@@ -12,7 +12,6 @@ export const SLASHQUAD3SPRITE = document.getElementById('slashquad3');
 export const WHITESCREENSPRITE = document.getElementById('whitescreen');
 export const HIEROGLYPHSPRITE = document.getElementById('hieroglyph');
 export const BLACKSCREENSPRITE = document.getElementById('blackscreen');
-export const SCOREBALLSPRITE = document.getElementById('scoreball');
 export const COINSPRITE = document.getElementById('coin');
 
 // RAIN

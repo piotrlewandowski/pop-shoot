@@ -19,5 +19,5 @@ The game includes 5 stages & bosses, as well as many cool features such as bulle
 
 :musical_note: Music by [TeknoAxe](https://open.spotify.com/artist/0Hyqsw7GWssXIOVgy36ohS)  
 :art: Original background images by [Paul Craft](https://co.pinterest.com/paulcraftone/) & [Nate Wren](https://natewren.com)  
-:flying_saucer: Sprites & Audio by [Kenney.nl](https://kenney.nl) & [OpenGameArt](https://opengameart.org)  
+:flying_saucer: Sprites & Audio by [Kenney.nl](https://kenney.nl), [OpenGameArt](https://opengameart.org) & [kalebsilva](https://www.vecteezy.com/members/kalebsilva)  
 :pencil2: Fonts by [Rick Hoppman](https://www.dafont.com/thaleahfat.font), [Asiyah](https://www.dafont.com/handwriting-5.font) & [Photofunia](https://photofunia.com)

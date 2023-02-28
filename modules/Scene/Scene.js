@@ -26,6 +26,7 @@ import {
     COINSPRITE,
     CLOCKSPRITE,
     FLOPPYSPRITE,
+    VLINESPRITE,
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
@@ -255,6 +256,7 @@ export class Scene {
         // ---------------
 
         // Stage & Time
+        this.ctx.drawImage(VLINESPRITE, 4, 12);
         this.ctx.drawImage(FLOPPYSPRITE, 10, 10);
         SceneHelpers.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, FONTSMALLMEDIUM);
 

@@ -185,8 +185,8 @@ export class Scene {
             }
             // Healthbar to draw if boss
             if (enemy.name) {
-                SceneHelpers.drawBigBar(7, 10, 296, 11, hitPercentage);
-                SceneHelpers.drawText(enemy.name, 8, 40, FONTMEDIUM);
+                SceneHelpers.drawBigBar(690, 10, 296, 11, hitPercentage);
+                SceneHelpers.drawText(enemy.name, 690, 40, FONTMEDIUM);
             }
             // Enemy sprite
             this.ctx.drawImage(

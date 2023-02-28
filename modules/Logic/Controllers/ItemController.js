@@ -87,8 +87,8 @@ const DRAWINGS = {
     debris: { icon: DEBRIS_ICON, pause: DEBRIS_PAUSE, notification: DEBRIS_NOTIFICATION },
 };
 
-const NOTIFICATIONX = 147;
-const NOTIFICATIONY = 100;
+const NOTIFICATIONX = 520;
+const NOTIFICATIONY = 450;
 
 // DROP RATES
 const RATE = 80;

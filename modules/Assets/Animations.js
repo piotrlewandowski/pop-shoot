@@ -157,3 +157,13 @@ export const INVADERBLACK_D12 = document.getElementById('invaderblack_d12');
 export const INVADERBLACK_D13 = document.getElementById('invaderblack_d13');
 export const INVADERBLACK_D14 = document.getElementById('invaderblack_d14');
 export const INVADERBLACK_D15 = document.getElementById('invaderblack_d15');
+
+// SPINNING COIN
+export const COINSPIN0 = document.getElementById('coinspin0');
+export const COINSPIN1 = document.getElementById('coinspin1');
+export const COINSPIN2 = document.getElementById('coinspin2');
+export const COINSPIN3 = document.getElementById('coinspin3');
+export const COINSPIN4 = document.getElementById('coinspin4');
+export const COINSPIN5 = document.getElementById('coinspin5');
+export const COINSPIN6 = document.getElementById('coinspin6');
+export const COINSPIN7 = document.getElementById('coinspin7');

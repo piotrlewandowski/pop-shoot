@@ -277,7 +277,7 @@ export class Scene {
         const clockReady = game.player.clock.ready;
         const clockChargePositive = game.player.clock.currentCharge > 0;
 
-        let drawPos = 165;
+        let iconXPosition = 165;
         const iconGap = 45;
 
         // This loop will draw the aquired upgrades icons.
@@ -286,28 +286,38 @@ export class Scene {
         for (let i = 0; i < game.itemcontroller.icons.length; i++) {
             // Check if multiplydamage or spray is stacked, and check if clock is recharging
             if (i === clockPos && !clockReady && clockChargePositive) {
-                SceneHelpers.drawText(`${game.player.clock.currentCharge}`, drawPos + 9, CANVAS.height - 68, FONTSMALL);
+                SceneHelpers.drawText(
+                    `${game.player.clock.currentCharge}`,
+                    iconXPosition + 9,
+                    CANVAS.height - 43,
+                    FONTSMALL
+                );
             }
             if (i === dmgPos && dmgStacked) {
                 SceneHelpers.drawText(
                     `x${(game.state.variables.dmgMultiplier - 1) * 2}`,
-                    drawPos + 9,
-                    CANVAS.height - 68,
+                    iconXPosition + 9,
+                    CANVAS.height - 43,
                     FONTSMALL
                 );
             }
             if (i === sprayPos && sprayStacked) {
-                SceneHelpers.drawText(`x${game.state.variables.spray}`, drawPos + 9, CANVAS.height - 68, FONTSMALL);
+                SceneHelpers.drawText(
+                    `x${game.state.variables.spray}`,
+                    iconXPosition + 9,
+                    CANVAS.height - 43,
+                    FONTSMALL
+                );
             }
             // Draw icon
-            this.ctx.drawImage(game.itemcontroller.icons[i], drawPos, CANVAS.height - 65);
-            drawPos += iconGap;
+            this.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, CANVAS.height - 40);
+            iconXPosition += iconGap;
         }
 
         // MIDDLE - NEXT-PACKAGE BAR
-        this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
-        SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
-        SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
+        // this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
+        // SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
+        // SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
 
         // TOP MIDDLE - SHIELD WARNING
         if (!game.player.shield.isCharged()) {

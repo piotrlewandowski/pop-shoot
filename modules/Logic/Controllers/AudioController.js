@@ -48,6 +48,7 @@ import {
     POWERDOWNSOUND,
     FAMILIARMGSOUND,
     SIRENSOUND,
+    COINSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -276,5 +277,9 @@ export class AudioController {
     stopSirenSound() {
         SIRENSOUND.pause();
         SIRENSOUND.currentTime = 0;
+    }
+
+    playCoinSound() {
+        COINSOUND.cloneNode(true).play();
     }
 }

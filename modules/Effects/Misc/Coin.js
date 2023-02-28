@@ -66,6 +66,7 @@ export class Coin {
     }
 
     removeAndCount() {
+        game.audiocontroller.playCoinSound();
         game.cashcontroller.incrementCash();
         game.cashcontroller.checkPlayerCash();
         game.effects.add(new Animation(this.x, this.y, 'smoke_small'));

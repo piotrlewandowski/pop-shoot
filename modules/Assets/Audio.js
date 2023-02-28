@@ -39,6 +39,7 @@ export const STEAMSOUND = document.getElementById('steam_sound');
 export const POWERDOWNSOUND = document.getElementById('powerdown_sound');
 export const FAMILIARMGSOUND = document.getElementById('familiar_mg');
 export const SIRENSOUND = document.getElementById('siren');
+export const COINSOUND = document.getElementById('coin_sound');
 
 // RAIN
 export const RAINSOUND = document.getElementById('rain_sound');

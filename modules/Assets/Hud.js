@@ -1,10 +1,11 @@
 // HUD
-export const GLASSLEFTSPRITE = document.getElementById('glassleft');
-export const GLASSRIGHTSPRITE = document.getElementById('glassright');
 export const GLASSBARSPRITE = document.getElementById('glassbar');
 export const GLASSPAUSESPRITE = document.getElementById('glasspause');
 export const GLASSGAMEOVERSPRITE = document.getElementById('glassgameover');
 export const GLASSSHIELDDOWNSPRITE = document.getElementById('glassshielddown');
+export const COINSPRITE = document.getElementById('coin');
+export const CLOCKSPRITE = document.getElementById('clock');
+export const FLOPPYSPRITE = document.getElementById('floppy');
 
 // HUD STAGES
 export const GLASSSTAGE1SPRITE = document.getElementById('glassstage1');

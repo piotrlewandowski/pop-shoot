@@ -20,15 +20,16 @@ import {
 } from '../Assets/OtherGfx.js';
 import {
     GLASSBARSPRITE,
-    GLASSLEFTSPRITE,
-    GLASSRIGHTSPRITE,
     GLASSPAUSESPRITE,
     GLASSSHIELDDOWNSPRITE,
     GLASSGAMEOVERSPRITE,
+    COINSPRITE,
+    CLOCKSPRITE,
+    FLOPPYSPRITE,
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { BLACKSCREENSPRITE, COINSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
+import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 
 // CANVAS
@@ -39,6 +40,7 @@ const RATIO = 16 / 9;
 const FILLSTYLE = '#FFFFFF';
 const STROKESTYLE = '#FFFFFF';
 const FONTSMALL = '20px thaleahfatmedium';
+const FONTSMALLMEDIUM = '25px thaleahfatmedium';
 const FONTMEDIUM = '30px thaleahfatmedium';
 const FONTLARGE = '40px thaleahfatmedium';
 const FONTXLARGE = '60px thaleahfatmedium';
@@ -248,11 +250,21 @@ export class Scene {
     }
 
     drawHud() {
-        // LEFT SIDE (CASH)
-        this.ctx.drawImage(GLASSLEFTSPRITE, 3, CANVAS.height - 30);
-        this.ctx.drawImage(COINSPRITE, 10, CANVAS.height - 25);
-        SceneHelpers.drawText(`CASH`, 28, CANVAS.height - 9, FONTMEDIUM);
-        SceneHelpers.drawText(game.cashcontroller.cash, 10, CANVAS.height - 34, FONTLARGE);
+        // LEFT SIDE
+        // Stage & Time
+        this.ctx.drawImage(FLOPPYSPRITE, 10, 10);
+        SceneHelpers.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, FONTSMALLMEDIUM);
+
+        this.ctx.drawImage(CLOCKSPRITE, 10, 30);
+        if (!game.state.boss) {
+            SceneHelpers.drawText(getGametimeToMMSS(), 31, 44, FONTSMALLMEDIUM);
+        } else {
+            SceneHelpers.drawText(`BOSS FIGHT`, 31, 44, FONTSMALLMEDIUM);
+        }
+
+        // Cash
+        this.ctx.drawImage(COINSPRITE, 10, 50);
+        SceneHelpers.drawText(game.cashcontroller.cash, 31, 64, FONTSMALLMEDIUM);
 
         // MIDDLE (UPGRADES)
         const dmgPos = game.state.variables.dmgIconPosition;
@@ -296,15 +308,6 @@ export class Scene {
         this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
         SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
         SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
-
-        // RIGHT SIDE (STAGE + TIME)
-        this.ctx.drawImage(GLASSRIGHTSPRITE, CANVAS.width - 120, CANVAS.height - 30);
-        SceneHelpers.drawText(`STAGE ${game.state.stage + 1}`, CANVAS.width - 105, CANVAS.height - 9, FONTMEDIUM);
-        if (!game.state.boss) {
-            SceneHelpers.drawText(getGametimeToMMSS(), CANVAS.width - 100, CANVAS.height - 34, FONTLARGE);
-        } else {
-            SceneHelpers.drawText(`BOSS FIGHT`, CANVAS.width - 100, CANVAS.height - 34, FONTSMALL);
-        }
 
         // TOP MIDDLE - SHIELD WARNING
         if (!game.player.shield.isCharged()) {

@@ -53,7 +53,7 @@ export class Controls {
             game.player.setShoot();
             if (!game.state.time) {
                 game.state.startGame();
-                CANVAS.requestFullscreen();
+                // CANVAS.requestFullscreen();
             }
         }
         // RIGHT-CLICK

@@ -236,14 +236,14 @@ export class Scene {
         const verticalGap = 50;
         const horizontalGap = 220;
         const startingX = 75;
-        const startingY = 415;
+        const startingY = 165;
         let x = startingX;
         let y = startingY;
 
         for (let i = 0; i < game.itemcontroller.descriptions.length; i++) {
             if (i % numberOfRows === 0) {
                 x = startingX;
-                y -= verticalGap;
+                y += verticalGap;
             }
             this.ctx.drawImage(game.itemcontroller.descriptions[i], x, y);
             x += horizontalGap;

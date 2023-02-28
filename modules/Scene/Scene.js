@@ -250,7 +250,10 @@ export class Scene {
     }
 
     drawHud() {
-        // LEFT SIDE
+        // ---------------
+        // LEFT - TOP
+        // ---------------
+
         // Stage & Time
         this.ctx.drawImage(FLOPPYSPRITE, 10, 10);
         SceneHelpers.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, FONTSMALLMEDIUM);
@@ -266,7 +269,11 @@ export class Scene {
         this.ctx.drawImage(COINSPRITE, 10, 50);
         SceneHelpers.drawText(game.cashcontroller.cash, 31, 64, FONTSMALLMEDIUM);
 
-        // MIDDLE (UPGRADES)
+        // ---------------
+        // MIDDLE - BOTTOM
+        // ---------------
+
+        // Upgrade Icons
         const dmgPos = game.state.variables.dmgIconPosition;
         const dmgStacked = game.state.variables.dmgMultiplier > 1.5;
 
@@ -280,16 +287,16 @@ export class Scene {
         let iconXPosition = 165;
         const iconGap = 45;
 
-        // This loop will draw the aquired upgrades icons.
-        // In case of repetitive items or items with timers, check if additional
-        // text should be drawn above the icon, and draw it.
         for (let i = 0; i < game.itemcontroller.icons.length; i++) {
-            // Check if multiplydamage or spray is stacked, and check if clock is recharging
+            // This loop will draw the aquired upgrades icons.
+            // In case of repetitive items or items with timers,
+            // it will check if additional text should be drawn above the icon, and draw it.
+            // e.g multiply-damage or spray is stacked, or cosmic-clock is recharging
             if (i === clockPos && !clockReady && clockChargePositive) {
                 SceneHelpers.drawText(
                     `${game.player.clock.currentCharge}`,
                     iconXPosition + 9,
-                    CANVAS.height - 43,
+                    CANVAS.height - 68,
                     FONTSMALL
                 );
             }
@@ -297,7 +304,7 @@ export class Scene {
                 SceneHelpers.drawText(
                     `x${(game.state.variables.dmgMultiplier - 1) * 2}`,
                     iconXPosition + 9,
-                    CANVAS.height - 43,
+                    CANVAS.height - 68,
                     FONTSMALL
                 );
             }
@@ -305,21 +312,25 @@ export class Scene {
                 SceneHelpers.drawText(
                     `x${game.state.variables.spray}`,
                     iconXPosition + 9,
-                    CANVAS.height - 43,
+                    CANVAS.height - 68,
                     FONTSMALL
                 );
             }
             // Draw icon
-            this.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, CANVAS.height - 40);
+            this.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, CANVAS.height - 65);
             iconXPosition += iconGap;
         }
 
-        // MIDDLE - NEXT-PACKAGE BAR
-        // this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
-        // SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
-        // SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
+        // Next-Package bar
+        this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
+        SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
+        SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
 
-        // TOP MIDDLE - SHIELD WARNING
+        // ---------------
+        // MIDDLE - TOP
+        // ---------------
+
+        // Shield Warning
         if (!game.player.shield.isCharged()) {
             this.ctx.drawImage(GLASSSHIELDDOWNSPRITE, 390, 5);
             SceneHelpers.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, FONTSMALL);

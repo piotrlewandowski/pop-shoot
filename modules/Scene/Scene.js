@@ -20,15 +20,17 @@ import {
 } from '../Assets/OtherGfx.js';
 import {
     GLASSBARSPRITE,
-    GLASSLEFTSPRITE,
-    GLASSRIGHTSPRITE,
     GLASSPAUSESPRITE,
     GLASSSHIELDDOWNSPRITE,
     GLASSGAMEOVERSPRITE,
+    COINSPRITE,
+    CLOCKSPRITE,
+    FLOPPYSPRITE,
+    VLINESPRITE,
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { BLACKSCREENSPRITE, COINSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
+import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 
 // CANVAS
@@ -39,6 +41,7 @@ const RATIO = 16 / 9;
 const FILLSTYLE = '#FFFFFF';
 const STROKESTYLE = '#FFFFFF';
 const FONTSMALL = '20px thaleahfatmedium';
+const FONTSMALLMEDIUM = '25px thaleahfatmedium';
 const FONTMEDIUM = '30px thaleahfatmedium';
 const FONTLARGE = '40px thaleahfatmedium';
 const FONTXLARGE = '60px thaleahfatmedium';
@@ -183,8 +186,8 @@ export class Scene {
             }
             // Healthbar to draw if boss
             if (enemy.name) {
-                SceneHelpers.drawBigBar(7, 10, 296, 11, hitPercentage);
-                SceneHelpers.drawText(enemy.name, 8, 40, FONTMEDIUM);
+                SceneHelpers.drawBigBar(690, 10, 296, 11, hitPercentage);
+                SceneHelpers.drawText(enemy.name, 690, 40, FONTMEDIUM);
             }
             // Enemy sprite
             this.ctx.drawImage(
@@ -248,13 +251,31 @@ export class Scene {
     }
 
     drawHud() {
-        // LEFT SIDE (CASH)
-        this.ctx.drawImage(GLASSLEFTSPRITE, 3, CANVAS.height - 30);
-        this.ctx.drawImage(COINSPRITE, 10, CANVAS.height - 25);
-        SceneHelpers.drawText(`CASH`, 28, CANVAS.height - 9, FONTMEDIUM);
-        SceneHelpers.drawText(game.cashcontroller.cash, 10, CANVAS.height - 34, FONTLARGE);
+        // ---------------
+        // LEFT - TOP
+        // ---------------
 
-        // MIDDLE (UPGRADES)
+        // Stage & Time
+        this.ctx.drawImage(VLINESPRITE, 4, 12);
+        this.ctx.drawImage(FLOPPYSPRITE, 10, 10);
+        SceneHelpers.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, FONTSMALLMEDIUM);
+
+        this.ctx.drawImage(CLOCKSPRITE, 10, 30);
+        if (!game.state.boss) {
+            SceneHelpers.drawText(getGametimeToMMSS(), 31, 44, FONTSMALLMEDIUM);
+        } else {
+            SceneHelpers.drawText(`BOSS FIGHT`, 31, 44, FONTSMALLMEDIUM);
+        }
+
+        // Cash
+        this.ctx.drawImage(COINSPRITE, 10, 50);
+        SceneHelpers.drawText(game.cashcontroller.cash, 31, 64, FONTSMALLMEDIUM);
+
+        // ---------------
+        // MIDDLE - BOTTOM
+        // ---------------
+
+        // Upgrade Icons
         const dmgPos = game.state.variables.dmgIconPosition;
         const dmgStacked = game.state.variables.dmgMultiplier > 1.5;
 
@@ -265,48 +286,53 @@ export class Scene {
         const clockReady = game.player.clock.ready;
         const clockChargePositive = game.player.clock.currentCharge > 0;
 
-        let drawPos = 165;
+        let iconXPosition = 165;
         const iconGap = 45;
 
-        // This loop will draw the aquired upgrades icons.
-        // In case of repetitive items or items with timers, check if additional
-        // text should be drawn above the icon, and draw it.
         for (let i = 0; i < game.itemcontroller.icons.length; i++) {
-            // Check if multiplydamage or spray is stacked, and check if clock is recharging
+            // This loop will draw the aquired upgrades icons.
+            // In case of repetitive items or items with timers,
+            // it will check if additional text should be drawn above the icon, and draw it.
+            // e.g multiply-damage or spray is stacked, or cosmic-clock is recharging
             if (i === clockPos && !clockReady && clockChargePositive) {
-                SceneHelpers.drawText(`${game.player.clock.currentCharge}`, drawPos + 9, CANVAS.height - 68, FONTSMALL);
+                SceneHelpers.drawText(
+                    `${game.player.clock.currentCharge}`,
+                    iconXPosition + 9,
+                    CANVAS.height - 68,
+                    FONTSMALL
+                );
             }
             if (i === dmgPos && dmgStacked) {
                 SceneHelpers.drawText(
                     `x${(game.state.variables.dmgMultiplier - 1) * 2}`,
-                    drawPos + 9,
+                    iconXPosition + 9,
                     CANVAS.height - 68,
                     FONTSMALL
                 );
             }
             if (i === sprayPos && sprayStacked) {
-                SceneHelpers.drawText(`x${game.state.variables.spray}`, drawPos + 9, CANVAS.height - 68, FONTSMALL);
+                SceneHelpers.drawText(
+                    `x${game.state.variables.spray}`,
+                    iconXPosition + 9,
+                    CANVAS.height - 68,
+                    FONTSMALL
+                );
             }
             // Draw icon
-            this.ctx.drawImage(game.itemcontroller.icons[i], drawPos, CANVAS.height - 65);
-            drawPos += iconGap;
+            this.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, CANVAS.height - 65);
+            iconXPosition += iconGap;
         }
 
-        // MIDDLE - NEXT-PACKAGE BAR
+        // Next-Package bar
         this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
         SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
         SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
 
-        // RIGHT SIDE (STAGE + TIME)
-        this.ctx.drawImage(GLASSRIGHTSPRITE, CANVAS.width - 120, CANVAS.height - 30);
-        SceneHelpers.drawText(`STAGE ${game.state.stage + 1}`, CANVAS.width - 105, CANVAS.height - 9, FONTMEDIUM);
-        if (!game.state.boss) {
-            SceneHelpers.drawText(getGametimeToMMSS(), CANVAS.width - 100, CANVAS.height - 34, FONTLARGE);
-        } else {
-            SceneHelpers.drawText(`BOSS FIGHT`, CANVAS.width - 100, CANVAS.height - 34, FONTSMALL);
-        }
+        // ---------------
+        // MIDDLE - TOP
+        // ---------------
 
-        // TOP MIDDLE - SHIELD WARNING
+        // Shield Warning
         if (!game.player.shield.isCharged()) {
             this.ctx.drawImage(GLASSSHIELDDOWNSPRITE, 390, 5);
             SceneHelpers.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, FONTSMALL);

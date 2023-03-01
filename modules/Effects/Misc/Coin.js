@@ -66,11 +66,24 @@ export class Coin {
     }
 
     removeAndCount() {
+        this.blinkProgressBar();
         game.audiocontroller.playCoinSound();
         game.cashcontroller.incrementCash();
         game.cashcontroller.checkPlayerCash();
         game.effects.add(new Animation(this.x, this.y, 'smoke_small'));
         clearInterval(this.spinAnimation);
         this.duration = 0;
+    }
+
+    // Used to blink progress-bar to yellow during coin pickup
+    static blinking = false;
+    static revertBlinking;
+
+    blinkProgressBar() {
+        clearTimeout(Coin.revertBlinking);
+        Coin.blinking = true;
+        Coin.revertBlinking = setTimeout(() => {
+            Coin.blinking = false;
+        }, 250);
     }
 }

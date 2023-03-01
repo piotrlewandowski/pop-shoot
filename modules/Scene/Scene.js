@@ -33,6 +33,7 @@ import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
+import { Coin } from '../Effects/Misc/Coin.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -41,6 +42,7 @@ const RATIO = 16 / 9;
 // DEFAULT DRAWING & FONT STYLES
 const FILLSTYLE = '#FFFFFF';
 const STROKESTYLE = '#FFFFFF';
+const BLINKFILLSTYLE = '#FFD800';
 const FONTSMALL = '20px thaleahfatmedium';
 const FONTSMALLMEDIUM = '25px thaleahfatmedium';
 const FONTMEDIUM = '30px thaleahfatmedium';
@@ -327,10 +329,16 @@ export class Scene {
         }
 
         // Next-Package bar
+
         this.ctx.drawImage(GLASSBARSPRITE, 234, CANVAS.height - 23);
         this.ctx.drawImage(GLASSPACKAGESPRITE, 186, CANVAS.height - 36);
         SceneHelpers.drawText(`PACKAGE PROGRESS`, 236, CANVAS.height - 26, FONTSMALL);
+
+        // Change fill-color to yellow exceptionally
+        // if the progress bar is blinking during coin pickup
+        if (Coin.blinking) this.ctx.fillStyle = BLINKFILLSTYLE;
         SceneHelpers.drawBar(239, CANVAS.height - 18, 565, 6, game.cashcontroller.levelBarPercentage);
+        this.ctx.fillStyle = FILLSTYLE;
 
         // ---------------
         // MIDDLE - TOP

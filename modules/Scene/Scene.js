@@ -291,7 +291,7 @@ export class Scene {
         const clockReady = game.player.clock.ready;
         const clockChargePositive = game.player.clock.currentCharge > 0;
 
-        let iconXPosition = 165;
+        let iconXPosition = 170;
         const iconYPosition = CANVAS.height - 80;
         const iconTextYPosition = CANVAS.height - 83;
         const iconGap = 45;

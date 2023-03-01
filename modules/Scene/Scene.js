@@ -27,6 +27,7 @@ import {
     CLOCKSPRITE,
     FLOPPYSPRITE,
     VLINESPRITE,
+    GLASSPACKAGESPRITE,
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
@@ -287,6 +288,8 @@ export class Scene {
         const clockChargePositive = game.player.clock.currentCharge > 0;
 
         let iconXPosition = 165;
+        const iconYPosition = CANVAS.height - 80;
+        const iconTextYPosition = CANVAS.height - 83;
         const iconGap = 45;
 
         for (let i = 0; i < game.itemcontroller.icons.length; i++) {
@@ -298,7 +301,7 @@ export class Scene {
                 SceneHelpers.drawText(
                     `${game.player.clock.currentCharge}`,
                     iconXPosition + 9,
-                    CANVAS.height - 68,
+                    iconTextYPosition,
                     FONTSMALL
                 );
             }
@@ -306,7 +309,7 @@ export class Scene {
                 SceneHelpers.drawText(
                     `x${(game.state.variables.dmgMultiplier - 1) * 2}`,
                     iconXPosition + 9,
-                    CANVAS.height - 68,
+                    iconTextYPosition,
                     FONTSMALL
                 );
             }
@@ -314,19 +317,20 @@ export class Scene {
                 SceneHelpers.drawText(
                     `x${game.state.variables.spray}`,
                     iconXPosition + 9,
-                    CANVAS.height - 68,
+                    iconTextYPosition,
                     FONTSMALL
                 );
             }
             // Draw icon
-            this.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, CANVAS.height - 65);
+            this.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, iconYPosition);
             iconXPosition += iconGap;
         }
 
         // Next-Package bar
-        this.ctx.drawImage(GLASSBARSPRITE, 295, CANVAS.height - 23);
-        SceneHelpers.drawText(`NEXT PACKAGE`, 175, CANVAS.height - 11, FONTSMALL);
-        SceneHelpers.drawBar(300, CANVAS.height - 18, 520, 6, game.cashcontroller.levelBarPercentage);
+        this.ctx.drawImage(GLASSBARSPRITE, 234, CANVAS.height - 23);
+        this.ctx.drawImage(GLASSPACKAGESPRITE, 186, CANVAS.height - 36);
+        SceneHelpers.drawText(`PACKAGE PROGRESS`, 236, CANVAS.height - 26, FONTSMALL);
+        SceneHelpers.drawBar(239, CANVAS.height - 18, 565, 6, game.cashcontroller.levelBarPercentage);
 
         // ---------------
         // MIDDLE - TOP

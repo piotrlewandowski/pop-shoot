@@ -88,7 +88,7 @@ const DRAWINGS = {
 };
 
 const NOTIFICATIONX = 520;
-const NOTIFICATIONY = 450;
+const NOTIFICATIONY = 440;
 
 // DROP RATES
 const RATE = 80;

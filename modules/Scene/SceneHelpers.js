@@ -19,6 +19,13 @@ export class SceneHelpers {
     }
 
     static drawText(text, x, y, font) {
+        game.scene.ctx.textAlign = 'left';
+        game.scene.ctx.font = font;
+        game.scene.ctx.fillText(text, x, y);
+    }
+
+    static drawCenteredText(text, x, y, font) {
+        game.scene.ctx.textAlign = 'center';
         game.scene.ctx.font = font;
         game.scene.ctx.fillText(text, x, y);
     }

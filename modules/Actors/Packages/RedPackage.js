@@ -25,6 +25,8 @@ export class RedPackage extends Enemy {
         game.audiocontroller.playBeepRedSound();
     }
 
+    static packagenumber = 1;
+
     move() {
         this.x += Movement.move(MOVEDIRECTION, this.speed).x;
         this.y += Movement.move(MOVEDIRECTION, this.speed).y;

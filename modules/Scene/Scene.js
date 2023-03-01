@@ -28,12 +28,14 @@ import {
     FLOPPYSPRITE,
     VLINESPRITE,
     GLASSPACKAGESPRITE,
+    GLASSNUMBERSPRITE,
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { Coin } from '../Effects/Misc/Coin.js';
+import { RedPackage } from '../Actors/Packages/RedPackage.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -278,7 +280,7 @@ export class Scene {
         // MIDDLE - BOTTOM
         // ---------------
 
-        // Upgrade Icons
+        // UPGRADES ICONS
         const dmgPos = game.state.variables.dmgIconPosition;
         const dmgStacked = game.state.variables.dmgMultiplier > 1.5;
 
@@ -328,17 +330,28 @@ export class Scene {
             iconXPosition += iconGap;
         }
 
-        // Next-Package bar
+        // NEXT-PACKAGE BAR
 
-        this.ctx.drawImage(GLASSBARSPRITE, 234, CANVAS.height - 23);
-        this.ctx.drawImage(GLASSPACKAGESPRITE, 186, CANVAS.height - 36);
-        SceneHelpers.drawText(`PACKAGE PROGRESS`, 236, CANVAS.height - 26, FONTSMALL);
+        // Airplane, Glassbar & "Shipment Progress" text
+        this.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
+        this.ctx.drawImage(GLASSBARSPRITE, 218, CANVAS.height - 23);
+        SceneHelpers.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, FONTSMALL);
 
-        // Change fill-color to yellow exceptionally
-        // if the progress bar is blinking during coin pickup
+        // Glassbar filling
+        // Change fill-color to yellow exceptionally if the progress bar is blinking during coin pickup
         if (Coin.blinking) this.ctx.fillStyle = BLINKFILLSTYLE;
-        SceneHelpers.drawBar(239, CANVAS.height - 18, 565, 6, game.cashcontroller.levelBarPercentage);
+        SceneHelpers.drawBar(223, CANVAS.height - 18, 565, 6, game.cashcontroller.levelBarPercentage);
         this.ctx.fillStyle = FILLSTYLE;
+
+        // Package Number
+        this.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
+        SceneHelpers.drawText(`PACKAGE #`, 706, CANVAS.height - 26, FONTSMALL);
+        SceneHelpers.drawCenteredText(
+            RedPackage.packagenumber > 99 ? 'X' : RedPackage.packagenumber,
+            815,
+            CANVAS.height - 17,
+            FONTSMALLMEDIUM
+        );
 
         // ---------------
         // MIDDLE - TOP

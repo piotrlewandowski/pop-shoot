@@ -4,6 +4,7 @@ export const GLASSPAUSESPRITE = document.getElementById('glasspause');
 export const GLASSGAMEOVERSPRITE = document.getElementById('glassgameover');
 export const GLASSSHIELDDOWNSPRITE = document.getElementById('glassshielddown');
 export const GLASSPACKAGESPRITE = document.getElementById('glasspackage');
+export const GLASSNUMBERSPRITE = document.getElementById('glassnumber');
 export const VLINESPRITE = document.getElementById('vline');
 export const COINSPRITE = document.getElementById('coin');
 export const CLOCKSPRITE = document.getElementById('clock');

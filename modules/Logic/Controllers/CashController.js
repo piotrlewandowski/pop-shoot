@@ -16,6 +16,7 @@ export class CashController {
         if (this.cash === this.next) {
             this.previous = this.next;
             this.next += Math.round(FIRSTPACKAGE * (game.state.stage + NEXT_MULTIPLIER));
+            RedPackage.packagenumber++;
             game.enemies.add(new RedPackage());
         }
     }

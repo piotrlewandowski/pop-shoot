@@ -81,6 +81,7 @@ const HITSOUNDS = { standard: HITSOUND, quad: HITQUADSOUND, metal: HITMETALSOUND
 
 // SOUNDS LIMITS
 const MAX_CONCURRENT_HITS = 5;
+const MAX_CONCURRENT_COINS = 10;
 const HITSOUND_VOLUME = 0.5;
 const LASER_VOLUME = 0.7;
 
@@ -96,6 +97,7 @@ export class AudioController {
         MATRIXSOUND.loop = true;
         SIRENSOUND.loop = true;
         this.currentlyPlayingHits = 0;
+        this.currentlyPlayingCoins = 0;
     }
 
     rewind() {
@@ -121,15 +123,17 @@ export class AudioController {
         if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
             const metalSound = HITSOUNDS['metal'].cloneNode(true);
             metalSound.volume = HITSOUND_VOLUME;
-            return metalSound.play();
+            return this.queueHitSound(metalSound);
         }
+
         // QUAD-DAMAGE
         if (game.state.variables.quaddamage) {
             const quadSound = HITSOUNDS['quad'].cloneNode(true);
             quadSound.volume = HITSOUND_VOLUME;
-            return quadSound.play();
+            return this.queueHitSound(quadSound);
         }
-        // OTHER ENEMIES
+
+        // NORMAL ENEMIES
         const hitSound = HITSOUNDS['standard'].cloneNode(true);
         hitSound.volume = HITSOUND_VOLUME;
         this.queueHitSound(hitSound);
@@ -280,6 +284,17 @@ export class AudioController {
     }
 
     playCoinSound() {
-        COINSOUND.cloneNode(true).play();
+        this.queueCoinSound(COINSOUND.cloneNode(true));
+    }
+
+    queueCoinSound(coinSound) {
+        coinSound.onended = () => {
+            this.currentlyPlayingCoins--;
+        };
+
+        if (this.currentlyPlayingCoins <= MAX_CONCURRENT_COINS) {
+            this.currentlyPlayingCoins++;
+            coinSound.play();
+        }
     }
 }

@@ -73,198 +73,231 @@ const SOUNDS = {
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     beepRed: {
         audio: BEEPREDSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     beepOrange: {
         audio: BEEPORANGESOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     bigThunder: {
         audio: THUNDER0SOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     diver: {
         audio: DIVERSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     exp_big: {
         audio: EXPLOSIONBIGSOUND,
         rewind: false,
         clone: true,
         volume: 1,
+        loop: false,
     },
     exp_normal: {
         audio: EXPLOSIONNORMALSOUND,
         rewind: false,
         clone: true,
         volume: 1,
+        loop: false,
     },
     familiarMg: {
         audio: FAMILIARMGSOUND,
         rewind: true,
         clone: false,
         volume: 1,
+        loop: false,
     },
     glitch: {
         audio: GLITCHSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     hit: {
         audio: HITSOUND,
         rewind: false,
         clone: true,
         volume: 0.5,
+        loop: false,
     },
     hitMetal: {
         audio: HITMETALSOUND,
         rewind: false,
         clone: true,
         volume: 0.5,
+        loop: false,
     },
     hitQuad: {
         audio: HITQUADSOUND,
         rewind: false,
         clone: true,
         volume: 0.5,
+        loop: false,
     },
     laser: {
         audio: LASERSOUND,
         rewind: false,
         clone: true,
         volume: 0.7,
+        loop: false,
     },
     matrix: {
         audio: MATRIXSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: true,
     },
     mirage: {
         audio: MIRAGESOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     phase: {
         audio: PHASESOUND,
         rewind: false,
         clone: true,
         volume: 1,
+        loop: false,
     },
     phew: {
         audio: PHEWSOUND,
         rewind: false,
         clone: true,
         volume: 1,
+        loop: false,
     },
     powerDown: {
         audio: POWERDOWNSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     rain: {
         audio: RAINSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: true,
     },
     reload: {
         audio: RELOADSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     sand: {
         audio: SANDSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: true,
     },
     shieldDown: {
         audio: SHIELDDOWNSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     shieldUp: {
         audio: SHIELDUPSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     slowmoEmpty: {
         audio: SLOWMOEMPTYSOUND,
         rewind: false,
         clone: true,
         volume: 1,
+        loop: false,
     },
     siren: {
         audio: SIRENSOUND,
         rewind: true,
         clone: false,
         volume: 1,
+        loop: true,
     },
     slowmoCharge: {
         audio: SLOWMOCHARGESOUND,
         rewind: true,
         clone: false,
         volume: 1,
+        loop: false,
     },
     smallThunder: {
         audio: THUNDER1SOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     smoke: {
         audio: SMOKESOUND,
         rewind: false,
         clone: true,
         volume: 1,
+        loop: false,
     },
     splash: {
         audio: SPLASHSOUND,
         rewind: false,
         clone: true,
         volume: 1,
+        loop: false,
     },
     steam: {
         audio: STEAMSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     swoosh: {
         audio: SWOOSHSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: false,
     },
     vortex: {
         audio: VORTEXSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: true,
     },
     wind: {
         audio: WINDSOUND,
         rewind: false,
         clone: false,
         volume: 1,
+        loop: true,
     },
 };
 
@@ -276,15 +309,13 @@ export class AudioController {
     constructor() {
         for (const key in MUSIC) {
             MUSIC[key].loop = true;
-            MUSIC[key].volume = 0;
         }
 
-        RAINSOUND.loop = true;
-        WINDSOUND.loop = true;
-        SANDSOUND.loop = true;
-        VORTEXSOUND.loop = true;
-        MATRIXSOUND.loop = true;
-        SIRENSOUND.loop = true;
+        for (const key in SOUNDS) {
+            if (SOUNDS[key].loop) {
+                SOUNDS[key].audio.loop = true;
+            }
+        }
 
         this.currentlyPlayingHits = 0;
         this.currentlyPlayingCoins = 0;

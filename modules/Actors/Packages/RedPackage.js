@@ -23,6 +23,7 @@ export class RedPackage extends Enemy {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.hitsound = 'metal';
         game.audiocontroller.playBeepRedSound();
+        shakeScreen(4, 1);
     }
 
     move() {
@@ -34,7 +35,7 @@ export class RedPackage extends Enemy {
         game.audiocontroller.playAnimationSound('reload');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.itemcontroller.drop();
-        shakeScreen(4, 0.5);
+        shakeScreen(4, 1);
 
         // Weather - Only toggle if not in boss-mode
         if (!game.state.boss) {

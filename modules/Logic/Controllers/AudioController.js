@@ -146,6 +146,7 @@ const SOUNDS = {
         clone: true,
         volume: 0.5,
         loop: false,
+        limit: 5,
     },
     hitMetal: {
         audio: HITMETALSOUND,
@@ -153,6 +154,7 @@ const SOUNDS = {
         clone: true,
         volume: 0.5,
         loop: false,
+        limit: 5,
     },
     hitQuad: {
         audio: HITQUADSOUND,
@@ -160,6 +162,7 @@ const SOUNDS = {
         clone: true,
         volume: 0.5,
         loop: false,
+        limit: 5,
     },
     laser: {
         audio: LASERSOUND,
@@ -310,8 +313,6 @@ const SOUNDS = {
     },
 };
 
-const MAX_CONCURRENT_HITS = 5;
-
 export class AudioController {
     constructor() {
         for (const key in MUSIC) {
@@ -343,9 +344,9 @@ export class AudioController {
             }
     }
 
-    // Called by updateMusic() to get the corresponding music track
-    // to be played, depending on the state of the game
     _getTrack() {
+        // Called by updateMusic() to get the corresponding
+        // track to play, depending on the state of the game
         if (game.state.over) {
             return 'gameover';
         }
@@ -398,37 +399,18 @@ export class AudioController {
         sound.audio.pause();
     }
 
-    // ********* EDGE CASES - WIP *********
-
-    playHitSound(enemy) {
-        // PACKAGES
+    playHit(enemy) {
+        // HITTING PACKAGES
         if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
-            const metalSound = SOUNDS['hitMetal'].audio.cloneNode(true);
-            metalSound.volume = SOUNDS['hitMetal'].volume;
-            return this.queueHitSound(metalSound);
+            return this.playSound('hitMetal');
         }
 
         // QUAD-DAMAGE
         if (game.state.variables.quaddamage) {
-            const quadSound = SOUNDS['hitQuad'].audio.cloneNode(true);
-            quadSound.volume = SOUNDS['hitQuad'].volume;
-            return this.queueHitSound(quadSound);
+            return this.playSound('hitQuad');
         }
 
-        // NORMAL ENEMIES
-        const hitSound = SOUNDS['hit'].audio.cloneNode(true);
-        hitSound.volume = SOUNDS['hit'].volume;
-        this.queueHitSound(hitSound);
-    }
-
-    queueHitSound(hitSound) {
-        hitSound.onended = () => {
-            this.currentlyPlayingHits--;
-        };
-
-        if (this.currentlyPlayingHits <= MAX_CONCURRENT_HITS) {
-            this.currentlyPlayingHits++;
-            hitSound.play();
-        }
+        // HITTING EVERYTHING ELSE
+        this.playSound('hit');
     }
 }

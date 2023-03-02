@@ -14,7 +14,7 @@ export class CollisionActions {
             // Pushback & play sound if the laser is not a drone
             if (laser.constructor !== Drone && laser.constructor !== Dart) {
                 enemy.pushBack();
-                game.audiocontroller.playHitSound(enemy);
+                game.audiocontroller.playHit(enemy);
             }
 
             enemy.takeDamage(laser.damage);

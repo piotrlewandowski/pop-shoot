@@ -96,6 +96,15 @@ const SOUNDS = {
         volume: 1,
         loop: false,
     },
+    coin: {
+        audio: COINSOUND,
+        rewind: false,
+        clone: true,
+        volume: 1,
+        loop: false,
+        limit: 10,
+    },
+
     diver: {
         audio: DIVERSOUND,
         rewind: false,
@@ -301,14 +310,13 @@ const SOUNDS = {
     },
 };
 
-// LIMITS
 const MAX_CONCURRENT_HITS = 5;
-const MAX_CONCURRENT_COINS = 10;
 
 export class AudioController {
     constructor() {
         for (const key in MUSIC) {
             MUSIC[key].loop = true;
+            MUSIC[key].volume = 0;
         }
 
         for (const key in SOUNDS) {
@@ -317,8 +325,7 @@ export class AudioController {
             }
         }
 
-        this.currentlyPlayingHits = 0;
-        this.currentlyPlayingCoins = 0;
+        this.limits = {};
     }
 
     // ********* MUSIC *********
@@ -354,8 +361,6 @@ export class AudioController {
         return `stage${game.state.stage}`;
     }
 
-    // Rewind all tracks.
-    // Currently only used after a game-over
     rewindMusic() {
         for (const key in MUSIC) {
             MUSIC[key].currentTime = 0;
@@ -367,7 +372,22 @@ export class AudioController {
     playSound(type) {
         const sound = SOUNDS[type].clone ? SOUNDS[type].audio.cloneNode() : SOUNDS[type].audio;
         sound.volume = SOUNDS[type].volume;
-        sound.play();
+
+        if (SOUNDS[type].limit) {
+            if (this.limits[type] === undefined) {
+                this.limits[type] = 0;
+            }
+
+            sound.onended = () => {
+                this.limits[type]--;
+            };
+            if (this.limits[type] <= SOUNDS[type].limit) {
+                this.limits[type]++;
+                sound.play();
+            }
+        } else {
+            sound.play();
+        }
     }
 
     stopSound(type) {
@@ -379,21 +399,6 @@ export class AudioController {
     }
 
     // ********* EDGE CASES - WIP *********
-
-    playCoinSound() {
-        this.queueCoinSound(COINSOUND.cloneNode(true));
-    }
-
-    queueCoinSound(coinSound) {
-        coinSound.onended = () => {
-            this.currentlyPlayingCoins--;
-        };
-
-        if (this.currentlyPlayingCoins <= MAX_CONCURRENT_COINS) {
-            this.currentlyPlayingCoins++;
-            coinSound.play();
-        }
-    }
 
     playHitSound(enemy) {
         // PACKAGES

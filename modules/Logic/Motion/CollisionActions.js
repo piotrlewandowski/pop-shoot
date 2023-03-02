@@ -102,11 +102,6 @@ export class CollisionActions {
         Movement.moveAway(enemy1, enemy2);
     }
 
-    // COIN AND PLAYER
-    static CoinPlayer(coin, player) {
-        coin.removeAndCount();
-    }
-
     // BLUELASERS AND FIRELASERS
     static BluelasersFirelasers(bluelaser, firelaser) {
         // OVERPOWERED - Removed for now

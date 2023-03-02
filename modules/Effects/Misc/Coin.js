@@ -69,7 +69,6 @@ export class Coin {
         this.blinkProgressBar();
         game.audiocontroller.playCoinSound();
         game.cashcontroller.incrementCash();
-        game.cashcontroller.checkPlayerCash();
         game.effects.add(new Animation(this.x, this.y, 'smoke_small'));
         clearInterval(this.spinAnimation);
         this.duration = 0;

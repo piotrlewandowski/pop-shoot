@@ -35,7 +35,6 @@ import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { Coin } from '../Effects/Misc/Coin.js';
-import { RedPackage } from '../Actors/Packages/RedPackage.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -343,11 +342,11 @@ export class Scene {
         SceneHelpers.drawBar(223, CANVAS.height - 18, 565, 6, game.cashcontroller.levelBarPercentage);
         this.ctx.fillStyle = FILLSTYLE;
 
-        // Package Number
+        // Shipment Number
         this.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
-        SceneHelpers.drawText(`PACKAGE #`, 706, CANVAS.height - 26, FONTSMALL);
+        SceneHelpers.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, FONTSMALL);
         SceneHelpers.drawCenteredText(
-            RedPackage.packagenumber > 99 ? 'X' : RedPackage.packagenumber,
+            game.cashcontroller.shipmentnumber > 99 ? 'X' : game.cashcontroller.shipmentnumber,
             815,
             CANVAS.height - 17,
             FONTSMALLMEDIUM

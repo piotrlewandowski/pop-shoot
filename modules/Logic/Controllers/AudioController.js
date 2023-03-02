@@ -321,7 +321,10 @@ export class AudioController {
         this.currentlyPlayingCoins = 0;
     }
 
-    playTrack(track) {
+    // ********* MUSIC *********
+
+    updateMusic() {
+        const track = this._getTrack();
         for (const key in MUSIC)
             if (key === track) {
                 if (key === 'slowmo') {
@@ -333,11 +336,33 @@ export class AudioController {
             }
     }
 
+    // Called by updateMusic() to get the corresponding music track
+    // to be played, depending on the state of the game
+    _getTrack() {
+        if (game.state.over) {
+            return 'gameover';
+        }
+        if (game.player.clock.active) {
+            return 'clock';
+        }
+        if (game.state.slowmo) {
+            return 'slowmo';
+        }
+        if (game.state.boss) {
+            return `boss${game.state.stage}`;
+        }
+        return `stage${game.state.stage}`;
+    }
+
+    // Rewind all tracks.
+    // Currently only used after a game-over
     rewindMusic() {
         for (const key in MUSIC) {
             MUSIC[key].currentTime = 0;
         }
     }
+
+    // ********* SOUNDS *********
 
     playSound(type) {
         const sound = SOUNDS[type].clone ? SOUNDS[type].audio.cloneNode() : SOUNDS[type].audio;
@@ -353,7 +378,7 @@ export class AudioController {
         sound.audio.pause();
     }
 
-    // EDGE CASES
+    // ********* EDGE CASES - WIP *********
 
     playCoinSound() {
         this.queueCoinSound(COINSOUND.cloneNode(true));

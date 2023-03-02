@@ -37,7 +37,7 @@ export class GameState {
     // Will not increment if the game is paused, or in game-over state.
     startGame() {
         this.time += 1;
-        game.audiocontroller.playTrack('stage0');
+        game.audiocontroller.updateMusic();
         game.effects.add(new Notification(505, 80, GLASSSTAGE1SPRITE, 300));
         setInterval(() => {
             if (!this.paused && !this.over && !this.boss && !game.player.clock.active) {
@@ -55,7 +55,7 @@ export class GameState {
         ) {
             this.slowmo = true;
             SlowMo.start();
-            game.audiocontroller.playTrack('slowmo');
+            game.audiocontroller.updateMusic();
         } else {
             shakeScreen(2, 0.25);
             game.effects.add(new Animation(game.player.x, game.player.y + 20, 'smoke_normal'));
@@ -68,10 +68,7 @@ export class GameState {
         if (this.slowmo) {
             this.slowmo = false;
             SlowMo.stop();
-            if (this.boss) {
-                return game.audiocontroller.playTrack(`boss${this.stage}`);
-            }
-            game.audiocontroller.playTrack(`stage${this.stage}`);
+            game.audiocontroller.updateMusic();
         }
     }
 
@@ -82,7 +79,7 @@ export class GameState {
             flashScreen();
             shakeScreen(6, 0.75);
             this.boss = true;
-            game.audiocontroller.playTrack(`boss${this.stage}`);
+            game.audiocontroller.updateMusic();
         } else {
             WeatherController.stopWeather();
             WeatherController.stopDarkness();
@@ -94,7 +91,7 @@ export class GameState {
             game.bluelasers.clear();
             flashScreen();
             game.effects.add(new Notification(505, 80, STAGESPRITES[this.stage], 300));
-            game.audiocontroller.playTrack(`stage${this.stage}`);
+            game.audiocontroller.updateMusic();
         }
     }
 
@@ -116,7 +113,7 @@ export class GameState {
         this.stopSlowmo();
         this.over = true;
         game.controls.removeMouseClicks();
-        game.audiocontroller.playTrack('gameover');
+        game.audiocontroller.updateMusic();
     }
 
     unsetGameOver() {
@@ -127,10 +124,7 @@ export class GameState {
         game.bluelasers.clear();
         game.player.shield.charge = 100;
         window.requestAnimationFrame(gameloop);
-        if (game.state.boss) {
-            return game.audiocontroller.playTrack(`boss${this.stage}`);
-        }
-        game.audiocontroller.playTrack(`stage${this.stage}`);
+        game.audiocontroller.updateMusic();
     }
 
     replay() {
@@ -166,7 +160,7 @@ export class GameState {
 
         // AUDIO
         game.audiocontroller.rewindMusic();
-        game.audiocontroller.playTrack('stage0');
+        game.audiocontroller.updateMusic();
 
         window.requestAnimationFrame(gameloop);
     }

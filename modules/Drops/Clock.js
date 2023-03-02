@@ -36,7 +36,7 @@ export class Clock {
         }
         this.active = true;
         this.ready = false;
-        game.audiocontroller.playTrack('clock');
+        game.audiocontroller.updateMusic();
         this.startCountdown();
     }
 
@@ -57,11 +57,6 @@ export class Clock {
     deactivate() {
         flashScreen();
         this.active = false;
-        if (game.state.boss) {
-            game.audiocontroller.playTrack(`boss${game.state.stage}`);
-        }
-        if (!game.state.boss) {
-            game.audiocontroller.playTrack(`stage${game.state.stage}`);
-        }
+        game.audiocontroller.updateMusic();
     }
 }

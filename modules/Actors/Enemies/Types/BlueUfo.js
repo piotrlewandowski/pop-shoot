@@ -46,7 +46,7 @@ export class BlueUfo extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('splash');
+        game.audiocontroller.playSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         shakeScreen(4, 0.5);
         this.explode();

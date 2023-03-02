@@ -34,7 +34,7 @@ export class Wind {
         this.ticks = 0;
         this.duration = 1;
         this.sprite = SPRITE[this.ticks % SPRITE.length];
-        game.audiocontroller.playWindSound();
+        game.audiocontroller.playSound('wind');
         flashScreen();
     }
 
@@ -48,7 +48,7 @@ export class Wind {
     }
 
     stop() {
-        game.audiocontroller.stopWindSound();
+        game.audiocontroller.stopSound('wind');
         flashScreen();
         this.duration = 0;
     }

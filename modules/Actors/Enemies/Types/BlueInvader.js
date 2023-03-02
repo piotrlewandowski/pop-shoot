@@ -53,7 +53,7 @@ export class BlueInvader extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('phase');
+        game.audiocontroller.playSound('phase');
         game.effects.add(new Animation(this.x, this.y, 'blueinvader_death'));
         super.die();
     }

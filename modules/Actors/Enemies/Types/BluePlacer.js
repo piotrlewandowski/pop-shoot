@@ -46,7 +46,7 @@ export class BluePlacer extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('phew');
+        game.audiocontroller.playSound('phew');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         shakeScreen(4, 0.5);
         this.explode();

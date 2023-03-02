@@ -21,7 +21,7 @@ export class Shield {
             if (!game.state.paused && !this.isCharged()) {
                 this.startCharging();
                 if (this.isCharged()) {
-                    game.audiocontroller.playShieldUpSound();
+                    game.audiocontroller.playSound('shieldUp');
                 }
             }
         };
@@ -50,7 +50,7 @@ export class Shield {
             : INVINCIBILITYTIME;
 
         if (!game.state.variables.invincibility && !this.underfire) {
-            game.audiocontroller.playShieldDownSound();
+            game.audiocontroller.playSound('shieldDown');
             this.underfire = true;
             setTimeout(() => {
                 this.charge = 0;

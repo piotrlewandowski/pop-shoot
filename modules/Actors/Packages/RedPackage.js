@@ -22,7 +22,7 @@ export class RedPackage extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.hitsound = 'metal';
-        game.audiocontroller.playBeepRedSound();
+        game.audiocontroller.playSound('beepRed');
         shakeScreen(4, 1);
     }
 
@@ -32,7 +32,7 @@ export class RedPackage extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('reload');
+        game.audiocontroller.playSound('reload');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.itemcontroller.drop();
         shakeScreen(4, 1);

@@ -92,7 +92,7 @@ export class EyeInTheSky extends Enemy {
 
     die() {
         super.die();
-        game.audiocontroller.playAnimationSound('exp_big');
+        game.audiocontroller.playSound('exp_big');
         shakeScreen(6, 2);
         game.state.toggleBoss();
     }

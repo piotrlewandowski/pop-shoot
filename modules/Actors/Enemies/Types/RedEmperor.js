@@ -46,7 +46,7 @@ export class RedEmperor extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('exp_normal');
+        game.audiocontroller.playSound('exp_normal');
         game.effects.add(new Animation(this.x, this.y, 'explosion_big'));
         shakeScreen(6, 0.75);
         super.die();

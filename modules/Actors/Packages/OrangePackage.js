@@ -21,7 +21,7 @@ export class OrangePackage extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.hitsound = 'metal';
-        game.audiocontroller.playBeepOrangeSound();
+        game.audiocontroller.playSound('beepOrange');
     }
 
     move() {
@@ -30,7 +30,7 @@ export class OrangePackage extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('splash');
+        game.audiocontroller.playSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.buffcontroller.drop();
         shakeScreen(4, 0.5);

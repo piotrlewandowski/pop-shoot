@@ -59,7 +59,7 @@ export class GameState {
         } else {
             shakeScreen(2, 0.25);
             game.effects.add(new Animation(game.player.x, game.player.y + 20, 'smoke_normal'));
-            game.audiocontroller.playSlowmoEmptySound();
+            game.audiocontroller.playSound('slowmoEmpty');
         }
     }
 
@@ -165,7 +165,7 @@ export class GameState {
         game.effects.add(new Notification(505, 80, GLASSSTAGE1SPRITE, 300));
 
         // AUDIO
-        game.audiocontroller.rewind();
+        game.audiocontroller.rewindMusic();
         game.audiocontroller.playTrack('stage0');
 
         window.requestAnimationFrame(gameloop);

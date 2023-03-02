@@ -46,7 +46,7 @@ export class BlueEmperor extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('exp_normal');
+        game.audiocontroller.playSound('exp_normal');
         game.effects.add(new Animation(this.x, this.y, 'explosion_big'));
         shakeScreen(4, 0.5);
         super.die();

@@ -121,7 +121,7 @@ export class MetalEmperor extends Enemy {
     }
 
     soften() {
-        game.audiocontroller.playSteamSound();
+        game.audiocontroller.playSound('steam');
         this.hardened = false;
         this.radius = RADIUS;
         flashScreen();
@@ -130,7 +130,7 @@ export class MetalEmperor extends Enemy {
     }
 
     harden() {
-        game.audiocontroller.playSteamSound();
+        game.audiocontroller.playSound('steam');
         this.hardened = true;
         this.radius = -1;
         flashScreen();
@@ -143,7 +143,7 @@ export class MetalEmperor extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('exp_big');
+        game.audiocontroller.playSound('exp_big');
         super.die();
         shakeScreen(6, 2);
         game.state.toggleBoss();

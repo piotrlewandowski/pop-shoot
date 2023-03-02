@@ -35,7 +35,7 @@ export class Vortex {
         this.ticks = 0;
         this.duration = 1;
         this.sprite = SPRITE[this.ticks % SPRITE.length];
-        game.audiocontroller.playVortexSound();
+        game.audiocontroller.playSound('vortex');
         flashScreen();
     }
 
@@ -46,7 +46,7 @@ export class Vortex {
         if (this.ticks % ANXIETYFREQUENCY === 0) {
             flashScreen();
             shakeScreen(4, ANXIETYTIME / 1000);
-            game.audiocontroller.playAnxietySound();
+            game.audiocontroller.playSound('anxiety');
 
             setTimeout(() => {
                 flashScreen();
@@ -57,6 +57,6 @@ export class Vortex {
     stop() {
         flashScreen();
         this.duration = 0;
-        game.audiocontroller.stopVortexSound();
+        game.audiocontroller.stopSound('vortex');
     }
 }

@@ -34,8 +34,8 @@ export class Rain {
         this.ticks = 0;
         this.duration = 1;
         this.sprite = SPRITE[this.ticks % SPRITE.length];
-        game.audiocontroller.playRainSound();
-        game.audiocontroller.playBigThunderSound();
+        game.audiocontroller.playSound('rain');
+        game.audiocontroller.playSound('bigThunder');
         flashScreen();
     }
 
@@ -44,19 +44,19 @@ export class Rain {
         this.sprite = SPRITE[this.ticks % SPRITE.length];
 
         if (this.ticks % BIGTHUNDERFREQUENCY === 0) {
-            game.audiocontroller.playBigThunderSound();
+            game.audiocontroller.playSound('bigThunder');
             flashScreen();
         }
 
         if (this.ticks % SMALLTHUNDERFREQUENCY === 0) {
-            game.audiocontroller.playSmallThunderSound();
+            game.audiocontroller.playSound('smallThunder');
         }
     }
 
     stop() {
-        game.audiocontroller.playBigThunderSound();
+        game.audiocontroller.playSound('bigThunder');
         flashScreen();
-        game.audiocontroller.stopRainSound();
+        game.audiocontroller.stopSound('rain');
         this.duration = 0;
     }
 }

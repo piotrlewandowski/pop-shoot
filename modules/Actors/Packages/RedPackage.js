@@ -36,7 +36,7 @@ export class RedPackage extends Enemy {
         game.itemcontroller.drop();
         shakeScreen(4, 0.5);
 
-        // Weather
+        // Weather - Only toggle if not in boss-mode
         if (!game.state.boss) {
             if (WeatherController.weatherActive) {
                 WeatherController.stopWeather();

@@ -78,6 +78,7 @@ export class GameState {
     toggleBoss() {
         if (!this.boss) {
             WeatherController.stopWeather();
+            WeatherController.startDarkness();
             flashScreen();
             shakeScreen(6, 0.75);
             this.boss = true;

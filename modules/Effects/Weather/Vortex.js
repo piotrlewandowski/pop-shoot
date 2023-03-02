@@ -26,7 +26,7 @@ const SPRITE = [
 ];
 
 const ANXIETYFREQUENCY = 1000; // in ticks, higher = longer
-const ANXIETYTIME = 4000; // in ms
+const ANXIETYTIME = 2000; // in ms
 
 export class Vortex {
     constructor() {
@@ -50,7 +50,6 @@ export class Vortex {
 
             setTimeout(() => {
                 flashScreen();
-                game.audiocontroller.playAnxietySound();
             }, ANXIETYTIME);
         }
     }

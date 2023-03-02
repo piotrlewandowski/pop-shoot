@@ -79,7 +79,7 @@ const ANIMATION_SOUNDS = {
 
 const HITSOUNDS = { standard: HITSOUND, quad: HITQUADSOUND, metal: HITMETALSOUND };
 
-// SOUNDS LIMITS
+// LIMITS
 const MAX_CONCURRENT_HITS = 5;
 const MAX_CONCURRENT_COINS = 10;
 const HITSOUND_VOLUME = 0.5;
@@ -250,7 +250,7 @@ export class AudioController {
     }
 
     playAnxietySound() {
-        ANXIETYSOUND.cloneNode(true).play();
+        ANXIETYSOUND.play();
     }
 
     playSwooshSound() {

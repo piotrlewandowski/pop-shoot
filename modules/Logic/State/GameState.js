@@ -74,25 +74,22 @@ export class GameState {
 
     toggleBoss() {
         if (!this.boss) {
-            WeatherController.stopWeather();
-            WeatherController.startDarkness();
-            flashScreen();
-            shakeScreen(6, 0.75);
             this.boss = true;
-            game.audiocontroller.updateMusic();
+            shakeScreen(6, 0.75);
+            WeatherController.startDarkness();
         } else {
-            WeatherController.stopWeather();
+            this.boss = false;
             WeatherController.stopDarkness();
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
-            this.boss = false;
+            game.effects.add(new Notification(505, 80, STAGESPRITES[this.stage], 300));
             game.enemies.clear();
             game.firelasers.clear();
             game.bluelasers.clear();
-            flashScreen();
-            game.effects.add(new Notification(505, 80, STAGESPRITES[this.stage], 300));
-            game.audiocontroller.updateMusic();
         }
+        flashScreen();
+        WeatherController.stopWeather();
+        game.audiocontroller.updateMusic();
     }
 
     togglePause() {

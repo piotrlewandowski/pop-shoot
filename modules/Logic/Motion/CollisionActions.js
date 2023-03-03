@@ -6,17 +6,28 @@ import { Drone } from '../../Lasers/Friendly/Drone.js';
 import { Airstrike } from '../../Lasers/Friendly/Airstrike.js';
 import { Dart } from '../../Lasers/Friendly/Dart.js';
 import { Slash } from '../../Effects/Misc/Slash.js';
+import { RedPackage } from '../../Actors/Packages/RedPackage.js';
+import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
 
 export class CollisionActions {
     // BLUELASERS AND ENEMIES
     static BluelasersEnemies(enemy, laser) {
         if (!game.state.variables.blankbullets) {
-            // Pushback & play sound if the laser is not a drone
+            // Pushback & play sound if the laser is not a drone or dart
             if (laser.constructor !== Drone && laser.constructor !== Dart) {
                 enemy.pushBack();
-                game.audiocontroller.playHit(enemy);
+
+                // Determine which hit-sound to play
+                if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
+                    game.audiocontroller.playSound('hitMetal');
+                } else if (game.state.variables.quaddamage) {
+                    game.audiocontroller.playSound('hitQuad');
+                } else {
+                    game.audiocontroller.playSound('hit');
+                }
             }
 
+            // Damage enemy & show damage-number and slash
             enemy.takeDamage(laser.damage);
             game.effects.add(new DamageNumber(enemy.x, enemy.y, laser.damage));
             game.effects.add(new Slash(enemy.x, enemy.y));

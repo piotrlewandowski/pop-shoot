@@ -1,6 +1,4 @@
 import { game } from '../../../app.js';
-import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
-import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import {
     LASERSOUND,
     RELOADSOUND,
@@ -68,246 +66,171 @@ const MUSIC = {
 };
 
 const SOUNDS = {
+    // Optional properties:
+    // rewind: bool - on next playback, the sound will play from beginning instead of resuming.
+    // clone: bool - as many instances as needed will be played (without waiting for previous instance to finish).
+    // loop: bool - self-explanatory. the sound will keep looping.
+    // limit: int - limit how many instances of the sound can be played at the same time.
+
     anxiety: {
         audio: ANXIETYSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     beepRed: {
         audio: BEEPREDSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     beepOrange: {
         audio: BEEPORANGESOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     bigThunder: {
         audio: THUNDER0SOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     coin: {
         audio: COINSOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
         limit: 10,
     },
 
     diver: {
         audio: DIVERSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     exp_big: {
         audio: EXPLOSIONBIGSOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
     },
     exp_normal: {
         audio: EXPLOSIONNORMALSOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
     },
     familiarMg: {
         audio: FAMILIARMGSOUND,
         rewind: true,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     glitch: {
         audio: GLITCHSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     hit: {
         audio: HITSOUND,
-        rewind: false,
         clone: true,
         volume: 0.5,
-        loop: false,
         limit: 5,
     },
     hitMetal: {
         audio: HITMETALSOUND,
-        rewind: false,
         clone: true,
         volume: 0.5,
-        loop: false,
         limit: 5,
     },
     hitQuad: {
         audio: HITQUADSOUND,
-        rewind: false,
         clone: true,
         volume: 0.5,
-        loop: false,
         limit: 5,
     },
     laser: {
         audio: LASERSOUND,
-        rewind: false,
         clone: true,
         volume: 0.7,
-        loop: false,
     },
     matrix: {
         audio: MATRIXSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
         loop: true,
     },
     mirage: {
         audio: MIRAGESOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     phase: {
         audio: PHASESOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
     },
     phew: {
         audio: PHEWSOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
     },
     powerDown: {
         audio: POWERDOWNSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     rain: {
         audio: RAINSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
         loop: true,
     },
     reload: {
         audio: RELOADSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     sand: {
         audio: SANDSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
         loop: true,
     },
     shieldDown: {
         audio: SHIELDDOWNSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     shieldUp: {
         audio: SHIELDUPSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     slowmoEmpty: {
         audio: SLOWMOEMPTYSOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
     },
     siren: {
         audio: SIRENSOUND,
         rewind: true,
-        clone: false,
         volume: 1,
         loop: true,
     },
     slowmoCharge: {
         audio: SLOWMOCHARGESOUND,
         rewind: true,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     smallThunder: {
         audio: THUNDER1SOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     smoke: {
         audio: SMOKESOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
     },
     splash: {
         audio: SPLASHSOUND,
-        rewind: false,
         clone: true,
         volume: 1,
-        loop: false,
     },
     steam: {
         audio: STEAMSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     swoosh: {
         audio: SWOOSHSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
-        loop: false,
     },
     vortex: {
         audio: VORTEXSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
         loop: true,
     },
     wind: {
         audio: WINDSOUND,
-        rewind: false,
-        clone: false,
         volume: 1,
         loop: true,
     },
@@ -315,17 +238,19 @@ const SOUNDS = {
 
 export class AudioController {
     constructor() {
+        // Set all music to loop
         for (const key in MUSIC) {
             MUSIC[key].loop = true;
-            MUSIC[key].volume = 0;
         }
 
+        // Set all sounds with 'loop' property to loop
         for (const key in SOUNDS) {
             if (SOUNDS[key].loop) {
                 SOUNDS[key].audio.loop = true;
             }
         }
 
+        // Used to keep track of limited sounds
         this.limits = {};
     }
 
@@ -397,20 +322,5 @@ export class AudioController {
             sound.audio.currentTime = 0;
         }
         sound.audio.pause();
-    }
-
-    playHit(enemy) {
-        // HITTING PACKAGES
-        if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
-            return this.playSound('hitMetal');
-        }
-
-        // QUAD-DAMAGE
-        if (game.state.variables.quaddamage) {
-            return this.playSound('hitQuad');
-        }
-
-        // HITTING EVERYTHING ELSE
-        this.playSound('hit');
     }
 }

@@ -81,7 +81,7 @@ export class Coin {
         this.blinkProgressBar();
         game.effects.add(new Animation(this.x, this.y, 'smoke_normal'));
         game.effects.add(new DollarSign(this.x, this.y));
-        game.audiocontroller.playCoinSound();
+        game.audiocontroller.playSound('coin');
         game.cashcontroller.incrementCash();
         clearInterval(this.spinAnimation);
         this.duration = 0;

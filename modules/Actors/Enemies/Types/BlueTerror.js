@@ -42,7 +42,7 @@ export class BlueTerror extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('smoke');
+        game.audiocontroller.playSound('smoke');
         game.effects.add(new Animation(this.x, this.y, 'smoke_normal'));
         super.die();
     }

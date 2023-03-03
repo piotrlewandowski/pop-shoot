@@ -61,7 +61,7 @@ export class BlackInvader extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('phase');
+        game.audiocontroller.playSound('phase');
         game.effects.add(new Animation(this.x, this.y, 'blackinvader_death'));
         super.die();
     }

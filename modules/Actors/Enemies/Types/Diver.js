@@ -34,7 +34,7 @@ export class Diver extends Enemy {
             this.hp *= Difficulty.blackHpMultiplier;
         }
 
-        game.audiocontroller.playDiverSound();
+        game.audiocontroller.playSound('diver');
     }
 
     move() {
@@ -67,7 +67,7 @@ export class Diver extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('phew');
+        game.audiocontroller.playSound('phew');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         shakeScreen(3, 0.2);
         this.explode();

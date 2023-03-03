@@ -35,7 +35,7 @@ export class Sand {
         this.duration = 1;
         flashScreen();
         this.sprite = SPRITE[this.ticks % SPRITE.length];
-        game.audiocontroller.playSandSound();
+        game.audiocontroller.playSound('sand');
     }
 
     move() {
@@ -44,14 +44,14 @@ export class Sand {
 
         if (this.ticks % MIRAGEFREQUENCY === 0) {
             shakeScreen(500, 0.25);
-            game.audiocontroller.playSandFxSound();
+            game.audiocontroller.playSound('mirage');
             flashScreen();
         }
     }
 
     stop() {
         this.duration = 0;
-        game.audiocontroller.stopSandSound();
+        game.audiocontroller.stopSound('sand');
         flashScreen();
     }
 }

@@ -136,8 +136,8 @@ export class FamiliarSight extends Enemy {
     }
 
     soften() {
-        game.audiocontroller.playPowerdownSound();
-        game.audiocontroller.stopFamiliarMgSound();
+        game.audiocontroller.playSound('powerDown');
+        game.audiocontroller.stopSound('familiarMg');
         this.sprite = FAMILIARSIGHTSPRITE;
         this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL / game.state.variables.slowmorate : FIRINGRATE_NORMAL;
         this.hardened = false;
@@ -146,8 +146,8 @@ export class FamiliarSight extends Enemy {
     }
 
     harden() {
-        game.audiocontroller.playPowerdownSound();
-        game.audiocontroller.playFamiliarMgSound();
+        game.audiocontroller.playSound('powerDown');
+        game.audiocontroller.playSound('familiarMg');
         this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL * game.state.variables.slowmorate : FIRINGRATE_HARDENED;
         this.sprite = FAMILIARSIGHTHARDENEDSPRITE;
         this.hardened = true;
@@ -162,7 +162,7 @@ export class FamiliarSight extends Enemy {
 
     die() {
         super.die();
-        game.audiocontroller.playAnimationSound('exp_big');
+        game.audiocontroller.playSound('exp_big');
         shakeScreen(6, 2);
         game.state.toggleBoss();
     }

@@ -132,13 +132,13 @@ export class Abuser extends Enemy {
     soften() {
         this.hardened = false;
         clearInterval(this.flashInterval);
-        game.audiocontroller.stopSirenSound();
+        game.audiocontroller.stopSound('siren');
         flashScreen();
         shakeScreen(3, 0.5);
     }
 
     harden() {
-        game.audiocontroller.playSirenSound();
+        game.audiocontroller.playSound('siren');
         this.hardened = true;
         this.flashInterval = setInterval(flashScreen, 1000);
         flashScreen();
@@ -159,7 +159,7 @@ export class Abuser extends Enemy {
 
     die() {
         super.die();
-        game.audiocontroller.playAnimationSound('exp_big');
+        game.audiocontroller.playSound('exp_big');
         shakeScreen(6, 2);
         game.state.toggleBoss();
     }

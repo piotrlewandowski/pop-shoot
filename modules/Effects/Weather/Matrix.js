@@ -44,7 +44,7 @@ export class Matrix {
         this.duration = 1;
         flashScreen();
         this.sprite = SPRITE[this.ticks % SPRITE.length];
-        game.audiocontroller.playMatrixSound();
+        game.audiocontroller.playSound('matrix');
     }
 
     move() {
@@ -53,7 +53,7 @@ export class Matrix {
 
         if (this.ticks % GLITCHFREQUENCY === 0) {
             shakeScreen(1, 0.5);
-            game.audiocontroller.playGlitchSound();
+            game.audiocontroller.playSound('glitch');
             const glitchInterval = setInterval(() => {
                 WeatherController.glitchOffset.y = randomInRange(-100, 100);
                 WeatherController.glitchOffset.x = randomInRange(-100, 100);
@@ -67,7 +67,7 @@ export class Matrix {
     }
 
     stop() {
-        game.audiocontroller.stopMatrixSound();
+        game.audiocontroller.stopSound('matrix');
         this.duration = 0;
         flashScreen();
     }

@@ -49,7 +49,7 @@ export class GreenInvader extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playAnimationSound('phase');
+        game.audiocontroller.playSound('phase');
         game.effects.add(new Animation(this.x, this.y, 'greeninvader_death'));
         super.die();
     }

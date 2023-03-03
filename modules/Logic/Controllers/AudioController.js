@@ -1,6 +1,4 @@
 import { game } from '../../../app.js';
-import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
-import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import {
     LASERSOUND,
     RELOADSOUND,
@@ -30,7 +28,7 @@ import {
     THUNDER1SOUND,
     WINDSOUND,
     SANDSOUND,
-    SANDFXSOUND,
+    MIRAGESOUND,
     VORTEXSOUND,
     GLITCHSOUND,
     MATRIXSOUND,
@@ -67,46 +65,199 @@ const MUSIC = {
     clock: MUSICCLOCK,
 };
 
-const ANIMATION_SOUNDS = {
-    phase: PHASESOUND,
-    splash: SPLASHSOUND,
-    phew: PHEWSOUND,
-    exp_normal: EXPLOSIONNORMALSOUND,
-    exp_big: EXPLOSIONBIGSOUND,
-    smoke: SMOKESOUND,
-    reload: RELOADSOUND,
+const SOUNDS = {
+    // Optional properties:
+    // rewind: bool - on next playback, the sound will play from beginning instead of resuming.
+    // clone: bool - as many instances as needed will be played (without waiting for previous instance to finish).
+    // loop: bool - self-explanatory. the sound will keep looping.
+    // limit: int - limit how many instances of the sound can be played at the same time.
+
+    anxiety: {
+        audio: ANXIETYSOUND,
+        volume: 1,
+    },
+    beepRed: {
+        audio: BEEPREDSOUND,
+        volume: 1,
+    },
+    beepOrange: {
+        audio: BEEPORANGESOUND,
+        volume: 1,
+    },
+    bigThunder: {
+        audio: THUNDER0SOUND,
+        volume: 1,
+    },
+    coin: {
+        audio: COINSOUND,
+        clone: true,
+        volume: 1,
+        limit: 10,
+    },
+
+    diver: {
+        audio: DIVERSOUND,
+        volume: 1,
+    },
+    exp_big: {
+        audio: EXPLOSIONBIGSOUND,
+        clone: true,
+        volume: 1,
+    },
+    exp_normal: {
+        audio: EXPLOSIONNORMALSOUND,
+        clone: true,
+        volume: 1,
+    },
+    familiarMg: {
+        audio: FAMILIARMGSOUND,
+        rewind: true,
+        volume: 1,
+    },
+    glitch: {
+        audio: GLITCHSOUND,
+        volume: 1,
+    },
+    hit: {
+        audio: HITSOUND,
+        clone: true,
+        volume: 0.5,
+        limit: 5,
+    },
+    hitMetal: {
+        audio: HITMETALSOUND,
+        clone: true,
+        volume: 0.5,
+        limit: 5,
+    },
+    hitQuad: {
+        audio: HITQUADSOUND,
+        clone: true,
+        volume: 0.5,
+        limit: 5,
+    },
+    laser: {
+        audio: LASERSOUND,
+        clone: true,
+        volume: 0.7,
+    },
+    matrix: {
+        audio: MATRIXSOUND,
+        volume: 1,
+        loop: true,
+    },
+    mirage: {
+        audio: MIRAGESOUND,
+        volume: 1,
+    },
+    phase: {
+        audio: PHASESOUND,
+        clone: true,
+        volume: 1,
+    },
+    phew: {
+        audio: PHEWSOUND,
+        clone: true,
+        volume: 1,
+    },
+    powerDown: {
+        audio: POWERDOWNSOUND,
+        volume: 1,
+    },
+    rain: {
+        audio: RAINSOUND,
+        volume: 1,
+        loop: true,
+    },
+    reload: {
+        audio: RELOADSOUND,
+        volume: 1,
+    },
+    sand: {
+        audio: SANDSOUND,
+        volume: 1,
+        loop: true,
+    },
+    shieldDown: {
+        audio: SHIELDDOWNSOUND,
+        volume: 1,
+    },
+    shieldUp: {
+        audio: SHIELDUPSOUND,
+        volume: 1,
+    },
+    slowmoEmpty: {
+        audio: SLOWMOEMPTYSOUND,
+        clone: true,
+        volume: 1,
+    },
+    siren: {
+        audio: SIRENSOUND,
+        rewind: true,
+        volume: 1,
+        loop: true,
+    },
+    slowmoCharge: {
+        audio: SLOWMOCHARGESOUND,
+        rewind: true,
+        volume: 1,
+    },
+    smallThunder: {
+        audio: THUNDER1SOUND,
+        volume: 1,
+    },
+    smoke: {
+        audio: SMOKESOUND,
+        clone: true,
+        volume: 1,
+    },
+    splash: {
+        audio: SPLASHSOUND,
+        clone: true,
+        volume: 1,
+    },
+    steam: {
+        audio: STEAMSOUND,
+        volume: 1,
+    },
+    swoosh: {
+        audio: SWOOSHSOUND,
+        volume: 1,
+    },
+    vortex: {
+        audio: VORTEXSOUND,
+        volume: 1,
+        loop: true,
+    },
+    wind: {
+        audio: WINDSOUND,
+        volume: 1,
+        loop: true,
+    },
 };
-
-const HITSOUNDS = { standard: HITSOUND, quad: HITQUADSOUND, metal: HITMETALSOUND };
-
-// LIMITS
-const MAX_CONCURRENT_HITS = 5;
-const MAX_CONCURRENT_COINS = 10;
-const HITSOUND_VOLUME = 0.5;
-const LASER_VOLUME = 0.7;
 
 export class AudioController {
     constructor() {
+        // Set all music to loop
         for (const key in MUSIC) {
             MUSIC[key].loop = true;
         }
-        RAINSOUND.loop = true;
-        WINDSOUND.loop = true;
-        SANDSOUND.loop = true;
-        VORTEXSOUND.loop = true;
-        MATRIXSOUND.loop = true;
-        SIRENSOUND.loop = true;
-        this.currentlyPlayingHits = 0;
-        this.currentlyPlayingCoins = 0;
-    }
 
-    rewind() {
-        for (const key in MUSIC) {
-            MUSIC[key].currentTime = 0;
+        // Set all sounds with 'loop' property to loop
+        for (const key in SOUNDS) {
+            if (SOUNDS[key].loop) {
+                SOUNDS[key].audio.loop = true;
+            }
         }
+
+        // Used to keep track of limited sounds
+        this.limits = {};
     }
 
-    playTrack(track) {
+    // ********* MUSIC *********
+
+    updateMusic() {
+        const track = this._getTrack();
         for (const key in MUSIC)
             if (key === track) {
                 if (key === 'slowmo') {
@@ -118,183 +269,58 @@ export class AudioController {
             }
     }
 
-    playHitSound(enemy) {
-        // PACKAGES
-        if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
-            const metalSound = HITSOUNDS['metal'].cloneNode(true);
-            metalSound.volume = HITSOUND_VOLUME;
-            return this.queueHitSound(metalSound);
+    _getTrack() {
+        // Called by updateMusic() to get the corresponding
+        // track to play, depending on the state of the game
+        if (game.state.over) {
+            return 'gameover';
         }
-
-        // QUAD-DAMAGE
-        if (game.state.variables.quaddamage) {
-            const quadSound = HITSOUNDS['quad'].cloneNode(true);
-            quadSound.volume = HITSOUND_VOLUME;
-            return this.queueHitSound(quadSound);
+        if (game.player.clock.active) {
+            return 'clock';
         }
-
-        // NORMAL ENEMIES
-        const hitSound = HITSOUNDS['standard'].cloneNode(true);
-        hitSound.volume = HITSOUND_VOLUME;
-        this.queueHitSound(hitSound);
+        if (game.state.slowmo) {
+            return 'slowmo';
+        }
+        if (game.state.boss) {
+            return `boss${game.state.stage}`;
+        }
+        return `stage${game.state.stage}`;
     }
 
-    queueHitSound(hitSound) {
-        hitSound.onended = () => {
-            this.currentlyPlayingHits--;
-        };
-
-        if (this.currentlyPlayingHits <= MAX_CONCURRENT_HITS) {
-            this.currentlyPlayingHits++;
-            hitSound.play();
+    rewindMusic() {
+        for (const key in MUSIC) {
+            MUSIC[key].currentTime = 0;
         }
     }
 
-    playAnimationSound(type) {
-        ANIMATION_SOUNDS[type].cloneNode(true).play();
-    }
+    // ********* SOUNDS *********
 
-    playLaserSound() {
-        const laserSound = LASERSOUND.cloneNode(true);
-        laserSound.volume = LASER_VOLUME;
-        laserSound.play();
-    }
+    playSound(type) {
+        const sound = SOUNDS[type].clone ? SOUNDS[type].audio.cloneNode() : SOUNDS[type].audio;
+        sound.volume = SOUNDS[type].volume;
 
-    playBeepRedSound() {
-        BEEPREDSOUND.play();
-    }
+        if (SOUNDS[type].limit) {
+            if (this.limits[type] === undefined) {
+                this.limits[type] = 0;
+            }
 
-    playBeepOrangeSound() {
-        BEEPORANGESOUND.play();
-    }
-
-    playShieldUpSound() {
-        SHIELDUPSOUND.play();
-    }
-
-    playShieldDownSound() {
-        SHIELDDOWNSOUND.play();
-    }
-
-    playDiverSound() {
-        DIVERSOUND.play();
-    }
-
-    playSlowmoEmptySound() {
-        SLOWMOEMPTYSOUND.cloneNode(true).play();
-    }
-
-    playSlowmoChargeSound() {
-        SLOWMOCHARGESOUND.play();
-    }
-
-    stopSlowmoChargeSound() {
-        SLOWMOCHARGESOUND.pause();
-        SLOWMOCHARGESOUND.currentTime = 0;
-    }
-
-    playRainSound() {
-        RAINSOUND.play();
-    }
-
-    stopRainSound() {
-        RAINSOUND.pause();
-    }
-
-    playWindSound() {
-        WINDSOUND.play();
-    }
-
-    stopWindSound() {
-        WINDSOUND.pause();
-    }
-
-    playBigThunderSound() {
-        THUNDER0SOUND.play();
-    }
-
-    playSmallThunderSound() {
-        THUNDER1SOUND.play();
-    }
-
-    playSandSound() {
-        SANDSOUND.play();
-    }
-
-    stopSandSound() {
-        SANDSOUND.pause();
-    }
-
-    playSandFxSound() {
-        SANDFXSOUND.play();
-    }
-
-    playVortexSound() {
-        VORTEXSOUND.play();
-    }
-
-    stopVortexSound() {
-        VORTEXSOUND.pause();
-    }
-
-    playGlitchSound() {
-        GLITCHSOUND.play();
-    }
-
-    playMatrixSound() {
-        MATRIXSOUND.play();
-    }
-
-    stopMatrixSound() {
-        MATRIXSOUND.pause();
-    }
-
-    playAnxietySound() {
-        ANXIETYSOUND.play();
-    }
-
-    playSwooshSound() {
-        SWOOSHSOUND.play();
-    }
-
-    playSteamSound() {
-        STEAMSOUND.play();
-    }
-
-    playPowerdownSound() {
-        POWERDOWNSOUND.play();
-    }
-
-    playFamiliarMgSound() {
-        FAMILIARMGSOUND.play();
-    }
-
-    stopFamiliarMgSound() {
-        FAMILIARMGSOUND.pause();
-        FAMILIARMGSOUND.currentTime = 0;
-    }
-
-    playSirenSound() {
-        SIRENSOUND.play();
-    }
-
-    stopSirenSound() {
-        SIRENSOUND.pause();
-        SIRENSOUND.currentTime = 0;
-    }
-
-    playCoinSound() {
-        this.queueCoinSound(COINSOUND.cloneNode(true));
-    }
-
-    queueCoinSound(coinSound) {
-        coinSound.onended = () => {
-            this.currentlyPlayingCoins--;
-        };
-
-        if (this.currentlyPlayingCoins <= MAX_CONCURRENT_COINS) {
-            this.currentlyPlayingCoins++;
-            coinSound.play();
+            sound.onended = () => {
+                this.limits[type]--;
+            };
+            if (this.limits[type] <= SOUNDS[type].limit) {
+                this.limits[type]++;
+                sound.play();
+            }
+        } else {
+            sound.play();
         }
+    }
+
+    stopSound(type) {
+        const sound = SOUNDS[type];
+        if (sound.rewind) {
+            sound.audio.currentTime = 0;
+        }
+        sound.audio.pause();
     }
 }

@@ -32,7 +32,7 @@ export class Player {
     shoot() {
         if (!game.state.variables.mute && !this.clock.active) {
             // Play Audio
-            game.audiocontroller.playLaserSound();
+            game.audiocontroller.playSound('laser');
 
             // Rockets
             let weapon;

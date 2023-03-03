@@ -51,7 +51,7 @@ export const WINDSOUND = document.getElementById('wind_sound');
 
 // SAND
 export const SANDSOUND = document.getElementById('sand_sound');
-export const SANDFXSOUND = document.getElementById('sandfx_sound');
+export const MIRAGESOUND = document.getElementById('mirage_sound');
 
 // VORTEX
 export const VORTEXSOUND = document.getElementById('vortex_sound');

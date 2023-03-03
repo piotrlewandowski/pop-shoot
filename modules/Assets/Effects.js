@@ -10,9 +10,7 @@ export const SLASHQUAD3SPRITE = document.getElementById('slashquad3');
 
 // OTHER EFFECTS
 export const WHITESCREENSPRITE = document.getElementById('whitescreen');
-export const HIEROGLYPHSPRITE = document.getElementById('hieroglyph');
 export const BLACKSCREENSPRITE = document.getElementById('blackscreen');
-export const DOLLARSIGNSPRITE = document.getElementById('dollarsign');
 
 // RAIN
 export const RAIN0SPRITE = document.getElementById('rain0');
@@ -48,6 +46,7 @@ export const SAND7SPRITE = document.getElementById('sand7');
 export const SAND8SPRITE = document.getElementById('sand8');
 
 // VORTEX
+export const HIEROGLYPHSPRITE = document.getElementById('hieroglyph');
 export const VORTEX0SPRITE = document.getElementById('vortex0');
 export const VORTEX1SPRITE = document.getElementById('vortex1');
 export const VORTEX2SPRITE = document.getElementById('vortex2');

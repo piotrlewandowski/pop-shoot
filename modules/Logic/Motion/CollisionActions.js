@@ -108,6 +108,11 @@ export class CollisionActions {
         }
     }
 
+    // COIN AND PLAYER
+    static CoinPlayer(coin, player) {
+        coin.removeAndCount();
+    }
+
     // ENEMIES AND ENEMIES
     static EnemiesEnemies(enemy1, enemy2) {
         Movement.moveAway(enemy1, enemy2);

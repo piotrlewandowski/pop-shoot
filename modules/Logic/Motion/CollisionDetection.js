@@ -1,4 +1,5 @@
 import { game } from '../../../app.js';
+import { Coin } from '../../Effects/Misc/Coin.js';
 import { CollisionActions } from './CollisionActions.js';
 
 export class CollisionDetection {
@@ -42,6 +43,13 @@ export class CollisionDetection {
                     CollisionActions.BluelasersFirelasers(bluelaser, firelaser);
                 }
             });
+        });
+
+        // COINS AND PLAYER
+        game.effects.liveEffects.forEach((effect) => {
+            if (this.areColliding(effect, game.player) && effect.constructor === Coin) {
+                CollisionActions.CoinPlayer(effect, game.player);
+            }
         });
 
         // ENEMIES AND CANVAS LIMITS

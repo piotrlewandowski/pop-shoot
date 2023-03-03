@@ -11,15 +11,24 @@ const MIN_DISTANCE = 55;
 const MAX_DISTANCE = 65;
 
 export class Debris extends BlueLaser {
-    constructor(x, y) {
-        super(x, y);
+    constructor() {
+        super();
         this.sprite = SPRITE[randomInRange(0, SPRITE.length - 1)];
+
+        // Override x/y to avoid spawning in the center
+        // of the player (default bluelaser spawn-point)
+        this.x = -99;
+        this.y = -99;
 
         this.distance = randomInRange(MIN_DISTANCE, MAX_DISTANCE);
         this.speed = SPEED;
         this.angle = 0;
         this.damage *= game.state.variables.debrisrate;
     }
+
+    static count = 0;
+    static maxDebris = 50;
+    static respawnRate = 200; // in ms
 
     move() {
         // In the below type of circular movement, angle and speed are closely linked.

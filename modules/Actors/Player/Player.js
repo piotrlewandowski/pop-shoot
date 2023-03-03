@@ -31,59 +31,60 @@ export class Player {
 
     shoot() {
         if (!game.state.variables.mute && !this.clock.active) {
-            // Play Audio
+            // ***** AUDIO *****
             game.audiocontroller.playSound('laser');
 
-            // Rockets
+            // ***** ROCKETS *****
             let weapon;
             const rocketroll = randomInRange(0, 100);
-            // Select between laser or rockets
             if (game.state.variables.rocket && rocketroll < game.state.variables.rocketchance) {
                 weapon = Rocket;
             } else {
                 weapon = BlueLaser;
             }
 
+            // ***** SPRAY *****
+
             // In case the spray number is even, skew the laser's angle by 2.5 degrees
             let direction = game.state.variables.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
 
             // Fire the first laser
-            game.bluelasers.add(new weapon(this.x, this.y, direction));
+            game.bluelasers.add(new weapon(direction));
 
-            // Calculate the sprays directions & fire them
+            // Calculate the remaning sprays directions & fire them
             let spraycount = 1;
             for (let i = 0; i < game.state.variables.spray; i++) {
+                // spray left
                 if (i % 2) {
-                    // add spray left
-                    game.bluelasers.add(new weapon(this.x, this.y, direction - SPRAYDISTANCE * spraycount));
+                    game.bluelasers.add(new weapon(direction - SPRAYDISTANCE * spraycount));
                     spraycount++;
                 }
-                // add spray right
+                // spray right
                 else {
-                    game.bluelasers.add(new weapon(this.x, this.y, direction + SPRAYDISTANCE * spraycount));
+                    game.bluelasers.add(new weapon(direction + SPRAYDISTANCE * spraycount));
                 }
             }
 
-            // Seekers
+            // ***** SEEKERS *****
             if (game.enemies.enemiesOnScreen() && game.state.variables.seekers) {
-                game.bluelasers.add(new Seeker(this.x, this.y, getClosestEnemyTo(this)));
+                game.bluelasers.add(new Seeker(getClosestEnemyTo(this)));
             }
 
-            // Quad-Damage & Thor's hammer
-            if (game.state.variables.quaddamage || game.state.variables.thorshammer) {
-                shakeScreen(3, 0.25);
-            }
-
-            // Drones
+            // ***** DRONES *****
             if (game.state.variables.drones) {
                 for (let i = 0; i < game.state.variables.dronesnumber; i++) {
                     game.bluelasers.add(new Drone());
                 }
             }
 
-            // Darts
+            // ***** DARTS *****
             if (game.state.variables.darts) {
                 game.bluelasers.add(new Dart());
+            }
+
+            // ***** QUAD-DAMAGE & THOR'S HAMMER *****
+            if (game.state.variables.quaddamage || game.state.variables.thorshammer) {
+                shakeScreen(3, 0.25);
             }
         }
     }

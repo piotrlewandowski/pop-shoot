@@ -12,9 +12,9 @@ const MAXDMG = 6;
 const DEFAULTDIRECTION = 270; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
 
 export class BlueLaser {
-    constructor(x, y, direction = DEFAULTDIRECTION) {
-        this.x = x;
-        this.y = y;
+    constructor(direction = DEFAULTDIRECTION) {
+        this.x = game.player.x;
+        this.y = game.player.y;
         this.radius = RADIUS;
         this.sprite = LASERSPRITE;
 

@@ -4,8 +4,8 @@ import { BlueLaser } from './BlueLaser.js';
 import { SEEKERSPRITE } from '../../Assets/Lasers.js';
 
 export class Seeker extends BlueLaser {
-    constructor(x, y, target) {
-        super(x, y);
+    constructor(target) {
+        super();
         this.sprite = SEEKERSPRITE;
         this.damage *= game.state.variables.seekerrate;
         this.target = target;

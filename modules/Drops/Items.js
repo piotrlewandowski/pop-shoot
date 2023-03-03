@@ -142,15 +142,12 @@ export class Items {
 
     static _debris() {
         // Action
-        const MAXDEBRIS = 50;
-        Debris.count = 0;
-
         setInterval(() => {
-            if (Debris.count < MAXDEBRIS) {
+            if (Debris.count < Debris.maxDebris) {
                 game.bluelasers.add(new Debris());
                 Debris.count++;
             }
-        }, 100);
+        }, Debris.respawnRate);
 
         // Graphics
         game.itemcontroller.drawAll('debris');

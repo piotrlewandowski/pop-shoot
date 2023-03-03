@@ -33,7 +33,6 @@ export class Sand {
         this.y = CANVAS.height / 2;
         this.ticks = 0;
         this.duration = 1;
-        flashScreen();
         this.sprite = SPRITE[this.ticks % SPRITE.length];
         game.audiocontroller.playSound('sand');
     }
@@ -52,6 +51,5 @@ export class Sand {
     stop() {
         this.duration = 0;
         game.audiocontroller.stopSound('sand');
-        flashScreen();
     }
 }

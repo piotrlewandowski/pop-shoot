@@ -15,7 +15,7 @@ import {
 } from '../../Assets/Effects.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { game } from '../../../app.js';
-import { flashScreen, randomInRange, shakeScreen } from '../../Logic/Helpers.js';
+import { randomInRange, shakeScreen } from '../../Logic/Helpers.js';
 import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 
 const SPRITE = [
@@ -42,7 +42,6 @@ export class Matrix {
         this.y = CANVAS.height / 2;
         this.ticks = 0;
         this.duration = 1;
-        flashScreen();
         this.sprite = SPRITE[this.ticks % SPRITE.length];
         game.audiocontroller.playSound('matrix');
     }
@@ -69,6 +68,5 @@ export class Matrix {
     stop() {
         game.audiocontroller.stopSound('matrix');
         this.duration = 0;
-        flashScreen();
     }
 }

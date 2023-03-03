@@ -36,7 +36,6 @@ export class Rain {
         this.sprite = SPRITE[this.ticks % SPRITE.length];
         game.audiocontroller.playSound('rain');
         game.audiocontroller.playSound('bigThunder');
-        flashScreen();
     }
 
     move() {
@@ -55,7 +54,6 @@ export class Rain {
 
     stop() {
         game.audiocontroller.playSound('bigThunder');
-        flashScreen();
         game.audiocontroller.stopSound('rain');
         this.duration = 0;
     }

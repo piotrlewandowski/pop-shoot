@@ -36,7 +36,6 @@ export class Vortex {
         this.duration = 1;
         this.sprite = SPRITE[this.ticks % SPRITE.length];
         game.audiocontroller.playSound('vortex');
-        flashScreen();
     }
 
     move() {
@@ -55,7 +54,6 @@ export class Vortex {
     }
 
     stop() {
-        flashScreen();
         this.duration = 0;
         game.audiocontroller.stopSound('vortex');
     }

@@ -11,7 +11,7 @@ import {
 } from '../../Assets/Effects.js';
 import { CANVAS } from '../../Assets/OtherGfx.js';
 import { game } from '../../../app.js';
-import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
+import { shakeScreen } from '../../Logic/Helpers.js';
 
 const SPRITE = [
     WIND0SPRITE,
@@ -35,7 +35,6 @@ export class Wind {
         this.duration = 1;
         this.sprite = SPRITE[this.ticks % SPRITE.length];
         game.audiocontroller.playSound('wind');
-        flashScreen();
     }
 
     move() {
@@ -49,7 +48,6 @@ export class Wind {
 
     stop() {
         game.audiocontroller.stopSound('wind');
-        flashScreen();
         this.duration = 0;
     }
 }

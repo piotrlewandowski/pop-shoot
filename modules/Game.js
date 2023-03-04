@@ -41,7 +41,6 @@ export class Game {
         this.scene.drawEntity(this.firelasers.liveLasers);
         this.scene.drawEntity(this.bluelasers.liveLasers);
         this.scene.drawEntity(this.effects.liveEffects);
-        this.scene.drawForeground();
 
         if (this.state.time) {
             return this.scene.drawHud();

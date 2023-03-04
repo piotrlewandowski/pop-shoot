@@ -22,11 +22,10 @@ const SPRITE = REDPACKAGESPRITE;
 export class RedPackage extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
-        this.x = CANVAS.width / 2;
         this.hitsound = 'metal';
         game.audiocontroller.playSound('beepRed');
-        RedPackage.count++;
         shakeScreen(4, 1);
+        RedPackage.onscreenPackages.push(this);
     }
 
     move() {
@@ -40,7 +39,6 @@ export class RedPackage extends Enemy {
         game.itemcontroller.drop();
         flashScreen();
         shakeScreen(4, 1);
-        RedPackage.count--;
 
         // Weather - Only toggle if not in boss-mode
         if (!game.state.boss) {
@@ -54,5 +52,5 @@ export class RedPackage extends Enemy {
         }
     }
 
-    static count = 0;
+    static onscreenPackages = [];
 }

@@ -119,11 +119,12 @@ export class Scene {
         } else {
             this.backgroundScrollOffset -= 3;
         }
-    }
 
-    drawForeground() {
-        if (RedPackage.count > 0) {
-            this.ctx.drawImage(LIGHTRAYSPRITE, 0, 0);
+        // RED-PACKAGE LIGHTRAY
+        if (RedPackage.onscreenPackages.length) {
+            RedPackage.onscreenPackages.forEach((redpackage) => {
+                this.ctx.drawImage(LIGHTRAYSPRITE, redpackage.x - LIGHTRAYSPRITE.width / 2, 0);
+            });
         }
     }
 

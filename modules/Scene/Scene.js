@@ -169,8 +169,13 @@ export class Scene {
             );
         }
         if (game.buffcontroller.remainingTime) {
-            SceneHelpers.drawText(game.buffcontroller.text, 400, 440, FONTLARGE);
-            SceneHelpers.drawText(`${game.buffcontroller.remainingTime} SECONDS REMAINING`, 385, 460, FONTMEDIUM);
+            SceneHelpers.drawCenteredText(game.buffcontroller.text, 500, 440, FONTLARGE);
+            SceneHelpers.drawCenteredText(
+                `${game.buffcontroller.remainingTime} SECONDS REMAINING`,
+                500,
+                460,
+                FONTMEDIUM
+            );
         }
     }
 

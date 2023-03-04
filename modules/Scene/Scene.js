@@ -32,7 +32,12 @@ import {
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE, LIGHTRAYSPRITE } from '../Assets/Effects.js';
+import {
+    BLACKSCREENSPRITE,
+    HIEROGLYPHSPRITE,
+    LIGHTBEAMPACKAGESPRITE,
+    LIGHTBEAMSHIPMENTSPRITE,
+} from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { Coin } from '../Effects/Misc/Coin.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
@@ -195,9 +200,10 @@ export class Scene {
                 SceneHelpers.drawText(enemy.name, 690, 40, FONTMEDIUM);
             }
 
-            // LIGHTRAY - Only draw if enemy is a RedPackage
+            // LIGHTBEAMS - Only draw if enemy is a RedPackage
             if (enemy.constructor === RedPackage) {
-                this.ctx.drawImage(LIGHTRAYSPRITE, enemy.x - LIGHTRAYSPRITE.width / 2, 0);
+                this.ctx.drawImage(LIGHTBEAMPACKAGESPRITE, enemy.x - LIGHTBEAMPACKAGESPRITE.width / 2, 0);
+                this.ctx.drawImage(LIGHTBEAMSHIPMENTSPRITE, 755, CANVAS.height - 100);
             }
 
             // Enemy sprite

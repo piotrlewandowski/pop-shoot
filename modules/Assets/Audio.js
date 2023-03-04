@@ -37,9 +37,10 @@ export const SLOWMOEMPTYSOUND = document.getElementById('slowmo_empty_sound');
 export const SWOOSHSOUND = document.getElementById('swoosh_sound');
 export const STEAMSOUND = document.getElementById('steam_sound');
 export const POWERDOWNSOUND = document.getElementById('powerdown_sound');
-export const FAMILIARMGSOUND = document.getElementById('familiar_mg');
-export const SIRENSOUND = document.getElementById('siren');
+export const FAMILIARMGSOUND = document.getElementById('familiar_mg_sound');
+export const SIRENSOUND = document.getElementById('siren_sound');
 export const COINSOUND = document.getElementById('coin_sound');
+export const DRAINSOUND = document.getElementById('drain_sound');
 
 // RAIN
 export const RAINSOUND = document.getElementById('rain_sound');

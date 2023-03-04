@@ -47,6 +47,7 @@ import {
     FAMILIARMGSOUND,
     SIRENSOUND,
     COINSOUND,
+    DRAINSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -79,6 +80,7 @@ const SOUNDS = {
     beepRed: {
         audio: BEEPREDSOUND,
         volume: 1,
+        clone: true,
     },
     beepOrange: {
         audio: BEEPORANGESOUND,
@@ -94,10 +96,14 @@ const SOUNDS = {
         volume: 1,
         limit: 10,
     },
-
     diver: {
         audio: DIVERSOUND,
         volume: 1,
+    },
+    drain: {
+        audio: DRAINSOUND,
+        volume: 1,
+        clone: true,
     },
     exp_big: {
         audio: EXPLOSIONBIGSOUND,

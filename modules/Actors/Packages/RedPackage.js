@@ -49,4 +49,12 @@ export class RedPackage extends Enemy {
             }
         }
     }
+
+    // Called by refresh() when RedPackage has left the screen
+    vanish() {
+        game.audiocontroller.playSound('drain');
+        shakeScreen(4, 1);
+        flashScreen();
+        this.hp = 0;
+    }
 }

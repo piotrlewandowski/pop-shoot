@@ -119,13 +119,6 @@ export class Scene {
         } else {
             this.backgroundScrollOffset -= 3;
         }
-
-        // RED-PACKAGE LIGHTRAY
-        if (RedPackage.onscreenPackages.length) {
-            RedPackage.onscreenPackages.forEach((redpackage) => {
-                this.ctx.drawImage(LIGHTRAYSPRITE, redpackage.x - LIGHTRAYSPRITE.width / 2, 0);
-            });
-        }
     }
 
     drawPlayer() {
@@ -201,6 +194,12 @@ export class Scene {
                 SceneHelpers.drawBigBar(690, 10, 296, 11, hitPercentage);
                 SceneHelpers.drawText(enemy.name, 690, 40, FONTMEDIUM);
             }
+
+            // LIGHTRAY - Only draw if enemy is a RedPackage
+            if (enemy.constructor === RedPackage) {
+                this.ctx.drawImage(LIGHTRAYSPRITE, enemy.x - LIGHTRAYSPRITE.width / 2, 0);
+            }
+
             // Enemy sprite
             this.ctx.drawImage(
                 enemy.sprite,

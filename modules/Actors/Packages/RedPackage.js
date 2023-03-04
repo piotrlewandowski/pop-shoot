@@ -7,7 +7,6 @@ import { Animation } from '../../Effects/Misc/Animation.js';
 import { REDPACKAGESPRITE } from '../../Assets/Enemies.js';
 import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
 
 // MOVEMENT
 const SPEED = 0.5;
@@ -25,7 +24,6 @@ export class RedPackage extends Enemy {
         this.hitsound = 'metal';
         game.audiocontroller.playSound('beepRed');
         shakeScreen(4, 1);
-        RedPackage.onscreenPackages.push(this);
     }
 
     move() {
@@ -51,6 +49,4 @@ export class RedPackage extends Enemy {
             }
         }
     }
-
-    static onscreenPackages = [];
 }

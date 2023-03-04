@@ -9,11 +9,11 @@ import { Wind } from '../../Effects/Weather/Wind.js';
 // Stage1 -> Rain, Stage2 -> Wind etc...
 // Counting starts from 0, so Stage1 = 0, Stage2 = 1 etc...
 const weathers = {
-    0: Rain,
-    1: Wind,
-    2: Sand,
-    3: Vortex,
-    4: Matrix,
+    stage0: Rain,
+    stage1: Wind,
+    stage2: Sand,
+    stage3: Vortex,
+    stage4: Matrix,
 };
 
 export class WeatherController {
@@ -27,7 +27,7 @@ export class WeatherController {
 
     static startWeather() {
         // get weather according to stage
-        const stageWeather = weathers[game.state.stage];
+        const stageWeather = weathers[`stage${game.state.stage}`];
 
         // activate weather
         this.weatherActive = new stageWeather();

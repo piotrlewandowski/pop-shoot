@@ -114,23 +114,20 @@ export class Scene {
     }
 
     drawPlayer() {
-        // Glitch offset used by matrix weather
-        const glitchOffset = WeatherController.glitchOffset;
-
         // JET FLAME
         if (game.player.slowmogauge.charge > 15) {
             this.ctx.drawImage(
                 game.player.flame.sprite,
-                SceneUtils.offsetCoordinates(game.player.flame).x + glitchOffset.x,
-                SceneUtils.offsetCoordinates(game.player.flame).y + glitchOffset.y
+                SceneUtils.offsetCoordinates(game.player.flame).x + WeatherController.glitchOffset.x,
+                SceneUtils.offsetCoordinates(game.player.flame).y + WeatherController.glitchOffset.y
             );
         }
 
         // PLAYER
         this.ctx.drawImage(
             game.player.sprite,
-            SceneUtils.offsetCoordinates(game.player).x + glitchOffset.x,
-            SceneUtils.offsetCoordinates(game.player).y + glitchOffset.y
+            SceneUtils.offsetCoordinates(game.player).x + WeatherController.glitchOffset.x,
+            SceneUtils.offsetCoordinates(game.player).y + WeatherController.glitchOffset.y
         );
 
         // SHIELD
@@ -138,31 +135,17 @@ export class Scene {
             game.player.shield.sprite.forEach((sprite) =>
                 this.ctx.drawImage(
                     sprite,
-                    SceneUtils.offsetCoordinates(game.player).x + glitchOffset.x,
-                    SceneUtils.offsetCoordinates(game.player).y + glitchOffset.y
+                    SceneUtils.offsetCoordinates(game.player).x + WeatherController.glitchOffset.x,
+                    SceneUtils.offsetCoordinates(game.player).y + WeatherController.glitchOffset.y
                 )
             );
         }
         if (game.state.variables.invincibility) {
             this.ctx.drawImage(
                 SHIELDINVINCIBILITYSPRITE,
-                SceneUtils.offsetCoordinates(game.player).x + glitchOffset.x,
-                SceneUtils.offsetCoordinates(game.player).y + glitchOffset.y
+                SceneUtils.offsetCoordinates(game.player).x + WeatherController.glitchOffset.x,
+                SceneUtils.offsetCoordinates(game.player).y + WeatherController.glitchOffset.y
             );
-        }
-
-        // BUFFS
-        if (game.state.variables.mute) {
-            SceneUtils.drawText(
-                'X',
-                game.player.x - 5 + glitchOffset.x,
-                game.player.y - 15 + glitchOffset.y,
-                FONTSMALL
-            );
-        }
-        if (game.buffcontroller.remainingTime) {
-            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, FONTLARGE);
-            SceneUtils.drawCenteredText(`${game.buffcontroller.remainingTime} SECONDS REMAINING`, 500, 460, FONTMEDIUM);
         }
     }
 
@@ -208,7 +191,7 @@ export class Scene {
     drawEntity(entity) {
         entity.forEach((entity) => {
             if (entity.constructor === DamageNumber) {
-                return SceneUtils.drawText(entity.text, entity.x, entity.y, FONTMEDIUM);
+                return SceneUtils.drawCenteredText(entity.text, entity.x, entity.y, FONTMEDIUM);
             }
             this.ctx.drawImage(
                 entity.sprite,
@@ -224,17 +207,17 @@ export class Scene {
 
     drawGameOver() {
         this.ctx.drawImage(GLASSGAMEOVERSPRITE, 320, 205);
-        this.ctx.filter = 'drop-shadow(1px 1px 0 black)';
+        SceneUtils.setShadow();
         SceneUtils.drawText(`GAMEOVER !`, 370, 245, FONTXLARGE);
         SceneUtils.drawText(`YOU SURVIVED ${getGametimeToMMSS()} MINUTES`, 330, 270, FONTMEDIUM);
         SceneUtils.drawText(`YOU DIED AT STAGE ${game.state.stage + 1}`, 380, 290, FONTMEDIUM);
         SceneUtils.drawText(`EARNED CASH: ${game.cashcontroller.cash}`, 405, 310, FONTMEDIUM);
         SceneUtils.drawText(`PRESS SPACE TO REPLAY`, 355, 340, FONTMEDIUM);
-        this.ctx.filter = 'none';
+        SceneUtils.unsetFilters();
     }
 
     drawPause() {
-        // PAUSE SPRITE
+        // PAUSE GLASS SPRITE
         this.ctx.drawImage(GLASSPAUSESPRITE, 360, 125);
 
         // ITEMS DESCRIPTIONS
@@ -243,16 +226,19 @@ export class Scene {
         const horizontalGap = 220;
         const startingX = 75;
         const startingY = 165;
-        let x = startingX;
-        let y = startingY;
+        let currentX = startingX;
+        let currentY = startingY;
 
         for (let i = 0; i < game.itemcontroller.descriptions.length; i++) {
+            // For each new line, return X to its original left position
+            // and shift Y down according to verticalGap
             if (i % numberOfRows === 0) {
                 x = startingX;
                 y += verticalGap;
             }
-            this.ctx.drawImage(game.itemcontroller.descriptions[i], x, y);
-            x += horizontalGap;
+            // Draw then shift X right according to horizontalGap
+            this.ctx.drawImage(game.itemcontroller.descriptions[i], currentX, currentY);
+            currentX += horizontalGap;
         }
     }
 
@@ -359,6 +345,20 @@ export class Scene {
         if (!game.player.shield.isCharged()) {
             this.ctx.drawImage(GLASSSHIELDDOWNSPRITE, 390, 5);
             SceneUtils.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, FONTSMALL);
+        }
+
+        // BUFFS
+        if (game.state.variables.mute) {
+            SceneUtils.drawText(
+                'X',
+                game.player.x - 5 + WeatherController.glitchOffset.x,
+                game.player.y - 15 + WeatherController.glitchOffset.y,
+                FONTSMALL
+            );
+        }
+        if (game.buffcontroller.remainingTime) {
+            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, FONTLARGE);
+            SceneUtils.drawCenteredText(`${game.buffcontroller.remainingTime} SECONDS REMAINING`, 500, 460, FONTMEDIUM);
         }
     }
 }

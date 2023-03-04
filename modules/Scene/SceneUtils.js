@@ -42,6 +42,14 @@ export class SceneUtils {
         game.scene.ctx.strokeStyle = color;
     }
 
+    static setShadow() {
+        game.scene.ctx.filter = 'drop-shadow(1px 1px 0 black)';
+    }
+
+    static unsetFilters() {
+        game.scene.ctx.filter = 'none';
+    }
+
     // Canvas.drawImage draws an image starting from the top-left corner of the image,
     // making the x,y coordinates represent the top-left corner. This functions offsets
     // the coordinates so that x,y represent the center of the image.

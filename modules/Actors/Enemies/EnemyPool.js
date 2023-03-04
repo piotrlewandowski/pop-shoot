@@ -84,11 +84,27 @@ export class EnemyPool {
     // Execute the die() function on enemies with HP <= 0,
     // then remove enemies that are dead or off-screen.
     refresh() {
-        this.liveEnemies.forEach((enemy) => {
-            if (enemy.hp <= 0) {
+        this.liveEnemies = this.liveEnemies.filter((enemy) => {
+            const isRedPackage = enemy.constructor === RedPackage;
+            const isOnScreen = enemy.y <= CANVAS.height;
+            const isAlive = enemy.hp > 0;
+
+            // Call die() function on killed enemies & remove them
+            if (!isAlive && isOnScreen) {
                 enemy.die();
+                return false;
+            }
+
+            // RedPackage has left the screen limits
+            if (isRedPackage && !isOnScreen) {
+                enemy.vanish();
+                return false;
+            }
+
+            // Keep living enemies only if still on-screen
+            if (isAlive && isOnScreen) {
+                return true;
             }
         });
-        this.liveEnemies = this.liveEnemies.filter((enemy) => enemy.y <= CANVAS.height && enemy.hp > 0);
     }
 }

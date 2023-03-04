@@ -32,9 +32,10 @@ import {
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../Assets/Effects.js';
+import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE, LIGHTRAYSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { Coin } from '../Effects/Misc/Coin.js';
+import { RedPackage } from '../Actors/Packages/RedPackage.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -117,6 +118,12 @@ export class Scene {
             this.backgroundScrollOffset -= game.state.variables.slowmorate;
         } else {
             this.backgroundScrollOffset -= 3;
+        }
+    }
+
+    drawForeground() {
+        if (RedPackage.count > 0) {
+            this.ctx.drawImage(LIGHTRAYSPRITE, 0, 0);
         }
     }
 

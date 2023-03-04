@@ -7,6 +7,7 @@ import { Animation } from '../../Effects/Misc/Animation.js';
 import { REDPACKAGESPRITE } from '../../Assets/Enemies.js';
 import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
+import { CANVAS } from '../../Assets/OtherGfx.js';
 
 // MOVEMENT
 const SPEED = 0.5;
@@ -21,8 +22,10 @@ const SPRITE = REDPACKAGESPRITE;
 export class RedPackage extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
+        this.x = CANVAS.width / 2;
         this.hitsound = 'metal';
         game.audiocontroller.playSound('beepRed');
+        RedPackage.count++;
         shakeScreen(4, 1);
     }
 
@@ -37,6 +40,7 @@ export class RedPackage extends Enemy {
         game.itemcontroller.drop();
         flashScreen();
         shakeScreen(4, 1);
+        RedPackage.count--;
 
         // Weather - Only toggle if not in boss-mode
         if (!game.state.boss) {
@@ -49,4 +53,6 @@ export class RedPackage extends Enemy {
             }
         }
     }
+
+    static count = 0;
 }

@@ -11,6 +11,7 @@ export const SLASHQUAD3SPRITE = document.getElementById('slashquad3');
 // OTHER EFFECTS
 export const WHITESCREENSPRITE = document.getElementById('whitescreen');
 export const BLACKSCREENSPRITE = document.getElementById('blackscreen');
+export const LIGHTRAYSPRITE = document.getElementById('lightray');
 
 // RAIN
 export const RAIN0SPRITE = document.getElementById('rain0');

@@ -35,6 +35,7 @@ export class Game {
     }
 
     draw() {
+        this.scene.clear();
         this.scene.drawBackground();
         this.scene.drawPlayer();
         this.scene.drawEnemies();

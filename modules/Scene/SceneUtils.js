@@ -1,8 +1,12 @@
 import { game } from '../../app.js';
 
-export class SceneHelpers {
+export class SceneUtils {
+    static WHITE = '#FFFFFF';
+    static YELLOW = '#FFD800';
+
     // Draw big bar such as the level bar & boss healthbar
     static drawBigBar(x, y, width, height, ratio) {
+        SceneUtils.setColor(SceneUtils.WHITE);
         game.scene.ctx.beginPath();
         game.scene.ctx.rect(x, y, width * ratio, height);
         game.scene.ctx.fill();
@@ -12,22 +16,30 @@ export class SceneHelpers {
     }
 
     // Draw bar such as the one above enemies
-    static drawBar(x, y, width, height, ratio) {
+    static drawBar(x, y, width, height, ratio, color) {
+        SceneUtils.setColor(color || SceneUtils.WHITE);
         game.scene.ctx.beginPath();
         game.scene.ctx.rect(x, y, width * ratio, height);
         game.scene.ctx.fill();
     }
 
     static drawText(text, x, y, font) {
+        SceneUtils.setColor(SceneUtils.WHITE);
         game.scene.ctx.textAlign = 'left';
         game.scene.ctx.font = font;
         game.scene.ctx.fillText(text, x, y);
     }
 
     static drawCenteredText(text, x, y, font) {
+        SceneUtils.setColor(SceneUtils.WHITE);
         game.scene.ctx.textAlign = 'center';
         game.scene.ctx.font = font;
         game.scene.ctx.fillText(text, x, y);
+    }
+
+    static setColor(color) {
+        game.scene.ctx.fillStyle = color;
+        game.scene.ctx.strokeStyle = color;
     }
 
     // Canvas.drawImage draws an image starting from the top-left corner of the image,

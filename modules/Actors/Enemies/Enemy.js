@@ -85,4 +85,8 @@ export class Enemy {
             game.effects.add(new Coin(this.x, this.y));
         }
     }
+
+    get hitRatio() {
+        return this.hp / this.maxhp;
+    }
 }

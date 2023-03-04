@@ -12,7 +12,7 @@ export const SLASHQUAD3SPRITE = document.getElementById('slashquad3');
 export const WHITESCREENSPRITE = document.getElementById('whitescreen');
 export const BLACKSCREENSPRITE = document.getElementById('blackscreen');
 export const LIGHTBEAMPACKAGESPRITE = document.getElementById('lightbeam_package');
-export const LIGHTBEAMSHIPMENTSPRITE = document.getElementById('lightbeam_shipment');
+export const LIGHTBEAMBARSPRITE = document.getElementById('lightbeam_bar');
 
 // RAIN
 export const RAIN0SPRITE = document.getElementById('rain0');

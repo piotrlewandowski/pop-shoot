@@ -32,12 +32,7 @@ import {
 } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import {
-    BLACKSCREENSPRITE,
-    HIEROGLYPHSPRITE,
-    LIGHTBEAMPACKAGESPRITE,
-    LIGHTBEAMSHIPMENTSPRITE,
-} from '../Assets/Effects.js';
+import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE, LIGHTBEAMPACKAGESPRITE, LIGHTBEAMBARSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { Coin } from '../Effects/Misc/Coin.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
@@ -203,7 +198,7 @@ export class Scene {
             // LIGHTBEAMS - Only draw if enemy is a RedPackage
             if (enemy.constructor === RedPackage) {
                 this.ctx.drawImage(LIGHTBEAMPACKAGESPRITE, enemy.x - LIGHTBEAMPACKAGESPRITE.width / 2, 0);
-                this.ctx.drawImage(LIGHTBEAMSHIPMENTSPRITE, 755, CANVAS.height - 100);
+                this.ctx.drawImage(LIGHTBEAMBARSPRITE, 0, 0);
             }
 
             // Enemy sprite
@@ -342,7 +337,7 @@ export class Scene {
             iconXPosition += iconGap;
         }
 
-        // NEXT-PACKAGE BAR
+        // SHIPMENT-PROGRESS BAR
 
         // Airplane, Glassbar & "Shipment Progress" text
         this.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
@@ -356,14 +351,11 @@ export class Scene {
         this.ctx.fillStyle = FILLSTYLE;
 
         // Shipment Number
+        const shipmentNo =
+            RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
         this.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
         SceneHelpers.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, FONTSMALL);
-        SceneHelpers.drawCenteredText(
-            game.cashcontroller.shipmentnumber > 99 ? 'X' : game.cashcontroller.shipmentnumber,
-            815,
-            CANVAS.height - 17,
-            FONTSMALLMEDIUM
-        );
+        SceneHelpers.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, FONTSMALLMEDIUM);
 
         // ---------------
         // MIDDLE - TOP

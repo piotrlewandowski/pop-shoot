@@ -1,7 +1,7 @@
-import { game } from '../../app.js';
-import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
-import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { SceneUtils } from './SceneUtils.js';
+import { game } from '../../../app.js';
+import { SHIELDINVINCIBILITYSPRITE } from '../../Assets/Player.js';
+import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
+import { SceneUtils } from '../SceneUtils.js';
 
 export class PlayerGfx {
     static drawJetFlame() {

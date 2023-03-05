@@ -1,8 +1,8 @@
-import { game } from '../../app.js';
-import { RedPackage } from '../Actors/Packages/RedPackage.js';
-import { LIGHTBEAMSPRITE } from '../Assets/Effects.js';
-import { SceneUtils } from './SceneUtils.js';
-import { SceneVariables } from './SceneVariables.js';
+import { game } from '../../../app.js';
+import { RedPackage } from '../../Actors/Packages/RedPackage.js';
+import { LIGHTBEAMSPRITE } from '../../Assets/Effects.js';
+import { SceneUtils } from '../SceneUtils.js';
+import { SceneVariables } from '../SceneVariables.js';
 
 export class EnemyGfx {
     static drawHealthbar(enemy) {

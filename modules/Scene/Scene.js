@@ -1,14 +1,14 @@
 import { SceneUtils } from './SceneUtils.js';
 import { CANVAS } from '../Assets/Other.js';
-import { HudGfx } from './HudGfx.js';
-import { PlayerGfx } from './PlayerGfx.js';
-import { BackgroundGfx } from './BackgroundGfx.js';
-import { GameoverGfx } from './GameoverGfx.js';
-import { MenuGfx } from './MenuGfx.js';
-import { PauseGfx } from './PauseGfx.js';
-import { EnemyGfx } from './EnemyGfx.js';
+import { HudGfx } from './Elements/HudGfx.js';
+import { PlayerGfx } from './Elements/PlayerGfx.js';
+import { BackgroundGfx } from './Elements/BackgroundGfx.js';
+import { GameoverGfx } from './Elements/GameoverGfx.js';
+import { MenuGfx } from './Elements/MenuGfx.js';
+import { PauseGfx } from './Elements/PauseGfx.js';
+import { EnemyGfx } from './Elements/EnemyGfx.js';
+import { EntityGfx } from './Elements/EntityGfx.js';
 import { game } from '../../app.js';
-import { EntityGfx } from './EntityGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;

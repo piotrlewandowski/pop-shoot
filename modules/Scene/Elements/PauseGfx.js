@@ -1,5 +1,5 @@
-import { game } from '../../app.js';
-import { GLASSPAUSESPRITE } from '../Assets/Hud.js';
+import { game } from '../../../app.js';
+import { GLASSPAUSESPRITE } from '../../Assets/Hud.js';
 
 export class PauseGfx {
     static drawGlass() {

@@ -1,5 +1,5 @@
-import { game } from '../../app.js';
-import { MENU } from '../Assets/Other.js';
+import { game } from '../../../app.js';
+import { MENU } from '../../Assets/Other.js';
 
 export class MenuGfx {
     static draw() {

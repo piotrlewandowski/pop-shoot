@@ -1,7 +1,7 @@
-import { game } from '../../app.js';
-import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
-import { SceneUtils } from './SceneUtils.js';
-import { SceneVariables } from './SceneVariables.js';
+import { game } from '../../../app.js';
+import { DamageNumber } from '../../Effects/Misc/DamageNumber.js';
+import { SceneUtils } from '../SceneUtils.js';
+import { SceneVariables } from '../SceneVariables.js';
 
 export class EntityGfx {
     static draw(entity) {

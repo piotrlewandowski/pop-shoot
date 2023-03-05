@@ -1,5 +1,5 @@
-import { game } from '../../app.js';
-import { BLACKSCREENSPRITE } from '../Assets/Effects.js';
+import { game } from '../../../app.js';
+import { BLACKSCREENSPRITE } from '../../Assets/Effects.js';
 import {
     CANVAS,
     FOG,
@@ -14,10 +14,10 @@ import {
     S3FRONT,
     S4BACK,
     S4FRONT,
-} from '../Assets/Other.js';
-import { Vortex } from '../Effects/Weather/Vortex.js';
-import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { SceneVariables } from './SceneVariables.js';
+} from '../../Assets/Other.js';
+import { Vortex } from '../../Effects/Weather/Vortex.js';
+import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
+import { SceneVariables } from '../SceneVariables.js';
 
 const BACKGROUNDS = {
     stage0: { back: S0BACK, front: S0FRONT },

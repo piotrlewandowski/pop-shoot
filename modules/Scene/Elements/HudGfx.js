@@ -1,5 +1,5 @@
-import { game } from '../../app.js';
-import { RedPackage } from '../Actors/Packages/RedPackage.js';
+import { game } from '../../../app.js';
+import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import {
     CLOCKSPRITE,
     COINSPRITE,
@@ -9,13 +9,13 @@ import {
     GLASSPACKAGESPRITE,
     GLASSSHIELDDOWNSPRITE,
     VLINESPRITE,
-} from '../Assets/Hud.js';
-import { CANVAS } from '../Assets/Other.js';
-import { Coin } from '../Effects/Misc/Coin.js';
-import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { getGametimeToMMSS } from '../Logic/Helpers.js';
-import { SceneUtils } from './SceneUtils.js';
-import { SceneVariables } from './SceneVariables.js';
+} from '../../Assets/Hud.js';
+import { CANVAS } from '../../Assets/Other.js';
+import { Coin } from '../../Effects/Misc/Coin.js';
+import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
+import { getGametimeToMMSS } from '../../Logic/Helpers.js';
+import { SceneUtils } from '../SceneUtils.js';
+import { SceneVariables } from '../SceneVariables.js';
 
 export class HudGfx {
     static drawStageTimeCoin() {

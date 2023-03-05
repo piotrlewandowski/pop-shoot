@@ -112,9 +112,9 @@ export class HudGfx {
 
     static drawBuffs() {
         // Buffs
-        if (game.buffcontroller.remainingTime) {
-            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, 40);
-            SceneUtils.drawCenteredText(`${game.buffcontroller.remainingTime} SECONDS REMAINING`, 500, 460, 30);
+        if (game.buffcontroller.activeBuff) {
+            SceneUtils.drawCenteredText(game.buffcontroller.activeBuff.text, 500, 440, 40);
+            SceneUtils.drawCenteredText(`${game.buffcontroller.countdown} SECONDS REMAINING`, 500, 460, 30);
         }
     }
 }

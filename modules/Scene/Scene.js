@@ -1,9 +1,6 @@
-import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
 import { SceneUtils } from './SceneUtils.js';
 import { CANVAS } from '../Assets/OtherGfx.js';
-import { LIGHTBEAMSPRITE } from '../Assets/Effects.js';
-import { RedPackage } from '../Actors/Packages/RedPackage.js';
 import { SceneVariables } from './SceneVariables.js';
 import { HudGfx } from './HudGfx.js';
 import { PlayerGfx } from './PlayerGfx.js';
@@ -11,6 +8,8 @@ import { BackgroundGfx } from './BackgroundGfx.js';
 import { GameoverGfx } from './GameoverGfx.js';
 import { MenuGfx } from './MenuGfx.js';
 import { PauseGfx } from './PauseGfx.js';
+import { EnemyGfx } from './EnemyGfx.js';
+import { game } from '../../app.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -50,39 +49,9 @@ export class Scene {
 
     drawEnemies() {
         game.enemies.liveEnemies.forEach((enemy) => {
-            // Setup
-            const isBoss = enemy.name;
-            const isHit = enemy.hitRatio !== 1;
-            const isRedPackage = enemy.constructor === RedPackage;
-
-            // Healthbar - Normal Enemy
-            if (isHit && !isBoss) {
-                SceneUtils.drawBar(
-                    enemy.x - enemy.sprite.width / 2,
-                    enemy.y - enemy.sprite.height / 1.25,
-                    enemy.sprite.width,
-                    1.5,
-                    enemy.hitRatio
-                );
-            }
-
-            // Healthbar - Boss
-            if (isBoss) {
-                SceneUtils.drawBigBar(690, 10, 296, 11, enemy.hitRatio);
-                SceneUtils.drawText(enemy.name, 690, 40, SceneVariables.FONTMEDIUM);
-            }
-
-            // Lightbeam - Only if enemy is a RedPackage
-            if (isRedPackage) {
-                this.ctx.drawImage(LIGHTBEAMSPRITE, enemy.x - LIGHTBEAMSPRITE.width / 2, 0);
-            }
-
-            // Enemy Sprite
-            this.ctx.drawImage(
-                enemy.sprite,
-                SceneUtils.offsetCoordinates(enemy).x,
-                SceneUtils.offsetCoordinates(enemy).y
-            );
+            EnemyGfx.drawHealthbar(enemy);
+            EnemyGfx.drawLightbeam(enemy);
+            EnemyGfx.drawSprite(enemy);
         });
     }
 

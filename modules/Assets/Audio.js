@@ -41,6 +41,7 @@ export const FAMILIARMGSOUND = document.getElementById('familiar_mg_sound');
 export const SIRENSOUND = document.getElementById('siren_sound');
 export const COINSOUND = document.getElementById('coin_sound');
 export const DRAINSOUND = document.getElementById('drain_sound');
+export const NOAMMOSOUND = document.getElementById('noammo_sound');
 
 // RAIN
 export const RAINSOUND = document.getElementById('rain_sound');

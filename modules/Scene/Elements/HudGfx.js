@@ -112,14 +112,6 @@ export class HudGfx {
 
     static drawBuffs() {
         // Buffs
-        if (game.state.variables.mute) {
-            SceneUtils.drawText(
-                'X',
-                game.player.x - 5 + WeatherController.glitchOffset.x,
-                game.player.y - 15 + WeatherController.glitchOffset.y,
-                20
-            );
-        }
         if (game.buffcontroller.remainingTime) {
             SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, 40);
             SceneUtils.drawCenteredText(`${game.buffcontroller.remainingTime} SECONDS REMAINING`, 500, 460, 30);

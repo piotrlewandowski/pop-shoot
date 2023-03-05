@@ -10,6 +10,7 @@ import { Clock } from '../../Drops/Clock.js';
 import { SlowmoGauge } from './SlowmoGauge.js';
 import { Drone } from '../../Lasers/Friendly/Drone.js';
 import { Dart } from '../../Lasers/Friendly/Dart.js';
+import { Animation } from '../../Effects/Misc/Animation.js';
 
 const SPRAYDISTANCE = 5; // Distance between laser streams when spray upgrade is acquired
 const LASERANGLE = 270; // Default laser direction. 270 = NORTH
@@ -30,7 +31,11 @@ export class Player {
     }
 
     shoot() {
-        if (!game.state.variables.mute && !this.clock.active) {
+        if (game.state.variables.mute || this.clock.active) {
+            shakeScreen(2, 0.25);
+            game.effects.add(new Animation(game.player.x, game.player.y - 15, 'smoke_normal'));
+            game.audiocontroller.playSound('noammo');
+        } else {
             // ***** AUDIO *****
             game.audiocontroller.playSound('laser');
 

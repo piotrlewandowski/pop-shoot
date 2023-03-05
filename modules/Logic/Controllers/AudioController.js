@@ -48,6 +48,7 @@ import {
     SIRENSOUND,
     COINSOUND,
     DRAINSOUND,
+    NOAMMOSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -154,6 +155,10 @@ const SOUNDS = {
     },
     mirage: {
         audio: MIRAGESOUND,
+        volume: 1,
+    },
+    noammo: {
+        audio: NOAMMOSOUND,
         volume: 1,
     },
     phase: {

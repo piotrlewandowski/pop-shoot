@@ -1,8 +1,7 @@
 import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
 import { SceneUtils } from './SceneUtils.js';
-import { CANVAS  } from '../Assets/OtherGfx.js';
-import { GLASSPAUSESPRITE } from '../Assets/Hud.js';
+import { CANVAS } from '../Assets/OtherGfx.js';
 import { LIGHTBEAMSPRITE } from '../Assets/Effects.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
 import { SceneVariables } from './SceneVariables.js';
@@ -11,6 +10,7 @@ import { PlayerGfx } from './PlayerGfx.js';
 import { BackgroundGfx } from './BackgroundGfx.js';
 import { GameoverGfx } from './GameoverGfx.js';
 import { MenuGfx } from './MenuGfx.js';
+import { PauseGfx } from './PauseGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -113,8 +113,8 @@ export class Scene {
     }
 
     drawPause() {
-        this.ctx.drawImage(GLASSPAUSESPRITE, 360, 125);
-        SceneUtils.drawItemsDescriptions();
+        PauseGfx.drawGlass();
+        PauseGfx.drawItemsDescriptions();
     }
 
     drawHud() {

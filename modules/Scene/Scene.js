@@ -2,43 +2,18 @@ import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
 import { SceneUtils } from './SceneUtils.js';
 import { getGametimeToMMSS } from '../Logic/Helpers.js';
-import {
-    CANVAS,
-    FOG,
-    FOGGREEN,
-    MENU,
-    S0BACK,
-    S0FRONT,
-    S1BACK,
-    S1FRONT,
-    S2BACK,
-    S2FRONT,
-    S3BACK,
-    S3FRONT,
-    S4BACK,
-    S4FRONT,
-} from '../Assets/OtherGfx.js';
+import { CANVAS, MENU } from '../Assets/OtherGfx.js';
 import { GLASSPAUSESPRITE, GLASSGAMEOVERSPRITE } from '../Assets/Hud.js';
-import { WeatherController } from '../Logic/Controllers/WeatherController.js';
-import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE, LIGHTBEAMSPRITE } from '../Assets/Effects.js';
-import { Vortex } from '../Effects/Weather/Vortex.js';
+import { LIGHTBEAMSPRITE } from '../Assets/Effects.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
 import { SceneVariables } from './SceneVariables.js';
 import { HudGfx } from './HudGfx.js';
 import { PlayerGfx } from './PlayerGfx.js';
+import { BackgroundGfx } from './BackgroundGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
 const RATIO = 16 / 9;
-
-// BACKGROUNDS
-const BACKGROUNDS = {
-    stage0: { back: S0BACK, front: S0FRONT },
-    stage1: { back: S1BACK, front: S1FRONT },
-    stage2: { back: S2BACK, front: S2FRONT },
-    stage3: { back: S3BACK, front: S3FRONT },
-    stage4: { back: S4BACK, front: S4FRONT },
-};
 
 export class Scene {
     constructor() {
@@ -60,39 +35,10 @@ export class Scene {
     }
 
     drawBackground() {
-        const backgroundback = BACKGROUNDS[`stage${game.state.stage}`].back;
-        const backgroundfront = BACKGROUNDS[`stage${game.state.stage}`].front;
-
-        // BACKPART - Parallax Effect
-        // Draw stars
-        this.ctx.drawImage(backgroundback, this.backgroundScrollOffset + this.shake, this.shake);
-        this.ctx.drawImage(backgroundback, this.backgroundScrollOffset + backgroundback.width + this.shake, this.shake);
-
-        // Reset the offset in case the background reaches the end while scrolling
-        if (this.backgroundScrollOffset <= -backgroundback.width) {
-            this.backgroundScrollOffset = 0;
-        }
-
-        // BACKPART - Darkness
-        if (WeatherController.darknessActive) {
-            this.ctx.drawImage(BLACKSCREENSPRITE, 0, 0);
-        }
-
-        // FRONTPART - Draw the front part of the background
-        this.ctx.drawImage(backgroundfront, this.shake, this.shake);
-        if (WeatherController.weatherActive.constructor === Vortex) {
-            this.ctx.drawImage(HIEROGLYPHSPRITE, this.shake, this.shake);
-        }
-
-        // LOGIC - Slow the stars & draw the fog during slowmo
-        const fogtype = game.state.variables.toxic ? FOGGREEN : FOG;
-        if (game.state.slowmo || !game.state.time || game.player.clock.active) {
-            this.ctx.drawImage(fogtype, -this.backgroundScrollOffset - backgroundback.width, 0);
-            this.ctx.drawImage(fogtype, -this.backgroundScrollOffset, 0);
-            this.backgroundScrollOffset -= game.state.variables.slowmorate;
-        } else {
-            this.backgroundScrollOffset -= 3;
-        }
+        BackgroundGfx.drawBack();
+        BackgroundGfx.drawFront();
+        BackgroundGfx.drawFog();
+        BackgroundGfx.updateScrollOffset();
     }
 
     drawPlayer() {
@@ -121,7 +67,7 @@ export class Scene {
 
             // Healthbar - Boss
             if (isBoss) {
-                SceneUtils.drawBigBar(690, 10, 296, 11, hitPercentage);
+                SceneUtils.drawBigBar(690, 10, 296, 11, enemy.hitRatio);
                 SceneUtils.drawText(enemy.name, 690, 40, SceneVariables.FONTMEDIUM);
             }
 

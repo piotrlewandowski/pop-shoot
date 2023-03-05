@@ -10,7 +10,7 @@ import {
     GLASSSHIELDDOWNSPRITE,
     VLINESPRITE,
 } from '../Assets/Hud.js';
-import { CANVAS } from '../Assets/OtherGfx.js';
+import { CANVAS } from '../Assets/Other.js';
 import { Coin } from '../Effects/Misc/Coin.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { getGametimeToMMSS } from '../Logic/Helpers.js';

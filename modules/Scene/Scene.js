@@ -1,5 +1,5 @@
 import { SceneUtils } from './SceneUtils.js';
-import { CANVAS } from '../Assets/OtherGfx.js';
+import { CANVAS } from '../Assets/Other.js';
 import { HudGfx } from './HudGfx.js';
 import { PlayerGfx } from './PlayerGfx.js';
 import { BackgroundGfx } from './BackgroundGfx.js';

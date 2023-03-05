@@ -1,6 +1,6 @@
 import { game } from '../../../app.js';
 import { randomInRange } from '../../Logic/Helpers.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { Coin } from '../../Effects/Misc/Coin.js';
 

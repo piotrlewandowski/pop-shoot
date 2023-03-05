@@ -1,6 +1,6 @@
 import { game } from '../../app.js';
 import { Notification } from '../Effects/Misc/Notification.js';
-import { CANVAS } from '../Assets/OtherGfx.js';
+import { CANVAS } from '../Assets/Other.js';
 import { WHITESCREENSPRITE } from '../Assets/Effects.js';
 import { SceneVariables } from '../Scene/SceneVariables.js';
 

@@ -9,7 +9,7 @@ import {
     SAND7SPRITE,
     SAND8SPRITE,
 } from '../../Assets/Effects.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 import { game } from '../../../app.js';
 import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
 

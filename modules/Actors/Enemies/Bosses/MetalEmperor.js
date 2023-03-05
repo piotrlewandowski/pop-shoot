@@ -3,7 +3,7 @@ import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { CANVAS } from '../../../Assets/OtherGfx.js';
+import { CANVAS } from '../../../Assets/Other.js';
 import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
 import { METALEMPERORHARDENEDSPRITE, METALEMPERORSPRITE } from '../../../Assets/Enemies.js';
 

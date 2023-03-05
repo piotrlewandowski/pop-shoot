@@ -9,7 +9,7 @@ import {
     WIND7SPRITE,
     WIND8SPRITE,
 } from '../../Assets/Effects.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 import { game } from '../../../app.js';
 import { shakeScreen } from '../../Logic/Helpers.js';
 

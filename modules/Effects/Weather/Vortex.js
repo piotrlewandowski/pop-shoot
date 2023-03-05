@@ -10,7 +10,7 @@ import {
     VORTEX8SPRITE,
 } from '../../Assets/Effects.js';
 import { game } from '../../../app.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
 
 const SPRITE = [

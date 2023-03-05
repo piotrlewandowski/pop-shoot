@@ -14,7 +14,7 @@ import {
     S3FRONT,
     S4BACK,
     S4FRONT,
-} from '../Assets/OtherGfx.js';
+} from '../Assets/Other.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { SceneVariables } from './SceneVariables.js';

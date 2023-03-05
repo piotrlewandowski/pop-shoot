@@ -2,6 +2,7 @@ import { game } from '../../app.js';
 import { Notification } from '../Effects/Misc/Notification.js';
 import { CANVAS } from '../Assets/OtherGfx.js';
 import { WHITESCREENSPRITE } from '../Assets/Effects.js';
+import { SceneVariables } from '../Scene/SceneVariables.js';
 
 // Returns a random number between min(inclusive) and max(inclusive)
 export function randomInRange(min, max) {
@@ -50,10 +51,10 @@ export function flashScreen() {
 
 // Screen-shake effect
 export function shakeScreen(intensity, duration) {
-    const shake = setInterval(() => (game.scene.shake = randomInRange(-intensity, intensity)), 16);
+    const shake = setInterval(() => (SceneVariables.shake = randomInRange(-intensity, intensity)), 16);
 
     setTimeout(() => {
-        game.scene.shake = 0;
+        SceneVariables.shake = 0;
         clearInterval(shake);
     }, duration * 1000);
 }

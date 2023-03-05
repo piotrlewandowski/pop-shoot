@@ -12,7 +12,6 @@ import {
 } from '../../Assets/Hud.js';
 import { CANVAS } from '../../Assets/Other.js';
 import { Coin } from '../../Effects/Misc/Coin.js';
-import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 import { getGametimeToMMSS } from '../../Logic/Helpers.js';
 import { SceneUtils } from '../SceneUtils.js';
 
@@ -85,27 +84,8 @@ export class HudGfx {
         const iconTextYPosition = CANVAS.height - 83;
         const iconGap = 45;
 
-        for (let i = 0; i < game.itemcontroller.icons.length; i++) {
-            // This loop will draw the aquired upgrades icons.
-            // In case of repetitive items or items with timers,
-            // it will check if additional text should be drawn above the icon, and draw it.
-            // e.g multiply-damage or spray is stacked, or cosmic-clock is recharging
-            if (i === clockPos && !clockReady && clockChargePositive) {
-                SceneUtils.drawText(`${game.player.clock.currentCharge}`, iconXPosition + 9, iconTextYPosition, 20);
-            }
-            if (i === dmgPos && dmgStacked) {
-                SceneUtils.drawText(
-                    `x${(game.state.variables.dmgMultiplier - 1) * 2}`,
-                    iconXPosition + 9,
-                    iconTextYPosition,
-                    20
-                );
-            }
-            if (i === sprayPos && sprayStacked) {
-                SceneUtils.drawText(`x${game.state.variables.spray}`, iconXPosition + 9, iconTextYPosition, 20);
-            }
-            // Draw icon
-            game.scene.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, iconYPosition);
+        for (let i = 0; i < game.itemcontroller.aquiredItems.length; i++) {
+            game.scene.ctx.drawImage(game.itemcontroller.aquiredItems[i].icon, iconXPosition, iconYPosition);
             iconXPosition += iconGap;
         }
     }

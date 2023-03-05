@@ -1,7 +1,7 @@
 import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
 import { SceneUtils } from './SceneUtils.js';
-import { CANVAS, MENU } from '../Assets/OtherGfx.js';
+import { CANVAS  } from '../Assets/OtherGfx.js';
 import { GLASSPAUSESPRITE } from '../Assets/Hud.js';
 import { LIGHTBEAMSPRITE } from '../Assets/Effects.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
@@ -10,6 +10,7 @@ import { HudGfx } from './HudGfx.js';
 import { PlayerGfx } from './PlayerGfx.js';
 import { BackgroundGfx } from './BackgroundGfx.js';
 import { GameoverGfx } from './GameoverGfx.js';
+import { MenuGfx } from './MenuGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -101,7 +102,7 @@ export class Scene {
     }
 
     drawMenu() {
-        this.ctx.drawImage(MENU, 0, 0);
+        MenuGfx.draw();
     }
 
     drawGameOver() {

@@ -1,7 +1,5 @@
-import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
 import { SceneUtils } from './SceneUtils.js';
 import { CANVAS } from '../Assets/OtherGfx.js';
-import { SceneVariables } from './SceneVariables.js';
 import { HudGfx } from './HudGfx.js';
 import { PlayerGfx } from './PlayerGfx.js';
 import { BackgroundGfx } from './BackgroundGfx.js';
@@ -10,6 +8,7 @@ import { MenuGfx } from './MenuGfx.js';
 import { PauseGfx } from './PauseGfx.js';
 import { EnemyGfx } from './EnemyGfx.js';
 import { game } from '../../app.js';
+import { EntityGfx } from './EntityGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -22,12 +21,6 @@ export class Scene {
         this.canvas.width = CANVASWIDTH;
         this.canvas.height = CANVASWIDTH / RATIO;
         this.ctx = this.canvas.getContext('2d');
-
-        // Background offset is used to scroll the background for parallax effect
-        this.backgroundScrollOffset = 0;
-
-        // Set by the shakeScreen helper function. Used for screen-shake effect
-        this.shake = 0;
     }
 
     clear() {
@@ -55,18 +48,9 @@ export class Scene {
         });
     }
 
-    // LASERS AND EFFECTS
     drawEntity(entity) {
         entity.forEach((entity) => {
-            if (entity.constructor === DamageNumber) {
-                SceneUtils.drawCenteredText(entity.text, entity.x, entity.y, SceneVariables.FONTMEDIUM);
-            } else {
-                this.ctx.drawImage(
-                    entity.sprite,
-                    SceneUtils.offsetCoordinates(entity).x,
-                    SceneUtils.offsetCoordinates(entity).y
-                );
-            }
+            EntityGfx.draw(entity);
         });
     }
 

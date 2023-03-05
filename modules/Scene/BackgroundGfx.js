@@ -1,6 +1,7 @@
 import { game } from '../../app.js';
 import { BLACKSCREENSPRITE } from '../Assets/Effects.js';
 import {
+    CANVAS,
     FOG,
     FOGGREEN,
     S0BACK,
@@ -67,7 +68,7 @@ export class BackgroundGfx {
         const fogtype = game.state.variables.toxic ? FOGGREEN : FOG;
 
         if (game.state.slowmo || !game.state.time) {
-            game.scene.ctx.drawImage(fogtype, -SceneVariables.backgroundScrollOffset - game.scene.canvas.width, 0);
+            game.scene.ctx.drawImage(fogtype, -SceneVariables.backgroundScrollOffset - CANVAS.width, 0);
             game.scene.ctx.drawImage(fogtype, -SceneVariables.backgroundScrollOffset, 0);
         }
     }

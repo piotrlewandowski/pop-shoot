@@ -16,15 +16,13 @@ const RATIO = 16 / 9;
 
 export class Scene {
     constructor() {
-        // Canvas
-        this.canvas = CANVAS;
-        this.canvas.width = CANVASWIDTH;
-        this.canvas.height = CANVASWIDTH / RATIO;
-        this.ctx = this.canvas.getContext('2d');
+        CANVAS.width = CANVASWIDTH;
+        CANVAS.height = CANVASWIDTH / RATIO;
+        this.ctx = CANVAS.getContext('2d');
     }
 
     clear() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.clearRect(0, 0, CANVAS.width, CANVAS.height);
     }
 
     drawBackground() {

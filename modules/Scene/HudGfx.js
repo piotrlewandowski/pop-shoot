@@ -10,6 +10,7 @@ import {
     GLASSSHIELDDOWNSPRITE,
     VLINESPRITE,
 } from '../Assets/Hud.js';
+import { CANVAS } from '../Assets/OtherGfx.js';
 import { Coin } from '../Effects/Misc/Coin.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { getGametimeToMMSS } from '../Logic/Helpers.js';
@@ -48,12 +49,12 @@ export class HudGfx {
 
     static drawShipmentProgress() {
         // Shipment Progress Bar
-        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, game.scene.canvas.height - 26, SceneVariables.FONTSMALL);
-        game.scene.ctx.drawImage(GLASSPACKAGESPRITE, 170, game.scene.canvas.height - 36);
-        game.scene.ctx.drawImage(GLASSBARSPRITE, 218, game.scene.canvas.height - 23);
+        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, SceneVariables.FONTSMALL);
+        game.scene.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
+        game.scene.ctx.drawImage(GLASSBARSPRITE, 218, CANVAS.height - 23);
         SceneUtils.drawBar(
             223,
-            game.scene.canvas.height - 18,
+            CANVAS.height - 18,
             565,
             6,
             game.cashcontroller.levelBarPercentage,
@@ -63,9 +64,9 @@ export class HudGfx {
         // Shipment Number
         const shipmentNo =
             RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
-        game.scene.ctx.drawImage(GLASSNUMBERSPRITE, 796, game.scene.canvas.height - 36);
-        SceneUtils.drawText(`SHIPMENT #`, 706, game.scene.canvas.height - 26, SceneVariables.FONTSMALL);
-        SceneUtils.drawCenteredText(shipmentNo, 815, game.scene.canvas.height - 17, SceneVariables.FONTSMALLMEDIUM);
+        game.scene.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
+        SceneUtils.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, SceneVariables.FONTSMALL);
+        SceneUtils.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, SceneVariables.FONTSMALLMEDIUM);
     }
 
     static drawItemsIcons() {
@@ -81,8 +82,8 @@ export class HudGfx {
         const clockChargePositive = game.player.clock.currentCharge > 0;
 
         let iconXPosition = 170;
-        const iconYPosition = game.scene.canvas.height - 80;
-        const iconTextYPosition = game.scene.canvas.height - 83;
+        const iconYPosition = CANVAS.height - 80;
+        const iconTextYPosition = CANVAS.height - 83;
         const iconGap = 45;
 
         for (let i = 0; i < game.itemcontroller.icons.length; i++) {

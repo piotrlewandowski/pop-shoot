@@ -1,15 +1,15 @@
 import { game } from '../../app.js';
 import { DamageNumber } from '../Effects/Misc/DamageNumber.js';
 import { SceneUtils } from './SceneUtils.js';
-import { getGametimeToMMSS } from '../Logic/Helpers.js';
 import { CANVAS, MENU } from '../Assets/OtherGfx.js';
-import { GLASSPAUSESPRITE, GLASSGAMEOVERSPRITE } from '../Assets/Hud.js';
+import { GLASSPAUSESPRITE } from '../Assets/Hud.js';
 import { LIGHTBEAMSPRITE } from '../Assets/Effects.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
 import { SceneVariables } from './SceneVariables.js';
 import { HudGfx } from './HudGfx.js';
 import { PlayerGfx } from './PlayerGfx.js';
 import { BackgroundGfx } from './BackgroundGfx.js';
+import { GameoverGfx } from './GameoverGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -105,13 +105,9 @@ export class Scene {
     }
 
     drawGameOver() {
-        this.ctx.drawImage(GLASSGAMEOVERSPRITE, 320, 205);
+        GameoverGfx.drawGlass();
         SceneUtils.setShadow();
-        SceneUtils.drawText(`GAMEOVER !`, 370, 245, SceneVariables.FONTXLARGE);
-        SceneUtils.drawText(`YOU SURVIVED ${getGametimeToMMSS()} MINUTES`, 330, 270, SceneVariables.FONTMEDIUM);
-        SceneUtils.drawText(`YOU DIED AT STAGE ${game.state.stage + 1}`, 380, 290, SceneVariables.FONTMEDIUM);
-        SceneUtils.drawText(`EARNED CASH: ${game.cashcontroller.cash}`, 405, 310, SceneVariables.FONTMEDIUM);
-        SceneUtils.drawText(`PRESS SPACE TO REPLAY`, 355, 340, SceneVariables.FONTMEDIUM);
+        GameoverGfx.drawText();
         SceneUtils.unsetFilters();
     }
 

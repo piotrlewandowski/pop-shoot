@@ -1,10 +1,13 @@
 import { game } from '../../app.js';
-import { SceneVariables } from './SceneVariables.js';
+
+const FONTNAME = 'thaleahfatmedium';
+const WHITE = '#FFFFFF';
+const YELLOW = '#FFD800';
 
 export class SceneUtils {
     // Draw big bar such as the level bar & boss healthbar
     static drawBigBar(x, y, width, height, ratio) {
-        SceneUtils.setColor(SceneVariables.WHITE);
+        SceneUtils.setColor(WHITE);
         game.scene.ctx.beginPath();
         game.scene.ctx.rect(x, y, width * ratio, height);
         game.scene.ctx.fill();
@@ -14,24 +17,24 @@ export class SceneUtils {
     }
 
     // Draw bar such as the one above enemies
-    static drawBar(x, y, width, height, ratio, color) {
-        SceneUtils.setColor(color || SceneVariables.WHITE);
+    static drawBar(x, y, width, height, ratio, blink) {
+        SceneUtils.setColor(blink ? YELLOW : WHITE);
         game.scene.ctx.beginPath();
         game.scene.ctx.rect(x, y, width * ratio, height);
         game.scene.ctx.fill();
     }
 
-    static drawText(text, x, y, font) {
-        SceneUtils.setColor(SceneVariables.WHITE);
+    static drawText(text, x, y, fontsize) {
+        SceneUtils.setColor(WHITE);
         game.scene.ctx.textAlign = 'left';
-        game.scene.ctx.font = font;
+        game.scene.ctx.font = `${fontsize}px ${FONTNAME}`;
         game.scene.ctx.fillText(text, x, y);
     }
 
-    static drawCenteredText(text, x, y, font) {
-        SceneUtils.setColor(SceneVariables.WHITE);
+    static drawCenteredText(text, x, y, fontsize) {
+        SceneUtils.setColor(WHITE);
         game.scene.ctx.textAlign = 'center';
-        game.scene.ctx.font = font;
+        game.scene.ctx.font = `${fontsize}px ${FONTNAME}`;
         game.scene.ctx.fillText(text, x, y);
     }
 

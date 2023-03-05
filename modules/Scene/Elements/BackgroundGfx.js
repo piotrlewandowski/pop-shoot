@@ -17,7 +17,6 @@ import {
 } from '../../Assets/Other.js';
 import { Vortex } from '../../Effects/Weather/Vortex.js';
 import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
-import { SceneVariables } from '../SceneVariables.js';
 
 const BACKGROUNDS = {
     stage0: { back: S0BACK, front: S0FRONT },
@@ -32,20 +31,16 @@ export class BackgroundGfx {
         const backgroundback = BACKGROUNDS[`stage${game.state.stage}`].back;
 
         // Stars
+        game.scene.ctx.drawImage(backgroundback, game.scene.bgScrollOffset + game.scene.shake, game.scene.shake);
         game.scene.ctx.drawImage(
             backgroundback,
-            SceneVariables.backgroundScrollOffset + SceneVariables.shake,
-            SceneVariables.shake
-        );
-        game.scene.ctx.drawImage(
-            backgroundback,
-            SceneVariables.backgroundScrollOffset + backgroundback.width + SceneVariables.shake,
-            SceneVariables.shake
+            game.scene.bgScrollOffset + CANVAS.width + game.scene.shake,
+            game.scene.shake
         );
 
         // Reset offset in case the stars-sprite reaches the end while scrolling
-        if (SceneVariables.backgroundScrollOffset <= -backgroundback.width) {
-            SceneVariables.backgroundScrollOffset = 0;
+        if (game.scene.bgScrollOffset <= -CANVAS.width) {
+            game.scene.bgScrollOffset = 0;
         }
 
         // Darkness
@@ -56,11 +51,11 @@ export class BackgroundGfx {
 
     static drawFront() {
         const backgroundfront = BACKGROUNDS[`stage${game.state.stage}`].front;
-        game.scene.ctx.drawImage(backgroundfront, SceneVariables.shake, SceneVariables.shake);
+        game.scene.ctx.drawImage(backgroundfront, game.scene.shake, game.scene.shake);
 
         // Only in Vortex
         if (WeatherController.weatherActive.constructor === Vortex) {
-            game.scene.ctx.drawImage(HIEROGLYPHSPRITE, SceneVariables.shake, SceneVariables.shake);
+            game.scene.ctx.drawImage(HIEROGLYPHSPRITE, game.scene.shake, game.scene.shake);
         }
     }
 
@@ -68,16 +63,16 @@ export class BackgroundGfx {
         const fogtype = game.state.variables.toxic ? FOGGREEN : FOG;
 
         if (game.state.slowmo || !game.state.time) {
-            game.scene.ctx.drawImage(fogtype, -SceneVariables.backgroundScrollOffset - CANVAS.width, 0);
-            game.scene.ctx.drawImage(fogtype, -SceneVariables.backgroundScrollOffset, 0);
+            game.scene.ctx.drawImage(fogtype, -game.scene.bgScrollOffset - CANVAS.width, 0);
+            game.scene.ctx.drawImage(fogtype, -game.scene.bgScrollOffset, 0);
         }
     }
 
     static updateScrollOffset() {
         if (game.state.slowmo || !game.state.time || game.player.clock.active) {
-            SceneVariables.backgroundScrollOffset -= game.state.variables.slowmorate;
+            game.scene.bgScrollOffset -= game.state.variables.slowmorate;
         } else {
-            SceneVariables.backgroundScrollOffset -= 3;
+            game.scene.bgScrollOffset -= 3;
         }
     }
 }

@@ -15,7 +15,6 @@ import { Coin } from '../../Effects/Misc/Coin.js';
 import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 import { getGametimeToMMSS } from '../../Logic/Helpers.js';
 import { SceneUtils } from '../SceneUtils.js';
-import { SceneVariables } from '../SceneVariables.js';
 
 export class HudGfx {
     static drawStageTimeCoin() {
@@ -24,32 +23,32 @@ export class HudGfx {
 
         // Stage
         game.scene.ctx.drawImage(FLOPPYSPRITE, 10, 10);
-        SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, SceneVariables.FONTSMALLMEDIUM);
+        SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, 25);
 
         // Time
         game.scene.ctx.drawImage(CLOCKSPRITE, 10, 30);
         if (!game.state.boss) {
-            SceneUtils.drawText(getGametimeToMMSS(), 31, 44, SceneVariables.FONTSMALLMEDIUM);
+            SceneUtils.drawText(getGametimeToMMSS(), 31, 44, 25);
         } else {
-            SceneUtils.drawText(`BOSS FIGHT`, 31, 44, SceneVariables.FONTSMALLMEDIUM);
+            SceneUtils.drawText(`BOSS FIGHT`, 31, 44, 25);
         }
 
         // Cash
         game.scene.ctx.drawImage(COINSPRITE, 10, 50);
-        SceneUtils.drawText(game.cashcontroller.cash, 31, 64, SceneVariables.FONTSMALLMEDIUM);
+        SceneUtils.drawText(game.cashcontroller.cash, 31, 64, 25);
     }
 
     static drawShieldWarning() {
         // Shield Warning
         if (!game.player.shield.isCharged()) {
             game.scene.ctx.drawImage(GLASSSHIELDDOWNSPRITE, 390, 5);
-            SceneUtils.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, SceneVariables.FONTSMALL);
+            SceneUtils.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, 20);
         }
     }
 
     static drawShipmentProgress() {
         // Shipment Progress Bar
-        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, SceneVariables.FONTSMALL);
+        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, 20);
         game.scene.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
         game.scene.ctx.drawImage(GLASSBARSPRITE, 218, CANVAS.height - 23);
         SceneUtils.drawBar(
@@ -58,15 +57,15 @@ export class HudGfx {
             565,
             6,
             game.cashcontroller.levelBarPercentage,
-            Coin.blinking ? SceneVariables.YELLOW : SceneVariables.WHITE
+            Coin.blinking ? 1 : 0
         );
 
         // Shipment Number
         const shipmentNo =
             RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
         game.scene.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
-        SceneUtils.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, SceneVariables.FONTSMALL);
-        SceneUtils.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, SceneVariables.FONTSMALLMEDIUM);
+        SceneUtils.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, 20);
+        SceneUtils.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, 25);
     }
 
     static drawItemsIcons() {
@@ -92,28 +91,18 @@ export class HudGfx {
             // it will check if additional text should be drawn above the icon, and draw it.
             // e.g multiply-damage or spray is stacked, or cosmic-clock is recharging
             if (i === clockPos && !clockReady && clockChargePositive) {
-                SceneUtils.drawText(
-                    `${game.player.clock.currentCharge}`,
-                    iconXPosition + 9,
-                    iconTextYPosition,
-                    SceneVariables.FONTSMALL
-                );
+                SceneUtils.drawText(`${game.player.clock.currentCharge}`, iconXPosition + 9, iconTextYPosition, 20);
             }
             if (i === dmgPos && dmgStacked) {
                 SceneUtils.drawText(
                     `x${(game.state.variables.dmgMultiplier - 1) * 2}`,
                     iconXPosition + 9,
                     iconTextYPosition,
-                    SceneVariables.FONTSMALL
+                    20
                 );
             }
             if (i === sprayPos && sprayStacked) {
-                SceneUtils.drawText(
-                    `x${game.state.variables.spray}`,
-                    iconXPosition + 9,
-                    iconTextYPosition,
-                    SceneVariables.FONTSMALL
-                );
+                SceneUtils.drawText(`x${game.state.variables.spray}`, iconXPosition + 9, iconTextYPosition, 20);
             }
             // Draw icon
             game.scene.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, iconYPosition);
@@ -128,17 +117,12 @@ export class HudGfx {
                 'X',
                 game.player.x - 5 + WeatherController.glitchOffset.x,
                 game.player.y - 15 + WeatherController.glitchOffset.y,
-                SceneVariables.FONTSMALL
+                20
             );
         }
         if (game.buffcontroller.remainingTime) {
-            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, SceneVariables.FONTLARGE);
-            SceneUtils.drawCenteredText(
-                `${game.buffcontroller.remainingTime} SECONDS REMAINING`,
-                500,
-                460,
-                SceneVariables.FONTMEDIUM
-            );
+            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, 40);
+            SceneUtils.drawCenteredText(`${game.buffcontroller.remainingTime} SECONDS REMAINING`, 500, 460, 30);
         }
     }
 }

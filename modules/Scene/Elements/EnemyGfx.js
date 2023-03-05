@@ -2,7 +2,6 @@ import { game } from '../../../app.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { LIGHTBEAMSPRITE } from '../../Assets/Effects.js';
 import { SceneUtils } from '../SceneUtils.js';
-import { SceneVariables } from '../SceneVariables.js';
 
 export class EnemyGfx {
     static drawHealthbar(enemy) {
@@ -20,7 +19,7 @@ export class EnemyGfx {
         // Boss
         if (enemy.name) {
             SceneUtils.drawBigBar(690, 10, 296, 11, enemy.hitRatio);
-            SceneUtils.drawText(enemy.name, 690, 40, SceneVariables.FONTMEDIUM);
+            SceneUtils.drawText(enemy.name, 690, 40, 30);
         }
     }
 

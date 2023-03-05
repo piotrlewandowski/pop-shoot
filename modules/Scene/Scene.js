@@ -10,7 +10,6 @@ import { EnemyGfx } from './Elements/EnemyGfx.js';
 import { EntityGfx } from './Elements/EntityGfx.js';
 import { game } from '../../app.js';
 
-// CANVAS
 const CANVASWIDTH = 1000;
 const RATIO = 16 / 9;
 
@@ -19,6 +18,9 @@ export class Scene {
         CANVAS.width = CANVASWIDTH;
         CANVAS.height = CANVASWIDTH / RATIO;
         this.ctx = CANVAS.getContext('2d');
+
+        this.bgScrollOffset = 0; // used by BackgroundGfx for parallax effect
+        this.shake = 0; // used by shakeScreen() helper function
     }
 
     clear() {

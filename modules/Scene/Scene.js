@@ -18,25 +18,14 @@ import {
     S4BACK,
     S4FRONT,
 } from '../Assets/OtherGfx.js';
-import {
-    GLASSBARSPRITE,
-    GLASSPAUSESPRITE,
-    GLASSSHIELDDOWNSPRITE,
-    GLASSGAMEOVERSPRITE,
-    COINSPRITE,
-    CLOCKSPRITE,
-    FLOPPYSPRITE,
-    VLINESPRITE,
-    GLASSPACKAGESPRITE,
-    GLASSNUMBERSPRITE,
-} from '../Assets/Hud.js';
+import { GLASSPAUSESPRITE, GLASSGAMEOVERSPRITE } from '../Assets/Hud.js';
 import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE, LIGHTBEAMSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
-import { Coin } from '../Effects/Misc/Coin.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
 import { SceneVariables } from './SceneVariables.js';
+import { HudGfx } from './HudGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -75,7 +64,6 @@ export class Scene {
         const backgroundfront = BACKGROUNDS[`stage${game.state.stage}`].front;
 
         // BACKPART - Parallax Effect
-
         // Draw stars
         this.ctx.drawImage(backgroundback, this.backgroundScrollOffset + this.shake, this.shake);
         this.ctx.drawImage(backgroundback, this.backgroundScrollOffset + backgroundback.width + this.shake, this.shake);
@@ -217,71 +205,10 @@ export class Scene {
     }
 
     drawHud() {
-        // Vertical Line
-        this.ctx.drawImage(VLINESPRITE, 4, 12);
-
-        // Stage
-        this.ctx.drawImage(FLOPPYSPRITE, 10, 10);
-        SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, SceneVariables.FONTSMALLMEDIUM);
-
-        // Time
-        this.ctx.drawImage(CLOCKSPRITE, 10, 30);
-        if (!game.state.boss) {
-            SceneUtils.drawText(getGametimeToMMSS(), 31, 44, SceneVariables.FONTSMALLMEDIUM);
-        } else {
-            SceneUtils.drawText(`BOSS FIGHT`, 31, 44, SceneVariables.FONTSMALLMEDIUM);
-        }
-
-        // Cash
-        this.ctx.drawImage(COINSPRITE, 10, 50);
-        SceneUtils.drawText(game.cashcontroller.cash, 31, 64, SceneVariables.FONTSMALLMEDIUM);
-
-        // Items Icons
-        SceneUtils.drawItemsIcons();
-
-        // Shipment Progress
-        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, SceneVariables.FONTSMALL);
-        this.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
-        this.ctx.drawImage(GLASSBARSPRITE, 218, CANVAS.height - 23);
-        SceneUtils.drawBar(
-            223,
-            CANVAS.height - 18,
-            565,
-            6,
-            game.cashcontroller.levelBarPercentage,
-            Coin.blinking ? SceneVariables.YELLOW : SceneVariables.WHITE
-        );
-
-        // Shipment Number
-        const shipmentNo =
-            RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
-        this.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
-        SceneUtils.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, SceneVariables.FONTSMALL);
-        SceneUtils.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, SceneVariables.FONTSMALLMEDIUM);
-
-        // Shield Warning
-        if (!game.player.shield.isCharged()) {
-            this.ctx.drawImage(GLASSSHIELDDOWNSPRITE, 390, 5);
-            SceneUtils.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, SceneVariables.FONTSMALL);
-        }
-
-        // Buffs
-        if (game.state.variables.mute) {
-            SceneUtils.drawText(
-                'X',
-                game.player.x - 5 + WeatherController.glitchOffset.x,
-                game.player.y - 15 + WeatherController.glitchOffset.y,
-                SceneVariables.FONTSMALL
-            );
-        }
-        if (game.buffcontroller.remainingTime) {
-            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, SceneVariables.FONTLARGE);
-            SceneUtils.drawCenteredText(
-                `${game.buffcontroller.remainingTime} SECONDS REMAINING`,
-                500,
-                460,
-                SceneVariables.FONTMEDIUM
-            );
-        }
+        HudGfx.drawStageTimeCoin();
+        HudGfx.drawShipmentProgress();
+        HudGfx.drawItemsIcons();
+        HudGfx.drawShieldWarning();
+        HudGfx.drawBuffs();
     }
 }

@@ -19,13 +19,13 @@ import {
     S4FRONT,
 } from '../Assets/OtherGfx.js';
 import { GLASSPAUSESPRITE, GLASSGAMEOVERSPRITE } from '../Assets/Hud.js';
-import { SHIELDINVINCIBILITYSPRITE } from '../Assets/Player.js';
 import { WeatherController } from '../Logic/Controllers/WeatherController.js';
 import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE, LIGHTBEAMSPRITE } from '../Assets/Effects.js';
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
 import { SceneVariables } from './SceneVariables.js';
 import { HudGfx } from './HudGfx.js';
+import { PlayerGfx } from './PlayerGfx.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
@@ -96,39 +96,9 @@ export class Scene {
     }
 
     drawPlayer() {
-        // JET FLAME
-        if (game.player.slowmogauge.charge > 15) {
-            this.ctx.drawImage(
-                game.player.flame.sprite,
-                SceneUtils.offsetCoordinates(game.player.flame).x + WeatherController.glitchOffset.x,
-                SceneUtils.offsetCoordinates(game.player.flame).y + WeatherController.glitchOffset.y
-            );
-        }
-
-        // PLAYER
-        this.ctx.drawImage(
-            game.player.sprite,
-            SceneUtils.offsetCoordinates(game.player).x + WeatherController.glitchOffset.x,
-            SceneUtils.offsetCoordinates(game.player).y + WeatherController.glitchOffset.y
-        );
-
-        // SHIELD
-        if (game.player.shield.isCharged() && !game.state.variables.invincibility) {
-            game.player.shield.sprite.forEach((sprite) =>
-                this.ctx.drawImage(
-                    sprite,
-                    SceneUtils.offsetCoordinates(game.player).x + WeatherController.glitchOffset.x,
-                    SceneUtils.offsetCoordinates(game.player).y + WeatherController.glitchOffset.y
-                )
-            );
-        }
-        if (game.state.variables.invincibility) {
-            this.ctx.drawImage(
-                SHIELDINVINCIBILITYSPRITE,
-                SceneUtils.offsetCoordinates(game.player).x + WeatherController.glitchOffset.x,
-                SceneUtils.offsetCoordinates(game.player).y + WeatherController.glitchOffset.y
-            );
-        }
+        PlayerGfx.drawJetFlame();
+        PlayerGfx.drawPlayer();
+        PlayerGfx.drawShield();
     }
 
     drawEnemies() {

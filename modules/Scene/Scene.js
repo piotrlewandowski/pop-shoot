@@ -36,17 +36,11 @@ import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE, LIGHTBEAMSPRITE } from '../Assets/
 import { Vortex } from '../Effects/Weather/Vortex.js';
 import { Coin } from '../Effects/Misc/Coin.js';
 import { RedPackage } from '../Actors/Packages/RedPackage.js';
+import { SceneVariables } from './SceneVariables.js';
 
 // CANVAS
 const CANVASWIDTH = 1000;
 const RATIO = 16 / 9;
-
-// FONTS
-const FONTSMALL = '20px thaleahfatmedium';
-const FONTSMALLMEDIUM = '25px thaleahfatmedium';
-const FONTMEDIUM = '30px thaleahfatmedium';
-const FONTLARGE = '40px thaleahfatmedium';
-const FONTXLARGE = '60px thaleahfatmedium';
 
 // BACKGROUNDS
 const BACKGROUNDS = {
@@ -170,7 +164,7 @@ export class Scene {
             // Healthbar - Boss
             if (isBoss) {
                 SceneUtils.drawBigBar(690, 10, 296, 11, hitPercentage);
-                SceneUtils.drawText(enemy.name, 690, 40, FONTMEDIUM);
+                SceneUtils.drawText(enemy.name, 690, 40, SceneVariables.FONTMEDIUM);
             }
 
             // Lightbeam - Only if enemy is a RedPackage
@@ -191,13 +185,14 @@ export class Scene {
     drawEntity(entity) {
         entity.forEach((entity) => {
             if (entity.constructor === DamageNumber) {
-                return SceneUtils.drawCenteredText(entity.text, entity.x, entity.y, FONTMEDIUM);
+                SceneUtils.drawCenteredText(entity.text, entity.x, entity.y, SceneVariables.FONTMEDIUM);
+            } else {
+                this.ctx.drawImage(
+                    entity.sprite,
+                    SceneUtils.offsetCoordinates(entity).x,
+                    SceneUtils.offsetCoordinates(entity).y
+                );
             }
-            this.ctx.drawImage(
-                entity.sprite,
-                SceneUtils.offsetCoordinates(entity).x,
-                SceneUtils.offsetCoordinates(entity).y
-            );
         });
     }
 
@@ -208,11 +203,11 @@ export class Scene {
     drawGameOver() {
         this.ctx.drawImage(GLASSGAMEOVERSPRITE, 320, 205);
         SceneUtils.setShadow();
-        SceneUtils.drawText(`GAMEOVER !`, 370, 245, FONTXLARGE);
-        SceneUtils.drawText(`YOU SURVIVED ${getGametimeToMMSS()} MINUTES`, 330, 270, FONTMEDIUM);
-        SceneUtils.drawText(`YOU DIED AT STAGE ${game.state.stage + 1}`, 380, 290, FONTMEDIUM);
-        SceneUtils.drawText(`EARNED CASH: ${game.cashcontroller.cash}`, 405, 310, FONTMEDIUM);
-        SceneUtils.drawText(`PRESS SPACE TO REPLAY`, 355, 340, FONTMEDIUM);
+        SceneUtils.drawText(`GAMEOVER !`, 370, 245, SceneVariables.FONTXLARGE);
+        SceneUtils.drawText(`YOU SURVIVED ${getGametimeToMMSS()} MINUTES`, 330, 270, SceneVariables.FONTMEDIUM);
+        SceneUtils.drawText(`YOU DIED AT STAGE ${game.state.stage + 1}`, 380, 290, SceneVariables.FONTMEDIUM);
+        SceneUtils.drawText(`EARNED CASH: ${game.cashcontroller.cash}`, 405, 310, SceneVariables.FONTMEDIUM);
+        SceneUtils.drawText(`PRESS SPACE TO REPLAY`, 355, 340, SceneVariables.FONTMEDIUM);
         SceneUtils.unsetFilters();
     }
 
@@ -222,122 +217,71 @@ export class Scene {
     }
 
     drawHud() {
-        // ---------------
-        // LEFT - TOP
-        // ---------------
-
-        // Stage & Time
+        // Vertical Line
         this.ctx.drawImage(VLINESPRITE, 4, 12);
-        this.ctx.drawImage(FLOPPYSPRITE, 10, 10);
-        SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, FONTSMALLMEDIUM);
 
+        // Stage
+        this.ctx.drawImage(FLOPPYSPRITE, 10, 10);
+        SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, SceneVariables.FONTSMALLMEDIUM);
+
+        // Time
         this.ctx.drawImage(CLOCKSPRITE, 10, 30);
         if (!game.state.boss) {
-            SceneUtils.drawText(getGametimeToMMSS(), 31, 44, FONTSMALLMEDIUM);
+            SceneUtils.drawText(getGametimeToMMSS(), 31, 44, SceneVariables.FONTSMALLMEDIUM);
         } else {
-            SceneUtils.drawText(`BOSS FIGHT`, 31, 44, FONTSMALLMEDIUM);
+            SceneUtils.drawText(`BOSS FIGHT`, 31, 44, SceneVariables.FONTSMALLMEDIUM);
         }
 
         // Cash
         this.ctx.drawImage(COINSPRITE, 10, 50);
-        SceneUtils.drawText(game.cashcontroller.cash, 31, 64, FONTSMALLMEDIUM);
+        SceneUtils.drawText(game.cashcontroller.cash, 31, 64, SceneVariables.FONTSMALLMEDIUM);
 
-        // ---------------
-        // MIDDLE - BOTTOM
-        // ---------------
+        // Items Icons
+        SceneUtils.drawItemsIcons();
 
-        // UPGRADES ICONS
-        const dmgPos = game.state.variables.dmgIconPosition;
-        const dmgStacked = game.state.variables.dmgMultiplier > 1.5;
-
-        const sprayPos = game.state.variables.sprayIconPosition;
-        const sprayStacked = game.state.variables.spray > 1;
-
-        const clockPos = game.state.variables.clockIconPosition;
-        const clockReady = game.player.clock.ready;
-        const clockChargePositive = game.player.clock.currentCharge > 0;
-
-        let iconXPosition = 170;
-        const iconYPosition = CANVAS.height - 80;
-        const iconTextYPosition = CANVAS.height - 83;
-        const iconGap = 45;
-
-        for (let i = 0; i < game.itemcontroller.icons.length; i++) {
-            // This loop will draw the aquired upgrades icons.
-            // In case of repetitive items or items with timers,
-            // it will check if additional text should be drawn above the icon, and draw it.
-            // e.g multiply-damage or spray is stacked, or cosmic-clock is recharging
-            if (i === clockPos && !clockReady && clockChargePositive) {
-                SceneUtils.drawText(
-                    `${game.player.clock.currentCharge}`,
-                    iconXPosition + 9,
-                    iconTextYPosition,
-                    FONTSMALL
-                );
-            }
-            if (i === dmgPos && dmgStacked) {
-                SceneUtils.drawText(
-                    `x${(game.state.variables.dmgMultiplier - 1) * 2}`,
-                    iconXPosition + 9,
-                    iconTextYPosition,
-                    FONTSMALL
-                );
-            }
-            if (i === sprayPos && sprayStacked) {
-                SceneUtils.drawText(`x${game.state.variables.spray}`, iconXPosition + 9, iconTextYPosition, FONTSMALL);
-            }
-            // Draw icon
-            this.ctx.drawImage(game.itemcontroller.icons[i], iconXPosition, iconYPosition);
-            iconXPosition += iconGap;
-        }
-
-        // SHIPMENT-PROGRESS BAR
-
-        // Airplane, Glassbar & "Shipment Progress" text
+        // Shipment Progress
+        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, SceneVariables.FONTSMALL);
         this.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
         this.ctx.drawImage(GLASSBARSPRITE, 218, CANVAS.height - 23);
-        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, FONTSMALL);
-
-        // Glassbar filling
-        // Change fill-color to yellow exceptionally if the progress bar is blinking during coin pickup
         SceneUtils.drawBar(
             223,
             CANVAS.height - 18,
             565,
             6,
             game.cashcontroller.levelBarPercentage,
-            Coin.blinking ? SceneUtils.YELLOW : SceneUtils.WHITE
+            Coin.blinking ? SceneVariables.YELLOW : SceneVariables.WHITE
         );
 
         // Shipment Number
         const shipmentNo =
             RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
         this.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
-        SceneUtils.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, FONTSMALL);
-        SceneUtils.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, FONTSMALLMEDIUM);
-
-        // ---------------
-        // MIDDLE - TOP
-        // ---------------
+        SceneUtils.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, SceneVariables.FONTSMALL);
+        SceneUtils.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, SceneVariables.FONTSMALLMEDIUM);
 
         // Shield Warning
         if (!game.player.shield.isCharged()) {
             this.ctx.drawImage(GLASSSHIELDDOWNSPRITE, 390, 5);
-            SceneUtils.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, FONTSMALL);
+            SceneUtils.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, SceneVariables.FONTSMALL);
         }
 
-        // BUFFS
+        // Buffs
         if (game.state.variables.mute) {
             SceneUtils.drawText(
                 'X',
                 game.player.x - 5 + WeatherController.glitchOffset.x,
                 game.player.y - 15 + WeatherController.glitchOffset.y,
-                FONTSMALL
+                SceneVariables.FONTSMALL
             );
         }
         if (game.buffcontroller.remainingTime) {
-            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, FONTLARGE);
-            SceneUtils.drawCenteredText(`${game.buffcontroller.remainingTime} SECONDS REMAINING`, 500, 460, FONTMEDIUM);
+            SceneUtils.drawCenteredText(game.buffcontroller.text, 500, 440, SceneVariables.FONTLARGE);
+            SceneUtils.drawCenteredText(
+                `${game.buffcontroller.remainingTime} SECONDS REMAINING`,
+                500,
+                460,
+                SceneVariables.FONTMEDIUM
+            );
         }
     }
 }

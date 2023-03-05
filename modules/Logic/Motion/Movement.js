@@ -1,4 +1,4 @@
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 
 export class Movement {
     static move(angle, speed) {

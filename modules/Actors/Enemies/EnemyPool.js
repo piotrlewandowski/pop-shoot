@@ -1,5 +1,5 @@
 import { game } from '../../../app.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 import { RedPackage } from '../Packages/RedPackage.js';
 import { Slash } from '../../Effects/Misc/Slash.js';
 

@@ -1,5 +1,5 @@
 import { game } from '../../../app.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 
 const PAUSEBUTTON = 'Space';
 const UNSETGAMEOVERBUTTON = 'KeyP';

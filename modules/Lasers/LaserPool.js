@@ -1,4 +1,4 @@
-import { CANVAS } from '../Assets/OtherGfx.js';
+import { CANVAS } from '../Assets/Other.js';
 import { game } from '../../app.js';
 import { Debris } from './Friendly/Debris.js';
 

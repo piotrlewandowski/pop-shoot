@@ -1,6 +1,6 @@
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { randomInRange } from '../../Logic/Helpers.js';
 import { BOMBSPRITE, LASERSPRITE, QUADSPRITE, THORSPRITE } from '../../Assets/Lasers.js';

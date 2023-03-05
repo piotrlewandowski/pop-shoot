@@ -11,7 +11,7 @@ import {
 } from '../../Assets/Effects.js';
 import { game } from '../../../app.js';
 import { flashScreen } from '../../Logic/Helpers.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 
 const SPRITE = [
     RAIN0SPRITE,

@@ -1,6 +1,6 @@
 import { game } from '../../../app.js';
 import { randomInRange } from '../../Logic/Helpers.js';
-import { CANVAS } from '../../Assets/OtherGfx.js';
+import { CANVAS } from '../../Assets/Other.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { Coin } from '../../Effects/Misc/Coin.js';
 
@@ -84,5 +84,9 @@ export class Enemy {
         for (let i = 0; i < cashReceived; i++) {
             game.effects.add(new Coin(this.x, this.y));
         }
+    }
+
+    get hitRatio() {
+        return this.hp / this.maxhp;
     }
 }

@@ -1,5 +1,5 @@
 import { game } from '../../../app.js';
-import { BLACKSCREENSPRITE } from '../../Assets/Effects.js';
+import { BLACKSCREENSPRITE, HIEROGLYPHSPRITE } from '../../Assets/Effects.js';
 import {
     CANVAS,
     FOG,

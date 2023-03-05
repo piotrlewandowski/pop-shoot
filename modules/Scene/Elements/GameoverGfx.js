@@ -2,6 +2,7 @@ import { game } from '../../../app.js';
 import { GLASSGAMEOVERSPRITE } from '../../Assets/Hud.js';
 import { getGametimeToMMSS } from '../../Logic/Helpers.js';
 import { SceneUtils } from '../SceneUtils.js';
+import { SceneVariables } from '../SceneVariables.js';
 
 export class GameoverGfx {
     static drawGlass() {

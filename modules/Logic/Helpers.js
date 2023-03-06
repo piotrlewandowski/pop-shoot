@@ -1,7 +1,4 @@
 import { game } from '../../app.js';
-import { Notification } from '../Effects/Misc/Notification.js';
-import { CANVAS } from '../Assets/Other.js';
-import { WHITESCREENSPRITE } from '../Assets/Effects.js';
 
 // Returns a random number between min(inclusive) and max(inclusive)
 export function randomInRange(min, max) {

@@ -29,7 +29,7 @@ export class ItemController {
         this.repetitivePool = [ITEMS.multiplydamage, ITEMS.spray];
         this.itemPool = [
             this.randomfrompool1,
-            ITEMS.clock,
+            this.randomfrompool2,
             ITEMS.darts,
             ITEMS.seekers,
             ITEMS.toxic,
@@ -48,12 +48,12 @@ export class ItemController {
         const roll = randomInRange(0, 100);
 
         if (roll <= RATE && this.itemPool.length) {
-            // Pick an item from non-repetitive-item pool remove it from pool
+            // Pick an item from non-repetitive-item pool & remove it from pool
             const rand = randomInRange(0, this.itemPool.length - 1);
             this.aquireAndActivate(this.itemPool[rand]);
             this.itemPool.splice(rand, 1);
         } else {
-            // Pick an from repetitive-item pool
+            // Pick an item from repetitive-item pool
             const rand = randomInRange(0, this.repetitivePool.length - 1);
             this.aquireAndActivate(this.repetitivePool[rand]);
         }

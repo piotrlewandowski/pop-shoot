@@ -1,6 +1,10 @@
 import { game } from '../../../app.js';
 import { GLASSPAUSESPRITE } from '../../Assets/Hud.js';
 
+// GLASS
+const GLASS_X = 360;
+const GLASS_Y = 125;
+
 // ITEM ROWS
 const NUMBEROFROWS = 4; // # of items per line
 const VERTICALGAP = 50; // Gap in px between lines
@@ -10,7 +14,7 @@ const STARTINGY = 165; // Y coordinate of first item to be drawn
 
 export class PauseGfx {
     static drawGlass() {
-        game.scene.ctx.drawImage(GLASSPAUSESPRITE, 360, 125);
+        game.scene.ctx.drawImage(GLASSPAUSESPRITE, GLASS_X, GLASS_Y);
     }
 
     static drawItemsDescriptions() {

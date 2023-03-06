@@ -10,6 +10,7 @@ const BOSSBAR_WIDTH = 296;
 const BOSSBAR_HEIGHT = 11;
 const BOSSNAME_X = 690;
 const BOSSNAME_Y = 40;
+const BOSSNAME_FONTSIZE = 30;
 
 export class EnemyGfx {
     static drawHealthbar(enemy) {
@@ -27,7 +28,7 @@ export class EnemyGfx {
         // Boss
         if (enemy.name) {
             SceneUtils.drawBigBar(BOSSBAR_X, BOSSBAR_Y, BOSSBAR_WIDTH, BOSSBAR_HEIGHT, enemy.hitRatio);
-            SceneUtils.drawText(enemy.name, BOSSNAME_X, BOSSNAME_Y, 30);
+            SceneUtils.drawText(enemy.name, BOSSNAME_X, BOSSNAME_Y, BOSSNAME_FONTSIZE);
         }
     }
 

@@ -3,9 +3,11 @@ import { SHIELDINVINCIBILITYSPRITE } from '../../Assets/Player.js';
 import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 import { SceneUtils } from '../SceneUtils.js';
 
+const MIN_SLOWMO_CHARGE = 15; // Minimum charge that slowmo should be at in order for the flame to be drawn
+
 export class PlayerGfx {
     static drawJetFlame() {
-        if (game.player.slowmogauge.charge > 15) {
+        if (game.player.slowmogauge.charge > MIN_SLOWMO_CHARGE) {
             game.scene.ctx.drawImage(
                 game.player.flame.sprite,
                 SceneUtils.offsetCoordinates(game.player.flame).x + WeatherController.glitchOffset.x,

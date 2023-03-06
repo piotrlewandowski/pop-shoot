@@ -15,8 +15,7 @@ import { Coin } from '../../Effects/Misc/Coin.js';
 import { getGametimeToMMSS } from '../../Logic/Helpers.js';
 import { SceneUtils } from '../SceneUtils.js';
 
-// STAGE, TIME & COIN (TOP-LEFT)
-
+// STAGE, TIME & COIN
 // Vertical Line
 const VLINE_X = 4;
 const VLINE_Y = 12;
@@ -61,6 +60,24 @@ const SPBAR_Y = 544;
 const SPBAR_WIDTH = 565;
 const SPBAR_HEIGHT = 6;
 const SP_FONT = 20;
+
+// SHIPMENT NUMBER
+const SNGLASS_X = 796;
+const SNGLASS_Y = 526;
+const SNTEXT_X = 706;
+const SNTEXT_Y = 536;
+const SNNUMBER_X = 815;
+const SNNUMBER_Y = 545;
+const SNNUMBER_FONT = 25;
+const SNTEXT_FONT = 20;
+
+// BUFFS
+const BUFFNAME_X = 500;
+const BUFFNAME_Y = 440;
+const BUFFNAME_FONT = 40;
+const BUFFTIME_X = 500;
+const BUFFTIME_Y = 460;
+const BUFFTIME_FONT = 30;
 
 export class HudGfx {
     static drawStageTimeCash() {
@@ -114,9 +131,9 @@ export class HudGfx {
     static drawShipmentNumber() {
         const shipmentNo =
             RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
-        game.scene.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
-        SceneUtils.drawText(`SHIPMENT #`, 706, CANVAS.height - 26, 20);
-        SceneUtils.drawCenteredText(shipmentNo, 815, CANVAS.height - 17, 25);
+        game.scene.ctx.drawImage(GLASSNUMBERSPRITE, SNGLASS_X, SNGLASS_Y);
+        SceneUtils.drawText(`SHIPMENT #`, SNTEXT_X, SNTEXT_Y, SNTEXT_FONT);
+        SceneUtils.drawCenteredText(shipmentNo, SNNUMBER_X, SNNUMBER_Y, SNNUMBER_FONT);
     }
 
     static drawItemsIcons() {
@@ -146,8 +163,13 @@ export class HudGfx {
     static drawBuffs() {
         // Buffs
         if (game.buffcontroller.activeBuff) {
-            SceneUtils.drawCenteredText(game.buffcontroller.activeBuff.text, 500, 440, 40);
-            SceneUtils.drawCenteredText(`${game.buffcontroller.countdown} SECONDS REMAINING`, 500, 460, 30);
+            SceneUtils.drawCenteredText(game.buffcontroller.activeBuff.text, BUFFNAME_X, BUFFNAME_Y, BUFFNAME_FONT);
+            SceneUtils.drawCenteredText(
+                `${game.buffcontroller.countdown} SECONDS REMAINING`,
+                BUFFTIME_X,
+                BUFFTIME_Y,
+                BUFFTIME_FONT
+            );
         }
     }
 }

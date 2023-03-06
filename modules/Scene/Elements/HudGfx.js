@@ -42,6 +42,26 @@ const CASH_X = 31;
 const CASH_Y = 64;
 const CASH_FONT = 25;
 
+// SHIELD WARNING
+const SHIELDWARNING_X = 390;
+const SHIELDWARNING_Y = 5;
+const SHIELDRECHARGING_X = 440;
+const SHIELDRECHARGING_Y = 42;
+const SHIELDRECHARGING_FONT = 20;
+
+// SHIPMENT PROGRESS
+const SPTEXT_X = 220;
+const SPTEXT_Y = 536;
+const SPAIRPLANE_X = 170;
+const SPAIRPLANE_Y = 526;
+const SPGLASSBAR_X = 218;
+const SPGLASSBAR_Y = 539;
+const SPBAR_X = 223;
+const SPBAR_Y = 544;
+const SPBAR_WIDTH = 565;
+const SPBAR_HEIGHT = 6;
+const SP_FONT = 20;
+
 export class HudGfx {
     static drawStageTimeCash() {
         // Vertical Line
@@ -67,23 +87,28 @@ export class HudGfx {
     static drawShieldWarning() {
         // Shield Warning
         if (!game.player.shield.isCharged()) {
-            game.scene.ctx.drawImage(GLASSSHIELDDOWNSPRITE, 390, 5);
-            SceneUtils.drawText(`RECHARGING ${game.player.shield.getCharge()}%`, 440, 42, 20);
+            game.scene.ctx.drawImage(GLASSSHIELDDOWNSPRITE, SHIELDWARNING_X, SHIELDWARNING_Y);
+            SceneUtils.drawText(
+                `RECHARGING ${game.player.shield.getCharge()}%`,
+                SHIELDRECHARGING_X,
+                SHIELDRECHARGING_Y,
+                SHIELDRECHARGING_FONT
+            );
         }
     }
 
     static drawShipmentProgressBar() {
-        SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, 20);
-        game.scene.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
-        game.scene.ctx.drawImage(GLASSBARSPRITE, 218, CANVAS.height - 23);
-        SceneUtils.drawBar(
-            223,
-            CANVAS.height - 18,
-            565,
-            6,
-            game.cashcontroller.levelBarPercentage,
-            Coin.blinking ? 1 : 0
-        );
+        SceneUtils.drawText(`SHIPMENT PROGRESS`, SPTEXT_X, SPTEXT_Y, SP_FONT);
+        game.scene.ctx.drawImage(GLASSPACKAGESPRITE, SPAIRPLANE_X, SPAIRPLANE_Y);
+        game.scene.ctx.drawImage(GLASSBARSPRITE, SPGLASSBAR_X, SPGLASSBAR_Y),
+            SceneUtils.drawBar(
+                SPBAR_X,
+                SPBAR_Y,
+                SPBAR_WIDTH,
+                SPBAR_HEIGHT,
+                game.cashcontroller.levelBarPercentage,
+                Coin.blinking ? 1 : 0
+            );
     }
 
     static drawShipmentNumber() {

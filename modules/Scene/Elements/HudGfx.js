@@ -45,8 +45,7 @@ export class HudGfx {
         }
     }
 
-    static drawShipmentProgress() {
-        // Shipment Progress Bar
+    static drawShipmentProgressBar() {
         SceneUtils.drawText(`SHIPMENT PROGRESS`, 220, CANVAS.height - 26, 20);
         game.scene.ctx.drawImage(GLASSPACKAGESPRITE, 170, CANVAS.height - 36);
         game.scene.ctx.drawImage(GLASSBARSPRITE, 218, CANVAS.height - 23);
@@ -58,8 +57,9 @@ export class HudGfx {
             game.cashcontroller.levelBarPercentage,
             Coin.blinking ? 1 : 0
         );
+    }
 
-        // Shipment Number
+    static drawShipmentNumber() {
         const shipmentNo =
             RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
         game.scene.ctx.drawImage(GLASSNUMBERSPRITE, 796, CANVAS.height - 36);
@@ -68,26 +68,27 @@ export class HudGfx {
     }
 
     static drawItemsIcons() {
-        // UPGRADES ICONS
-        const dmgPos = game.state.variables.dmgIconPosition;
-        const dmgStacked = game.state.variables.dmgMultiplier > 1.5;
-
-        const sprayPos = game.state.variables.sprayIconPosition;
-        const sprayStacked = game.state.variables.spray > 1;
-
-        const clockPos = game.state.variables.clockIconPosition;
-        const clockReady = game.player.clock.ready;
-        const clockChargePositive = game.player.clock.currentCharge > 0;
-
         let iconXPosition = 170;
         const iconYPosition = CANVAS.height - 80;
-        const iconTextYPosition = CANVAS.height - 83;
         const iconGap = 45;
 
-        for (let i = 0; i < game.itemcontroller.aquiredItems.length; i++) {
-            game.scene.ctx.drawImage(game.itemcontroller.aquiredItems[i].icon, iconXPosition, iconYPosition);
+        game.itemcontroller.aquiredItems.forEach((item) => {
+            game.scene.ctx.drawImage(item.icon, iconXPosition, iconYPosition);
+            // Spray or DMG aquired more than once
+            if (item.repeated > 1) {
+                SceneUtils.drawCenteredText(`x${item.repeated}`, iconXPosition + 18, iconYPosition - 2, 20);
+            }
+            // Clock status
+            if (item.name === 'clock') {
+                SceneUtils.drawCenteredText(
+                    game.player.clock.active ? '!' : game.player.clock.countdown > 0 ? game.player.clock.countdown : '',
+                    iconXPosition + 18,
+                    iconYPosition - 2,
+                    20
+                );
+            }
             iconXPosition += iconGap;
-        }
+        });
     }
 
     static drawBuffs() {

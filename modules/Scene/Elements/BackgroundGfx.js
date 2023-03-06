@@ -26,6 +26,8 @@ const BACKGROUNDS = {
     stage4: { back: S4BACK, front: S4FRONT },
 };
 
+const PARALLAX_SPEED = 3;
+
 export class BackgroundGfx {
     static drawBack() {
         const backgroundback = BACKGROUNDS[`stage${game.state.stage}`].back;
@@ -72,7 +74,7 @@ export class BackgroundGfx {
         if (game.state.slowmo || !game.state.time || game.player.clock.active) {
             game.scene.bgScrollOffset -= game.state.variables.slowmorate;
         } else {
-            game.scene.bgScrollOffset -= 3;
+            game.scene.bgScrollOffset -= PARALLAX_SPEED;
         }
     }
 }

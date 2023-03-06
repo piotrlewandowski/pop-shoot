@@ -3,6 +3,14 @@ import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { LIGHTBEAMSPRITE } from '../../Assets/Effects.js';
 import { SceneUtils } from '../SceneUtils.js';
 
+// BOSS BAR
+const BOSSBAR_X = 690;
+const BOSSBAR_Y = 10;
+const BOSSBAR_WIDTH = 296;
+const BOSSBAR_HEIGHT = 11;
+const BOSSNAME_X = 690;
+const BOSSNAME_Y = 40;
+
 export class EnemyGfx {
     static drawHealthbar(enemy) {
         // Normal Enemy
@@ -18,8 +26,8 @@ export class EnemyGfx {
 
         // Boss
         if (enemy.name) {
-            SceneUtils.drawBigBar(690, 10, 296, 11, enemy.hitRatio);
-            SceneUtils.drawText(enemy.name, 690, 40, 30);
+            SceneUtils.drawBigBar(BOSSBAR_X, BOSSBAR_Y, BOSSBAR_WIDTH, BOSSBAR_HEIGHT, enemy.hitRatio);
+            SceneUtils.drawText(enemy.name, BOSSNAME_X, BOSSNAME_Y, 30);
         }
     }
 

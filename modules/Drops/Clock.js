@@ -4,29 +4,13 @@ import { flashScreen } from '../Logic/Helpers.js';
 const CHARGING_TIME = 99;
 const ACTIVE_TIME = 5;
 
-// If player is hit (without a shield), the clock will stop time for ACTIVE_TIME seconds.
-// Timer will be set to CHARGING_TIME and will countdown to 0, during which the clock will not work.
+// If player is hit (while shield is down), the clock will stop time for ACTIVE_TIME seconds.
 
 export class Clock {
     constructor() {
         this.owned = false;
         this.active = false;
-        this.ready = true;
-
-        this.currentCharge = 0;
-    }
-
-    startCharging() {
-        this.currentCharge = CHARGING_TIME;
-        const timer = setInterval(() => {
-            if (!game.state.paused) {
-                this.currentCharge--;
-            }
-            if (this.currentCharge === 0) {
-                this.ready = true;
-                clearInterval(timer);
-            }
-        }, 1000);
+        this.countdown = 0;
     }
 
     activate() {
@@ -35,28 +19,37 @@ export class Clock {
             game.state.stopSlowmo();
         }
         this.active = true;
-        this.ready = false;
         game.audiocontroller.updateMusic();
         this.startCountdown();
     }
 
-    // The clock will be active for ACTIVE_TIME seconds.
+    // Stay active for ACTIVE_TIME seconds
     startCountdown() {
-        const timer = setInterval(() => {
-            if (!game.state.paused) {
-                this.currentCharge--;
-            }
-            if (this.currentCharge === -ACTIVE_TIME) {
-                this.deactivate();
-                this.startCharging();
-                clearInterval(timer);
-            }
-        }, 1000);
+        setTimeout(() => {
+            this.deactivate();
+            this.startCharging();
+        }, ACTIVE_TIME * 1000);
     }
 
     deactivate() {
         flashScreen();
         this.active = false;
         game.audiocontroller.updateMusic();
+    }
+
+    startCharging() {
+        this.countdown = CHARGING_TIME;
+        const charger = setInterval(() => {
+            if (!game.state.paused) {
+                this.countdown--;
+            }
+            if (this.countdown <= 0) {
+                clearInterval(charger);
+            }
+        }, 1000);
+    }
+
+    get isReady() {
+        return this.countdown === 0;
     }
 }

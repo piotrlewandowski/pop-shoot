@@ -1,6 +1,12 @@
 import { game } from '../../../app.js';
 import { GLASSPAUSESPRITE } from '../../Assets/Hud.js';
-import { ITEMS } from '../../Drops/Items.js';
+
+// ITEM ROWS
+const NUMBEROFROWS = 4; // # of items per line
+const VERTICALGAP = 50; // Gap in px between lines
+const HORIZONTALGAP = 220; // Gap in px between items
+const STARTINGX = 75; // X coordinate of first item to be drawn
+const STARTINGY = 165; // Y coordinate of first item to be drawn
 
 export class PauseGfx {
     static drawGlass() {
@@ -8,29 +14,19 @@ export class PauseGfx {
     }
 
     static drawItemsDescriptions() {
-        // Row specs
-        const numberOfRows = 4;
-        const verticalGap = 50;
-        const horizontalGap = 220;
+        // Coordinates of current item being drawn
+        let currentx = STARTINGX;
+        let currenty = STARTINGY;
 
-        // X coordinates of left-side
-        const startingX = 75;
-
-        // Current drawing position
-        let currentX = startingX;
-        let currentY = 165;
-
-        Object.keys(game.itemcontroller.aquiredItems)
-            .filter((key) => game.itemcontroller.aquiredItems[key])
-            .forEach((key, index) => {
-                // Check if line is full
-                if (index % numberOfRows === 0) {
-                    currentX = startingX;
-                    currentY += verticalGap;
-                }
-                // Draw, then shift X right according to horizontalGap
-                game.scene.ctx.drawImage(ITEMS[key].pause, currentX, currentY);
-                currentX += horizontalGap;
-            });
+        game.itemcontroller.aquiredItems.forEach((item, index) => {
+            // Newline in case end-of-current-line is reached
+            if (index % NUMBEROFROWS === 0) {
+                currentx = STARTINGX;
+                currenty += VERTICALGAP;
+            }
+            // Draw icon, then shift X right according to horizontalGap
+            game.scene.ctx.drawImage(item.pause, currentx, currenty);
+            currentx += HORIZONTALGAP;
+        });
     }
 }

@@ -16,7 +16,6 @@ import {
     S4FRONT,
 } from '../../Assets/Other.js';
 import { Vortex } from '../../Effects/Weather/Vortex.js';
-import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 
 const BACKGROUNDS = {
     stage0: { back: S0BACK, front: S0FRONT },
@@ -46,7 +45,7 @@ export class BackgroundGfx {
         }
 
         // Darkness
-        if (WeatherController.darknessActive) {
+        if (game.weathercontroller.darknessActive) {
             game.scene.ctx.drawImage(BLACKSCREENSPRITE, 0, 0);
         }
     }
@@ -56,7 +55,7 @@ export class BackgroundGfx {
         game.scene.ctx.drawImage(backgroundfront, game.scene.shake, game.scene.shake);
 
         // Only in Vortex
-        if (WeatherController.weatherActive.constructor === Vortex) {
+        if (game.weathercontroller.weatherActive.constructor === Vortex) {
             game.scene.ctx.drawImage(HIEROGLYPHSPRITE, game.scene.shake, game.scene.shake);
         }
     }

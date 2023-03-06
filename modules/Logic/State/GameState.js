@@ -15,7 +15,6 @@ import { flashScreen, shakeScreen } from '../Helpers.js';
 import { Clock } from '../../Drops/Clock.js';
 import { BuffController } from '../Controllers/BuffController.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
-import { WeatherController } from '../Controllers/WeatherController.js';
 
 // STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
@@ -80,10 +79,10 @@ export class GameState {
         if (!this.boss) {
             this.boss = true;
             shakeScreen(6, 0.75);
-            WeatherController.startDarkness();
+            game.weathercontroller.startDarkness();
         } else {
             this.boss = false;
-            WeatherController.stopDarkness();
+            game.weathercontroller.stopDarkness();
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
             this.addStageNotification();
@@ -92,7 +91,7 @@ export class GameState {
             game.bluelasers.clear();
         }
         flashScreen();
-        WeatherController.stopWeather();
+        game.weathercontroller.stopWeather();
         game.audiocontroller.updateMusic();
     }
 
@@ -136,8 +135,8 @@ export class GameState {
         game.enemies.clear(true);
         game.firelasers.clear();
         game.bluelasers.clear();
-        WeatherController.stopWeather();
-        WeatherController.stopDarkness();
+        game.weathercontroller.stopWeather();
+        game.weathercontroller.stopDarkness();
 
         // RESET GAME STATE
         this.time = 1;

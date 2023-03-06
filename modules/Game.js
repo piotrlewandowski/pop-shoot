@@ -10,6 +10,7 @@ import { CashController } from './Logic/Controllers/CashController.js';
 import { EnemyController } from './Logic/Controllers/EnemyController.js';
 import { ItemController } from './Logic/Controllers/ItemController.js';
 import { BuffController } from './Logic/Controllers/BuffController.js';
+import { WeatherController } from './Logic/Controllers/WeatherController.js';
 
 export class Game {
     constructor() {
@@ -32,6 +33,7 @@ export class Game {
         this.audiocontroller = new AudioController();
         this.cashcontroller = new CashController();
         this.enemycontroller = new EnemyController();
+        this.weathercontroller = new WeatherController();
     }
 
     draw() {

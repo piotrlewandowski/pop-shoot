@@ -5,7 +5,6 @@ import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { REDPACKAGESPRITE } from '../../Assets/Enemies.js';
-import { WeatherController } from '../../Logic/Controllers/WeatherController.js';
 import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
 
 // MOVEMENT
@@ -42,12 +41,12 @@ export class RedPackage extends Enemy {
 
         // Weather - Only toggle if not in boss-mode
         if (!game.state.boss) {
-            if (WeatherController.weatherActive) {
-                WeatherController.stopWeather();
-                WeatherController.stopDarkness();
+            if (game.weathercontroller.weatherActive) {
+                game.weathercontroller.stopWeather();
+                game.weathercontroller.stopDarkness();
             } else {
-                WeatherController.startWeather();
-                WeatherController.startDarkness();
+                game.weathercontroller.startWeather();
+                game.weathercontroller.startDarkness();
             }
         }
     }

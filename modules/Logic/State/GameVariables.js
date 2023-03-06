@@ -28,10 +28,6 @@ const GREEDCHANCE = 20; // Percentage chance of receiving double coins
 
 export class GameVariables {
     constructor() {
-        // Upgrades icons positions. Set by their respective functions by ItemController
-        this.clockIconPosition;
-        this.sprayIconPosition;
-
         // darts
         this.darts = false;
         this.dartsstunchance = DARTSSTUNCHANCE;

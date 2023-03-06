@@ -1,30 +1,32 @@
 import { game } from '../../../app.js';
 import { GLASSPAUSESPRITE } from '../../Assets/Hud.js';
 
+// ITEM ROWS
+const NUMBEROFROWS = 4; // # of items per line
+const VERTICALGAP = 50; // Gap in px between lines
+const HORIZONTALGAP = 220; // Gap in px between items
+const STARTINGX = 75; // X coordinate of first item to be drawn
+const STARTINGY = 165; // Y coordinate of first item to be drawn
+
 export class PauseGfx {
     static drawGlass() {
         game.scene.ctx.drawImage(GLASSPAUSESPRITE, 360, 125);
     }
 
     static drawItemsDescriptions() {
-        const numberOfRows = 4;
-        const verticalGap = 50;
-        const horizontalGap = 220;
-        const startingX = 75;
-        const startingY = 165;
-        let currentX = startingX;
-        let currentY = startingY;
+        // Coordinates of current item being drawn
+        let currentx = STARTINGX;
+        let currenty = STARTINGY;
 
-        for (let i = 0; i < game.itemcontroller.descriptions.length; i++) {
-            // For each new line, return X to its original left position
-            // and shift Y down according to verticalGap
-            if (i % numberOfRows === 0) {
-                currentX = startingX;
-                currentY += verticalGap;
+        game.itemcontroller.aquiredItems.forEach((item, index) => {
+            // Newline in case end-of-current-line is reached
+            if (index % NUMBEROFROWS === 0) {
+                currentx = STARTINGX;
+                currenty += VERTICALGAP;
             }
-            // Draw then shift X right according to horizontalGap
-            game.scene.ctx.drawImage(game.itemcontroller.descriptions[i], currentX, currentY);
-            currentX += horizontalGap;
-        }
+            // Draw icon, then shift X right according to horizontalGap
+            game.scene.ctx.drawImage(item.pause, currentx, currenty);
+            currentx += HORIZONTALGAP;
+        });
     }
 }

@@ -80,7 +80,7 @@ export class CollisionActions {
             }
         }
         // If clock not active but ready, activate it.
-        else if (game.player.clock.owned && !game.player.clock.active && game.player.clock.ready) {
+        else if (game.player.clock.owned && !game.player.clock.active && game.player.clock.isReady) {
             game.player.clock.activate();
         } else if (!game.player.clock.active) {
             game.state.setGameOver();
@@ -101,7 +101,7 @@ export class CollisionActions {
             }
         }
         // If clock not active but ready, activate it.
-        else if (game.player.clock.owned && !game.player.clock.active && game.player.clock.ready) {
+        else if (game.player.clock.owned && !game.player.clock.active && game.player.clock.isReady) {
             game.player.clock.activate();
         } else if (!game.player.clock.active) {
             game.state.setGameOver();

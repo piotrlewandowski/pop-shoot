@@ -72,7 +72,8 @@ export class Scene {
 
     drawHud() {
         HudGfx.drawStageTimeCoin();
-        HudGfx.drawShipmentProgress();
+        HudGfx.drawShipmentProgressBar();
+        HudGfx.drawShipmentNumber();
         HudGfx.drawItemsIcons();
         HudGfx.drawShieldWarning();
         HudGfx.drawBuffs();

@@ -61,7 +61,7 @@ export class Scene {
     drawGameOver() {
         GameoverGfx.drawGlass();
         SceneUtils.setShadow();
-        GameoverGfx.drawText();
+        GameoverGfx.drawStats();
         SceneUtils.unsetFilters();
     }
 

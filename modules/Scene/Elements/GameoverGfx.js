@@ -22,7 +22,7 @@ export class GameoverGfx {
         game.scene.ctx.drawImage(GLASSGAMEOVERSPRITE, GLASS_X, GLASS_Y);
     }
 
-    static drawText() {
+    static drawStats() {
         SceneUtils.drawCenteredText(`GAMEOVER !`, TITLE_X, TITLE_Y, TITLE_FONTSIZE);
         SceneUtils.drawCenteredText(
             `YOU SURVIVED ${getGametimeToMMSS()} MINUTES`,

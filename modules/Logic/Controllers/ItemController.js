@@ -5,9 +5,10 @@ import { Notification } from '../../Effects/Misc/Notification.js';
 import { randomInRange } from '../Helpers.js';
 import { ITEMS } from '../../Drops/Items.js';
 
-// NOTIFICATIONS COORDINATES ON ITEM DROP
-const NOTIFICATIONX = 190;
-const NOTIFICATIONY = 440;
+// NOTIFICATIONS COORDINATES & DURATION ON ITEM DROP
+const NOTIFICATION_DURATION = 400; // in ticks. higher = longer
+const NOTIFICATION_X = 190;
+const NOTIFICATION_Y = 440;
 
 // DROP RATE FOR NON-REPETITIVE POOL
 const RATE = 80;
@@ -68,7 +69,11 @@ export class ItemController {
         } else {
             this.aquiredItems.push(item);
         }
-        game.effects.add(new Notification(NOTIFICATIONX, NOTIFICATIONY, item.notification, 400));
+        this.addItemNotification(item);
         item.activate();
+    }
+
+    addItemNotification(item) {
+        game.effects.add(new Notification(NOTIFICATION_X, NOTIFICATION_Y, item.notification, NOTIFICATION_DURATION));
     }
 }

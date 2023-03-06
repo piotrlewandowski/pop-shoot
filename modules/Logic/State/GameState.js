@@ -17,7 +17,11 @@ import { BuffController } from '../Controllers/BuffController.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { WeatherController } from '../Controllers/WeatherController.js';
 
+// STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
+const NOTIFICATION_DURATION = 400; // in ticks. higher = longer
+const NOTIFICATION_X = 500;
+const NOTIFICATION_Y = 80;
 
 export class GameState {
     constructor() {
@@ -38,7 +42,7 @@ export class GameState {
     startGame() {
         this.time += 1;
         game.audiocontroller.updateMusic();
-        game.effects.add(new Notification(505, 80, GLASSSTAGE1SPRITE, 300));
+        this.addStageNotification();
         setInterval(() => {
             if (!this.paused && !this.over && !this.boss && !game.player.clock.active) {
                 this.time++;
@@ -82,7 +86,7 @@ export class GameState {
             WeatherController.stopDarkness();
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
-            game.effects.add(new Notification(505, 80, STAGESPRITES[this.stage], 300));
+            this.addStageNotification();
             game.enemies.clear();
             game.firelasers.clear();
             game.bluelasers.clear();
@@ -113,6 +117,8 @@ export class GameState {
         game.audiocontroller.updateMusic();
     }
 
+    // This function is only used for development purposes
+    // ----------------------------------------------------
     unsetGameOver() {
         this.over = false;
         game.controls.addMouseClicks();
@@ -123,6 +129,7 @@ export class GameState {
         window.requestAnimationFrame(gameloop);
         game.audiocontroller.updateMusic();
     }
+    // ----------------------------------------------------
 
     replay() {
         // CLEAR SCREEN
@@ -153,12 +160,18 @@ export class GameState {
 
         // GRAPHICS
         flashScreen();
-        game.effects.add(new Notification(505, 80, GLASSSTAGE1SPRITE, 300));
+        this.addStageNotification();
 
         // AUDIO
         game.audiocontroller.rewindMusic();
         game.audiocontroller.updateMusic();
 
         window.requestAnimationFrame(gameloop);
+    }
+
+    addStageNotification() {
+        game.effects.add(
+            new Notification(NOTIFICATION_X, NOTIFICATION_Y, STAGESPRITES[this.stage], NOTIFICATION_DURATION)
+        );
     }
 }

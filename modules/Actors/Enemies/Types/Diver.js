@@ -24,14 +24,17 @@ export class Diver extends Enemy {
         if (game.state.stage === 1) {
             this.coins *= Difficulty.blueCashMultiplier;
             this.hp *= Difficulty.blueHpMultiplier;
+            this.maxhp *= Difficulty.blueHpMultiplier;
         }
         if (game.state.stage === 2) {
             this.coins *= Difficulty.redCashMultiplier;
             this.hp *= Difficulty.redHpMultiplier;
+            this.maxhp *= Difficulty.redHpMultiplier;
         }
         if (game.state.stage >= 3) {
             this.coins *= Difficulty.blackCashMultiplier;
             this.hp *= Difficulty.blackHpMultiplier;
+            this.maxhp *= Difficulty.blackHpMultiplier;
         }
 
         game.audiocontroller.playSound('diver');

@@ -1,4 +1,5 @@
 import { game } from '../../app.js';
+import { randomInRange } from '../Logic/Helpers.js';
 
 const FONTNAME = 'thaleahfatmedium';
 const WHITE = '#FFFFFF';
@@ -49,6 +50,21 @@ export class SceneUtils {
 
     static unsetFilters() {
         game.scene.ctx.filter = 'none';
+    }
+
+    static flashScreen() {
+        if (!game.scene.flashscreen) {
+            game.scene.flashscreen = true;
+            setTimeout(() => (game.scene.flashscreen = false), 100);
+        }
+    }
+
+    static shakeScreen(intensity, duration) {
+        const shake = setInterval(() => (game.scene.shake = randomInRange(-intensity, intensity)), 16);
+        setTimeout(() => {
+            game.scene.shake = 0;
+            clearInterval(shake);
+        }, duration * 1000);
     }
 
     // Canvas.drawImage draws an image starting from the top-left corner of the image,

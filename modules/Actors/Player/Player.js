@@ -3,7 +3,7 @@ import { BlueLaser } from '../../Lasers/Friendly/BlueLaser.js';
 import { PLAYERSPRITE } from '../../Assets/Player.js';
 import { Shield } from './Shield.js';
 import { Flame } from './Flame.js';
-import { getClosestEnemyTo, randomInRange, shakeScreen } from '../../Logic/Helpers.js';
+import { getClosestEnemyTo, randomInRange } from '../../Logic/Helpers.js';
 import { Rocket } from '../../Lasers/Friendly/Rocket.js';
 import { Seeker } from '../../Lasers/Friendly/Seeker.js';
 import { Clock } from '../../Drops/Clock.js';
@@ -11,6 +11,7 @@ import { SlowmoGauge } from './SlowmoGauge.js';
 import { Drone } from '../../Lasers/Friendly/Drone.js';
 import { Dart } from '../../Lasers/Friendly/Dart.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 const SPRAYDISTANCE = 5; // Distance between laser streams when spray upgrade is acquired
 const LASERANGLE = 270; // Default laser direction. 270 = NORTH
@@ -32,7 +33,7 @@ export class Player {
 
     shoot() {
         if (game.state.variables.mute || this.clock.active) {
-            shakeScreen(2, 0.25);
+            SceneUtils.shakeScreen(2, 0.25);
             game.effects.add(new Animation(game.player.x, game.player.y - 15, 'smoke_normal'));
             game.audiocontroller.playSound('noammo');
         } else {
@@ -89,7 +90,7 @@ export class Player {
 
             // QUAD-DAMAGE & THOR'S HAMMER
             if (game.state.variables.quaddamage || game.state.variables.thorshammer) {
-                shakeScreen(3, 0.25);
+                SceneUtils.shakeScreen(3, 0.25);
             }
         }
     }

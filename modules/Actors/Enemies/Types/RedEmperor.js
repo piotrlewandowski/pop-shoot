@@ -3,9 +3,9 @@ import { REDEMPERORSPRITE } from '../../../Assets/Enemies.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { shakeScreen } from '../../../Logic/Helpers.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 0.5;
@@ -48,7 +48,7 @@ export class RedEmperor extends Enemy {
     die() {
         game.audiocontroller.playSound('exp_normal');
         game.effects.add(new Animation(this.x, this.y, 'explosion_big'));
-        shakeScreen(6, 0.75);
+        SceneUtils.shakeScreen(6, 0.75);
         super.die();
     }
 }

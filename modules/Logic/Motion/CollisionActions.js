@@ -1,13 +1,14 @@
 import { game } from '../../../app.js';
 import { DamageNumber } from '../../Effects/Misc/DamageNumber.js';
 import { Movement } from './Movement.js';
-import { flashScreen, randomInRange } from '../Helpers.js';
+import { randomInRange } from '../Helpers.js';
 import { Drone } from '../../Lasers/Friendly/Drone.js';
 import { Airstrike } from '../../Lasers/Friendly/Airstrike.js';
 import { Dart } from '../../Lasers/Friendly/Dart.js';
 import { Slash } from '../../Effects/Misc/Slash.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 export class CollisionActions {
     // BLUELASERS AND ENEMIES
@@ -69,7 +70,7 @@ export class CollisionActions {
     // PLAYER AND ENEMIES
     static PlayerEnemies(enemy) {
         if (game.player.shield.isCharged() && !enemy.name && !game.player.clock.active) {
-            flashScreen();
+            SceneUtils.flashScreen();
             enemy.takeDamage(enemy.hp);
             game.player.shield.deplete();
             if (game.state.variables.emp) {
@@ -90,7 +91,7 @@ export class CollisionActions {
     // PLAYER AND ENEMY LASERS
     static PlayerFirelasers(firelaser) {
         if (game.player.shield.isCharged() && !game.player.clock.active) {
-            flashScreen();
+            SceneUtils.flashScreen();
             firelaser.shatter();
             game.player.shield.deplete();
             if (game.state.variables.emp) {

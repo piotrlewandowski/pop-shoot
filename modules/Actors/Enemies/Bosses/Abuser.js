@@ -2,9 +2,10 @@ import { Enemy } from '../Enemy.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { CANVAS } from '../../../Assets/Other.js';
-import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
+import { randomInRange } from '../../../Logic/Helpers.js';
 import { ABUSERSPRITE } from '../../../Assets/Enemies.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 30;
@@ -70,7 +71,7 @@ export class Abuser extends Enemy {
 
     shoot() {
         if (!this.hardened) {
-            shakeScreen(2, 0.25);
+            SceneUtils.shakeScreen(2, 0.25);
             this.fireBurst();
             this.fireRow();
         }
@@ -109,7 +110,7 @@ export class Abuser extends Enemy {
             }
         } else {
             for (let i = 20; i <= 160; i += 20) {
-                shakeScreen(20, 0.25);
+                SceneUtils.shakeScreen(20, 0.25);
                 game.firelasers.add(new FireLaser(this.x + randomInRange(-2, 2), this.y, i, randomInRange(5, 10)));
             }
         }
@@ -133,16 +134,16 @@ export class Abuser extends Enemy {
         this.hardened = false;
         clearInterval(this.flashInterval);
         game.audiocontroller.stopSound('siren');
-        flashScreen();
-        shakeScreen(3, 0.5);
+        SceneUtils.flashScreen();
+        SceneUtils.shakeScreen(3, 0.5);
     }
 
     harden() {
         game.audiocontroller.playSound('siren');
         this.hardened = true;
-        this.flashInterval = setInterval(flashScreen, 1000);
-        flashScreen();
-        shakeScreen(3, 0.5);
+        this.flashInterval = setInterval(SceneUtils.flashScreen, 1000);
+        SceneUtils.flashScreen();
+        SceneUtils.shakeScreen(3, 0.5);
 
         setTimeout(() => {
             this.soften();
@@ -160,7 +161,7 @@ export class Abuser extends Enemy {
     die() {
         super.die();
         game.audiocontroller.playSound('exp_big');
-        shakeScreen(6, 2);
+        SceneUtils.shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

@@ -4,8 +4,9 @@ import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { CANVAS } from '../../../Assets/Other.js';
-import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
+import { randomInRange } from '../../../Logic/Helpers.js';
 import { FAMILIARSIGHTHARDENEDSPRITE, FAMILIARSIGHTSPRITE } from '../../../Assets/Enemies.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 4;
@@ -113,7 +114,7 @@ export class FamiliarSight extends Enemy {
     }
 
     fireShower() {
-        shakeScreen(5, 0.25);
+        SceneUtils.shakeScreen(5, 0.25);
 
         const randomdirection = randomInRange(0, 180);
         for (let i = 0; i <= 6; i += 2) {
@@ -123,7 +124,7 @@ export class FamiliarSight extends Enemy {
 
     takeDamage(damage) {
         super.takeDamage(damage);
-        shakeScreen(2, 0.25);
+        SceneUtils.shakeScreen(2, 0.25);
     }
 
     step() {
@@ -141,8 +142,8 @@ export class FamiliarSight extends Enemy {
         this.sprite = FAMILIARSIGHTSPRITE;
         this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL / game.state.variables.slowmorate : FIRINGRATE_NORMAL;
         this.hardened = false;
-        flashScreen();
-        shakeScreen(3, 0.5);
+        SceneUtils.flashScreen();
+        SceneUtils.shakeScreen(3, 0.5);
     }
 
     harden() {
@@ -152,8 +153,8 @@ export class FamiliarSight extends Enemy {
         this.sprite = FAMILIARSIGHTHARDENEDSPRITE;
         this.hardened = true;
         game.enemies.clear();
-        flashScreen();
-        shakeScreen(3, 0.5);
+        SceneUtils.flashScreen();
+        SceneUtils.shakeScreen(3, 0.5);
 
         setTimeout(() => {
             this.soften();
@@ -163,7 +164,7 @@ export class FamiliarSight extends Enemy {
     die() {
         super.die();
         game.audiocontroller.playSound('exp_big');
-        shakeScreen(6, 2);
+        SceneUtils.shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

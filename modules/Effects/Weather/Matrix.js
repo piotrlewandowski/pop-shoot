@@ -15,7 +15,8 @@ import {
 } from '../../Assets/Effects.js';
 import { CANVAS } from '../../Assets/Other.js';
 import { game } from '../../../app.js';
-import { randomInRange, shakeScreen } from '../../Logic/Helpers.js';
+import { randomInRange } from '../../Logic/Helpers.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 const SPRITE = [
     MATRIX0SPRITE,
@@ -50,7 +51,7 @@ export class Matrix {
         this.sprite = SPRITE[this.ticks % SPRITE.length];
 
         if (this.ticks % GLITCHFREQUENCY === 0) {
-            shakeScreen(1, 0.5);
+            SceneUtils.shakeScreen(1, 0.5);
             game.audiocontroller.playSound('glitch');
             const glitchInterval = setInterval(() => {
                 game.weathercontroller.glitchOffset.y = randomInRange(-100, 100);

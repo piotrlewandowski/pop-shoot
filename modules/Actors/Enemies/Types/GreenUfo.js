@@ -3,9 +3,10 @@ import { GREENUFOSPRITE } from '../../../Assets/Enemies.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
+import { randomInRange } from '../../../Logic/Helpers.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 1;
@@ -48,7 +49,7 @@ export class GreenUfo extends Enemy {
     die() {
         game.audiocontroller.playSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
-        shakeScreen(3, 0.2);
+        SceneUtils.shakeScreen(3, 0.2);
         this.explode();
         super.die();
     }

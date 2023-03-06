@@ -1,5 +1,6 @@
 import { game } from '../../../app.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
+import { WHITESCREENSPRITE } from '../../Assets/Effects.js';
 import {
     CLOCKSPRITE,
     COINSPRITE,
@@ -175,6 +176,12 @@ export class HudGfx {
                 BUFFTIME_Y,
                 BUFFTIME_FONT
             );
+        }
+    }
+
+    static drawFlashScreen() {
+        if (game.scene.flashscreen) {
+            game.scene.ctx.drawImage(WHITESCREENSPRITE, 0, 0);
         }
     }
 }

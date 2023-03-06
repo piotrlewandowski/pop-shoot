@@ -10,8 +10,8 @@ import {
     RAIN8SPRITE,
 } from '../../Assets/Effects.js';
 import { game } from '../../../app.js';
-import { flashScreen } from '../../Logic/Helpers.js';
 import { CANVAS } from '../../Assets/Other.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 const SPRITE = [
     RAIN0SPRITE,
@@ -44,7 +44,7 @@ export class Rain {
 
         if (this.ticks % BIGTHUNDERFREQUENCY === 0) {
             game.audiocontroller.playSound('bigThunder');
-            flashScreen();
+            SceneUtils.flashScreen();
         }
 
         if (this.ticks % SMALLTHUNDERFREQUENCY === 0) {

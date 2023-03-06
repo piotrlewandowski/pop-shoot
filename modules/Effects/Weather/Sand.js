@@ -11,7 +11,7 @@ import {
 } from '../../Assets/Effects.js';
 import { CANVAS } from '../../Assets/Other.js';
 import { game } from '../../../app.js';
-import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 const SPRITE = [
     SAND0SPRITE,
@@ -42,9 +42,9 @@ export class Sand {
         this.sprite = SPRITE[this.ticks % SPRITE.length];
 
         if (this.ticks % MIRAGEFREQUENCY === 0) {
-            shakeScreen(500, 0.25);
+            SceneUtils.shakeScreen(500, 0.25);
             game.audiocontroller.playSound('mirage');
-            flashScreen();
+            SceneUtils.flashScreen();
         }
     }
 

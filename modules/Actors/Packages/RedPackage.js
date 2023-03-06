@@ -5,7 +5,7 @@ import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { REDPACKAGESPRITE } from '../../Assets/Enemies.js';
-import { flashScreen, shakeScreen } from '../../Logic/Helpers.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 0.5;
@@ -22,7 +22,7 @@ export class RedPackage extends Enemy {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.hitsound = 'metal';
         game.audiocontroller.playSound('beepRed');
-        shakeScreen(4, 1);
+        SceneUtils.shakeScreen(4, 1);
         RedPackage.incrementCount();
     }
 
@@ -36,8 +36,8 @@ export class RedPackage extends Enemy {
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.itemcontroller.drop();
         RedPackage.decrementCount();
-        flashScreen();
-        shakeScreen(4, 1);
+        SceneUtils.flashScreen();
+        SceneUtils.shakeScreen(4, 1);
 
         // Weather - Only toggle if not in boss-mode
         if (!game.state.boss) {
@@ -55,8 +55,8 @@ export class RedPackage extends Enemy {
     vanish() {
         game.audiocontroller.playSound('drain');
         RedPackage.decrementCount();
-        shakeScreen(4, 1);
-        flashScreen();
+        SceneUtils.shakeScreen(4, 1);
+        SceneUtils.flashScreen();
         this.hp = 0;
     }
 

@@ -11,10 +11,10 @@ import { Notification } from '../../Effects/Misc/Notification.js';
 import { GameVariables } from './GameVariables.js';
 import { SlowMo } from './SlowMo.js';
 import { CashController } from '../Controllers/CashController.js';
-import { flashScreen, shakeScreen } from '../Helpers.js';
 import { Clock } from '../../Drops/Clock.js';
 import { BuffController } from '../Controllers/BuffController.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 // STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
@@ -60,7 +60,7 @@ export class GameState {
             SlowMo.start();
             game.audiocontroller.updateMusic();
         } else {
-            shakeScreen(2, 0.25);
+            SceneUtils.shakeScreen(2, 0.25);
             game.effects.add(new Animation(game.player.x, game.player.y + 20, 'smoke_normal'));
             game.audiocontroller.playSound('slowmoEmpty');
         }
@@ -78,7 +78,7 @@ export class GameState {
     toggleBoss() {
         if (!this.boss) {
             this.boss = true;
-            shakeScreen(6, 0.75);
+            SceneUtils.shakeScreen(6, 0.75);
             game.weathercontroller.startDarkness();
         } else {
             this.boss = false;
@@ -90,7 +90,7 @@ export class GameState {
             game.firelasers.clear();
             game.bluelasers.clear();
         }
-        flashScreen();
+        SceneUtils.flashScreen();
         game.weathercontroller.stopWeather();
         game.audiocontroller.updateMusic();
     }
@@ -158,7 +158,7 @@ export class GameState {
         game.cashcontroller = new CashController();
 
         // GRAPHICS
-        flashScreen();
+        SceneUtils.flashScreen();
         this.addStageNotification();
 
         // AUDIO

@@ -11,7 +11,7 @@ import {
 } from '../../Assets/Effects.js';
 import { CANVAS } from '../../Assets/Other.js';
 import { game } from '../../../app.js';
-import { shakeScreen } from '../../Logic/Helpers.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 const SPRITE = [
     WIND0SPRITE,
@@ -42,7 +42,7 @@ export class Wind {
         this.sprite = SPRITE[this.ticks % SPRITE.length];
 
         if (this.ticks % SHAKEFREQUENCY === 0) {
-            shakeScreen(2, 1);
+            SceneUtils.shakeScreen(2, 1);
         }
     }
 

@@ -4,8 +4,9 @@ import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { CANVAS } from '../../../Assets/Other.js';
-import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
+import { randomInRange } from '../../../Logic/Helpers.js';
 import { METALEMPERORHARDENEDSPRITE, METALEMPERORSPRITE } from '../../../Assets/Enemies.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 1;
@@ -92,7 +93,7 @@ export class MetalEmperor extends Enemy {
 
     shootBulletWall() {
         if (!this.hardened) {
-            shakeScreen(6, 0.75);
+            SceneUtils.shakeScreen(6, 0.75);
 
             const gapstart = randomInRange(0, CANVAS.width - GAPSIZE);
             for (let i = 0; i < CANVAS.width; i += 15) {
@@ -124,18 +125,18 @@ export class MetalEmperor extends Enemy {
         game.audiocontroller.playSound('steam');
         this.hardened = false;
         this.radius = RADIUS;
-        flashScreen();
+        SceneUtils.flashScreen();
         this.sprite = METALEMPERORSPRITE;
-        shakeScreen(3, 0.5);
+        SceneUtils.shakeScreen(3, 0.5);
     }
 
     harden() {
         game.audiocontroller.playSound('steam');
         this.hardened = true;
         this.radius = -1;
-        flashScreen();
+        SceneUtils.flashScreen();
         this.sprite = METALEMPERORHARDENEDSPRITE;
-        shakeScreen(3, 0.5);
+        SceneUtils.shakeScreen(3, 0.5);
 
         setTimeout(() => {
             this.soften();
@@ -145,7 +146,7 @@ export class MetalEmperor extends Enemy {
     die() {
         game.audiocontroller.playSound('exp_big');
         super.die();
-        shakeScreen(6, 2);
+        SceneUtils.shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

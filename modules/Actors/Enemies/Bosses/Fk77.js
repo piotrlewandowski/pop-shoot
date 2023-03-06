@@ -1,10 +1,11 @@
 import { Enemy } from '../Enemy.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
-import { flashScreen, randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
+import { randomInRange } from '../../../Logic/Helpers.js';
 import { YellowUfo } from '../Types/YellowUfo.js';
 import { FK77HARDENEDSPRITE, FK77SPRITE } from '../../../Assets/Enemies.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 5;
@@ -61,8 +62,8 @@ export class Fk77 extends Enemy {
         if (this.hardened) {
             this.shoot();
         }
+        SceneUtils.shakeScreen(2, 0.25);
         super.takeDamage(damage);
-        shakeScreen(2, 0.25);
     }
 
     shoot() {
@@ -93,18 +94,18 @@ export class Fk77 extends Enemy {
     soften() {
         this.hardened = false;
         game.audiocontroller.playSound('swoosh');
-        flashScreen();
+        SceneUtils.flashScreen();
         this.sprite = FK77SPRITE;
-        shakeScreen(3, 0.5);
+        SceneUtils.shakeScreen(3, 0.5);
     }
 
     harden() {
         this.hardened = true;
         game.audiocontroller.playSound('swoosh');
         game.enemies.clear();
-        flashScreen();
+        SceneUtils.flashScreen();
         this.sprite = FK77HARDENEDSPRITE;
-        shakeScreen(3, 0.5);
+        SceneUtils.shakeScreen(3, 0.5);
 
         setTimeout(() => {
             this.soften();
@@ -122,7 +123,7 @@ export class Fk77 extends Enemy {
     die() {
         super.die();
         game.audiocontroller.playSound('exp_big');
-        shakeScreen(6, 2);
+        SceneUtils.shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

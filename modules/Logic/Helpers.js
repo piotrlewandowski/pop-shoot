@@ -42,18 +42,3 @@ export function getClosestEnemyTo(entity) {
     });
     return closestEnemy;
 }
-
-// White screen-flash
-export function flashScreen() {
-    game.effects.add(new Notification(CANVAS.width / 2, CANVAS.height / 2, WHITESCREENSPRITE, 5));
-}
-
-// Screen-shake effect
-export function shakeScreen(intensity, duration) {
-    const shake = setInterval(() => (game.scene.shake = randomInRange(-intensity, intensity)), 16);
-
-    setTimeout(() => {
-        game.scene.shake = 0;
-        clearInterval(shake);
-    }, duration * 1000);
-}

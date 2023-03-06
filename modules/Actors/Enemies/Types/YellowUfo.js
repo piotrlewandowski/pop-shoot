@@ -2,10 +2,11 @@ import { Enemy } from '../Enemy.js';
 import { Movement } from '../../../Logic/Motion/Movement.js';
 import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
-import { randomInRange, shakeScreen } from '../../../Logic/Helpers.js';
+import { randomInRange } from '../../../Logic/Helpers.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { YELLOWUFOSPRITE } from '../../../Assets/Enemies.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 1;
@@ -52,7 +53,7 @@ export class YellowUfo extends Enemy {
     die() {
         game.audiocontroller.playSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
-        shakeScreen(6, 0.75);
+        SceneUtils.shakeScreen(6, 0.75);
         this.explode();
         super.die();
     }

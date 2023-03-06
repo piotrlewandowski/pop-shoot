@@ -1,5 +1,5 @@
 import { game } from '../../app.js';
-import { flashScreen } from '../Logic/Helpers.js';
+import { SceneUtils } from '../Scene/SceneUtils.js';
 
 const CHARGING_TIME = 99;
 const ACTIVE_TIME = 5;
@@ -14,7 +14,7 @@ export class Clock {
     }
 
     activate() {
-        flashScreen();
+        SceneUtils.flashScreen();
         if (game.state.slowmo) {
             game.state.stopSlowmo();
         }
@@ -32,7 +32,7 @@ export class Clock {
     }
 
     deactivate() {
-        flashScreen();
+        SceneUtils.flashScreen();
         this.active = false;
         game.audiocontroller.updateMusic();
     }

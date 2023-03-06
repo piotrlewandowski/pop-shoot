@@ -5,7 +5,7 @@ import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { Animation } from '../../../Effects/Misc/Animation.js';
 import { Difficulty } from '../../../Logic/State/Difficulty.js';
-import { shakeScreen } from '../../../Logic/Helpers.js';
+import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 0.5;
@@ -48,7 +48,7 @@ export class BlueEmperor extends Enemy {
     die() {
         game.audiocontroller.playSound('exp_normal');
         game.effects.add(new Animation(this.x, this.y, 'explosion_big'));
-        shakeScreen(4, 0.5);
+        SceneUtils.shakeScreen(4, 0.5);
         super.die();
     }
 }

@@ -3,7 +3,7 @@ import { game } from '../../../app.js';
 import { BlueLaser } from './BlueLaser.js';
 import { AIRSTRIKESPRITE } from '../../Assets/Lasers.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
-import { shakeScreen } from '../../Logic/Helpers.js';
+import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 export class Airstrike extends BlueLaser {
     constructor(target) {
@@ -30,7 +30,7 @@ export class Airstrike extends BlueLaser {
 
     shatter() {
         this.shattered = true;
-        shakeScreen(3, 0.25);
+        SceneUtils.shakeScreen(3, 0.25);
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
     }
 }

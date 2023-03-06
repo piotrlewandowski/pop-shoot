@@ -15,12 +15,15 @@ const RATIO = 16 / 9;
 
 export class Scene {
     constructor() {
+        // CANVAS SETUP
         CANVAS.width = CANVASWIDTH;
         CANVAS.height = CANVASWIDTH / RATIO;
         this.ctx = CANVAS.getContext('2d');
 
+        // SCENE MODIFIERS
         this.bgScrollOffset = 0; // used by BackgroundGfx for parallax effect
-        this.shake = 0; // used by shakeScreen() helper function
+        this.shake = 0; // used by SceneUtils.shakeScreen()
+        this.flashscreen = 0; // used by SceneUtils.flashScreen()
     }
 
     clear() {
@@ -77,5 +80,6 @@ export class Scene {
         HudGfx.drawItemsIcons();
         HudGfx.drawShieldWarning();
         HudGfx.drawBuffs();
+        HudGfx.drawFlashScreen();
     }
 }

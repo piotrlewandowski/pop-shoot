@@ -79,6 +79,14 @@ const BUFFTIME_X = 500;
 const BUFFTIME_Y = 460;
 const BUFFTIME_FONT = 30;
 
+// ICONS
+const ICON_STARTINGX = 170;
+const ICON_Y = 482;
+const ICONTEXT_Y = 480;
+const ICONTEXT_FONT = 20;
+const ICONTEXT_SHIFT = 18; // Text above dmg, spray & clock should be shifted to be aligned with the icon
+const ICON_GAP = 45;
+
 export class HudGfx {
     static drawStageTimeCash() {
         // Vertical Line
@@ -137,26 +145,24 @@ export class HudGfx {
     }
 
     static drawItemsIcons() {
-        let iconXPosition = 170;
-        const iconYPosition = CANVAS.height - 80;
-        const iconGap = 45;
+        let currentx = ICON_STARTINGX;
 
         game.itemcontroller.aquiredItems.forEach((item) => {
-            game.scene.ctx.drawImage(item.icon, iconXPosition, iconYPosition);
+            game.scene.ctx.drawImage(item.icon, currentx, ICON_Y);
             // Spray or DMG aquired more than once
             if (item.repeated > 1) {
-                SceneUtils.drawCenteredText(`x${item.repeated}`, iconXPosition + 18, iconYPosition - 2, 20);
+                SceneUtils.drawCenteredText(`x${item.repeated}`, currentx + ICONTEXT_SHIFT, ICONTEXT_Y, ICONTEXT_FONT);
             }
             // Clock status
             if (item.name === 'clock') {
                 SceneUtils.drawCenteredText(
-                    game.player.clock.active ? '!' : game.player.clock.countdown > 0 ? game.player.clock.countdown : '',
-                    iconXPosition + 18,
-                    iconYPosition - 2,
-                    20
+                    game.player.clock.active ? '!' : game.player.clock.ready ? '' : game.player.clock.countdown,
+                    currentx + ICONTEXT_SHIFT,
+                    ICONTEXT_Y,
+                    ICONTEXT_FONT
                 );
             }
-            iconXPosition += iconGap;
+            currentx += ICON_GAP;
         });
     }
 

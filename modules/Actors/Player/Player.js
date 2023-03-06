@@ -36,10 +36,10 @@ export class Player {
             game.effects.add(new Animation(game.player.x, game.player.y - 15, 'smoke_normal'));
             game.audiocontroller.playSound('noammo');
         } else {
-            // ***** AUDIO *****
+            // AUDIO
             game.audiocontroller.playSound('laser');
 
-            // ***** ROCKETS *****
+            // ROCKETS
             let weapon;
             const rocketroll = randomInRange(0, 100);
             if (game.state.variables.rocket && rocketroll < game.state.variables.rocketchance) {
@@ -48,7 +48,7 @@ export class Player {
                 weapon = BlueLaser;
             }
 
-            // ***** SPRAY *****
+            // SPRAY
 
             // In case the spray number is even, skew the laser's angle by 2.5 degrees
             let direction = game.state.variables.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
@@ -70,24 +70,24 @@ export class Player {
                 }
             }
 
-            // ***** SEEKERS *****
+            // SEEKERS
             if (game.enemies.enemiesOnScreen() && game.state.variables.seekers) {
                 game.bluelasers.add(new Seeker(getClosestEnemyTo(this)));
             }
 
-            // ***** DRONES *****
+            // DRONES
             if (game.state.variables.drones) {
                 for (let i = 0; i < game.state.variables.dronesnumber; i++) {
                     game.bluelasers.add(new Drone());
                 }
             }
 
-            // ***** DARTS *****
+            // DARTS
             if (game.state.variables.darts) {
                 game.bluelasers.add(new Dart());
             }
 
-            // ***** QUAD-DAMAGE & THOR'S HAMMER *****
+            // QUAD-DAMAGE & THOR'S HAMMER
             if (game.state.variables.quaddamage || game.state.variables.thorshammer) {
                 shakeScreen(3, 0.25);
             }

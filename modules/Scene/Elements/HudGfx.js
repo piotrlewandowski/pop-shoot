@@ -15,26 +15,53 @@ import { Coin } from '../../Effects/Misc/Coin.js';
 import { getGametimeToMMSS } from '../../Logic/Helpers.js';
 import { SceneUtils } from '../SceneUtils.js';
 
+// STAGE, TIME & COIN (TOP-LEFT)
+
+// Vertical Line
+const VLINE_X = 4;
+const VLINE_Y = 12;
+
+// Stage
+const FLOPPY_X = 10;
+const FLOPPY_Y = 10;
+const STAGE_X = 31;
+const STAGE_Y = 24;
+const STAGE_FONT = 25;
+
+// Time
+const CLOCK_X = 10;
+const CLOCK_Y = 30;
+const TIME_X = 31;
+const TIME_Y = 44;
+const TIME_FONT = 25;
+
+// Cash
+const COIN_X = 10;
+const COIN_Y = 50;
+const CASH_X = 31;
+const CASH_Y = 64;
+const CASH_FONT = 25;
+
 export class HudGfx {
-    static drawStageTimeCoin() {
+    static drawStageTimeCash() {
         // Vertical Line
-        game.scene.ctx.drawImage(VLINESPRITE, 4, 12);
+        game.scene.ctx.drawImage(VLINESPRITE, VLINE_X, VLINE_Y);
 
         // Stage
-        game.scene.ctx.drawImage(FLOPPYSPRITE, 10, 10);
-        SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, 31, 24, 25);
+        game.scene.ctx.drawImage(FLOPPYSPRITE, FLOPPY_X, FLOPPY_Y);
+        SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, STAGE_X, STAGE_Y, STAGE_FONT);
 
         // Time
-        game.scene.ctx.drawImage(CLOCKSPRITE, 10, 30);
+        game.scene.ctx.drawImage(CLOCKSPRITE, CLOCK_X, CLOCK_Y);
         if (!game.state.boss) {
-            SceneUtils.drawText(getGametimeToMMSS(), 31, 44, 25);
+            SceneUtils.drawText(getGametimeToMMSS(), TIME_X, TIME_Y, TIME_FONT);
         } else {
-            SceneUtils.drawText(`BOSS FIGHT`, 31, 44, 25);
+            SceneUtils.drawText(`BOSS FIGHT`, TIME_X, TIME_Y, TIME_FONT);
         }
 
         // Cash
-        game.scene.ctx.drawImage(COINSPRITE, 10, 50);
-        SceneUtils.drawText(game.cashcontroller.cash, 31, 64, 25);
+        game.scene.ctx.drawImage(COINSPRITE, COIN_X, COIN_Y);
+        SceneUtils.drawText(game.cashcontroller.cash, CASH_X, CASH_Y, CASH_FONT);
     }
 
     static drawShieldWarning() {

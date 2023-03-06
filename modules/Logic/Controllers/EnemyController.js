@@ -153,7 +153,7 @@ export class EnemyController {
         // Enemy is in specified time bracket
         const isInRange = game.state.time >= enemy.startTime && game.state.time <= enemy.endTime;
 
-        // Game is not is a boss, paused state or clock state
+        // Game is not in boss/paused/clock state
         const isInState = !game.state.boss && !game.state.paused && !game.player.clock.active;
 
         // Enemy's interval is reached (not in slowmo mode)

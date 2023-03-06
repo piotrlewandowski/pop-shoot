@@ -20,7 +20,7 @@ export class WeatherController {
         this.weatherActive = false;
 
         // Glitch offset used by 'matrix' weather type. This will be used
-        // in Scene.js to draw the player at an offset
+        // in PlayerGfx.js to draw the player at an offset
         this.glitchOffset = { x: 0, y: 0 };
     }
 

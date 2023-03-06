@@ -11,6 +11,7 @@ import { EnemyController } from './Logic/Controllers/EnemyController.js';
 import { ItemController } from './Logic/Controllers/ItemController.js';
 import { BuffController } from './Logic/Controllers/BuffController.js';
 import { WeatherController } from './Logic/Controllers/WeatherController.js';
+import { CollisionDetection } from './Logic/Motion/CollisionDetection.js';
 
 export class Game {
     constructor() {
@@ -56,6 +57,16 @@ export class Game {
         this.bluelasers.move();
         this.firelasers.move();
         this.effects.move();
+    }
+
+    checkCollisions() {
+        CollisionDetection.checkBluelasersEnemies();
+        CollisionDetection.checkPlayerEnemies();
+        CollisionDetection.checkPlayerFirelasers();
+        CollisionDetection.checkEnemiesEnemies();
+        CollisionDetection.checkBlueLasersFirelasers();
+        CollisionDetection.checkCoinPlayer();
+        CollisionDetection.checkEnemyCanvas();
     }
 
     refresh() {

@@ -88,7 +88,7 @@ export class CollisionActions {
     }
 
     // PLAYER AND ENEMY LASERS
-    static PlayerLasers(firelaser) {
+    static PlayerFirelasers(firelaser) {
         if (game.player.shield.isCharged() && !game.player.clock.active) {
             flashScreen();
             firelaser.shatter();

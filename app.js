@@ -1,5 +1,4 @@
 import { Game } from './modules/Game.js';
-import { CollisionDetection } from './modules/Logic/Motion/CollisionDetection.js';
 
 // FPS control
 const FPS = 60;
@@ -25,8 +24,8 @@ export function gameloop(timestamp) {
         if (delta > interval) {
             game.draw();
             game.move();
+            game.checkCollisions();
             game.refresh();
-            CollisionDetection.checkCollisions();
             then = timestamp - (delta % interval);
             return;
         }

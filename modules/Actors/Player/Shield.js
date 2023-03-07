@@ -46,10 +46,6 @@ export class Shield {
     }
 
     deplete() {
-        if (game.state.variables.emp) {
-            this.activateEmp();
-        }
-
         const invincibilitytime = game.state.variables.metalshield
             ? game.state.variables.metalshieldtime
             : INVINCIBILITYTIME;

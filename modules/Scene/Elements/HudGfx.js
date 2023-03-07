@@ -156,7 +156,7 @@ export class HudGfx {
             // Clock status
             if (item.name === 'clock') {
                 SceneUtils.drawCenteredText(
-                    game.player.clock.active ? '!' : game.player.clock.ready ? '' : game.player.clock.countdown,
+                    game.player.clock.active ? '!' : game.player.clock.isReady ? '' : game.player.clock.countdown,
                     currentx + ICONTEXT_SHIFT,
                     ICONTEXT_Y,
                     ICONTEXT_FONT

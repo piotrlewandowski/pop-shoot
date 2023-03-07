@@ -36,7 +36,7 @@ export class Debris extends BlueLaser {
     }
 
     shatter() {
-        Debris.count--;
+        game.itemcontroller.debriscount--;
         super.shatter();
     }
 }

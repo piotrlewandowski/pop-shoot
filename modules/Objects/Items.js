@@ -175,7 +175,7 @@ export const ITEMS = {
     },
     timefreeze: {
         name: 'timefreeze',
-        activate: () => (game.itemcontroller.slowmorate = 0.05),
+        activate: () => (game.state.variables.slowmorate = 0.05),
         icon: TIMEFREEZE_ICON,
         pause: TIMEFREEZE_PAUSE,
         notification: TIMEFREEZE_NOTIFICATION,

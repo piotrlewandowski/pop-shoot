@@ -29,15 +29,15 @@ export class CollisionActions {
         laser.shatter();
 
         if (game.itemcontroller.bomb) {
-            game.itemcontroller.bombAll();
+            game.itemcontroller.bombAll(laser);
         }
 
         if (game.itemcontroller.airstrike) {
-            game.itemcontroller.sendAirstrike();
+            game.itemcontroller.sendAirstrike(laser);
         }
 
         if (game.itemcontroller.darts && !enemy.name) {
-            game.itemcontroller.stunWithDart(enemy);
+            game.itemcontroller.stunWithDart(laser, enemy);
         }
     }
 

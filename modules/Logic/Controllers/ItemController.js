@@ -79,9 +79,9 @@ export class ItemController {
 
     addDebris() {
         setInterval(() => {
-            if (this.debriscount < this.maxDebris) {
+            if (this.debriscount < this.maxdebris) {
                 game.bluelasers.add(new Debris());
-                this.this.debriscount++;
+                this.debriscount++;
             }
         }, this.debrisrespawnrate);
     }
@@ -91,7 +91,7 @@ export class ItemController {
         game.firelasers.clear();
     }
 
-    bombAll() {
+    bombAll(laser) {
         game.enemies.damageAll(laser.damage * this.bombdamagerate);
     }
 
@@ -126,13 +126,14 @@ export class ItemController {
         this.dmgMultiplier += 0.5;
     }
 
-    sendAirstrike() {
+    sendAirstrike(laser) {
         const airstrikeroll = randomInRange(0, 100);
         if (
             game.enemies.enemiesOnScreen() &&
             airstrikeroll < this.airstrikechance &&
             laser.constructor !== Airstrike &&
-            laser.constructor !== Drone
+            laser.constructor !== Drone &&
+            laser.constructor !== Dart
         ) {
             game.enemies.liveEnemies.forEach((enemy, index) => {
                 setTimeout(() => {
@@ -165,7 +166,7 @@ export class ItemController {
         }, 500);
     }
 
-    stunWithDart(enemy) {
+    stunWithDart(laser, enemy) {
         const stunroll = randomInRange(0, 100);
         if (stunroll < this.dartsstunchance) {
             enemy.stun();

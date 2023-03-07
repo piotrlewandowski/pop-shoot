@@ -12,15 +12,8 @@ export class CollisionActions {
     static BluelasersEnemies(enemy, laser) {
         // Pushback & play sound if the laser is not a drone or dart
         if (laser.constructor !== Drone && laser.constructor !== Dart) {
+            game.audiocontroller.playSound(this._determineHitSound(enemy));
             enemy.pushBack();
-            // Determine which hit-sound to play
-            if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
-                game.audiocontroller.playSound('hitMetal');
-            } else if (game.buffcontroller.quaddamage) {
-                game.audiocontroller.playSound('hitQuad');
-            } else {
-                game.audiocontroller.playSound('hit');
-            }
         }
 
         enemy.takeDamage(laser.damage);
@@ -81,5 +74,17 @@ export class CollisionActions {
 
     static EnemyCanvas(enemy) {
         Movement.moveToCanvas(enemy);
+    }
+
+    // HELPERS
+
+    static _determineHitSound(enemy) {
+        if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
+            return 'hitMetal';
+        }
+        if (game.buffcontroller.quaddamage) {
+            return 'hitQuad';
+        }
+        return 'hit';
     }
 }

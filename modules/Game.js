@@ -28,13 +28,13 @@ export class Game {
 
         // LOGIC CONTROLLERS
         this.state = new GameState();
-        this.controls = new Controls();
         this.itemcontroller = new ItemController();
         this.buffcontroller = new BuffController();
         this.audiocontroller = new AudioController();
         this.cashcontroller = new CashController();
         this.enemycontroller = new EnemyController();
         this.weathercontroller = new WeatherController();
+        Controls.addControls();
     }
 
     draw() {

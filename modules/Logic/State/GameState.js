@@ -15,6 +15,7 @@ import { Clock } from '../../Drops/Clock.js';
 import { BuffController } from '../Controllers/BuffController.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
+import { Controls } from '../Motion/Controls.js';
 
 // STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
@@ -99,11 +100,11 @@ export class GameState {
         // Only pause if game has started, or game is not on gameover screen
         if (this.time && !this.over) {
             if (!this.paused) {
-                game.controls.removeMouseClicks();
+                Controls.removeMouseClicks();
                 this.paused = true;
             } else {
                 this.paused = false;
-                game.controls.addMouseClicks();
+                Controls.addMouseClicks();
                 window.requestAnimationFrame(gameloop);
             }
         }
@@ -112,7 +113,7 @@ export class GameState {
     setGameOver() {
         this.stopSlowmo();
         this.over = true;
-        game.controls.removeMouseClicks();
+        Controls.removeMouseClicks();
         game.audiocontroller.updateMusic();
     }
 
@@ -120,8 +121,8 @@ export class GameState {
     // ----------------------------------------------------
     unsetGameOver() {
         this.over = false;
-        game.controls.addMouseClicks();
-        game.controls.addPauseButton();
+        Controls.addMouseClicks();
+        Controls.addPauseButton();
         game.firelasers.clear();
         game.bluelasers.clear();
         game.player.shield.charge = 100;
@@ -146,8 +147,8 @@ export class GameState {
         game.state.variables = new GameVariables();
 
         // RESTORE CONTROLS
-        game.controls.addMouseClicks();
-        game.controls.addPauseButton();
+        Controls.addMouseClicks();
+        Controls.addPauseButton();
 
         // RESET PLAYER STATE
         game.player.shield.charge = 100;

@@ -12,6 +12,7 @@ import { Drone } from '../../Lasers/Friendly/Drone.js';
 import { Dart } from '../../Lasers/Friendly/Dart.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
+import { ItemsActions } from '../../Drops/ItemsAction.js';
 
 const SPRAYDISTANCE = 5; // Distance between laser streams when spray upgrade is acquired
 const LASERANGLE = 270; // Default laser direction. 270 = NORTH
@@ -41,13 +42,7 @@ export class Player {
             game.audiocontroller.playSound('laser');
 
             // ROCKETS
-            let weapon;
-            const rocketroll = randomInRange(0, 100);
-            if (game.state.variables.rocket && rocketroll < game.state.variables.rocketchance) {
-                weapon = Rocket;
-            } else {
-                weapon = BlueLaser;
-            }
+            let weapon = ItemsActions.getWeaponType();
 
             // SPRAY
 
@@ -73,19 +68,17 @@ export class Player {
 
             // SEEKERS
             if (game.enemies.enemiesOnScreen() && game.state.variables.seekers) {
-                game.bluelasers.add(new Seeker(getClosestEnemyTo(this)));
+                ItemsActions.shootSeeker();
             }
 
             // DRONES
             if (game.state.variables.drones) {
-                for (let i = 0; i < game.state.variables.dronesnumber; i++) {
-                    game.bluelasers.add(new Drone());
-                }
+                ItemsActions.shootDrone();
             }
 
             // DARTS
             if (game.state.variables.darts) {
-                game.bluelasers.add(new Dart());
+                ItemsActions.shootDart();
             }
 
             // QUAD-DAMAGE & THOR'S HAMMER

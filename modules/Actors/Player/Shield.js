@@ -1,6 +1,5 @@
 import { game } from '../../../app.js';
 import { SHIELDEMPSPRITE, SHIELDMETALSPRITE, SHIELDSPRITE, SHIELDUNDERFIRESPRITE } from '../../Assets/Player.js';
-import { randomInRange } from '../../Logic/Helpers.js';
 
 const INVINCIBILITYTIME = 1; // default invincibility time if no metalshield upgrade, in seconds
 const CHARGERATE = 1; // default charging rate if no nitrogen upgrade
@@ -72,13 +71,6 @@ export class Shield {
                 this.sprite.unshift(SHIELDMETALSPRITE);
             }
         }
-    }
-
-    activateEmp() {
-        game.enemies.damageAll(
-            randomInRange(2, 6) * game.state.variables.damageMultiplier * game.state.variables.emprate
-        );
-        game.firelasers.clear();
     }
 
     isCharged() {

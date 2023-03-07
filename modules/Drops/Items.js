@@ -1,6 +1,4 @@
 import { game } from '../../app.js';
-import { Debris } from '../Lasers/Friendly/Debris.js';
-import { randomInRange } from '../Logic/Helpers.js';
 
 import {
     BOMBS_NOTIFICATION,
@@ -61,6 +59,7 @@ import {
     DEBRIS_PAUSE,
     DEBRIS_NOTIFICATION,
 } from '../Assets/Hud.js';
+import { ItemsActions } from './ItemsAction.js';
 
 export const ITEMS = {
     airstrike: {
@@ -93,14 +92,7 @@ export const ITEMS = {
     },
     debris: {
         name: 'debris',
-        activate: () => {
-            setInterval(() => {
-                if (Debris.count < Debris.maxDebris) {
-                    game.bluelasers.add(new Debris());
-                    Debris.count++;
-                }
-            }, Debris.respawnRate);
-        },
+        activate: () => ItemsActions.addDebris(),
         icon: DEBRIS_ICON,
         pause: DEBRIS_PAUSE,
         notification: DEBRIS_NOTIFICATION,
@@ -191,16 +183,7 @@ export const ITEMS = {
     },
     toxic: {
         name: 'toxic',
-        activate: () => {
-            game.state.variables.toxic = true;
-            setInterval(() => {
-                if (game.state.slowmo && game.state.variables.toxic) {
-                    game.enemies.damageAll(
-                        randomInRange(2, 6) * game.state.variables.damageMultiplier * game.state.variables.toxicrate
-                    );
-                }
-            }, 500);
-        },
+        activate: () => ItemsActions.startToxic(),
         icon: TOXIC_ICON,
         pause: TOXIC_PAUSE,
         notification: TOXIC_NOTIFICATION,

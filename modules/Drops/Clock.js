@@ -14,15 +14,11 @@ export class Clock {
     }
 
     activate() {
-        if (!this.active) {
-            SceneUtils.flashScreen();
-            if (game.state.slowmo) {
-                game.state.stopSlowmo();
-            }
-            this.active = true;
-            game.audiocontroller.updateMusic();
-            this.startCountdown();
-        }
+        SceneUtils.flashScreen();
+        this.active = true;
+        game.state.stopSlowmo();
+        game.audiocontroller.updateMusic();
+        this.startCountdown();
     }
 
     // Stay active for ACTIVE_TIME seconds

@@ -71,9 +71,9 @@ export class CollisionActions {
             SceneUtils.flashScreen();
             enemy.takeDamage(enemy.hp);
             game.player.shield.deplete();
-        } else if (game.player.clock.isReady) {
+        } else if (game.player.clock.isReady && !game.player.clock.active) {
             game.player.clock.activate();
-        } else {
+        } else if (!game.player.clock.active) {
             game.state.setGameOver();
         }
     }
@@ -83,9 +83,9 @@ export class CollisionActions {
             SceneUtils.flashScreen();
             firelaser.shatter();
             game.player.shield.deplete();
-        } else if (game.player.clock.isReady) {
+        } else if (game.player.clock.isReady && !game.player.clock.active) {
             game.player.clock.activate();
-        } else {
+        } else if (!game.player.clock.active) {
             game.state.setGameOver();
         }
     }

@@ -97,7 +97,6 @@ export class GameVariables {
         this.quaddamage = false;
         this.muteenemies = false;
         this.noslowmo = false;
-        this.blankbullets = false;
         this.thorshammer = false;
 
         // repetitive

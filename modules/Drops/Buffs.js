@@ -35,11 +35,6 @@ export const BUFFS = [
         disable: () => (game.state.variables.noslowmo = false),
     },
     {
-        text: 'BLANK BULLETS!',
-        enable: () => (game.state.variables.blankbullets = true),
-        disable: () => (game.state.variables.blankbullets = false),
-    },
-    {
         text: `THOR'S HAMMER!`,
         enable: () => (game.state.variables.thorshammer = true),
         disable: () => (game.state.variables.thorshammer = false),

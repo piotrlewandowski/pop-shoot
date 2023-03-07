@@ -3,7 +3,6 @@ import { randomInRange } from '../../Logic/Helpers.js';
 import { CANVAS } from '../../Assets/Other.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { Coin } from '../../Effects/Misc/Coin.js';
-import { ItemsActions } from '../../Objects/ItemsAction.js';
 
 export class Enemy {
     constructor(radius, hp, coins, sprite, speed, firingrate) {
@@ -72,7 +71,7 @@ export class Enemy {
     // Release coins when killed.
     // Some enemies & bosses have extra behaviour for this method.
     die() {
-        for (let i = 0; i < this.coins * ItemsActions.getGreedMultiplyer(); i++) {
+        for (let i = 0; i < this.coins * game.itemcontroller.getGreedMultiplyer(); i++) {
             game.effects.add(new Coin(this.x, this.y));
         }
     }

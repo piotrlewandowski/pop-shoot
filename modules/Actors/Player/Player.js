@@ -6,7 +6,6 @@ import { Clock } from '../../Objects/Clock.js';
 import { SlowmoGauge } from './SlowmoGauge.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
-import { ItemsActions } from '../../Objects/ItemsAction.js';
 
 const SPRAYDISTANCE = 5; // Distance between laser streams when spray upgrade is acquired
 const LASERANGLE = 270; // Default laser direction. 270 = NORTH
@@ -36,7 +35,7 @@ export class Player {
             game.audiocontroller.playSound('laser');
 
             // ROCKETS
-            let weapon = ItemsActions.getWeaponType();
+            let weapon = game.itemcontroller.getWeaponType();
 
             // SPRAY
 
@@ -62,17 +61,17 @@ export class Player {
 
             // SEEKERS
             if (game.enemies.enemiesOnScreen() && game.state.variables.seekers) {
-                ItemsActions.shootSeeker();
+                game.itemcontroller.shootSeeker();
             }
 
             // DRONES
             if (game.state.variables.drones) {
-                ItemsActions.shootDrone();
+                game.itemcontroller.shootDrone();
             }
 
             // DARTS
             if (game.state.variables.darts) {
-                ItemsActions.shootDart();
+                game.itemcontroller.shootDart();
             }
 
             // QUAD-DAMAGE & THOR'S HAMMER

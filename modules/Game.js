@@ -12,6 +12,7 @@ import { BuffController } from './Logic/Controllers/BuffController.js';
 import { WeatherController } from './Logic/Controllers/WeatherController.js';
 import { CollisionDetection } from './Logic/Motion/CollisionDetection.js';
 import { DropController } from './Logic/Controllers/DropController.js';
+import { ItemController } from './Logic/Controllers/ItemController.js';
 
 export class Game {
     constructor() {
@@ -30,6 +31,7 @@ export class Game {
         this.state = new GameState();
         this.dropcontroller = new DropController();
         this.buffcontroller = new BuffController();
+        this.itemcontroller = new ItemController();
         this.audiocontroller = new AudioController();
         this.cashcontroller = new CashController();
         this.enemycontroller = new EnemyController();

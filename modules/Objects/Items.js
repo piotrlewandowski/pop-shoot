@@ -59,7 +59,6 @@ import {
     DEBRIS_PAUSE,
     DEBRIS_NOTIFICATION,
 } from '../Assets/Hud.js';
-import { ItemsActions } from './ItemsAction.js';
 
 export const ITEMS = {
     airstrike: {
@@ -92,7 +91,7 @@ export const ITEMS = {
     },
     debris: {
         name: 'debris',
-        activate: () => ItemsActions.addDebris(),
+        activate: () => game.itemcontroller.addDebris(),
         icon: DEBRIS_ICON,
         pause: DEBRIS_PAUSE,
         notification: DEBRIS_NOTIFICATION,
@@ -183,7 +182,7 @@ export const ITEMS = {
     },
     toxic: {
         name: 'toxic',
-        activate: () => ItemsActions.startToxic(),
+        activate: () => game.itemcontroller.startToxic(),
         icon: TOXIC_ICON,
         pause: TOXIC_PAUSE,
         notification: TOXIC_NOTIFICATION,

@@ -7,7 +7,6 @@ import { Slash } from '../../Effects/Misc/Slash.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
-import { ItemsActions } from '../../Objects/ItemsAction.js';
 
 export class CollisionActions {
     static BluelasersEnemies(enemy, laser) {
@@ -30,15 +29,15 @@ export class CollisionActions {
         laser.shatter();
 
         if (game.state.variables.bomb) {
-            ItemsActions.bombAll();
+            game.itemcontroller.bombAll();
         }
 
         if (game.state.variables.airstrike) {
-            ItemsActions.sendAirstrike();
+            game.itemcontroller.sendAirstrike();
         }
 
         if (game.state.variables.darts && !enemy.name) {
-            ItemsActions.stunWithDart(enemy);
+            game.itemcontroller.stunWithDart(enemy);
         }
     }
 
@@ -48,7 +47,7 @@ export class CollisionActions {
             enemy.takeDamage(enemy.hp);
             game.player.shield.deplete();
             if (game.state.variables.emp) {
-                ItemsActions.blowEmp();
+                game.itemcontroller.blowEmp();
             }
         } else if (game.player.clock.isReady && !game.player.clock.active) {
             game.player.clock.activate();
@@ -63,7 +62,7 @@ export class CollisionActions {
             firelaser.shatter();
             game.player.shield.deplete();
             if (game.state.variables.emp) {
-                ItemsActions.blowEmp();
+                game.itemcontroller.blowEmp();
             }
         } else if (game.player.clock.isReady && !game.player.clock.active) {
             game.player.clock.activate();

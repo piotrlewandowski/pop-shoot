@@ -114,7 +114,7 @@ export class HudGfx {
         if (!game.player.shield.isCharged()) {
             game.scene.ctx.drawImage(GLASSSHIELDDOWNSPRITE, SHIELDWARNING_X, SHIELDWARNING_Y);
             SceneUtils.drawText(
-                `RECHARGING ${game.player.shield.getCharge()}%`,
+                `RECHARGING ${game.player.shield.currentCharge}%`,
                 SHIELDRECHARGING_X,
                 SHIELDRECHARGING_Y,
                 SHIELDRECHARGING_FONT

@@ -1,16 +1,16 @@
 import { game } from '../../../app.js';
-import { SHIELDEMPSPRITE, SHIELDMETALSPRITE, SHIELDSPRITE, SHIELDUNDERFIRESPRITE } from '../../Assets/Player.js';
+import { SHIELDMETALSPRITE, SHIELDSPRITE, SHIELDUNDERFIRESPRITE } from '../../Assets/Player.js';
 import { SlowMo } from '../../Logic/State/SlowMo.js';
 
-const INVINCIBILITYTIME = 1; // default invincibility time if no metalshield upgrade, in seconds
+const UNDERFIRETIME = 1; // default invincibility time if no metalshield upgrade, in seconds
 const CHARGERATE = 1; // default charging rate if no nitrogen upgrade
 
 export class Shield {
     constructor() {
         this.charge = 100; // 0=EMPTY 100=FULL
-        this.sprite = [SHIELDSPRITE];
         this.underfire = false;
         this.setObserver();
+        this.sprite = SHIELDSPRITE;
     }
 
     // This method will observe the state of the shield and charge/discharge accordingly
@@ -46,9 +46,9 @@ export class Shield {
     }
 
     deplete() {
-        const invincibilitytime = game.itemactioncontroller.metalshield
+        const underfiretime = game.itemactioncontroller.metalshield
             ? game.itemactioncontroller.metalshieldtime
-            : INVINCIBILITYTIME;
+            : UNDERFIRETIME;
 
         if (!game.buffcontroller.invincibility && !this.underfire) {
             game.audiocontroller.playSound('shieldDown');
@@ -56,29 +56,25 @@ export class Shield {
             setTimeout(() => {
                 this.charge = 0;
                 this.underfire = false;
-            }, invincibilitytime * 1000);
+            }, underfiretime * 1000);
         }
     }
 
     setSprite() {
         if (this.underfire) {
-            this.sprite = [SHIELDUNDERFIRESPRITE];
-        } else {
-            this.sprite = [SHIELDSPRITE];
-            if (game.itemactioncontroller.emp) {
-                this.sprite.push(SHIELDEMPSPRITE);
-            }
-            if (game.itemactioncontroller.metalshield) {
-                this.sprite.unshift(SHIELDMETALSPRITE);
-            }
+            return (this.sprite = SHIELDUNDERFIRESPRITE);
         }
+        if (game.itemactioncontroller.metalshield) {
+            return (this.sprite = SHIELDMETALSPRITE);
+        }
+        this.sprite = SHIELDSPRITE;
     }
 
     isCharged() {
         return this.charge === 100;
     }
 
-    getCharge() {
+    get currentCharge() {
         return Math.round(this.charge);
     }
 }

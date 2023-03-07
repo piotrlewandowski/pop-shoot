@@ -2,7 +2,7 @@ import { game } from '../../app.js';
 import { SceneUtils } from '../Scene/SceneUtils.js';
 
 const CHARGING_TIME = 99;
-const ACTIVE_TIME = 5;
+const ACTIVE_TIME = 10;
 
 // If player is hit (while shield is down), the clock will stop time for ACTIVE_TIME seconds.
 
@@ -14,13 +14,15 @@ export class Clock {
     }
 
     activate() {
-        SceneUtils.flashScreen();
-        if (game.state.slowmo) {
-            game.state.stopSlowmo();
+        if (!this.active) {
+            SceneUtils.flashScreen();
+            if (game.state.slowmo) {
+                game.state.stopSlowmo();
+            }
+            this.active = true;
+            game.audiocontroller.updateMusic();
+            this.startCountdown();
         }
-        this.active = true;
-        game.audiocontroller.updateMusic();
-        this.startCountdown();
     }
 
     // Stay active for ACTIVE_TIME seconds
@@ -50,6 +52,6 @@ export class Clock {
     }
 
     get isReady() {
-        return this.countdown === 0;
+        return this.owned && this.countdown === 0;
     }
 }

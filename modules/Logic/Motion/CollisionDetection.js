@@ -39,16 +39,6 @@ export class CollisionDetection {
         });
     }
 
-    static checkBlueLasersFirelasers() {
-        game.bluelasers.liveLasers.forEach((bluelaser) => {
-            game.firelasers.liveLasers.forEach((firelaser) => {
-                if (this._areColliding(bluelaser, firelaser)) {
-                    CollisionActions.BluelasersFirelasers(bluelaser, firelaser);
-                }
-            });
-        });
-    }
-
     static checkCoinPlayer() {
         game.effects.liveEffects.forEach((effect) => {
             if (this._areColliding(effect, game.player) && effect.constructor === Coin) {

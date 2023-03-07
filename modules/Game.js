@@ -64,7 +64,6 @@ export class Game {
         CollisionDetection.checkPlayerEnemies();
         CollisionDetection.checkPlayerFirelasers();
         CollisionDetection.checkEnemiesEnemies();
-        CollisionDetection.checkBlueLasersFirelasers();
         CollisionDetection.checkCoinPlayer();
         CollisionDetection.checkEnemyCanvas();
     }

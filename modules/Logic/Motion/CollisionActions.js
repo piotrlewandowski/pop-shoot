@@ -11,7 +11,6 @@ import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 export class CollisionActions {
-    // BLUELASERS AND ENEMIES
     static BluelasersEnemies(enemy, laser) {
         if (!game.state.variables.blankbullets) {
             // Pushback & play sound if the laser is not a drone or dart
@@ -67,64 +66,38 @@ export class CollisionActions {
         laser.shatter();
     }
 
-    // PLAYER AND ENEMIES
     static PlayerEnemies(enemy) {
-        if (game.player.shield.isCharged() && !enemy.name && !game.player.clock.active) {
+        if (game.player.shield.isCharged() && !enemy.name) {
             SceneUtils.flashScreen();
             enemy.takeDamage(enemy.hp);
             game.player.shield.deplete();
-            if (game.state.variables.emp) {
-                game.enemies.damageAll(
-                    randomInRange(2, 6) * game.state.variables.damageMultiplier * game.state.variables.emprate
-                );
-                game.firelasers.clear();
-            }
-        }
-        // If clock not active but ready, activate it.
-        else if (game.player.clock.owned && !game.player.clock.active && game.player.clock.isReady) {
+        } else if (game.player.clock.isReady) {
             game.player.clock.activate();
-        } else if (!game.player.clock.active) {
+        } else {
             game.state.setGameOver();
         }
     }
 
-    // PLAYER AND ENEMY LASERS
     static PlayerFirelasers(firelaser) {
-        if (game.player.shield.isCharged() && !game.player.clock.active) {
+        if (game.player.shield.isCharged()) {
             SceneUtils.flashScreen();
             firelaser.shatter();
             game.player.shield.deplete();
-            if (game.state.variables.emp) {
-                game.enemies.damageAll(
-                    randomInRange(2, 6) * game.state.variables.damageMultiplier * game.state.variables.emprate
-                );
-                game.firelasers.clear();
-            }
-        }
-        // If clock not active but ready, activate it.
-        else if (game.player.clock.owned && !game.player.clock.active && game.player.clock.isReady) {
+        } else if (game.player.clock.isReady) {
             game.player.clock.activate();
-        } else if (!game.player.clock.active) {
+        } else {
             game.state.setGameOver();
         }
     }
 
-    // COIN AND PLAYER
     static CoinPlayer(coin, player) {
         coin.removeAndCount();
     }
 
-    // ENEMIES AND ENEMIES
     static EnemiesEnemies(enemy1, enemy2) {
         Movement.moveAway(enemy1, enemy2);
     }
 
-    // BLUELASERS AND FIRELASERS
-    static BluelasersFirelasers(bluelaser, firelaser) {
-        // OVERPOWERED - Removed for now
-    }
-
-    // ENEMIES AND CANVAS LIMITS
     static EnemyCanvas(enemy) {
         Movement.moveToCanvas(enemy);
     }

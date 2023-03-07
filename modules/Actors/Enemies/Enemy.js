@@ -26,7 +26,7 @@ export class Enemy {
 
     takeDamage(damage) {
         this.hp -= damage;
-        if (game.state.variables.thorshammer) {
+        if (game.buffcontroller.thorshammer) {
             this.stun();
         }
     }
@@ -63,7 +63,7 @@ export class Enemy {
     // Steps should be incremented by the move() method.
     step() {
         this.steps++;
-        if (this.steps % this.firingrate === 0 && !game.state.variables.muteenemies) {
+        if (this.steps % this.firingrate === 0 && !game.buffcontroller.muteenemies) {
             this.shoot();
         }
     }

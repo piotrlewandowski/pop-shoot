@@ -24,7 +24,7 @@ export class PlayerGfx {
     }
 
     static drawShield() {
-        if (game.player.shield.isCharged() && !game.itemcontroller.invincibility) {
+        if (game.player.shield.isCharged() && !game.buffcontroller.invincibility) {
             game.player.shield.sprite.forEach((sprite) =>
                 game.scene.ctx.drawImage(
                     sprite,
@@ -33,7 +33,7 @@ export class PlayerGfx {
                 )
             );
         }
-        if (game.itemcontroller.invincibility) {
+        if (game.buffcontroller.invincibility) {
             game.scene.ctx.drawImage(
                 SHIELDINVINCIBILITYSPRITE,
                 SceneUtils.offsetCoordinates(game.player).x + game.weathercontroller.glitchOffset.x,

@@ -1,3 +1,5 @@
+import { OrangePackage } from './modules/Actors/Packages/OrangePackage.js';
+import { RedPackage } from './modules/Actors/Packages/RedPackage.js';
 import { Game } from './modules/Game.js';
 
 // FPS control
@@ -37,3 +39,5 @@ export function gameloop(timestamp) {
         return game.scene.drawPause();
     }
 }
+
+game.enemies.add(new OrangePackage());

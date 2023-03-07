@@ -1,6 +1,8 @@
 import { game } from '../../../app.js';
 
 export class SlowMo {
+    static slowmorate = 0.2; // Default Slowmo rate. Lower = Slower. 1 = Fullspeed.
+
     static start() {
         // ENEMIES
         game.enemies.applySlowmoToAll();

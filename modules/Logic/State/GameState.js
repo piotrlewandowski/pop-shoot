@@ -7,7 +7,6 @@ import {
     GLASSSTAGE5SPRITE,
 } from '../../Assets/Hud.js';
 import { Notification } from '../../Effects/Misc/Notification.js';
-import { GameVariables } from './GameVariables.js';
 import { SlowMo } from './SlowMo.js';
 import { CashController } from '../Controllers/CashController.js';
 import { Clock } from '../../Objects/Clock.js';
@@ -16,6 +15,7 @@ import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
 import { Controls } from '../Motion/Controls.js';
 import { DropController } from '../Controllers/DropController.js';
+import { ItemController } from '../Controllers/ItemController.js';
 
 // STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
@@ -33,8 +33,6 @@ export class GameState {
 
         this.paused = false;
         this.over = false;
-
-        this.variables = new GameVariables();
     }
 
     // Set an interval to increment the game time by 1 every second.
@@ -54,7 +52,7 @@ export class GameState {
         if (
             !this.slowmo &&
             !game.player.clock.active &&
-            !game.state.variables.noslowmo &&
+            !game.buffcontroller.noslowmo &&
             game.player.slowmogauge.charge > 0
         ) {
             this.slowmo = true;
@@ -144,7 +142,6 @@ export class GameState {
         this.stage = 0;
         this.boss = false;
         this.over = false;
-        game.state.variables = new GameVariables();
 
         // RESTORE CONTROLS
         Controls.addMouseClicks();
@@ -155,6 +152,7 @@ export class GameState {
         game.player.slowmogauge.charge = 100;
         game.player.clock = new Clock();
         game.dropcontroller = new DropController();
+        game.itemcontroller = new ItemController();
         game.buffcontroller = new BuffController();
         game.cashcontroller = new CashController();
 

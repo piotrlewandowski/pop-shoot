@@ -26,7 +26,7 @@ export class Player {
     }
 
     shoot() {
-        if (game.state.variables.mute || this.clock.active) {
+        if (game.buffcontroller.mute || this.clock.active) {
             SceneUtils.shakeScreen(2, 0.25);
             game.effects.add(new Animation(game.player.x, game.player.y - 15, 'smoke_normal'));
             game.audiocontroller.playSound('noammo');
@@ -75,7 +75,7 @@ export class Player {
             }
 
             // QUAD-DAMAGE & THOR'S HAMMER
-            if (game.state.variables.quaddamage || game.state.variables.thorshammer) {
+            if (game.buffcontroller.quaddamage || game.buffcontroller.thorshammer) {
                 SceneUtils.shakeScreen(3, 0.25);
             }
         }

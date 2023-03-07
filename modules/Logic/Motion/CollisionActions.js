@@ -16,7 +16,7 @@ export class CollisionActions {
             // Determine which hit-sound to play
             if (enemy.constructor === RedPackage || enemy.constructor === OrangePackage) {
                 game.audiocontroller.playSound('hitMetal');
-            } else if (game.state.variables.quaddamage) {
+            } else if (game.buffcontroller.quaddamage) {
                 game.audiocontroller.playSound('hitQuad');
             } else {
                 game.audiocontroller.playSound('hit');

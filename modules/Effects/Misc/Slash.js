@@ -20,7 +20,7 @@ export class Slash {
         this.x = x;
         this.y = y;
         this.duration = DURATION;
-        this.sprite = game.state.variables.quaddamage ? QUADSPRITE[randomInRange(0, 3)] : SPRITE[randomInRange(0, 3)];
+        this.sprite = game.buffcontroller.quaddamage ? QUADSPRITE[randomInRange(0, 3)] : SPRITE[randomInRange(0, 3)];
     }
 
     move() {

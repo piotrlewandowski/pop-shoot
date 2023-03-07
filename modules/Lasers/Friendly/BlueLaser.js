@@ -38,13 +38,13 @@ export class BlueLaser {
     }
 
     setSprite() {
-        if (game.state.variables.quaddamage) {
+        if (game.buffcontroller.quaddamage) {
             return (this.sprite = QUADSPRITE);
         }
-        if (game.state.variables.thorshammer) {
+        if (game.buffcontroller.thorshammer) {
             return (this.sprite = THORSPRITE);
         }
-        if (game.state.variables.bomb) {
+        if (game.buffcontroller.bomb) {
             return (this.sprite = BOMBSPRITE);
         }
     }

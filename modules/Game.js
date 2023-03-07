@@ -8,10 +8,10 @@ import { GameState } from './Logic/State/GameState.js';
 import { AudioController } from './Logic/Controllers/AudioController.js';
 import { CashController } from './Logic/Controllers/CashController.js';
 import { EnemyController } from './Logic/Controllers/EnemyController.js';
-import { ItemController } from './Logic/Controllers/ItemController.js';
 import { BuffController } from './Logic/Controllers/BuffController.js';
 import { WeatherController } from './Logic/Controllers/WeatherController.js';
 import { CollisionDetection } from './Logic/Motion/CollisionDetection.js';
+import { DropController } from './Logic/Controllers/DropController.js';
 
 export class Game {
     constructor() {
@@ -28,7 +28,7 @@ export class Game {
 
         // LOGIC CONTROLLERS
         this.state = new GameState();
-        this.itemcontroller = new ItemController();
+        this.dropcontroller = new DropController();
         this.buffcontroller = new BuffController();
         this.audiocontroller = new AudioController();
         this.cashcontroller = new CashController();

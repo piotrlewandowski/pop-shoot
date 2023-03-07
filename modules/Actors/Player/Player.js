@@ -1,18 +1,12 @@
 import { game } from '../../../app.js';
-import { BlueLaser } from '../../Lasers/Friendly/BlueLaser.js';
 import { PLAYERSPRITE } from '../../Assets/Player.js';
 import { Shield } from './Shield.js';
 import { Flame } from './Flame.js';
-import { getClosestEnemyTo, randomInRange } from '../../Logic/Helpers.js';
-import { Rocket } from '../../Lasers/Friendly/Rocket.js';
-import { Seeker } from '../../Lasers/Friendly/Seeker.js';
-import { Clock } from '../../Drops/Clock.js';
+import { Clock } from '../../Objects/Clock.js';
 import { SlowmoGauge } from './SlowmoGauge.js';
-import { Drone } from '../../Lasers/Friendly/Drone.js';
-import { Dart } from '../../Lasers/Friendly/Dart.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
-import { ItemsActions } from '../../Drops/ItemsAction.js';
+import { ItemsActions } from '../../Objects/ItemsAction.js';
 
 const SPRAYDISTANCE = 5; // Distance between laser streams when spray upgrade is acquired
 const LASERANGLE = 270; // Default laser direction. 270 = NORTH

@@ -7,7 +7,7 @@ import { Slash } from '../../Effects/Misc/Slash.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
-import { ItemsActions } from '../../Drops/ItemsAction.js';
+import { ItemsActions } from '../../Objects/ItemsAction.js';
 
 export class CollisionActions {
     static BluelasersEnemies(enemy, laser) {

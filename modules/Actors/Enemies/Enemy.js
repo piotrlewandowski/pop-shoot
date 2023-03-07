@@ -3,7 +3,7 @@ import { randomInRange } from '../../Logic/Helpers.js';
 import { CANVAS } from '../../Assets/Other.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { Coin } from '../../Effects/Misc/Coin.js';
-import { ItemsActions } from '../../Drops/ItemsAction.js';
+import { ItemsActions } from '../../Objects/ItemsAction.js';
 
 export class Enemy {
     constructor(radius, hp, coins, sprite, speed, firingrate) {

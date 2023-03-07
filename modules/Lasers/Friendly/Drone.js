@@ -13,6 +13,6 @@ export class Drone extends BlueLaser {
         this.sprite = SPRITE[randomInRange(0, SPRITE.length - 1)];
 
         this.speed = randomInRange(10, 20);
-        this.damage *= game.state.variables.dronesrate;
+        this.damage *= game.itemcontroller.dronesrate;
     }
 }

@@ -28,15 +28,15 @@ export class CollisionActions {
         game.effects.add(new Slash(enemy.x, enemy.y));
         laser.shatter();
 
-        if (game.state.variables.bomb) {
+        if (game.itemcontroller.bomb) {
             game.itemcontroller.bombAll();
         }
 
-        if (game.state.variables.airstrike) {
+        if (game.itemcontroller.airstrike) {
             game.itemcontroller.sendAirstrike();
         }
 
-        if (game.state.variables.darts && !enemy.name) {
+        if (game.itemcontroller.darts && !enemy.name) {
             game.itemcontroller.stunWithDart(enemy);
         }
     }
@@ -46,7 +46,7 @@ export class CollisionActions {
             SceneUtils.flashScreen();
             enemy.takeDamage(enemy.hp);
             game.player.shield.deplete();
-            if (game.state.variables.emp) {
+            if (game.itemcontroller.emp) {
                 game.itemcontroller.blowEmp();
             }
         } else if (game.player.clock.isReady && !game.player.clock.active) {
@@ -61,7 +61,7 @@ export class CollisionActions {
             SceneUtils.flashScreen();
             firelaser.shatter();
             game.player.shield.deplete();
-            if (game.state.variables.emp) {
+            if (game.itemcontroller.emp) {
                 game.itemcontroller.blowEmp();
             }
         } else if (game.player.clock.isReady && !game.player.clock.active) {

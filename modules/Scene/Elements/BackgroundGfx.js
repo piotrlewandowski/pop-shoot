@@ -61,7 +61,7 @@ export class BackgroundGfx {
     }
 
     static drawFog() {
-        const fogtype = game.state.variables.toxic ? FOGGREEN : FOG;
+        const fogtype = game.itemcontroller.toxic ? FOGGREEN : FOG;
 
         if (game.state.slowmo || !game.state.time) {
             game.scene.ctx.drawImage(fogtype, -game.scene.bgScrollOffset - CANVAS.width, 0);

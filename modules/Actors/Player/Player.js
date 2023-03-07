@@ -40,14 +40,14 @@ export class Player {
             // SPRAY
 
             // In case the spray number is even, skew the laser's angle by 2.5 degrees
-            let direction = game.state.variables.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
+            let direction = game.itemcontroller.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
 
             // Fire the first laser
             game.bluelasers.add(new weapon(direction));
 
             // Calculate the remaning sprays directions & fire them
             let spraycount = 1;
-            for (let i = 0; i < game.state.variables.spray; i++) {
+            for (let i = 0; i < game.itemcontroller.spray; i++) {
                 // spray left
                 if (i % 2) {
                     game.bluelasers.add(new weapon(direction - SPRAYDISTANCE * spraycount));
@@ -60,17 +60,17 @@ export class Player {
             }
 
             // SEEKERS
-            if (game.enemies.enemiesOnScreen() && game.state.variables.seekers) {
+            if (game.enemies.enemiesOnScreen() && game.itemcontroller.seekers) {
                 game.itemcontroller.shootSeeker();
             }
 
             // DRONES
-            if (game.state.variables.drones) {
+            if (game.itemcontroller.drones) {
                 game.itemcontroller.shootDrone();
             }
 
             // DARTS
-            if (game.state.variables.darts) {
+            if (game.itemcontroller.darts) {
                 game.itemcontroller.shootDart();
             }
 
@@ -82,7 +82,7 @@ export class Player {
     }
 
     setShoot() {
-        const rate = game.state.variables.machinegun ? game.state.variables.machinegunrate : DEFAULTSHOOTINGRATE;
+        const rate = game.itemcontroller.machinegun ? game.itemcontroller.machinegunrate : DEFAULTSHOOTINGRATE;
         this.shoot();
         this.shootInterval = setInterval(this.shoot.bind(this), rate);
     }

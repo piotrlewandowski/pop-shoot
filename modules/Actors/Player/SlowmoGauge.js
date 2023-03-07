@@ -47,7 +47,7 @@ export class SlowmoGauge {
     startDischarging() {
         game.audiocontroller.stopSound('slowmoCharge');
         this.chargeDelay = CHARGE_DELAY;
-        this.charge -= game.state.variables.uranium ? game.state.variables.uraniumrate : DISCHARGERATE;
+        this.charge -= game.itemcontroller.uranium ? game.itemcontroller.uraniumrate : DISCHARGERATE;
         game.player.flame.move({ smoke: 'smoke_small' });
         if (this.charge < 0) {
             this.charge = 0;

@@ -23,12 +23,8 @@ export class Debris extends BlueLaser {
         this.distance = randomInRange(MIN_DISTANCE, MAX_DISTANCE);
         this.speed = SPEED;
         this.angle = 0;
-        this.damage *= game.state.variables.debrisrate;
+        this.damage *= game.itemcontroller.debrisrate;
     }
-
-    static count = 0;
-    static maxDebris = 50;
-    static respawnRate = 200; // in ms
 
     move() {
         // In the below type of circular movement, angle and speed are closely linked.

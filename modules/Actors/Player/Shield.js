@@ -29,27 +29,27 @@ export class Shield {
     }
 
     startCharging() {
-        let rate = game.state.variables.nitrogen ? game.state.variables.nitrogenrate : CHARGERATE;
+        let rate = game.itemcontroller.nitrogen ? game.itemcontroller.nitrogenrate : CHARGERATE;
 
         if (game.state.slowmo) {
             rate *= game.state.variables.slowmorate;
         }
 
-        if (!game.state.variables.noshield) {
+        if (!game.itemcontroller.noshield) {
             this.charge += rate;
         }
 
-        if (this.charge > 100 || game.state.variables.invincibility) {
+        if (this.charge > 100 || game.itemcontroller.invincibility) {
             this.charge = 100;
         }
     }
 
     deplete() {
-        const invincibilitytime = game.state.variables.metalshield
-            ? game.state.variables.metalshieldtime
+        const invincibilitytime = game.itemcontroller.metalshield
+            ? game.itemcontroller.metalshieldtime
             : INVINCIBILITYTIME;
 
-        if (!game.state.variables.invincibility && !this.underfire) {
+        if (!game.itemcontroller.invincibility && !this.underfire) {
             game.audiocontroller.playSound('shieldDown');
             this.underfire = true;
             setTimeout(() => {
@@ -64,10 +64,10 @@ export class Shield {
             this.sprite = [SHIELDUNDERFIRESPRITE];
         } else {
             this.sprite = [SHIELDSPRITE];
-            if (game.state.variables.emp) {
+            if (game.itemcontroller.emp) {
                 this.sprite.push(SHIELDEMPSPRITE);
             }
-            if (game.state.variables.metalshield) {
+            if (game.itemcontroller.metalshield) {
                 this.sprite.unshift(SHIELDMETALSPRITE);
             }
         }

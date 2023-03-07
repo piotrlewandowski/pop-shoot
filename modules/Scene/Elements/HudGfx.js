@@ -147,7 +147,7 @@ export class HudGfx {
     static drawItemsIcons() {
         let currentx = ICON_STARTINGX;
 
-        game.dropcontroller.aquiredItems.forEach((item) => {
+        game.itemdropcontroller.aquiredItems.forEach((item) => {
             game.scene.ctx.drawImage(item.icon, currentx, ICON_Y);
             // Spray or DMG aquired more than once
             if (item.repeated > 1) {

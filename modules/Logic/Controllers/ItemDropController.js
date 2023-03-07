@@ -13,7 +13,7 @@ const NOTIFICATION_Y = 440;
 // DROP RATE FOR NON-REPETITIVE POOL
 const RATE = 80;
 
-export class DropController {
+export class ItemDropController {
     constructor() {
         this.aquiredItems = [];
 

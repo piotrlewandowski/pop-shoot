@@ -23,7 +23,7 @@ export class Debris extends BlueLaser {
         this.distance = randomInRange(MIN_DISTANCE, MAX_DISTANCE);
         this.speed = SPEED;
         this.angle = 0;
-        this.damage *= game.itemcontroller.debrisrate;
+        this.damage *= game.itemactioncontroller.debrisrate;
     }
 
     move() {
@@ -36,7 +36,7 @@ export class Debris extends BlueLaser {
     }
 
     shatter() {
-        game.itemcontroller.debriscount--;
+        game.itemactioncontroller.debriscount--;
         super.shatter();
     }
 }

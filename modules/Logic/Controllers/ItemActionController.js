@@ -33,7 +33,7 @@ const METALSHIELDTIME = 2; // Invincibility time after being hit. In seconds (ti
 const NITROGENRATE = 2; // How much faster should shield recharge. (default without upgrade is 1)
 const URANIUMRATE = 0.6; // How much slower should slowmo deplete. (lower = slower. default without upgrade is 0.75)
 
-export class ItemController {
+export class ItemActionController {
     constructor() {
         this.airstrike = false;
         this.bomb = false;

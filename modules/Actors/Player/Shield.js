@@ -30,7 +30,7 @@ export class Shield {
     }
 
     startCharging() {
-        let rate = game.itemcontroller.nitrogen ? game.itemcontroller.nitrogenrate : CHARGERATE;
+        let rate = game.itemactioncontroller.nitrogen ? game.itemactioncontroller.nitrogenrate : CHARGERATE;
 
         if (game.state.slowmo) {
             rate *= SlowMo.slowmorate;
@@ -46,8 +46,8 @@ export class Shield {
     }
 
     deplete() {
-        const invincibilitytime = game.itemcontroller.metalshield
-            ? game.itemcontroller.metalshieldtime
+        const invincibilitytime = game.itemactioncontroller.metalshield
+            ? game.itemactioncontroller.metalshieldtime
             : INVINCIBILITYTIME;
 
         if (!game.buffcontroller.invincibility && !this.underfire) {
@@ -65,10 +65,10 @@ export class Shield {
             this.sprite = [SHIELDUNDERFIRESPRITE];
         } else {
             this.sprite = [SHIELDSPRITE];
-            if (game.itemcontroller.emp) {
+            if (game.itemactioncontroller.emp) {
                 this.sprite.push(SHIELDEMPSPRITE);
             }
-            if (game.itemcontroller.metalshield) {
+            if (game.itemactioncontroller.metalshield) {
                 this.sprite.unshift(SHIELDMETALSPRITE);
             }
         }

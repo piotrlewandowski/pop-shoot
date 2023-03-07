@@ -18,7 +18,7 @@ export class BlueLaser {
         this.radius = RADIUS;
         this.sprite = LASERSPRITE;
 
-        this.damage = randomInRange(MINDMG, MAXDMG) * game.itemcontroller.damageMultiplier;
+        this.damage = randomInRange(MINDMG, MAXDMG) * game.itemactioncontroller.damageMultiplier;
         this.speed = SPEED;
         this.direction = direction;
         this.shattered = false;
@@ -28,7 +28,7 @@ export class BlueLaser {
     }
 
     move() {
-        if (game.itemcontroller.loopers && this.y <= 10 && !this.alreadyLooped) {
+        if (game.itemactioncontroller.loopers && this.y <= 10 && !this.alreadyLooped) {
             this.y = CANVAS.height;
             this.alreadyLooped = true;
         }

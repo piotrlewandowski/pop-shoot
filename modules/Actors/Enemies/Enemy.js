@@ -44,7 +44,7 @@ export class Enemy {
             game.effects.add(new Animation(this.x, this.y - 30, 'smoke_normal'));
             setTimeout(() => {
                 this.stunned = false;
-            }, game.itemcontroller.stuntime);
+            }, game.itemactioncontroller.stuntime);
         }
     }
 
@@ -55,7 +55,7 @@ export class Enemy {
             flip = !flip;
         }, 40);
 
-        setTimeout(() => clearInterval(shakeInterval), game.itemcontroller.stuntime);
+        setTimeout(() => clearInterval(shakeInterval), game.itemactioncontroller.stuntime);
     }
 
     // All enemies have a steps variable in parallel with y.
@@ -71,7 +71,7 @@ export class Enemy {
     // Release coins when killed.
     // Some enemies & bosses have extra behaviour for this method.
     die() {
-        for (let i = 0; i < this.coins * game.itemcontroller.greedMultiplier; i++) {
+        for (let i = 0; i < this.coins * game.itemactioncontroller.greedMultiplier; i++) {
             game.effects.add(new Coin(this.x, this.y));
         }
     }

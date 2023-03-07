@@ -35,19 +35,19 @@ export class Player {
             game.audiocontroller.playSound('laser');
 
             // ROCKETS
-            let weapon = game.itemcontroller.getWeaponType();
+            let weapon = game.itemactioncontroller.getWeaponType();
 
             // SPRAY
 
             // In case the spray number is even, skew the laser's angle by 2.5 degrees
-            let direction = game.itemcontroller.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
+            let direction = game.itemactioncontroller.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
 
             // Fire the first laser
             game.bluelasers.add(new weapon(direction));
 
             // Calculate the remaning sprays directions & fire them
             let spraycount = 1;
-            for (let i = 0; i < game.itemcontroller.spray; i++) {
+            for (let i = 0; i < game.itemactioncontroller.spray; i++) {
                 // spray left
                 if (i % 2) {
                     game.bluelasers.add(new weapon(direction - SPRAYDISTANCE * spraycount));
@@ -60,18 +60,18 @@ export class Player {
             }
 
             // SEEKERS
-            if (game.enemies.enemiesOnScreen() && game.itemcontroller.seekers) {
-                game.itemcontroller.shootSeeker();
+            if (game.enemies.enemiesOnScreen() && game.itemactioncontroller.seekers) {
+                game.itemactioncontroller.shootSeeker();
             }
 
             // DRONES
-            if (game.itemcontroller.drones) {
-                game.itemcontroller.shootDrone();
+            if (game.itemactioncontroller.drones) {
+                game.itemactioncontroller.shootDrone();
             }
 
             // DARTS
-            if (game.itemcontroller.darts) {
-                game.itemcontroller.shootDart();
+            if (game.itemactioncontroller.darts) {
+                game.itemactioncontroller.shootDart();
             }
 
             // QUAD-DAMAGE & THOR'S HAMMER
@@ -82,7 +82,7 @@ export class Player {
     }
 
     setShoot() {
-        const rate = game.itemcontroller.machinegun ? game.itemcontroller.machinegunrate : DEFAULTSHOOTINGRATE;
+        const rate = game.itemactioncontroller.machinegun ? game.itemactioncontroller.machinegunrate : DEFAULTSHOOTINGRATE;
         this.shoot();
         this.shootInterval = setInterval(this.shoot.bind(this), rate);
     }

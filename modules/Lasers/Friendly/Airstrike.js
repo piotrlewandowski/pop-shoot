@@ -13,7 +13,7 @@ export class Airstrike extends BlueLaser {
         this.sprite = AIRSTRIKESPRITE;
 
         this.speed = 25;
-        this.damage *= game.itemcontroller.airstrikerate;
+        this.damage *= game.itemactioncontroller.airstrikerate;
         this.target = target;
 
         this.alreadyLooped = true; // airstrikes don't loop so this variable is overridden

@@ -14,8 +14,8 @@ import { BuffController } from '../Controllers/BuffController.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
 import { Controls } from '../Motion/Controls.js';
-import { DropController } from '../Controllers/DropController.js';
-import { ItemController } from '../Controllers/ItemController.js';
+import { ItemActionController } from '../Controllers/ItemActionController.js';
+import { ItemDropController } from '../Controllers/ItemDropController.js';
 
 // STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
@@ -151,8 +151,8 @@ export class GameState {
         game.player.shield.charge = 100;
         game.player.slowmogauge.charge = 100;
         game.player.clock = new Clock();
-        game.dropcontroller = new DropController();
-        game.itemcontroller = new ItemController();
+        game.itemdropcontroller = new ItemDropController();
+        game.itemactioncontroller = new ItemActionController();
         game.buffcontroller = new BuffController();
         game.cashcontroller = new CashController();
 

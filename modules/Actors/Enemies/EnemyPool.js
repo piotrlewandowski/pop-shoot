@@ -2,7 +2,6 @@ import { game } from '../../../app.js';
 import { CANVAS } from '../../Assets/Other.js';
 import { RedPackage } from '../Packages/RedPackage.js';
 import { Slash } from '../../Effects/Misc/Slash.js';
-import { SlowMo } from '../../Logic/State/SlowMo.js';
 
 export class EnemyPool {
     constructor() {
@@ -68,13 +67,13 @@ export class EnemyPool {
     }
 
     applySlowmoToOne(enemy) {
-        enemy.speed *= SlowMo.slowmorate;
-        enemy.firingrate /= SlowMo.slowmorate;
+        enemy.speed *= game.slowmocontroller.slowmorate;
+        enemy.firingrate /= game.slowmocontroller.slowmorate;
     }
 
     removeSlowmoFromOne(enemy) {
-        enemy.speed /= SlowMo.slowmorate;
-        enemy.firingrate *= SlowMo.slowmorate;
+        enemy.speed /= game.slowmocontroller.slowmorate;
+        enemy.firingrate *= game.slowmocontroller.slowmorate;
     }
 
     // Used to check if there are any enemies on screen. Currently used by seekers & airstrike

@@ -59,7 +59,6 @@ import {
     DEBRIS_PAUSE,
     DEBRIS_NOTIFICATION,
 } from '../Assets/Hud.js';
-import { SlowMo } from '../Logic/State/SlowMo.js';
 
 export const ITEMS = {
     airstrike: {
@@ -176,7 +175,7 @@ export const ITEMS = {
     },
     timefreeze: {
         name: 'timefreeze',
-        activate: () => (SlowMo.slowmorate = 0.05),
+        activate: () => (game.slowmocontroller.slowmorate = 0.05),
         icon: TIMEFREEZE_ICON,
         pause: TIMEFREEZE_PAUSE,
         notification: TIMEFREEZE_NOTIFICATION,

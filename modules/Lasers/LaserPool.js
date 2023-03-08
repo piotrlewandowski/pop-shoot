@@ -1,7 +1,6 @@
 import { CANVAS } from '../Assets/Other.js';
 import { game } from '../../app.js';
 import { Debris } from './Friendly/Debris.js';
-import { SlowMo } from '../Logic/State/SlowMo.js';
 
 export class LaserPool {
     constructor() {
@@ -34,11 +33,11 @@ export class LaserPool {
     }
 
     applySlowmoToOne(laser) {
-        laser.speed *= SlowMo.slowmorate;
+        laser.speed *= game.slowmocontroller.slowmorate;
     }
 
     removeSlowmoFromOne(laser) {
-        laser.speed /= SlowMo.slowmorate;
+        laser.speed /= game.slowmocontroller.slowmorate;
     }
 
     // Only keep lasers that meet the below conditions:

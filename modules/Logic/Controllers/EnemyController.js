@@ -26,7 +26,6 @@ import { BlueEmperor } from '../../Actors/Enemies/Types/BlueEmperor.js';
 import { BlueTerror } from '../../Actors/Enemies/Types/BlueTerror.js';
 import { Fk77 } from '../../Actors/Enemies/Bosses/Fk77.js';
 import { Diver } from '../../Actors/Enemies/Types/Diver.js';
-import { SlowMo } from '../State/SlowMo.js';
 
 export class EnemyController {
     constructor() {
@@ -161,7 +160,8 @@ export class EnemyController {
         const isInSpawnTime = game.state.time % enemy.interval === 0 && !game.state.slowmo;
 
         // Enemy's interval is reached (in slowmo mode)
-        const isInSlowmoSpawntime = game.state.time % (enemy.interval / SlowMo.slowmorate) === 0 && game.state.slowmo;
+        const isInSlowmoSpawntime =
+            game.state.time % (enemy.interval / game.slowmocontroller.slowmorate) === 0 && game.state.slowmo;
 
         // Check for all conditions
         return isInRange && isInState && (isInSpawnTime || isInSlowmoSpawntime);

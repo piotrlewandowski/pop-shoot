@@ -28,7 +28,7 @@ const HARDEN_RATE = 2000; // in ticks. lower = faster
 const HARDEN_TIME = 10000; // in ms
 
 // STATE
-const HP = 8000;
+const HP = 7000;
 const COINS = 30;
 const RADIUS = 50;
 const SPRITE = METALEMPERORSPRITE;

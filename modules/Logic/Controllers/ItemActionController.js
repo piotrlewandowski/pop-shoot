@@ -14,13 +14,13 @@ const AIRSTRIKERATE = 2; // Damage rate dealt by airstrike (1 = full damage);
 const BOMBRATE = 0.2; // Damage rate dealt to other enemies on screen (1 = full damage)
 const DARTSRATE = 0.3; // Damage rate dealt by darts when stun successful (1 = full damage)
 const DARTSSTUNCHANCE = 15; // Percentage chance to stun enemy when darts is upgraded
+const DEBRISNUMBER = 50; // Number of flying debris around player
 const DEBRISRATE = 0.5; // Damage rate dealt by debris
-const DEBRISRESPAWNRATE = 200; // in ms
+const DEBRISRESPAWNRATE = 200; // Rate in ms at which a shattered debris takes to respawn
 const DRONESRATE = 0.2; // Damage rate dealt by drones (1 = full damage)
 const DRONESNUMBER = 5; // Number of drones released
-const EMPRATE = 0.2; // Multiplier to damage dealt to enemies when player is hit
+const EMPRATE = 0.2; // Damage rate dealt by emp to enemies when player is hit
 const MACHINEGUNRATE = 110; // Shooting rate of the machine gun. Lower = Faster (rate without upgrade is 150)
-const MAXDEBRIS = 50; // Number of flying debris around player
 const ROCKETCHANCE = 15; // Percentage chance of firing a rocket
 const ROCKETDAMAGE = 3; // Rocket damage multiplier
 const SEEKERRATE = 0.5; // Damage rate dealt by seekers (1 = full damage);
@@ -57,7 +57,7 @@ export class ItemActionController {
         this.dartsstunchance = DARTSSTUNCHANCE;
         this.debrisrate = DEBRISRATE;
         this.debrisrespawnrate = DEBRISRESPAWNRATE;
-        this.maxdebris = MAXDEBRIS;
+        this.debrisnumber = DEBRISNUMBER;
         this.dronesnumber = DRONESNUMBER;
         this.dronesrate = DRONESRATE;
         this.emprate = EMPRATE;
@@ -79,7 +79,7 @@ export class ItemActionController {
 
     addDebris() {
         setInterval(() => {
-            if (this.debriscount < this.maxdebris) {
+            if (this.debriscount < this.debrisnumber) {
                 game.bluelasers.add(new Debris());
                 this.debriscount++;
             }

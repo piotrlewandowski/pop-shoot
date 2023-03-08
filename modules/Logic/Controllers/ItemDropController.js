@@ -52,7 +52,7 @@ export class ItemDropController {
             // pick an item from non-repetitive-item pool & remove it from pool
             const randomIndex = randomInRange(0, this.itemPool.length - 1);
             this.aquireAndActivate(this.itemPool[randomIndex]);
-            this.itemPool.splice(rand, 1);
+            this.itemPool.splice(randomIndex, 1);
         } else {
             // pick an item from repetitive-item pool
             const randomIndex = randomInRange(0, this.repetitivePool.length - 1);

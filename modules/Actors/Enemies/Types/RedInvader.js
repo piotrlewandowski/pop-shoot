@@ -8,18 +8,18 @@ import { Difficulty } from '../../../Logic/State/Difficulty.js';
 
 // MOVEMENT
 const SPEED = 1;
-const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const RANGETOENGAGE = 75; // When player approaches proximity (X), invader will engage
-const ENGAGEDISTANCE = 200; // Distance kept when engaging player
+const MOVEDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
+const RANGETOENGAGE = 75; // when player approaches proximity (X coordinates), invader will engage
+const ENGAGEDISTANCE = 200; // distance kept when engaging player
 
 // SHOOTING
 const LASERSPEED = 4;
 const FIRINGRATE = 50;
-const LASERDIRECTION1 = 80; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION2 = 85; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION3 = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION4 = 95; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION5 = 100; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const LASERDIRECTION1 = 80; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION2 = 85; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION3 = 90; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION4 = 95; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION5 = 100; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // STATE
 const HP = Difficulty.baseInvaderHp * Difficulty.redHpMultiplier;

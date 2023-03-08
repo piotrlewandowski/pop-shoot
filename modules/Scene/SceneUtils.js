@@ -6,7 +6,6 @@ const WHITE = '#FFFFFF';
 const YELLOW = '#FFD800';
 
 export class SceneUtils {
-    // Draw big bar such as the level bar & boss healthbar
     static drawBigBar(x, y, width, height, ratio) {
         SceneUtils.setColor(WHITE);
         game.scene.ctx.beginPath();
@@ -17,7 +16,6 @@ export class SceneUtils {
         game.scene.ctx.stroke();
     }
 
-    // Draw bar such as the one above enemies
     static drawBar(x, y, width, height, ratio, blink) {
         SceneUtils.setColor(blink ? YELLOW : WHITE);
         game.scene.ctx.beginPath();
@@ -67,7 +65,7 @@ export class SceneUtils {
         }, duration * 1000);
     }
 
-    // Canvas.drawImage draws an image starting from the top-left corner of the image,
+    // canvas.drawImage draws an image starting from the top-left corner of the image,
     // making the x,y coordinates represent the top-left corner. This functions offsets
     // the coordinates so that x,y represent the center of the image.
     static offsetCoordinates(entity) {

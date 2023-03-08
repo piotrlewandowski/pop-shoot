@@ -6,18 +6,15 @@ const CHARGERATE = 1; // default charging rate if no nitrogen upgrade
 
 export class Shield {
     constructor() {
-        this.charge = 100; // 0=EMPTY 100=FULL
+        this.charge = 100;
         this.underfire = false;
         this.setObserver();
         this.sprite = SHIELDSPRITE;
     }
 
-    // This method will observe the state of the shield and charge/discharge accordingly
     setObserver() {
         let fn = () => {
-            // First check if shield is upgraded and set sprite accordingly
             this.setSprite();
-
             if (!game.state.paused && !this.isCharged()) {
                 this.startCharging();
                 if (this.isCharged()) {

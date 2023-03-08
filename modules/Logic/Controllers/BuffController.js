@@ -1,18 +1,18 @@
-// BUFFS ARE DROPPED BY ORANGE PACKAGES
-
 import { randomInRange } from '../Helpers.js';
 import { game } from '../../../app.js';
 import { BUFFS } from '../../Objects/Buffs.js';
 
 const BUFFDURATION = 15; // in seconds
 
+// buffs are dropped by OrangePackage
+
 export class BuffController {
     constructor() {
-        // ACTIVE BUFF TRACKING
+        // active-buff tracking
         this.activeBuff = false;
         this.countdown = 0;
 
-        // BUFFS ACTIVATION VARIABLES
+        // buff activation variables
         this.invincibility = false;
         this.mute = false;
         this.noshield = false;

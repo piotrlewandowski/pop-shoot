@@ -38,7 +38,8 @@ export class EnemyController {
     }
 
     addEnemies() {
-        // Type, Start, End, Interval
+        // type, start, end, interval
+
         // STAGE 1
         this.addEnemy(GreenInvader, 4, 290, 4);
         this.addEnemy(GreenUfo, 17, 290, 11);
@@ -49,9 +50,9 @@ export class EnemyController {
         this.addEnemy(BlueInvader, 90, 290, 35);
         this.addEnemy(BlueUfo, 90, 290, 40);
 
-        // Boss
+        // boss
         this.addBoss(EyeInTheSky, 300);
-        // Orange Package
+        // orange package
         this.addEnemy(OrangePackage, 180, 270, 90);
 
         // STAGE 2
@@ -66,9 +67,9 @@ export class EnemyController {
         this.addEnemy(RedInvader, 390, 590, 25);
         this.addEnemy(RedUfo, 415, 590, 25);
 
-        // Boss
+        // boss
         this.addBoss(MetalEmperor, 600);
-        // Orange Package
+        // orange package
         this.addEnemy(OrangePackage, 360, 570, 90);
 
         // STAGE 3
@@ -81,9 +82,9 @@ export class EnemyController {
         this.addEnemy(RedPlacer, 685, 890, 35);
         this.addEnemy(RedEmperor, 730, 890, 45);
 
-        // Boss
+        // boss
         this.addBoss(FamiliarSight, 900);
-        // Orange Package
+        // orange package
         this.addEnemy(OrangePackage, 630, 870, 90);
 
         // STAGE 4
@@ -95,9 +96,9 @@ export class EnemyController {
         this.addEnemy(Diver, 960, 1185, 60);
         this.addEnemy(BlackInvader, 1050, 1185, 20);
         this.addEnemy(YellowUfo, 1050, 1185, 14);
-        // Boss
+        // boss
         this.addBoss(Fk77, 1200);
-        // Orange Package
+        // orange package
         this.addEnemy(OrangePackage, 950, 1170, 90);
 
         // STAGE 5
@@ -107,9 +108,9 @@ export class EnemyController {
         this.addEnemy(BlackPlacer, 1260, 1490, 30);
         this.addEnemy(BlackEmperor, 1290, 1490, 40);
         this.addEnemy(BlackTerror, 1320, 1490, 35);
-        // Boss
+        // boss
         this.addBoss(Abuser, 1500);
-        // Orange Package
+        // orange package
         this.addEnemy(OrangePackage, 1250, 1470, 90);
     }
 
@@ -150,20 +151,20 @@ export class EnemyController {
     }
 
     shouldSpawn(enemy) {
-        // Enemy is in specified time bracket
+        // enemy is in specified time bracket
         const isInRange = game.state.time >= enemy.startTime && game.state.time <= enemy.endTime;
 
-        // Game is not in boss/paused/clock state
+        // game is not in boss/paused/clock state
         const isInState = !game.state.boss && !game.state.paused && !game.player.clock.active;
 
-        // Enemy's interval is reached (not in slowmo mode)
+        // enemy's interval is reached (not in slowmo mode)
         const isInSpawnTime = game.state.time % enemy.interval === 0 && !game.state.slowmo;
 
-        // Enemy's interval is reached (in slowmo mode)
+        // enemy's interval is reached (in slowmo mode)
         const isInSlowmoSpawntime =
             game.state.time % (enemy.interval / game.slowmocontroller.slowmorate) === 0 && game.state.slowmo;
 
-        // Check for all conditions
+        // check for all conditions
         return isInRange && isInState && (isInSpawnTime || isInSlowmoSpawntime);
     }
 }

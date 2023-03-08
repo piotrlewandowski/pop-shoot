@@ -2,7 +2,7 @@ import { game } from '../../../app.js';
 import { Coin } from '../../Effects/Misc/Coin.js';
 import { DamageNumber } from '../../Effects/Misc/DamageNumber.js';
 
-const SLOWMORATE = 0.2; // Default Slowmo rate. Lower = Slower. 1 = Fullspeed.
+const SLOWMORATE = 0.2; // default rate. lower = slower. 1 = Fullspeed
 
 export class SlowmoController {
     constructor() {

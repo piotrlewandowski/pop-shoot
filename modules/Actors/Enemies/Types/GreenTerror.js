@@ -14,7 +14,7 @@ const SPEEDBOOST_X = 20;
 // SHOOTING
 const LASERSPEED = 3;
 const FIRINGRATE = 150;
-const LASERDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const LASERDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // STATE
 const HP = Difficulty.baseTerrorHp;

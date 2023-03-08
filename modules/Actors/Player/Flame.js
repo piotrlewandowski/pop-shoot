@@ -41,7 +41,7 @@ export class Flame {
         this.yOffset = VERTICAL_OFFSET;
         this.sprite = FLAME0SPRITE;
         this.spriteChanger = setInterval(() => {
-            this.sprite = SPRITE[randomInRange(0, 11)];
+            this.sprite = SPRITE[randomInRange(0, SPRITE.length - 1)];
         }, SPRITECHANGESPEED);
     }
 
@@ -53,10 +53,10 @@ export class Flame {
         return game.player.y + this.yOffset;
     }
 
-    move({ smoke }) {
+    move({ smoketype }) {
         this.yOffset = game.player.slowmogauge.charge * (VERTICAL_OFFSET / 100);
-        if (Math.round(this.yOffset) % 2 === 0 && smoke)
-            game.effects.add(new Animation(game.player.x, game.player.y + this.yOffset + SMOKE_OFFSET, smoke));
+        if (Math.round(this.yOffset) % 2 === 0 && smoketype)
+            game.effects.add(new Animation(game.player.x, game.player.y + this.yOffset + SMOKE_OFFSET, smoketype));
     }
 
     toggleSpriteSpeed() {

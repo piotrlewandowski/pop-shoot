@@ -53,7 +53,7 @@ export class CollisionDetection {
         });
     }
 
-    // Every entity in the game is represented by a circle. This function
+    // every entity that can collide has a radius. this function
     // checks if two entities (represented by circles) are colliding
     static _areColliding(entity1, entity2) {
         if (entity1.radius === -1 || entity2.radius === -1) {

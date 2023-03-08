@@ -68,7 +68,7 @@ const MUSIC = {
 };
 
 const SOUNDS = {
-    // Optional properties:
+    // optional properties:
     // rewind: bool - on next playback, the sound will play from beginning instead of resuming.
     // clone: bool - as many instances as needed will be played (without waiting for previous instance to finish).
     // loop: bool - self-explanatory. the sound will keep looping.
@@ -249,23 +249,23 @@ const SOUNDS = {
 
 export class AudioController {
     constructor() {
-        // Set all music to loop
+        // set all music to loop
         for (const key in MUSIC) {
             MUSIC[key].loop = true;
         }
 
-        // Set all sounds with 'loop' property to loop
+        // set all sounds with 'loop' property to loop
         for (const key in SOUNDS) {
             if (SOUNDS[key].loop) {
                 SOUNDS[key].audio.loop = true;
             }
         }
 
-        // Used to keep track of limited sounds
+        // used to keep track of limited sounds
         this.limits = {};
     }
 
-    // ********* MUSIC *********
+    // MUSIC
 
     updateMusic() {
         const track = this._getTrack();
@@ -281,7 +281,7 @@ export class AudioController {
     }
 
     _getTrack() {
-        // Called by updateMusic() to get the corresponding
+        // called by updateMusic() to get the corresponding
         // track to play, depending on the state of the game
         if (game.state.over) {
             return 'gameover';
@@ -304,7 +304,7 @@ export class AudioController {
         }
     }
 
-    // ********* SOUNDS *********
+    // SOUNDS
 
     playSound(type) {
         const sound = SOUNDS[type].clone ? SOUNDS[type].audio.cloneNode() : SOUNDS[type].audio;

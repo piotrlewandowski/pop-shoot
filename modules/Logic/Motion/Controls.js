@@ -48,29 +48,29 @@ export class Controls {
     // FUNCTIONS
 
     static _mouseClicks(evt) {
-        // Left
+        // left
         if (evt.button === 0) {
             if (!game.state.time) {
                 game.state.startGame();
                 CANVAS.requestFullscreen();
             }
-            game.player.unsetShoot(); // unset first, in case stuck to autoshooting by accident
+            game.player.unsetShoot(); // used to prevent stuck to autoshooting by accident
             game.player.setShoot();
         }
 
-        // Right
+        // right
         if (evt.button === 2) {
             game.state.startSlowmo();
         }
     }
 
     static _mouseClicksRelease(evt) {
-        // Left
+        // left
         if (evt.button === 0) {
             game.player.unsetShoot();
         }
 
-        // Right
+        // right
         if (evt.button === 2) {
             game.state.stopSlowmo();
         }

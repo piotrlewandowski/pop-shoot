@@ -15,7 +15,7 @@ export class Debris extends BlueLaser {
         super();
         this.sprite = SPRITE[randomInRange(0, SPRITE.length - 1)];
 
-        // Override x/y to avoid spawning in the center
+        // override x/y to avoid spawning in the center
         // of the player (default bluelaser spawn-point)
         this.x = -99;
         this.y = -99;
@@ -27,8 +27,8 @@ export class Debris extends BlueLaser {
     }
 
     move() {
-        // In the below type of circular movement, angle and speed are closely linked.
-        // The angle is multiplied by the speed in order to slowdown the debris during slowmo
+        // in the below type of circular movement, angle and speed are closely linked.
+        // the angle is multiplied by the speed in order to slowdown the debris during slowmo
         this.angle += this.speed;
 
         this.x = game.player.x + this.speed + Math.cos(this.angle) * this.distance;

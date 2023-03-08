@@ -10,8 +10,8 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 5;
-const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const DELAY = 60; // Delay entry to screen so that sound effect plays first (in steps)
+const MOVEDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
+const DELAY = 60; // in steps. delay entry to screen so that sound effect plays first
 
 // STATE
 const HP = Difficulty.baseDiverHp;
@@ -49,8 +49,8 @@ export class Diver extends Enemy {
         this.step();
     }
 
-    // Diver should not take damage before it appears on screen
     takeDamage(damage) {
+        // diver doesn't take damage before it appears on screen
         if (this.steps > DELAY) {
             super.takeDamage(damage);
         }

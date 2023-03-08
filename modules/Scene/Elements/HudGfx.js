@@ -89,14 +89,14 @@ const ICON_GAP = 45;
 
 export class HudGfx {
     static drawStageTimeCash() {
-        // Vertical Line
+        // vertical line
         game.scene.ctx.drawImage(VLINESPRITE, VLINE_X, VLINE_Y);
 
-        // Stage
+        // stage
         game.scene.ctx.drawImage(FLOPPYSPRITE, FLOPPY_X, FLOPPY_Y);
         SceneUtils.drawText(`STAGE ${game.state.stage + 1}`, STAGE_X, STAGE_Y, STAGE_FONT);
 
-        // Time
+        // time
         game.scene.ctx.drawImage(CLOCKSPRITE, CLOCK_X, CLOCK_Y);
         if (!game.state.boss) {
             SceneUtils.drawText(getGametimeToMMSS(), TIME_X, TIME_Y, TIME_FONT);
@@ -104,13 +104,12 @@ export class HudGfx {
             SceneUtils.drawText(`BOSS FIGHT`, TIME_X, TIME_Y, TIME_FONT);
         }
 
-        // Cash
+        // cash
         game.scene.ctx.drawImage(COINSPRITE, COIN_X, COIN_Y);
         SceneUtils.drawText(game.cashcontroller.cash, CASH_X, CASH_Y, CASH_FONT);
     }
 
     static drawShieldWarning() {
-        // Shield Warning
         if (!game.player.shield.isCharged()) {
             game.scene.ctx.drawImage(GLASSSHIELDDOWNSPRITE, SHIELDWARNING_X, SHIELDWARNING_Y);
             SceneUtils.drawText(
@@ -149,11 +148,11 @@ export class HudGfx {
 
         game.itemdropcontroller.aquiredItems.forEach((item) => {
             game.scene.ctx.drawImage(item.icon, currentx, ICON_Y);
-            // Spray or DMG aquired more than once
+            // spray or dmg aquired more than once
             if (item.repeated > 1) {
                 SceneUtils.drawCenteredText(`x${item.repeated}`, currentx + ICONTEXT_SHIFT, ICONTEXT_Y, ICONTEXT_FONT);
             }
-            // Clock status
+            // clock status
             if (item.name === 'clock') {
                 SceneUtils.drawCenteredText(
                     game.player.clock.active ? '!' : game.player.clock.isReady ? '' : game.player.clock.countdown,
@@ -167,7 +166,6 @@ export class HudGfx {
     }
 
     static drawBuffs() {
-        // Buffs
         if (game.buffcontroller.activeBuff) {
             SceneUtils.drawCenteredText(game.buffcontroller.activeBuff.text, BUFFNAME_X, BUFFNAME_Y, BUFFNAME_FONT);
             SceneUtils.drawCenteredText(

@@ -11,12 +11,12 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 const SPEED = 5;
 const LOWEST_POINT = 165;
 const XPOS = 560;
-const SOUTH = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
-const SPAWN_RATE = 150; // UFO SPAWN RATE. LOWER = FASTER
-const P2_SPAWN_RATE = 100; // UFO SPAWN RATE. LOWER = FASTER
-const P3_SPAWN_RATE = 50; // UFO SPAWN RATE. LOWER = FASTER
+const SPAWN_RATE = 150; // ufo spawn rate. lower = faster
+const P2_SPAWN_RATE = 100; // ufo spawn rate. lower = faster
+const P3_SPAWN_RATE = 50; // ufo spawn rate. lower = faster
 
 // HARDEN
 const HARDEN_RATE = 2000; // in ticks. lower = faster
@@ -30,9 +30,8 @@ const RADIUS = 50;
 const SPRITE = FK77SPRITE;
 const NAME = '4K77';
 
-// PHASES (Rates, e.g. 0.75 = when boss reaches 75% of HP)
-// When the boss reaches a certain HP amount, it will fire
-// additional layers of lasers as well as laser-rain
+// PHASES
+// rates, e.g. 0.75 = when boss reaches 75% of HP
 const PHASE2_HP = 0.5;
 const PHASE3_HP = 0.25;
 
@@ -41,10 +40,9 @@ export class Fk77 extends Enemy {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.x = XPOS;
 
-        // BOSS SPECIFIC ------------
         this.name = NAME;
         game.state.toggleBoss();
-        // --------------------------
+
         this.spawnUfo();
         this.hardened = false;
     }
@@ -73,7 +71,7 @@ export class Fk77 extends Enemy {
     step() {
         super.step();
 
-        // Set ufo spawnrate according to boss phase & spawn it
+        // set ufo spawnrate according to boss phase & spawn it
         let spawnrate = SPAWN_RATE;
         if (this.hp < HP * PHASE2_HP) {
             spawnrate = P2_SPAWN_RATE;
@@ -85,7 +83,7 @@ export class Fk77 extends Enemy {
             this.spawnUfo();
         }
 
-        // Harden
+        // harden
         if (this.steps % HARDEN_RATE === 0) {
             this.harden();
         }

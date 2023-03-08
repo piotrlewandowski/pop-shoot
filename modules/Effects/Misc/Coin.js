@@ -28,7 +28,7 @@ export class Coin {
         this.sprite = SPRITE[this.spriteIndex];
         this.radius = RADIUS;
 
-        // Floating Phase
+        // floating phase
         this.direction = randomInRange(0, 360);
         this.isFloating = true;
 
@@ -36,27 +36,27 @@ export class Coin {
             this.isFloating = false;
         }, FLOATDURATION);
 
-        // Towards-Player phase
+        // towards-player phase
         this.speed = randomInRange(15, 40);
 
-        // Spinning animation
+        // spinning animation
         this.spinAnimation = setInterval(() => {
             this.sprite = SPRITE[this.spriteIndex % SPRITE.length];
             this.spriteIndex++;
         }, 20);
 
-        // Coin will be rendered on screen as long as duration is > 0
-        // Duration be flipped to 0 after collision with player
+        // coin will be rendered on screen as long as duration is > 0,
+        // duration be flipped to 0 after collision with player
         this.duration = 1;
     }
 
     move() {
         if (this.isFloating) {
-            // Move slowly in random direction on enemy's death
+            // move slowly in random direction on enemy's death
             this.x += Movement.move(this.direction, FLOATSPEED).x;
             this.y += Movement.move(this.direction, FLOATSPEED).y;
         } else {
-            // Move towards player
+            // move towards player
             this.x += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).x;
             this.y += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y, this.speed).y;
         }
@@ -71,7 +71,7 @@ export class Coin {
         this.duration = 0;
     }
 
-    // Used to blink progress-bar to yellow during coin pickup
+    // used to blink progress-bar to yellow during coin pickup
     static blinking = false;
     static revertBlinking;
 

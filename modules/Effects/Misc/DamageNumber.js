@@ -1,7 +1,7 @@
 import { randomInRange } from '../../Logic/Helpers.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 
-const DURATION = 20; // When DURATION reaches 0, the damage number will be removed by refresh()
+const DURATION = 20;
 const SPEED = 5;
 
 export class DamageNumber {

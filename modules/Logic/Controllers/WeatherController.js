@@ -15,12 +15,11 @@ const WEATHERS = {
 
 export class WeatherController {
     constructor() {
-        // General weather variables
+        // active-weather tracking
         this.darknessActive = false;
         this.weatherActive = false;
 
-        // Glitch offset used by 'matrix' weather type. This will be used
-        // in PlayerGfx.js to draw the player at an offset
+        // glitch offset used by 'matrix' weather type
         this.glitchOffset = { x: 0, y: 0 };
     }
 

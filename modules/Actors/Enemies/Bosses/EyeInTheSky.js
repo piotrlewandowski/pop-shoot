@@ -11,7 +11,7 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 // MOVEMENT
 const SPEED = 2;
 const LOWEST_POINT = 190;
-const SOUTH = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
 const FIRINGRATE = 100;
@@ -24,18 +24,12 @@ const RADIUS = 50;
 const SPRITE = EYEINTHESKYSPRITE;
 const NAME = 'EYE IN THE SKY';
 
-// PHASES (Rates, e.g. 0.75 = when boss reaches 75% of HP)
-// When the boss reaches a certain HP amount, the number of bullets fired will increase
-
-// Phase 2
+// PHASES
+// rates, e.g. 0.75 = when boss reaches 75%HP
 const PHASE2_HP = 0.75;
 const PHASE2_BULLETS = 30;
-
-// Phase 3
 const PHASE3_HP = 0.5;
 const PHASE3_BULLETS = 45;
-
-// Phase 4
 const PHASE4_HP = 0.25;
 const PHASE4_BULLETS = 60;
 
@@ -44,10 +38,8 @@ export class EyeInTheSky extends Enemy {
         super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         this.x = CANVAS.width / 2;
 
-        // BOSS SPECIFIC ------------
         this.name = NAME;
         game.state.toggleBoss();
-        // --------------------------
     }
 
     move() {
@@ -61,7 +53,7 @@ export class EyeInTheSky extends Enemy {
     shoot() {
         SceneUtils.shakeScreen(4, 0.5);
 
-        // Set the number of lasers to shoot according to boss phase
+        // set the number of lasers to shoot according to boss phase
         let bulletsnumber = BULLETSNUMBER;
 
         if (this.hp < HP * PHASE2_HP) {
@@ -74,16 +66,16 @@ export class EyeInTheSky extends Enemy {
             bulletsnumber = PHASE4_BULLETS;
         }
 
-        // Fire lasers
+        // fire lasers
         for (let i = 0; i < bulletsnumber; i++)
             game.firelasers.add(new FireLaser(this.x, this.y, randomInRange(0, 360), randomInRange(2, 6)));
     }
 
     takeDamage(damage) {
-        // SMOKE EFFECTS
+        // smoke effect
         game.effects.add(new Animation(this.x, this.y - 50, 'smoke_normal'));
 
-        // COSMETIC BULLETS
+        // cosmetic bullets
         for (let i = 0; i < 5; i++) {
             game.firelasers.add(new FireLaser(this.x, this.y - 50, randomInRange(260, 280), randomInRange(5, 15)));
         }

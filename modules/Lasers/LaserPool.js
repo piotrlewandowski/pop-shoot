@@ -24,10 +24,10 @@ export class LaserPool {
         }
     }
 
-    // Only keep lasers that meet the below conditions:
-    // - Not shattered
-    // - Still on-screen
-    // - Out of screen, but is a space debris
+    // only keep lasers that meet the below conditions:
+    // - not shattered
+    // - still on-screen
+    // - out of screen, but is a space debris
     refresh() {
         this.liveLasers = this.liveLasers.filter((laser) => {
             const isShattered = laser.shattered;

@@ -49,19 +49,19 @@ export class ItemDropController {
         const roll = randomInRange(0, 100);
 
         if (roll <= RATE && this.itemPool.length) {
-            // Pick an item from non-repetitive-item pool & remove it from pool
-            const rand = randomInRange(0, this.itemPool.length - 1);
-            this.aquireAndActivate(this.itemPool[rand]);
+            // pick an item from non-repetitive-item pool & remove it from pool
+            const randomIndex = randomInRange(0, this.itemPool.length - 1);
+            this.aquireAndActivate(this.itemPool[randomIndex]);
             this.itemPool.splice(rand, 1);
         } else {
-            // Pick an item from repetitive-item pool
-            const rand = randomInRange(0, this.repetitivePool.length - 1);
-            this.aquireAndActivate(this.repetitivePool[rand]);
+            // pick an item from repetitive-item pool
+            const randomIndex = randomInRange(0, this.repetitivePool.length - 1);
+            this.aquireAndActivate(this.repetitivePool[randomIndex]);
         }
     }
 
     aquireAndActivate(item) {
-        // If item is already owned, add a 'repeated' property to it,
+        // if item is already owned, add a 'repeated' property to it,
         // or increment the 'repeated' property if it already exists
         if (this.aquiredItems.includes(item)) {
             const ownedItem = this.aquiredItems[this.aquiredItems.indexOf(item)];

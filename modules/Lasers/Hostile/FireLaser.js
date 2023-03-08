@@ -24,7 +24,6 @@ export class FireLaser {
         this.y += Movement.move(this.direction, this.speed).y;
     }
 
-    // laser will shatter when hitting the player
     shatter() {
         this.shattered = true;
         game.effects.add(new Animation(this.x, this.y, 'smoke_small'));

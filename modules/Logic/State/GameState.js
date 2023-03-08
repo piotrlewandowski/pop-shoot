@@ -16,7 +16,6 @@ import { Controls } from '../Motion/Controls.js';
 import { ItemActionController } from '../Controllers/ItemActionController.js';
 import { ItemDropController } from '../Controllers/ItemDropController.js';
 
-// STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
 const NOTIFICATION_DURATION = 400; // in ticks. higher = longer
 const NOTIFICATION_X = 500;
@@ -34,8 +33,8 @@ export class GameState {
         this.over = false;
     }
 
-    // Set an interval to increment the game time by 1 every second.
-    // Will not increment if the game is paused, or in game-over state.
+    // set an interval to increment the game time by 1 every second.
+    // will not increment if the game is paused, clock, or game-over state.
     startGame() {
         this.time += 1;
         game.audiocontroller.updateMusic();
@@ -65,7 +64,7 @@ export class GameState {
     }
 
     stopSlowmo() {
-        // if statement to prevent from accidentally running the function several times
+        // the 'if' is there to prevent from accidentally running the function several times
         if (this.slowmo) {
             this.slowmo = false;
             game.slowmocontroller.stop();
@@ -94,7 +93,7 @@ export class GameState {
     }
 
     togglePause() {
-        // Only pause if game has started, or game is not on gameover screen
+        // only pause if game has started, or game is not on gameover screen
         if (this.time && !this.over) {
             if (!this.paused) {
                 Controls.removeMouseClicks();
@@ -114,7 +113,7 @@ export class GameState {
         game.audiocontroller.updateMusic();
     }
 
-    // This function is only used for development purposes
+    // this function is only used for development purposes
     // ----------------------------------------------------
     unsetGameOver() {
         this.over = false;
@@ -129,24 +128,24 @@ export class GameState {
     // ----------------------------------------------------
 
     replay() {
-        // CLEAR SCREEN
+        // clear screen
         game.enemies.clear(true);
         game.firelasers.clear();
         game.bluelasers.clear();
         game.weathercontroller.stopWeather();
         game.weathercontroller.stopDarkness();
 
-        // RESET GAME STATE
+        // reset game state
         this.time = 1;
         this.stage = 0;
         this.boss = false;
         this.over = false;
 
-        // RESTORE CONTROLS
+        // restore controls
         Controls.addMouseClicks();
         Controls.addPauseButton();
 
-        // RESET PLAYER STATE
+        // reset player state
         game.player.shield.charge = 100;
         game.player.slowmogauge.charge = 100;
         game.player.clock = new Clock();
@@ -155,11 +154,11 @@ export class GameState {
         game.buffcontroller = new BuffController();
         game.cashcontroller = new CashController();
 
-        // GRAPHICS
+        // graphics
         SceneUtils.flashScreen();
         this.addStageNotification();
 
-        // AUDIO
+        // audio
         game.audiocontroller.rewindMusic();
         game.audiocontroller.updateMusic();
 

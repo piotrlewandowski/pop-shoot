@@ -10,7 +10,7 @@ import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 export class CollisionActions {
     static BluelasersEnemies(enemy, laser) {
-        // Pushback & play sound if the laser is not a drone or dart
+        // skip pushback & sound if laser is drone or dart
         if (laser.constructor !== Drone && laser.constructor !== Dart) {
             game.audiocontroller.playSound(this._determineHitSound(enemy));
             enemy.pushBack();

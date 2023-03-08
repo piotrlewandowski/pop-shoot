@@ -4,10 +4,12 @@ import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 const FIRSTPACKAGE = 50;
 const NEXT_MULTIPLIER = 1.5;
 
-// next & previous refer to cash required for next & previous package
 export class CashController {
     constructor() {
+        // current cash owned by player
         this.cash = 0;
+
+        // cash required for next & previous package drop
         this.previous = 0;
         this.next = FIRSTPACKAGE;
 

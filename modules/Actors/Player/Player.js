@@ -7,10 +7,10 @@ import { SlowmoGauge } from './SlowmoGauge.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
 
-const SPRAYDISTANCE = 5; // Distance between laser streams when spray upgrade is acquired
-const LASERANGLE = 270; // Default laser direction. 270 = NORTH
-const RADIUS = 13; // Player hitbox radius. 13 matches the current sprite
-const DEFAULTSHOOTINGRATE = 150; // Default shooting rate (speed) if not upgraded to machine gun
+const SPRAYDISTANCE = 5; // distance between laser streams when spray upgrade is acquired
+const LASERANGLE = 270; // default laser direction. 270 = NORTH
+const RADIUS = 13; // player hitbox radius. 13 matches the current sprite
+const DEFAULTSHOOTINGRATE = 150; // default shooting rate (speed) if not upgraded to machine gun
 
 export class Player {
     constructor() {
@@ -39,13 +39,13 @@ export class Player {
 
             // SPRAY
 
-            // In case the spray number is even, skew the laser's angle by 2.5 degrees
+            // if the spray number is even, skew the laser's angle by 2.5 degrees
             let direction = game.itemactioncontroller.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
 
-            // Fire the first laser
+            // fire the first laser
             game.bluelasers.add(new weapon(direction));
 
-            // Calculate the remaning sprays directions & fire them
+            // calculate the remaning sprays directions & fire them
             let spraycount = 1;
             for (let i = 0; i < game.itemactioncontroller.spray; i++) {
                 // spray left
@@ -82,7 +82,9 @@ export class Player {
     }
 
     setShoot() {
-        const rate = game.itemactioncontroller.machinegun ? game.itemactioncontroller.machinegunrate : DEFAULTSHOOTINGRATE;
+        const rate = game.itemactioncontroller.machinegun
+            ? game.itemactioncontroller.machinegunrate
+            : DEFAULTSHOOTINGRATE;
         this.shoot();
         this.shootInterval = setInterval(this.shoot.bind(this), rate);
     }

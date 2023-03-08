@@ -6,15 +6,15 @@ const CHARGE_DELAY = 50; // delay in ticks before start charging. lower = faster
 
 export class SlowmoGauge {
     constructor() {
-        this.charge = 100; // 0=EMPTY 100=FULL
+        this.charge = 100;
         this.setObserver();
         this.chargeDelay = CHARGE_DELAY;
     }
 
     setObserver() {
         let fn = () => {
-            // If SLOWMO, discharge gauge as long as it's not fully empty
-            // If it becomes empty, stop slowmo
+            // if slowmo active, discharge gauge as long as it's
+            // not fully empty. if it becomes empty, stop slowmo
             if (game.state.slowmo && !game.state.paused) {
                 if (this.charge === 0) {
                     game.state.stopSlowmo();
@@ -22,8 +22,8 @@ export class SlowmoGauge {
                     this.startDischarging();
                 }
             }
-            // If not in SLOWMO, charge the gauge as long as it has not
-            // yet reached full charge
+            // if slowmo not active, charge the gauge as long as it
+            // has not yet reached full charge
             if (!game.state.slowmo && !game.state.paused && !this.isCharged()) {
                 this.startCharging();
             }

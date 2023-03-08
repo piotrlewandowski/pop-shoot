@@ -11,7 +11,7 @@ import {
 } from '../../Assets/Effects.js';
 import { randomInRange } from '../../Logic/Helpers.js';
 
-const DURATION = 5; // When DURATION reaches 0, the slash will be removed by refresh()
+const DURATION = 5;
 const SPRITE = [SLASH0SPRITE, SLASH1SPRITE, SLASH2SPRITE, SLASH3SPRITE];
 const QUADSPRITE = [SLASHQUAD0SPRITE, SLASHQUAD1SPRITE, SLASHQUAD2SPRITE, SLASHQUAD3SPRITE];
 

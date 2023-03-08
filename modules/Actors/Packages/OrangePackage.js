@@ -1,5 +1,3 @@
-// ORANGE PACKAGES DROP TEMPORARY BUFFS
-
 import { Enemy } from '../Enemies/Enemy.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
@@ -9,7 +7,7 @@ import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 0.5;
-const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const MOVEDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // STATE
 const HP = 50;

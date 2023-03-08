@@ -1,5 +1,3 @@
-// RED PACKAGES DROP ITEMS
-
 import { Enemy } from '../Enemies/Enemy.js';
 import { Movement } from '../../Logic/Motion/Movement.js';
 import { game } from '../../../app.js';
@@ -9,7 +7,7 @@ import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 0.5;
-const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const MOVEDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // STATE
 const HP = 150;
@@ -39,7 +37,7 @@ export class RedPackage extends Enemy {
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(4, 1);
 
-        // Weather - Only toggle if not in boss-mode
+        // weather - only toggle if not in boss-mode
         if (!game.state.boss) {
             if (game.weathercontroller.weatherActive) {
                 game.weathercontroller.stopWeather();
@@ -51,7 +49,7 @@ export class RedPackage extends Enemy {
         }
     }
 
-    // Called by refresh() when RedPackage has left the screen
+    // called by refresh() when redpackage has left the screen
     vanish() {
         game.audiocontroller.playSound('drain');
         RedPackage.decrementCount();

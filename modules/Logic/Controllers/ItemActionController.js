@@ -9,29 +9,29 @@ import { Seeker } from '../../Lasers/Friendly/Seeker.js';
 import { getClosestEnemyTo, randomInRange } from '../Helpers.js';
 
 // OFFENSIVE ITEMS MODIFIERS
-const AIRSTRIKECHANCE = 10; // Percentage chance of triggering an airstrike
-const AIRSTRIKERATE = 2; // Damage rate dealt by airstrike (1 = full damage);
-const BOMBRATE = 0.2; // Damage rate dealt to other enemies on screen (1 = full damage)
-const DARTSRATE = 0.3; // Damage rate dealt by darts when stun successful (1 = full damage)
-const DARTSSTUNCHANCE = 15; // Percentage chance to stun enemy when darts is upgraded
-const DEBRISNUMBER = 50; // Number of flying debris around player
-const DEBRISRATE = 0.5; // Damage rate dealt by debris
-const DEBRISRESPAWNRATE = 200; // Rate in ms at which a shattered debris takes to respawn
-const DRONESRATE = 0.2; // Damage rate dealt by drones (1 = full damage)
-const DRONESNUMBER = 5; // Number of drones released
-const EMPRATE = 0.2; // Damage rate dealt by emp to enemies when player is hit
-const MACHINEGUNRATE = 110; // Shooting rate of the machine gun. Lower = Faster (rate without upgrade is 150)
-const ROCKETCHANCE = 15; // Percentage chance of firing a rocket
-const ROCKETDAMAGE = 3; // Rocket damage multiplier
-const SEEKERRATE = 0.5; // Damage rate dealt by seekers (1 = full damage);
-const STUNTIME = 1250; // Time to stun enemies in ms (1000 = 1 second)
-const TOXICRATE = 0.4; // Damage rate dealt to enemies in slowmo (1 = full damage)
+const AIRSTRIKECHANCE = 10; // % of triggering an airstrike
+const AIRSTRIKERATE = 2; // damage multiplier dealt by airstrike (1 = full damage);
+const BOMBRATE = 0.2; // damage multiplier dealt to other enemies on screen (1 = full damage)
+const DARTSRATE = 0.3; // damage multiplier dealt by darts when stun successful (1 = full damage)
+const DARTSSTUNCHANCE = 15; // % to stun enemy when darts is upgraded
+const DEBRISNUMBER = 50; // # of flying debris around player
+const DEBRISRATE = 0.5; // damage multiplier dealt by debris (1 = full damage)
+const DEBRISRESPAWNRATE = 200; // rate in ms at which a shattered debris takes to respawn
+const DRONESRATE = 0.2; // damage multiplier dealt by drones (1 = full damage)
+const DRONESNUMBER = 5; // # of drones released
+const EMPRATE = 0.2; // damage multiplier dealt by emp to enemies when player is hit (1 = full damage)
+const MACHINEGUNRATE = 110; // shooting-rate of the machine gun. lower = faster (rate without upgrade is 150)
+const ROCKETCHANCE = 15; // % of firing a rocket
+const ROCKETDAMAGE = 3; // damage multiplier dealth by rocket (1 = full damage)
+const SEEKERRATE = 0.5; // damage multiplier dealt by seekers (1 = full damage)
+const STUNTIME = 1250; // time to stun enemies in ms
+const TOXICRATE = 0.4; // damage multiplier dealt to enemies by toxic slowmo (1 = full damage)
 
 // DEFENSIVE ITEMS MODIFIERS
-const GREEDCHANCE = 20; // Percentage chance of receiving double coins
-const METALSHIELDTIME = 2; // Invincibility time after being hit. In seconds (time without upgrade is 1)
-const NITROGENRATE = 2; // How much faster should shield recharge. (default without upgrade is 1)
-const URANIUMRATE = 0.6; // How much slower should slowmo deplete. (lower = slower. default without upgrade is 0.75)
+const GREEDCHANCE = 20; // % of receiving double coins
+const METALSHIELDTIME = 2; // invincibility time after being hit, in seconds (time without upgrade is 1)
+const NITROGENRATE = 2; // rate at which shield recharges with nitrogen (higher = faster. default without upgrade is 1)
+const URANIUMRATE = 0.6; // rate at which slowmo depletes (lower = slower. default without upgrade is 0.75)
 
 export class ItemActionController {
     constructor() {

@@ -8,20 +8,20 @@ import { Difficulty } from '../../../Logic/State/Difficulty.js';
 
 // MOVEMENT
 const SPEED = 1;
-const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const RANGETOENGAGE = 75; // When player approaches proximity (X), invader will engage
-const ENGAGEDISTANCE = 200; // Distance kept when engaging player
+const MOVEDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
+const RANGETOENGAGE = 75; // when player approaches proximity (X coordinates), invader will engage
+const ENGAGEDISTANCE = 200; // distance kept when engaging player
 
 // SHOOTING
 const LASERSPEED = 5;
 const FIRINGRATE = 50;
-const LASERDIRECTION1 = 75; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION2 = 80; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION3 = 85; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION4 = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION5 = 95; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION6 = 100; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const LASERDIRECTION7 = 105; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const LASERDIRECTION1 = 75; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION2 = 80; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION3 = 85; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION4 = 90; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION5 = 95; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION6 = 100; // 0=EAST 90=South 180=WEST 270=NORTH
+const LASERDIRECTION7 = 105; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // STATE
 const HP = Difficulty.baseInvaderHp * Difficulty.blackHpMultiplier;

@@ -9,12 +9,12 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 0.5;
-const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const MOVEDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
 const LASERSPEED = 10;
 const FIRINGRATE = 75;
-const LASERDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const LASERDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // STATE
 const HP = Difficulty.baseEmperorHp * Difficulty.blueHpMultiplier;

@@ -10,9 +10,9 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 4;
-const ENGAGEDISTANCE = 300; // Distance kept when engaging player
-const SOUTH = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
-const NORTH = 270; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const ENGAGEDISTANCE = 300; // distance kept when engaging player
+const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
+const NORTH = 270; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
 const SHOWERSPEED = 8;
@@ -21,9 +21,8 @@ const FIRINGRATE_NORMAL = 75;
 const FIRINGRATE_HARDENED = 3;
 const BURSTLENGTH = 100;
 
-// PHASES (Rates, e.g. 0.75 = when boss reaches 75% of HP)
-// When the boss reaches a certain HP amount, the placers will spawn faster
-// and an additional layer of lasers will be fired for each phase
+// PHASES
+// rates, e.g. 0.75 = when boss reaches 75% of HP
 const PHASE2_HP = 0.5;
 const PHASE2_BURST_LENGTH = 175;
 const PHASE3_HP = 0.2;
@@ -43,10 +42,10 @@ const NAME = 'FAMILIAR SIGHT';
 export class FamiliarSight extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE_NORMAL);
-        // BOSS SPECIFIC ------------
+
         this.name = NAME;
         game.state.toggleBoss();
-        // --------------------------
+
         this.hardened = false;
     }
 
@@ -54,13 +53,14 @@ export class FamiliarSight extends Enemy {
         // if out of screen, move back in
         if (!this.hardened) {
             if (this.y <= this.radius) {
-                this.x += Movement.move(SOUTH, this.speed).x; //90=SOUTH
-                this.y += Movement.move(SOUTH, this.speed).y; //90=SOUTH
+                this.x += Movement.move(SOUTH, this.speed).x;
+                this.y += Movement.move(SOUTH, this.speed).y;
             }
+
             // if lower than middle of screen, go back up
             if (this.y >= CANVAS.height * 0.5) {
-                this.x += Movement.move(NORTH, this.speed).x; // 270=NORTH
-                this.y += Movement.move(NORTH, this.speed).y; //270=NORTH
+                this.x += Movement.move(NORTH, this.speed).x;
+                this.y += Movement.move(NORTH, this.speed).y;
             }
 
             // follow player
@@ -71,7 +71,7 @@ export class FamiliarSight extends Enemy {
             this.y += Movement.moveTowards(this.x, this.y, CANVAS.width / 2, 90, this.speed).y;
         }
 
-        // Smoke effect
+        // smoke effect
         if (this.steps % 10 === 0) {
             game.effects.add(new Animation(this.x, this.y - 45, 'smoke_normal'));
         }
@@ -130,7 +130,7 @@ export class FamiliarSight extends Enemy {
     step() {
         super.step();
 
-        // Harden
+        // harden
         if (this.steps % HARDEN_RATE === 0) {
             this.harden();
         }

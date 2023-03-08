@@ -10,7 +10,7 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 // MOVEMENT
 const SPEED = 30;
 const LOWEST_POINT = 65;
-const SOUTH = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
 const FIRINGRATE = 75;
@@ -18,14 +18,14 @@ const ROWSPEED = 3;
 const BURSTSPEED = 10;
 
 // WALLS
-const PHASE1_LANGLE = 40; // left angle (closer to 90 = narrower)
-const PHASE1_RANGLE = 135; // right angle (closer to 90 = narrower)
-const PHASE2_LANGLE = 50; // left angle (closer to 90 = narrower)
-const PHASE2_RANGLE = 125; // right angle (closer to 90 = narrower)
-const PHASE3_LANGLE = 60; // left angle (closer to 90 = narrower)
-const PHASE3_RANGLE = 115; // right angle (closer to 90 = narrower)
-const PHASE4_LANGLE = 70; // left angle (closer to 90 = narrower)
-const PHASE4_RANGLE = 105; // right angle (closer to 90 = narrower)
+const PHASE1_LANGLE = 40; // left lasers (closer to 90 = narrower)
+const PHASE1_RANGLE = 135; // right lasers (closer to 90 = narrower)
+const PHASE2_LANGLE = 50; // left lasers (closer to 90 = narrower)
+const PHASE2_RANGLE = 125; // right lasers (closer to 90 = narrower)
+const PHASE3_LANGLE = 60; // left lasers (closer to 90 = narrower)
+const PHASE3_RANGLE = 115; // right lasers (closer to 90 = narrower)
+const PHASE4_LANGLE = 70; // left lasers (closer to 90 = narrower)
+const PHASE4_RANGLE = 105; // right lasers (closer to 90 = narrower)
 
 // HARDEN
 const HARDEN_RATE = 2000; // in ticks. lower = faster
@@ -38,9 +38,8 @@ const RADIUS = 50;
 const SPRITE = ABUSERSPRITE;
 const NAME = 'EMOTIONAL ABUSER';
 
-// PHASES (Rates, e.g. 0.75 = when boss reaches 75% of HP)
-// When the boss reaches a certain HP amount, it will fire
-// an additional layer of lasers
+// PHASES
+// hp rates, e.g. 0.75 = when boss reaches 75% HP
 const PHASE2_HP = 0.75;
 const PHASE3_HP = 0.5;
 const PHASE4_HP = 0.25;
@@ -50,10 +49,9 @@ export class Abuser extends Enemy {
         super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         this.x = CANVAS.width / 2;
 
-        // BOSS SPECIFIC ------------
         this.name = NAME;
         game.state.toggleBoss();
-        // --------------------------
+
         this.hardened = false;
     }
 
@@ -78,14 +76,14 @@ export class Abuser extends Enemy {
     }
 
     fireRow() {
-        // laser horizontal row
+        // horizontal laser row
         for (let i = 0; i <= 180; i += 20) {
             game.firelasers.add(new FireLaser(this.x, this.y, i, ROWSPEED));
         }
     }
 
     fireBurst() {
-        // laser line burst
+        // vertical laser burst
         for (let i = 0; i < 300; i += 10) {
             setTimeout(() => {
                 game.firelasers.add(new FireLaser(this.x, this.y, SOUTH, BURSTSPEED));
@@ -119,12 +117,12 @@ export class Abuser extends Enemy {
     step() {
         super.step();
 
-        // Start the walls AFTER entrance is done (aka when lowest point is reached)
+        // start the walls AFTER entrance is done (aka when lowest point is reached)
         if (this.y >= LOWEST_POINT) {
             this.fireWalls();
         }
 
-        // Harden
+        // harden
         if (this.steps % HARDEN_RATE === 0) {
             this.harden();
         }
@@ -154,8 +152,7 @@ export class Abuser extends Enemy {
         super.takeDamage(damage);
     }
 
-    // Intentionally overridden & kept empty to prevent ugly wall effect
-    // if pushback is used
+    // intentionally overridden & kept empty to prevent ugly wall effect if pushback is used
     pushBack() {}
 
     die() {

@@ -4,7 +4,8 @@ import { SceneUtils } from '../Scene/SceneUtils.js';
 const CHARGING_TIME = 99;
 const ACTIVE_TIME = 10;
 
-// If player is hit (while shield is down), the clock will stop time for ACTIVE_TIME seconds.
+// clock behaviour: If the player is hit while the shield is down,
+// the clock will stop time for ACTIVE_TIME seconds
 
 export class Clock {
     constructor() {
@@ -21,7 +22,7 @@ export class Clock {
         this.startCountdown();
     }
 
-    // Stay active for ACTIVE_TIME seconds
+    // countdown until "active" state ends
     startCountdown() {
         setTimeout(() => {
             this.deactivate();

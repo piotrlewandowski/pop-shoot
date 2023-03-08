@@ -33,8 +33,8 @@ export class EnemyPool {
         });
     }
 
-    // If replay variable is set to true, the enemies array will be cleared (used for replay after game-over)
-    // If set to false, the enemies will be killed normally & cash will be counted (used after killing bosses)
+    // if replay variable is set to true, the enemies array will be cleared (used for replay after game-over)
+    // if set to false, the enemies will be killed normally & cash will be counted (used after killing bosses)
     clear(replay) {
         if (replay) {
             this.liveEnemies = [];
@@ -57,19 +57,19 @@ export class EnemyPool {
             const isOnScreen = enemy.y <= CANVAS.height;
             const isAlive = enemy.hp > 0;
 
-            // Call die() function on killed enemies & remove them
+            // call die() function on killed enemies & remove them
             if (!isAlive && isOnScreen) {
                 enemy.die();
                 return false;
             }
 
-            // RedPackage has left the screen limits
+            // redpackage has left the screen limits
             if (isRedPackage && !isOnScreen) {
                 enemy.vanish();
                 return false;
             }
 
-            // Keep living enemies only if still on-screen
+            // keep living enemies only if still on-screen
             if (isAlive && isOnScreen) {
                 return true;
             }

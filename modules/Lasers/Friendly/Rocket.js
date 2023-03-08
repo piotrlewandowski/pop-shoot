@@ -10,7 +10,6 @@ export class Rocket extends BlueLaser {
         this.damage *= game.itemactioncontroller.rocketdamage;
     }
 
-    // rocket will shatter when hitting an enemy
     shatter() {
         this.shattered = true;
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));

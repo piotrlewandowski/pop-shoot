@@ -14,7 +14,7 @@ const BOSSNAME_FONTSIZE = 30;
 
 export class EnemyGfx {
     static drawHealthbar(enemy) {
-        // Normal Enemy
+        // normal enemy
         if (enemy.hitRatio !== 1 && !enemy.name) {
             SceneUtils.drawBar(
                 enemy.x - enemy.sprite.width / 2,
@@ -25,7 +25,7 @@ export class EnemyGfx {
             );
         }
 
-        // Boss
+        // boss
         if (enemy.name) {
             SceneUtils.drawBigBar(BOSSBAR_X, BOSSBAR_Y, BOSSBAR_WIDTH, BOSSBAR_HEIGHT, enemy.hitRatio);
             SceneUtils.drawText(enemy.name, BOSSNAME_X, BOSSNAME_Y, BOSSNAME_FONTSIZE);
@@ -39,7 +39,6 @@ export class EnemyGfx {
     }
 
     static drawSprite(enemy) {
-        // Enemy Sprite
         game.scene.ctx.drawImage(
             enemy.sprite,
             SceneUtils.offsetCoordinates(enemy).x,

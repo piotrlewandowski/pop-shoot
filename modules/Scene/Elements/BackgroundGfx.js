@@ -31,7 +31,7 @@ export class BackgroundGfx {
     static drawBack() {
         const backgroundback = BACKGROUNDS[`stage${game.state.stage}`].back;
 
-        // Stars
+        // stars
         game.scene.ctx.drawImage(backgroundback, game.scene.bgScrollOffset + game.scene.shake, game.scene.shake);
         game.scene.ctx.drawImage(
             backgroundback,
@@ -39,12 +39,12 @@ export class BackgroundGfx {
             game.scene.shake
         );
 
-        // Reset offset in case the stars-sprite reaches the end while scrolling
+        // reset offset in case the stars-sprite reaches the end while scrolling
         if (game.scene.bgScrollOffset <= -CANVAS.width) {
             game.scene.bgScrollOffset = 0;
         }
 
-        // Darkness
+        // darkness
         if (game.weathercontroller.darknessActive) {
             game.scene.ctx.drawImage(BLACKSCREENSPRITE, 0, 0);
         }
@@ -54,7 +54,7 @@ export class BackgroundGfx {
         const backgroundfront = BACKGROUNDS[`stage${game.state.stage}`].front;
         game.scene.ctx.drawImage(backgroundfront, game.scene.shake, game.scene.shake);
 
-        // Only in Vortex
+        // only in Vortex
         if (game.weathercontroller.weatherActive.constructor === Vortex) {
             game.scene.ctx.drawImage(HIEROGLYPHSPRITE, game.scene.shake, game.scene.shake);
         }

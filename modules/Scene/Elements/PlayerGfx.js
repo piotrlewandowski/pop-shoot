@@ -2,8 +2,8 @@ import { game } from '../../../app.js';
 import { SHIELDEMPSPRITE, SHIELDINVINCIBILITYSPRITE } from '../../Assets/Player.js';
 import { SceneUtils } from '../SceneUtils.js';
 
-const MIN_SLOWMO_CHARGE = 15; // Minimum charge that slowmo should be at in order for the flame to be drawn
-const EMP_SHIELD_Y_OFFSET = 3; // EMP shield will be drawn some px above the shield
+const MIN_SLOWMO_CHARGE = 15; // min charge that slowmo should be at in order for the flame to be drawn
+const EMP_SHIELD_Y_OFFSET = 3; // emp shield will be drawn some px above the shield
 
 export class PlayerGfx {
     static drawJetFlame() {

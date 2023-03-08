@@ -10,7 +10,7 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
 const SPEED = 1;
-const MOVEDIRECTION = 90; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const MOVEDIRECTION = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
 const LASERSPEED = 4;

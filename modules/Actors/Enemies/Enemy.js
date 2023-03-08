@@ -6,7 +6,7 @@ import { Coin } from '../../Effects/Misc/Coin.js';
 
 export class Enemy {
     constructor(radius, hp, coins, sprite, speed, firingrate) {
-        // Base stats
+        // base stats
         this.radius = radius;
         this.hp = this.maxhp = hp;
         this.coins = coins;
@@ -14,11 +14,11 @@ export class Enemy {
         this.speed = speed;
         this.firingrate = firingrate;
 
-        // Spawn coordinates
+        // spawn coordinates
         this.x = randomInRange(0 + this.radius, CANVAS.width - this.radius);
         this.y = -this.radius;
 
-        // Misc
+        // misc
         this.steps = 0;
         this.hitsound = 'standard';
         this.stunned = false;
@@ -58,9 +58,9 @@ export class Enemy {
         setTimeout(() => clearInterval(shakeInterval), game.itemactioncontroller.stuntime);
     }
 
-    // All enemies have a steps variable in parallel with y.
-    // Shooting time and some types of movement (such as sinewave) rely on steps.
-    // Steps should be incremented by the move() method.
+    // all enemies have a steps variable in parallel with y.
+    // shooting time and some types of movement (such as sinewave) rely on steps.
+    // steps should be incremented by the move() method.
     step() {
         this.steps++;
         if (this.steps % this.firingrate === 0 && !game.buffcontroller.muteenemies) {
@@ -68,8 +68,8 @@ export class Enemy {
         }
     }
 
-    // Release coins when killed.
-    // Some enemies & bosses have extra behaviour for this method.
+    // release coins when killed.
+    // some enemies & bosses have extra behaviour for this method.
     die() {
         for (let i = 0; i < this.coins * game.itemactioncontroller.greedMultiplier; i++) {
             game.effects.add(new Coin(this.x, this.y));

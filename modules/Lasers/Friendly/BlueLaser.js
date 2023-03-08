@@ -9,7 +9,7 @@ const SPEED = 10;
 const RADIUS = 5;
 const MINDMG = 3;
 const MAXDMG = 6;
-const DEFAULTDIRECTION = 270; // Angle (0=EAST 90=South 180=WEST 270=NORTH)
+const DEFAULTDIRECTION = 270; // 0=EAST 90=South 180=WEST 270=NORTH
 
 export class BlueLaser {
     constructor(direction = DEFAULTDIRECTION) {
@@ -49,7 +49,6 @@ export class BlueLaser {
         }
     }
 
-    // laser will shatter when hitting an enemy
     shatter() {
         this.shattered = true;
         game.effects.add(new Animation(this.x, this.y, 'smoke_small'));

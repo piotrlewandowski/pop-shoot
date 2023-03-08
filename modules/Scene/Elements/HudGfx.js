@@ -114,7 +114,7 @@ export class HudGfx {
         if (!game.player.shield.isCharged()) {
             game.scene.ctx.drawImage(GLASSSHIELDDOWNSPRITE, SHIELDWARNING_X, SHIELDWARNING_Y);
             SceneUtils.drawText(
-                `RECHARGING ${game.player.shield.getCharge()}%`,
+                `RECHARGING ${game.player.shield.currentCharge}%`,
                 SHIELDRECHARGING_X,
                 SHIELDRECHARGING_Y,
                 SHIELDRECHARGING_FONT
@@ -147,7 +147,7 @@ export class HudGfx {
     static drawItemsIcons() {
         let currentx = ICON_STARTINGX;
 
-        game.itemcontroller.aquiredItems.forEach((item) => {
+        game.itemdropcontroller.aquiredItems.forEach((item) => {
             game.scene.ctx.drawImage(item.icon, currentx, ICON_Y);
             // Spray or DMG aquired more than once
             if (item.repeated > 1) {

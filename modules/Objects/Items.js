@@ -1,6 +1,4 @@
 import { game } from '../../app.js';
-import { Debris } from '../Lasers/Friendly/Debris.js';
-import { randomInRange } from '../Logic/Helpers.js';
 
 import {
     BOMBS_NOTIFICATION,
@@ -61,18 +59,19 @@ import {
     DEBRIS_PAUSE,
     DEBRIS_NOTIFICATION,
 } from '../Assets/Hud.js';
+import { SlowMo } from '../Logic/State/SlowMo.js';
 
 export const ITEMS = {
     airstrike: {
         name: 'airstrike',
-        activate: () => (game.state.variables.airstrike = true),
+        activate: () => (game.itemactioncontroller.airstrike = true),
         icon: AIRSTRIKE_ICON,
         pause: AIRSTRIKE_PAUSE,
         notification: AIRSTRIKE_NOTIFICATION,
     },
     bomb: {
         name: 'bomb',
-        activate: () => (game.state.variables.bomb = true),
+        activate: () => (game.itemactioncontroller.bomb = true),
         icon: BOMBS_ICON,
         pause: BOMBS_PAUSE,
         notification: BOMBS_NOTIFICATION,
@@ -86,128 +85,112 @@ export const ITEMS = {
     },
     darts: {
         name: 'darts',
-        activate: () => (game.state.variables.darts = true),
+        activate: () => (game.itemactioncontroller.darts = true),
         icon: DARTS_ICON,
         pause: DARTS_PAUSE,
         notification: DARTS_NOTIFICATION,
     },
     debris: {
         name: 'debris',
-        activate: () => {
-            setInterval(() => {
-                if (Debris.count < Debris.maxDebris) {
-                    game.bluelasers.add(new Debris());
-                    Debris.count++;
-                }
-            }, Debris.respawnRate);
-        },
+        activate: () => game.itemactioncontroller.addDebris(),
         icon: DEBRIS_ICON,
         pause: DEBRIS_PAUSE,
         notification: DEBRIS_NOTIFICATION,
     },
     drones: {
         name: 'drones',
-        activate: () => (game.state.variables.drones = true),
+        activate: () => (game.itemactioncontroller.drones = true),
         icon: DRONES_ICON,
         pause: DRONES_PAUSE,
         notification: DRONES_NOTIFICATION,
     },
     emp: {
         name: 'emp',
-        activate: () => (game.state.variables.emp = true),
+        activate: () => (game.itemactioncontroller.emp = true),
         icon: EMP_ICON,
         pause: EMP_PAUSE,
         notification: EMP_NOTIFICATION,
     },
     greed: {
         name: 'greed',
-        activate: () => (game.state.variables.greed = true),
+        activate: () => (game.itemactioncontroller.greed = true),
         icon: GREED_ICON,
         pause: GREED_PAUSE,
         notification: GREED_NOTIFICATION,
     },
     loopers: {
         name: 'loopers',
-        activate: () => (game.state.variables.loopers = true),
+        activate: () => (game.itemactioncontroller.loopers = true),
         icon: LOOPERS_ICON,
         pause: LOOPERS_PAUSE,
         notification: LOOPERS_NOTIFICATION,
     },
     machinegun: {
         name: 'machinegun',
-        activate: () => (game.state.variables.machinegun = true),
+        activate: () => (game.itemactioncontroller.machinegun = true),
         icon: MACHINEGUN_ICON,
         pause: MACHINEGUN_PAUSE,
         notification: MACHINEGUN_NOTIFICATION,
     },
     metalshield: {
         name: 'metalshield',
-        activate: () => (game.state.variables.metalshield = true),
+        activate: () => (game.itemactioncontroller.metalshield = true),
         icon: METALSHIELD_ICON,
         pause: METALSHIELD_PAUSE,
         notification: METALSHIELD_NOTIFICATION,
     },
     multiplydamage: {
         name: 'multiplydamage',
-        activate: () => game.state.variables.incrementDamageMultiplier(),
+        activate: () => game.itemactioncontroller.incrementDamageMultiplier(),
         icon: DAMAGE_ICON,
         pause: DAMAGE_PAUSE,
         notification: DAMAGE_NOTIFICATION,
     },
     nitrogen: {
         name: 'nitrogen',
-        activate: () => (game.state.variables.nitrogen = true),
+        activate: () => (game.itemactioncontroller.nitrogen = true),
         icon: NITROGEN_ICON,
         pause: NITROGEN_PAUSE,
         notification: NITROGEN_NOTIFICATION,
     },
     rocket: {
         name: 'rocket',
-        activate: () => (game.state.variables.rocket = true),
+        activate: () => (game.itemactioncontroller.rocket = true),
         icon: ROCKET_ICON,
         pause: ROCKET_PAUSE,
         notification: ROCKET_NOTIFICATION,
     },
     seekers: {
         name: 'seekers',
-        activate: () => (game.state.variables.seekers = true),
+        activate: () => (game.itemactioncontroller.seekers = true),
         icon: SEEKERS_ICON,
         pause: SEEKERS_PAUSE,
         notification: SEEKERS_NOTIFICATION,
     },
     spray: {
         name: 'spray',
-        activate: () => game.state.variables.spray++,
+        activate: () => game.itemactioncontroller.spray++,
         icon: SPRAY_ICON,
         pause: SPRAY_PAUSE,
         notification: SPRAY_NOTIFICATION,
     },
     timefreeze: {
         name: 'timefreeze',
-        activate: () => (game.state.variables.slowmorate = 0.05),
+        activate: () => (SlowMo.slowmorate = 0.05),
         icon: TIMEFREEZE_ICON,
         pause: TIMEFREEZE_PAUSE,
         notification: TIMEFREEZE_NOTIFICATION,
     },
     toxic: {
         name: 'toxic',
-        activate: () => {
-            game.state.variables.toxic = true;
-            setInterval(() => {
-                if (game.state.slowmo && game.state.variables.toxic) {
-                    game.enemies.damageAll(
-                        randomInRange(2, 6) * game.state.variables.damageMultiplier * game.state.variables.toxicrate
-                    );
-                }
-            }, 500);
-        },
+        activate: () => game.itemactioncontroller.startToxic(),
         icon: TOXIC_ICON,
         pause: TOXIC_PAUSE,
         notification: TOXIC_NOTIFICATION,
     },
     uranium: {
         name: 'uranium',
-        activate: () => (game.state.variables.uranium = true),
+        activate: () => (game.itemactioncontroller.uranium = true),
         icon: URANIUM_ICON,
         pause: URANIUM_PAUSE,
         notification: URANIUM_NOTIFICATION,

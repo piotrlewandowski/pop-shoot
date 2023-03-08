@@ -7,7 +7,7 @@ export class Seeker extends BlueLaser {
     constructor(target) {
         super();
         this.sprite = SEEKERSPRITE;
-        this.damage *= game.state.variables.seekerrate;
+        this.damage *= game.itemactioncontroller.seekerrate;
         this.target = target;
 
         this.alreadyLooped = true; // seekers don't loop so this variable is overridden

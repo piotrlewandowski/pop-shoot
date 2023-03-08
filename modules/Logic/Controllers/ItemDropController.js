@@ -3,7 +3,7 @@
 import { game } from '../../../app.js';
 import { Notification } from '../../Effects/Misc/Notification.js';
 import { randomInRange } from '../Helpers.js';
-import { ITEMS } from '../../Drops/Items.js';
+import { ITEMS } from '../../Objects/Items.js';
 
 // NOTIFICATIONS COORDINATES & DURATION ON ITEM DROP
 const NOTIFICATION_DURATION = 400; // in ticks. higher = longer
@@ -13,7 +13,7 @@ const NOTIFICATION_Y = 440;
 // DROP RATE FOR NON-REPETITIVE POOL
 const RATE = 80;
 
-export class ItemController {
+export class ItemDropController {
     constructor() {
         this.aquiredItems = [];
 

@@ -22,7 +22,7 @@ export class PauseGfx {
         let currentx = STARTINGX;
         let currenty = STARTINGY;
 
-        game.itemcontroller.aquiredItems.forEach((item, index) => {
+        game.itemdropcontroller.aquiredItems.forEach((item, index) => {
             // Newline in case end-of-current-line is reached
             if (index % NUMBEROFROWS === 0) {
                 currentx = STARTINGX;

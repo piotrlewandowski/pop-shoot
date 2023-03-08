@@ -7,7 +7,7 @@ export class Rocket extends BlueLaser {
     constructor(x, y, direction) {
         super(x, y, direction);
         this.sprite = ROCKETSPRITE;
-        this.damage *= game.state.variables.rocketdamage;
+        this.damage *= game.itemactioncontroller.rocketdamage;
     }
 
     // rocket will shatter when hitting an enemy

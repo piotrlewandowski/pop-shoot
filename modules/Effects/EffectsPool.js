@@ -1,4 +1,5 @@
 import { game } from '../../app.js';
+import { SlowMo } from '../Logic/State/SlowMo.js';
 import { Coin } from './Misc/Coin.js';
 import { DamageNumber } from './Misc/DamageNumber.js';
 
@@ -38,13 +39,13 @@ export class EffectsPool {
     }
 
     applySlowmoToOne(effect) {
-        effect.speed *= game.state.variables.slowmorate;
-        effect.duration /= game.state.variables.slowmorate;
+        effect.speed *= SlowMo.slowmorate;
+        effect.duration /= SlowMo.slowmorate;
     }
 
     removeSlowmoFromOne(effect) {
-        effect.speed /= game.state.variables.slowmorate;
-        effect.duration *= game.state.variables.slowmorate;
+        effect.speed /= SlowMo.slowmorate;
+        effect.duration *= SlowMo.slowmorate;
     }
 
     // Only keep effects which duration have not yet reached 0

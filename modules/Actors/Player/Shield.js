@@ -1,16 +1,16 @@
 import { game } from '../../../app.js';
-import { SHIELDEMPSPRITE, SHIELDMETALSPRITE, SHIELDSPRITE, SHIELDUNDERFIRESPRITE } from '../../Assets/Player.js';
-import { randomInRange } from '../../Logic/Helpers.js';
+import { SHIELDMETALSPRITE, SHIELDSPRITE, SHIELDUNDERFIRESPRITE } from '../../Assets/Player.js';
+import { SlowMo } from '../../Logic/State/SlowMo.js';
 
-const INVINCIBILITYTIME = 1; // default invincibility time if no metalshield upgrade, in seconds
+const UNDERFIRETIME = 1; // default invincibility time if no metalshield upgrade, in seconds
 const CHARGERATE = 1; // default charging rate if no nitrogen upgrade
 
 export class Shield {
     constructor() {
         this.charge = 100; // 0=EMPTY 100=FULL
-        this.sprite = [SHIELDSPRITE];
         this.underfire = false;
         this.setObserver();
+        this.sprite = SHIELDSPRITE;
     }
 
     // This method will observe the state of the shield and charge/discharge accordingly
@@ -30,62 +30,51 @@ export class Shield {
     }
 
     startCharging() {
-        let rate = game.state.variables.nitrogen ? game.state.variables.nitrogenrate : CHARGERATE;
+        let rate = game.itemactioncontroller.nitrogen ? game.itemactioncontroller.nitrogenrate : CHARGERATE;
 
         if (game.state.slowmo) {
-            rate *= game.state.variables.slowmorate;
+            rate *= SlowMo.slowmorate;
         }
 
-        if (!game.state.variables.noshield) {
+        if (!game.buffcontroller.noshield) {
             this.charge += rate;
         }
 
-        if (this.charge > 100 || game.state.variables.invincibility) {
+        if (this.charge > 100 || game.buffcontroller.invincibility) {
             this.charge = 100;
         }
     }
 
     deplete() {
-        const invincibilitytime = game.state.variables.metalshield
-            ? game.state.variables.metalshieldtime
-            : INVINCIBILITYTIME;
+        const underfiretime = game.itemactioncontroller.metalshield
+            ? game.itemactioncontroller.metalshieldtime
+            : UNDERFIRETIME;
 
-        if (!game.state.variables.invincibility && !this.underfire) {
+        if (!game.buffcontroller.invincibility && !this.underfire) {
             game.audiocontroller.playSound('shieldDown');
             this.underfire = true;
             setTimeout(() => {
                 this.charge = 0;
                 this.underfire = false;
-            }, invincibilitytime * 1000);
+            }, underfiretime * 1000);
         }
     }
 
     setSprite() {
         if (this.underfire) {
-            this.sprite = [SHIELDUNDERFIRESPRITE];
-        } else {
-            this.sprite = [SHIELDSPRITE];
-            if (game.state.variables.emp) {
-                this.sprite.push(SHIELDEMPSPRITE);
-            }
-            if (game.state.variables.metalshield) {
-                this.sprite.unshift(SHIELDMETALSPRITE);
-            }
+            return (this.sprite = SHIELDUNDERFIRESPRITE);
         }
-    }
-
-    activateEmp() {
-        game.enemies.damageAll(
-            randomInRange(2, 6) * game.state.variables.damageMultiplier * game.state.variables.emprate
-        );
-        game.firelasers.clear();
+        if (game.itemactioncontroller.metalshield) {
+            return (this.sprite = SHIELDMETALSPRITE);
+        }
+        this.sprite = SHIELDSPRITE;
     }
 
     isCharged() {
         return this.charge === 100;
     }
 
-    getCharge() {
+    get currentCharge() {
         return Math.round(this.charge);
     }
 }

@@ -26,7 +26,7 @@ export class Enemy {
 
     takeDamage(damage) {
         this.hp -= damage;
-        if (game.state.variables.thorshammer) {
+        if (game.buffcontroller.thorshammer) {
             this.stun();
         }
     }
@@ -44,7 +44,7 @@ export class Enemy {
             game.effects.add(new Animation(this.x, this.y - 30, 'smoke_normal'));
             setTimeout(() => {
                 this.stunned = false;
-            }, game.state.variables.stuntime);
+            }, game.itemactioncontroller.stuntime);
         }
     }
 
@@ -55,7 +55,7 @@ export class Enemy {
             flip = !flip;
         }, 40);
 
-        setTimeout(() => clearInterval(shakeInterval), game.state.variables.stuntime);
+        setTimeout(() => clearInterval(shakeInterval), game.itemactioncontroller.stuntime);
     }
 
     // All enemies have a steps variable in parallel with y.
@@ -63,7 +63,7 @@ export class Enemy {
     // Steps should be incremented by the move() method.
     step() {
         this.steps++;
-        if (this.steps % this.firingrate === 0 && !game.state.variables.muteenemies) {
+        if (this.steps % this.firingrate === 0 && !game.buffcontroller.muteenemies) {
             this.shoot();
         }
     }
@@ -71,17 +71,7 @@ export class Enemy {
     // Release coins when killed.
     // Some enemies & bosses have extra behaviour for this method.
     die() {
-        // CASH
-        let cashReceived = this.coins;
-
-        // GREED - Roll a dice to calculate greed chance
-        const greedroll = randomInRange(0, 100);
-        if (game.state.variables.greed && greedroll < game.state.variables.greedchance) {
-            cashReceived *= 2;
-        }
-
-        // Release Coins
-        for (let i = 0; i < cashReceived; i++) {
+        for (let i = 0; i < this.coins * game.itemactioncontroller.greedMultiplier; i++) {
             game.effects.add(new Coin(this.x, this.y));
         }
     }

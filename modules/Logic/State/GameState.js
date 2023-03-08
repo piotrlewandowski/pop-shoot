@@ -1,5 +1,4 @@
 import { game, gameloop } from '../../../app.js';
-import { ItemController } from '../Controllers/ItemController.js';
 import {
     GLASSSTAGE1SPRITE,
     GLASSSTAGE2SPRITE,
@@ -8,14 +7,15 @@ import {
     GLASSSTAGE5SPRITE,
 } from '../../Assets/Hud.js';
 import { Notification } from '../../Effects/Misc/Notification.js';
-import { GameVariables } from './GameVariables.js';
 import { SlowMo } from './SlowMo.js';
 import { CashController } from '../Controllers/CashController.js';
-import { Clock } from '../../Drops/Clock.js';
+import { Clock } from '../../Objects/Clock.js';
 import { BuffController } from '../Controllers/BuffController.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
 import { Controls } from '../Motion/Controls.js';
+import { ItemActionController } from '../Controllers/ItemActionController.js';
+import { ItemDropController } from '../Controllers/ItemDropController.js';
 
 // STAGE NOTIFICATION
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
@@ -33,8 +33,6 @@ export class GameState {
 
         this.paused = false;
         this.over = false;
-
-        this.variables = new GameVariables();
     }
 
     // Set an interval to increment the game time by 1 every second.
@@ -54,7 +52,7 @@ export class GameState {
         if (
             !this.slowmo &&
             !game.player.clock.active &&
-            !game.state.variables.noslowmo &&
+            !game.buffcontroller.noslowmo &&
             game.player.slowmogauge.charge > 0
         ) {
             this.slowmo = true;
@@ -144,7 +142,6 @@ export class GameState {
         this.stage = 0;
         this.boss = false;
         this.over = false;
-        game.state.variables = new GameVariables();
 
         // RESTORE CONTROLS
         Controls.addMouseClicks();
@@ -154,7 +151,8 @@ export class GameState {
         game.player.shield.charge = 100;
         game.player.slowmogauge.charge = 100;
         game.player.clock = new Clock();
-        game.itemcontroller = new ItemController();
+        game.itemdropcontroller = new ItemDropController();
+        game.itemactioncontroller = new ItemActionController();
         game.buffcontroller = new BuffController();
         game.cashcontroller = new CashController();
 

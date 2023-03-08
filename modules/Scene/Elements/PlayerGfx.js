@@ -1,8 +1,9 @@
 import { game } from '../../../app.js';
-import { SHIELDINVINCIBILITYSPRITE } from '../../Assets/Player.js';
+import { SHIELDEMPSPRITE, SHIELDINVINCIBILITYSPRITE } from '../../Assets/Player.js';
 import { SceneUtils } from '../SceneUtils.js';
 
 const MIN_SLOWMO_CHARGE = 15; // Minimum charge that slowmo should be at in order for the flame to be drawn
+const EMP_SHIELD_Y_OFFSET = 3; // EMP shield will be drawn some px above the shield
 
 export class PlayerGfx {
     static drawJetFlame() {
@@ -24,20 +25,29 @@ export class PlayerGfx {
     }
 
     static drawShield() {
-        if (game.player.shield.isCharged() && !game.state.variables.invincibility) {
-            game.player.shield.sprite.forEach((sprite) =>
-                game.scene.ctx.drawImage(
-                    sprite,
-                    SceneUtils.offsetCoordinates(game.player).x + game.weathercontroller.glitchOffset.x,
-                    SceneUtils.offsetCoordinates(game.player).y + game.weathercontroller.glitchOffset.y
-                )
-            );
-        }
-        if (game.state.variables.invincibility) {
-            game.scene.ctx.drawImage(
+        if (game.buffcontroller.invincibility) {
+            return game.scene.ctx.drawImage(
                 SHIELDINVINCIBILITYSPRITE,
                 SceneUtils.offsetCoordinates(game.player).x + game.weathercontroller.glitchOffset.x,
                 SceneUtils.offsetCoordinates(game.player).y + game.weathercontroller.glitchOffset.y
+            );
+        }
+
+        if (game.player.shield.isCharged()) {
+            game.scene.ctx.drawImage(
+                game.player.shield.sprite,
+                SceneUtils.offsetCoordinates(game.player).x + game.weathercontroller.glitchOffset.x,
+                SceneUtils.offsetCoordinates(game.player).y + game.weathercontroller.glitchOffset.y
+            );
+        }
+
+        if (game.player.shield.isCharged() && game.itemactioncontroller.emp) {
+            game.scene.ctx.drawImage(
+                SHIELDEMPSPRITE,
+                SceneUtils.offsetCoordinates(game.player).x + game.weathercontroller.glitchOffset.x,
+                SceneUtils.offsetCoordinates(game.player).y -
+                    EMP_SHIELD_Y_OFFSET +
+                    game.weathercontroller.glitchOffset.y
             );
         }
     }

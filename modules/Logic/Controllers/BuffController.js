@@ -2,14 +2,24 @@
 
 import { randomInRange } from '../Helpers.js';
 import { game } from '../../../app.js';
-import { BUFFS } from '../../Drops/Buffs.js';
+import { BUFFS } from '../../Objects/Buffs.js';
 
 const BUFFDURATION = 15; // in seconds
 
 export class BuffController {
     constructor() {
+        // ACTIVE BUFF TRACKING
         this.activeBuff = false;
         this.countdown = 0;
+
+        // BUFFS ACTIVATION VARIABLES
+        this.invincibility = false;
+        this.mute = false;
+        this.noshield = false;
+        this.quaddamage = false;
+        this.muteenemies = false;
+        this.noslowmo = false;
+        this.thorshammer = false;
     }
 
     drop() {

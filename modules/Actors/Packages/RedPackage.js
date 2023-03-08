@@ -37,15 +37,8 @@ export class RedPackage extends Enemy {
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(4, 1);
 
-        // weather - only toggle if not in boss-mode
         if (!game.state.boss) {
-            if (game.weathercontroller.weatherActive) {
-                game.weathercontroller.stopWeather();
-                game.weathercontroller.stopDarkness();
-            } else {
-                game.weathercontroller.startWeather();
-                game.weathercontroller.startDarkness();
-            }
+            game.weathercontroller.toggleWeather();
         }
     }
 

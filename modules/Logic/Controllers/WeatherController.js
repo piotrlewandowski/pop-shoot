@@ -23,6 +23,16 @@ export class WeatherController {
         this.glitchOffset = { x: 0, y: 0 };
     }
 
+    toggleWeather() {
+        if (this.weatherActive) {
+            this.stopWeather();
+            this.stopDarkness();
+        } else {
+            this.startWeather();
+            this.startDarkness();
+        }
+    }
+
     startWeather() {
         // get weather according to stage
         const stageWeather = WEATHERS[`stage${game.state.stage}`];

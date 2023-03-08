@@ -10,7 +10,7 @@ export class LaserPool {
     add(laser) {
         this.liveLasers.push(laser);
         if (game.state.slowmo) {
-            this.applySlowmoToOne(laser);
+            game.slowmocontroller.applyToOneLaser(laser);
         }
     }
 
@@ -22,22 +22,6 @@ export class LaserPool {
         if (!game.player.clock.active) {
             this.liveLasers.forEach((laser) => laser.move());
         }
-    }
-
-    applySlowmoToAll() {
-        this.liveLasers.forEach((laser) => this.applySlowmoToOne(laser));
-    }
-
-    removeSlowmoFromAll() {
-        this.liveLasers.forEach((laser) => this.removeSlowmoFromOne(laser));
-    }
-
-    applySlowmoToOne(laser) {
-        laser.speed *= game.slowmocontroller.slowmorate;
-    }
-
-    removeSlowmoFromOne(laser) {
-        laser.speed /= game.slowmocontroller.slowmorate;
     }
 
     // Only keep lasers that meet the below conditions:

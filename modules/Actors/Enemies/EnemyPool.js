@@ -11,17 +11,12 @@ export class EnemyPool {
     add(enemy) {
         this.liveEnemies.push(enemy);
 
-        // If enemy is spawned while the game is in slow-mo,
-        // let the enemy's speed & firing rate be slowed down
-        // in order to match the other enemies on screen
         if (game.state.slowmo) {
-            this.applySlowmoToOne(enemy);
+            game.slowmocontroller.applyToOneEnemy(enemy);
         }
     }
 
     move() {
-        // Enemies will keep moving unless stunned
-        // or if the clock item is active
         if (!game.player.clock.active) {
             this.liveEnemies.forEach((enemy) => {
                 if (!enemy.stunned) {
@@ -31,8 +26,6 @@ export class EnemyPool {
         }
     }
 
-    // This function is used by items that damage all enemies,
-    // such as EMP, bombs & toxic waste
     damageAll(amount) {
         this.liveEnemies.forEach((enemy) => {
             enemy.takeDamage(amount);
@@ -54,35 +47,10 @@ export class EnemyPool {
         }
     }
 
-    applySlowmoToAll() {
-        this.liveEnemies.forEach((enemy) => {
-            this.applySlowmoToOne(enemy);
-        });
-    }
-
-    removeSlowmoFromAll() {
-        this.liveEnemies.forEach((enemy) => {
-            this.removeSlowmoFromOne(enemy);
-        });
-    }
-
-    applySlowmoToOne(enemy) {
-        enemy.speed *= game.slowmocontroller.slowmorate;
-        enemy.firingrate /= game.slowmocontroller.slowmorate;
-    }
-
-    removeSlowmoFromOne(enemy) {
-        enemy.speed /= game.slowmocontroller.slowmorate;
-        enemy.firingrate *= game.slowmocontroller.slowmorate;
-    }
-
-    // Used to check if there are any enemies on screen. Currently used by seekers & airstrike
     enemiesOnScreen() {
         return this.liveEnemies.length;
     }
 
-    // Execute the die() function on enemies with HP <= 0,
-    // then remove enemies that are dead or off-screen.
     refresh() {
         this.liveEnemies = this.liveEnemies.filter((enemy) => {
             const isRedPackage = enemy.constructor === RedPackage;

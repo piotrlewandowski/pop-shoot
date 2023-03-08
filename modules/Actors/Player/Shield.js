@@ -1,6 +1,5 @@
 import { game } from '../../../app.js';
 import { SHIELDMETALSPRITE, SHIELDSPRITE, SHIELDUNDERFIRESPRITE } from '../../Assets/Player.js';
-import { SlowMo } from '../../Logic/State/SlowMo.js';
 
 const UNDERFIRETIME = 1; // default invincibility time if no metalshield upgrade, in seconds
 const CHARGERATE = 1; // default charging rate if no nitrogen upgrade
@@ -33,7 +32,7 @@ export class Shield {
         let rate = game.itemactioncontroller.nitrogen ? game.itemactioncontroller.nitrogenrate : CHARGERATE;
 
         if (game.state.slowmo) {
-            rate *= SlowMo.slowmorate;
+            rate *= game.slowmocontroller.slowmorate;
         }
 
         if (!game.buffcontroller.noshield) {

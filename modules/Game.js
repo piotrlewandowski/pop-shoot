@@ -13,6 +13,7 @@ import { WeatherController } from './Logic/Controllers/WeatherController.js';
 import { CollisionDetection } from './Logic/Motion/CollisionDetection.js';
 import { ItemDropController } from './Logic/Controllers/ItemDropController.js';
 import { ItemActionController } from './Logic/Controllers/ItemActionController.js';
+import { SlowmoController } from './Logic/Controllers/SlowmoController.js';
 
 export class Game {
     constructor() {
@@ -35,6 +36,7 @@ export class Game {
         this.audiocontroller = new AudioController();
         this.cashcontroller = new CashController();
         this.enemycontroller = new EnemyController();
+        this.slowmocontroller = new SlowmoController();
         this.weathercontroller = new WeatherController();
         Controls.addControls();
     }

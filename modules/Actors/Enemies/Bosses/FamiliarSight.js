@@ -7,7 +7,6 @@ import { CANVAS } from '../../../Assets/Other.js';
 import { randomInRange } from '../../../Logic/Helpers.js';
 import { FAMILIARSIGHTHARDENEDSPRITE, FAMILIARSIGHTSPRITE } from '../../../Assets/Enemies.js';
 import { SceneUtils } from '../../../Scene/SceneUtils.js';
-import { SlowMo } from '../../../Logic/State/SlowMo.js';
 
 // MOVEMENT
 const SPEED = 4;
@@ -141,7 +140,7 @@ export class FamiliarSight extends Enemy {
         game.audiocontroller.playSound('powerDown');
         game.audiocontroller.stopSound('familiarMg');
         this.sprite = FAMILIARSIGHTSPRITE;
-        this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL / SlowMo.slowmorate : FIRINGRATE_NORMAL;
+        this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL / game.slowmocontroller.slowmorate : FIRINGRATE_NORMAL;
         this.hardened = false;
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(3, 0.5);
@@ -150,7 +149,9 @@ export class FamiliarSight extends Enemy {
     harden() {
         game.audiocontroller.playSound('powerDown');
         game.audiocontroller.playSound('familiarMg');
-        this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL * SlowMo.slowmorate : FIRINGRATE_HARDENED;
+        this.firingrate = game.state.slowmo
+            ? FIRINGRATE_NORMAL * game.slowmocontroller.slowmorate
+            : FIRINGRATE_HARDENED;
         this.sprite = FAMILIARSIGHTHARDENEDSPRITE;
         this.hardened = true;
         game.enemies.clear();

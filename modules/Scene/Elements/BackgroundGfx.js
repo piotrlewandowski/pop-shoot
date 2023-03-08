@@ -16,7 +16,6 @@ import {
     S4FRONT,
 } from '../../Assets/Other.js';
 import { Vortex } from '../../Effects/Weather/Vortex.js';
-import { SlowMo } from '../../Logic/State/SlowMo.js';
 
 const BACKGROUNDS = {
     stage0: { back: S0BACK, front: S0FRONT },
@@ -72,7 +71,7 @@ export class BackgroundGfx {
 
     static updateScrollOffset() {
         if (game.state.slowmo || !game.state.time || game.player.clock.active) {
-            game.scene.bgScrollOffset -= SlowMo.slowmorate;
+            game.scene.bgScrollOffset -= game.slowmocontroller.slowmorate;
         } else {
             game.scene.bgScrollOffset -= PARALLAX_SPEED;
         }

@@ -7,7 +7,6 @@ import {
     GLASSSTAGE5SPRITE,
 } from '../../Assets/Hud.js';
 import { Notification } from '../../Effects/Misc/Notification.js';
-import { SlowMo } from './SlowMo.js';
 import { CashController } from '../Controllers/CashController.js';
 import { Clock } from '../../Objects/Clock.js';
 import { BuffController } from '../Controllers/BuffController.js';
@@ -56,7 +55,7 @@ export class GameState {
             game.player.slowmogauge.charge > 0
         ) {
             this.slowmo = true;
-            SlowMo.start();
+            game.slowmocontroller.start();
             game.audiocontroller.updateMusic();
         } else {
             SceneUtils.shakeScreen(2, 0.25);
@@ -69,7 +68,7 @@ export class GameState {
         // if statement to prevent from accidentally running the function several times
         if (this.slowmo) {
             this.slowmo = false;
-            SlowMo.stop();
+            game.slowmocontroller.stop();
             game.audiocontroller.updateMusic();
         }
     }

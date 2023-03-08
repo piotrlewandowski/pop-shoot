@@ -1,7 +1,6 @@
 import { CANVAS } from '../Assets/Other.js';
 import { game } from '../../app.js';
 import { Debris } from './Friendly/Debris.js';
-import { SlowMo } from '../Logic/State/SlowMo.js';
 
 export class LaserPool {
     constructor() {
@@ -11,7 +10,7 @@ export class LaserPool {
     add(laser) {
         this.liveLasers.push(laser);
         if (game.state.slowmo) {
-            this.applySlowmoToOne(laser);
+            game.slowmocontroller.applyToOneLaser(laser);
         }
     }
 
@@ -23,22 +22,6 @@ export class LaserPool {
         if (!game.player.clock.active) {
             this.liveLasers.forEach((laser) => laser.move());
         }
-    }
-
-    applySlowmoToAll() {
-        this.liveLasers.forEach((laser) => this.applySlowmoToOne(laser));
-    }
-
-    removeSlowmoFromAll() {
-        this.liveLasers.forEach((laser) => this.removeSlowmoFromOne(laser));
-    }
-
-    applySlowmoToOne(laser) {
-        laser.speed *= SlowMo.slowmorate;
-    }
-
-    removeSlowmoFromOne(laser) {
-        laser.speed /= SlowMo.slowmorate;
     }
 
     // Only keep lasers that meet the below conditions:

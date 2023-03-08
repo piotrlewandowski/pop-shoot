@@ -26,15 +26,11 @@ export class SlowmoController {
     // ENEMIES
 
     applyToAllEnemies() {
-        game.enemies.liveEnemies.forEach((enemy) => {
-            this.applyToOneEnemy(enemy);
-        });
+        game.enemies.liveEnemies.forEach((enemy) => this.applyToOneEnemy(enemy));
     }
 
     removeFromAllEnemies() {
-        game.enemies.liveEnemies.forEach((enemy) => {
-            this.removeFromOneEnemy(enemy);
-        });
+        game.enemies.liveEnemies.forEach((enemy) => this.removeFromOneEnemy(enemy));
     }
 
     applyToOneEnemy(enemy) {
@@ -70,15 +66,11 @@ export class SlowmoController {
     // EFFECTS
 
     applyToAllEffects() {
-        game.effects.liveEffects.forEach((effect) => {
-            this.applyToOneEffect(effect);
-        });
+        game.effects.liveEffects.forEach((effect) => this.applyToOneEffect(effect));
     }
 
     removeFromAllEffects() {
-        game.effects.liveEffects.forEach((effect) => {
-            this.removeFromOneEffect(effect);
-        });
+        game.effects.liveEffects.forEach((effect) => this.removeFromOneEffect(effect));
     }
 
     applyToOneEffect(effect) {

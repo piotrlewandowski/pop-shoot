@@ -12,6 +12,7 @@ export const S2BACK = document.getElementById('stage2back');
 export const S2MID = document.getElementById('stage2mid');
 export const S2FRONT = document.getElementById('stage2front');
 export const S3BACK = document.getElementById('stage3back');
+export const S3MID = document.getElementById('stage3mid');
 export const S3FRONT = document.getElementById('stage3front');
 export const S4BACK = document.getElementById('stage4back');
 export const S4FRONT = document.getElementById('stage4front');

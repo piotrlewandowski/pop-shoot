@@ -15,6 +15,7 @@ import {
     S2MID,
     S3BACK,
     S3FRONT,
+    S3MID,
     S4BACK,
     S4FRONT,
 } from '../../Assets/Other.js';
@@ -24,7 +25,7 @@ const BACKGROUNDS = {
     stage0: { back: S0BACK, mid: S0MID, front: S0FRONT },
     stage1: { back: S1BACK, mid: S1MID, front: S1FRONT },
     stage2: { back: S2BACK, mid: S2MID, front: S2FRONT },
-    stage3: { back: S3BACK, front: S3FRONT },
+    stage3: { back: S3BACK, mid: S3MID, front: S3FRONT },
     stage4: { back: S4BACK, front: S4FRONT },
 };
 

@@ -15,6 +15,7 @@ export const S3BACK = document.getElementById('stage3back');
 export const S3MID = document.getElementById('stage3mid');
 export const S3FRONT = document.getElementById('stage3front');
 export const S4BACK = document.getElementById('stage4back');
+export const S4MID = document.getElementById('stage4mid');
 export const S4FRONT = document.getElementById('stage4front');
 
 // MAIN MENU & SLOWMO FOG

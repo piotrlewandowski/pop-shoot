@@ -3,8 +3,10 @@ export const CANVAS = document.getElementById('canvas');
 
 // BACKGROUNDS
 export const S0BACK = document.getElementById('stage0back');
+export const S0MID = document.getElementById('stage0mid');
 export const S0FRONT = document.getElementById('stage0front');
 export const S1BACK = document.getElementById('stage1back');
+export const S1MID = document.getElementById('stage1mid');
 export const S1FRONT = document.getElementById('stage1front');
 export const S2BACK = document.getElementById('stage2back');
 export const S2FRONT = document.getElementById('stage2front');

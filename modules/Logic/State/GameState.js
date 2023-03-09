@@ -75,13 +75,13 @@ export class GameState {
     toggleBoss() {
         if (!this.boss) {
             this.boss = true;
-            game.weathercontroller.stopWeather();
             SceneUtils.shakeScreen(6, 0.75);
         } else {
             this.boss = false;
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
             this.addStageNotification();
+            game.weathercontroller.stopWeather();
             game.enemies.clear();
             game.firelasers.clear();
             game.bluelasers.clear();

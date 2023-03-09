@@ -6,8 +6,10 @@ import {
     FOGGREEN,
     S0BACK,
     S0FRONT,
+    S0MID,
     S1BACK,
     S1FRONT,
+    S1MID,
     S2BACK,
     S2FRONT,
     S3BACK,
@@ -18,8 +20,8 @@ import {
 import { Vortex } from '../../Effects/Weather/Vortex.js';
 
 const BACKGROUNDS = {
-    stage0: { back: S0BACK, front: S0FRONT },
-    stage1: { back: S1BACK, front: S1FRONT },
+    stage0: { back: S0BACK, mid: S0MID, front: S0FRONT },
+    stage1: { back: S1BACK, mid: S1MID, front: S1FRONT },
     stage2: { back: S2BACK, front: S2FRONT },
     stage3: { back: S3BACK, front: S3FRONT },
     stage4: { back: S4BACK, front: S4FRONT },
@@ -29,12 +31,14 @@ const PARALLAX_SPEED = 3;
 
 export class BackgroundGfx {
     static drawBack() {
-        const backgroundback = BACKGROUNDS[`stage${game.state.stage}`].back;
-
         // stars
-        game.scene.ctx.drawImage(backgroundback, game.scene.bgScrollOffset + game.scene.shake, game.scene.shake);
         game.scene.ctx.drawImage(
-            backgroundback,
+            BACKGROUNDS[`stage${game.state.stage}`].back,
+            game.scene.bgScrollOffset + game.scene.shake,
+            game.scene.shake
+        );
+        game.scene.ctx.drawImage(
+            BACKGROUNDS[`stage${game.state.stage}`].back,
             game.scene.bgScrollOffset + CANVAS.width + game.scene.shake,
             game.scene.shake
         );
@@ -50,9 +54,14 @@ export class BackgroundGfx {
         }
     }
 
+    static drawMid() {
+        if (game.state.boss) {
+            game.scene.ctx.drawImage(BACKGROUNDS[`stage${game.state.stage}`].mid, game.scene.shake, game.scene.shake);
+        }
+    }
+
     static drawFront() {
-        const backgroundfront = BACKGROUNDS[`stage${game.state.stage}`].front;
-        game.scene.ctx.drawImage(backgroundfront, game.scene.shake, game.scene.shake);
+        game.scene.ctx.drawImage(BACKGROUNDS[`stage${game.state.stage}`].front, game.scene.shake, game.scene.shake);
 
         // only in Vortex
         if (game.weathercontroller.weatherActive.constructor === Vortex) {

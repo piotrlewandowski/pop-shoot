@@ -16,7 +16,6 @@ const WEATHERS = {
 export class WeatherController {
     constructor() {
         // active-weather tracking
-        this.darknessActive = false;
         this.weatherActive = false;
 
         // glitch offset used by 'matrix' weather type
@@ -26,10 +25,8 @@ export class WeatherController {
     toggleWeather() {
         if (this.weatherActive) {
             this.stopWeather();
-            this.stopDarkness();
         } else {
             this.startWeather();
-            this.startDarkness();
         }
     }
 
@@ -47,13 +44,5 @@ export class WeatherController {
             this.weatherActive.stop();
             this.weatherActive = false;
         }
-    }
-
-    startDarkness() {
-        this.darknessActive = true;
-    }
-
-    stopDarkness() {
-        this.darknessActive = false;
     }
 }

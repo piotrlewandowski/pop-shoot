@@ -45,7 +45,7 @@ export class BackgroundGfx {
         }
 
         // darkness
-        if (game.weathercontroller.darknessActive) {
+        if (game.weathercontroller.weatherActive) {
             game.scene.ctx.drawImage(BLACKSCREENSPRITE, 0, 0);
         }
     }

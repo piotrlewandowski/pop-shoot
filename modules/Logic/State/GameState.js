@@ -75,11 +75,10 @@ export class GameState {
     toggleBoss() {
         if (!this.boss) {
             this.boss = true;
+            game.weathercontroller.stopWeather();
             SceneUtils.shakeScreen(6, 0.75);
-            game.weathercontroller.startDarkness();
         } else {
             this.boss = false;
-            game.weathercontroller.stopDarkness();
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
             this.addStageNotification();
@@ -88,7 +87,6 @@ export class GameState {
             game.bluelasers.clear();
         }
         SceneUtils.flashScreen();
-        game.weathercontroller.stopWeather();
         game.audiocontroller.updateMusic();
     }
 
@@ -133,7 +131,6 @@ export class GameState {
         game.firelasers.clear();
         game.bluelasers.clear();
         game.weathercontroller.stopWeather();
-        game.weathercontroller.stopDarkness();
 
         // reset game state
         this.time = 1;

@@ -8,8 +8,8 @@ import { Wind } from '../../Effects/Weather/Wind.js';
 const WEATHERS = {
     stage0: Rain,
     stage1: Wind,
-    stage2: Sand,
-    stage3: Vortex,
+    stage2: Vortex,
+    stage3: Sand,
     stage4: Matrix,
 };
 

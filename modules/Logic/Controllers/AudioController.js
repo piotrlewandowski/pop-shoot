@@ -243,7 +243,7 @@ const SOUNDS = {
     },
     vortex: {
         audio: VORTEXSOUND,
-        volume: 1,
+        volume: 0.3,
         loop: true,
     },
     wind: {

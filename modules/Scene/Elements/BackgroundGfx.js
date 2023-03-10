@@ -20,7 +20,7 @@ import {
     S4FRONT,
     S4MID,
 } from '../../Assets/Other.js';
-import { Vortex } from '../../Effects/Weather/Vortex.js';
+import { Sand } from '../../Effects/Weather/Sand.js';
 
 const BACKGROUNDS = {
     stage0: { back: S0BACK, mid: S0MID, front: S0FRONT },
@@ -66,8 +66,8 @@ export class BackgroundGfx {
     static drawFront() {
         game.scene.ctx.drawImage(BACKGROUNDS[`stage${game.state.stage}`].front, game.scene.shake, game.scene.shake);
 
-        // only in Vortex
-        if (game.weathercontroller.weatherActive.constructor === Vortex) {
+        // only during stage3 sand-weather
+        if (game.weathercontroller.weatherActive.constructor === Sand) {
             game.scene.ctx.drawImage(HIEROGLYPHSPRITE, game.scene.shake, game.scene.shake);
         }
     }

@@ -49,6 +49,7 @@ import {
     COINSOUND,
     DRAINSOUND,
     NOAMMOSOUND,
+    RAYSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -180,6 +181,11 @@ const SOUNDS = {
         volume: 1,
         loop: true,
     },
+    ray: {
+        audio: RAYSOUND,
+        clone: true,
+        volume: 0.6,
+    },
     reload: {
         audio: RELOADSOUND,
         volume: 1,
@@ -237,7 +243,7 @@ const SOUNDS = {
     },
     vortex: {
         audio: VORTEXSOUND,
-        volume: 1,
+        volume: 0.3,
         loop: true,
     },
     wind: {

@@ -32,6 +32,7 @@ export class Scene {
 
     drawBackground() {
         BackgroundGfx.drawBack();
+        BackgroundGfx.drawMid();
         BackgroundGfx.drawFront();
         BackgroundGfx.drawFog();
         BackgroundGfx.updateScrollOffset();

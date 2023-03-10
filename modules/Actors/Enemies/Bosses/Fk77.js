@@ -5,6 +5,7 @@ import { randomInRange } from '../../../Logic/Helpers.js';
 import { FK77HARDENEDSPRITE, FK77SPRITE } from '../../../Assets/Enemies.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { SceneUtils } from '../../../Scene/SceneUtils.js';
+import { CANVAS } from '../../../Assets/Other.js';
 
 // MOVEMENT
 const SPEED = 5;
@@ -13,9 +14,9 @@ const XPOS = 560;
 const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
-const RAYRATE = 150; // speed of the cinnamon roll
-const P2_RAYRATE = 75; // speed of the cinnamon roll
-const P3_RAYRATE = 50; // speed of the cinnamon roll
+const RAYRATE = 150; // shooting rate. lower = faster
+const P2_RAYRATE = 75; // shooting rate. lower = faster
+const P3_RAYRATE = 50; // shootnig rate. lower = faster
 
 // HARDEN
 const HARDEN_RATE = 2000; // in ticks. lower = faster
@@ -44,7 +45,6 @@ export class Fk77 extends Enemy {
 
         this.hardened = false;
     }
-
     move() {
         if (this.y <= LOWEST_POINT) {
             this.x += Movement.move(SOUTH, this.speed).x;
@@ -56,7 +56,7 @@ export class Fk77 extends Enemy {
 
     takeDamage(damage) {
         if (this.hardened) {
-            this.shoot();
+            this.deflect();
         }
         SceneUtils.shakeScreen(2, 0.25);
         super.takeDamage(damage);
@@ -71,21 +71,28 @@ export class Fk77 extends Enemy {
             game.firelasers.add(new FireLaser(this.x, this.y, direction, i));
         }
 
-        // ray
+        // first ray
         setTimeout(() => {
             for (let i = 1; i < 100; i++) {
                 game.firelasers.add(new FireLaser(this.x, this.y, direction, i + 10));
             }
         }, 500);
+
+        // delayed ray
+        setTimeout(() => {
+            const x = randomInRange(0, CANVAS.width);
+            for (let i = 1; i < 100; i++) {
+                game.firelasers.add(new FireLaser(x, 0, direction, i + 20));
+            }
+        }, 2000);
     }
 
-    shoot() {
+    deflect() {
         game.firelasers.add(new FireLaser(this.x, this.y, randomInRange(0, 360), HARDEN_BULLETSPEED));
     }
 
     step() {
         super.step();
-
         let rayrate = RAYRATE;
         if (this.hp < HP * PHASE2_HP) {
             rayrate = P2_RAYRATE;

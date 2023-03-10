@@ -49,6 +49,7 @@ import {
     COINSOUND,
     DRAINSOUND,
     NOAMMOSOUND,
+    RAYSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -179,6 +180,11 @@ const SOUNDS = {
         audio: RAINSOUND,
         volume: 1,
         loop: true,
+    },
+    ray: {
+        audio: RAYSOUND,
+        clone: true,
+        volume: 0.6,
     },
     reload: {
         audio: RELOADSOUND,

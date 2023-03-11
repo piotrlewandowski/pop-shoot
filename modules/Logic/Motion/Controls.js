@@ -16,10 +16,11 @@ export class Controls {
     // EVENTS
 
     static addMouseMovement() {
-        CANVAS.addEventListener('mousemove', (evt) => {
-            game.player.x = evt.clientX > CANVAS.width ? CANVAS.width : evt.clientX;
-            game.player.y = evt.clientY > CANVAS.height ? CANVAS.height : evt.clientY;
-        });
+        CANVAS.addEventListener('mousemove', this._mouseMovement);
+    }
+
+    static removeMouseMovement() {
+        CANVAS.removeEventListener('mousemove', this._mouseMovement);
     }
 
     static addMouseClicks() {
@@ -47,6 +48,10 @@ export class Controls {
 
     // FUNCTIONS
 
+    static _mouseMovement(evt) {
+        game.player.x = evt.clientX > CANVAS.width ? CANVAS.width : evt.clientX;
+        game.player.y = evt.clientY > CANVAS.height ? CANVAS.height : evt.clientY;
+    }
     static _mouseClicks(evt) {
         // left
         if (evt.button === 0) {

@@ -77,7 +77,7 @@ export class GameState {
             this.boss = true;
         } else {
             this.boss = false;
-            game.audiocontroller.playSound('exp_normal');
+            game.audiocontroller.playSound('explosion');
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
             this.addStageNotification();

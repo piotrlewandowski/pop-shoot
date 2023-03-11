@@ -36,8 +36,7 @@ import {
     PHASESOUND,
     SPLASHSOUND,
     PHEWSOUND,
-    EXPLOSIONNORMALSOUND,
-    EXPLOSIONBIGSOUND,
+    EXPLOSIONSOUND,
     SMOKESOUND,
     SWOOSHSOUND,
     STEAMSOUND,
@@ -107,13 +106,8 @@ const SOUNDS = {
         volume: 1,
         clone: true,
     },
-    exp_big: {
-        audio: EXPLOSIONBIGSOUND,
-        clone: true,
-        volume: 1,
-    },
-    exp_normal: {
-        audio: EXPLOSIONNORMALSOUND,
+    explosion: {
+        audio: EXPLOSIONSOUND,
         clone: true,
         volume: 1,
     },

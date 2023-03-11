@@ -17,8 +17,7 @@ export const MUSICCLOCK = document.getElementById('musicclock');
 export const SPLASHSOUND = document.getElementById('splash_sound');
 export const SMOKESOUND = document.getElementById('smoke_sound');
 export const PHASESOUND = document.getElementById('phase_sound');
-export const EXPLOSIONNORMALSOUND = document.getElementById('explosion_normal_sound');
-export const EXPLOSIONBIGSOUND = document.getElementById('explosion_big_sound');
+export const EXPLOSIONSOUND = document.getElementById('explosion_sound');
 export const PHEWSOUND = document.getElementById('phew_sound');
 
 // MISC

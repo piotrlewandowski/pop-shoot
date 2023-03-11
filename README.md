@@ -30,7 +30,7 @@ The game includes 5 stages & bosses, as well as many cool features such as bulle
 [Retro Future Nights](https://www.youtube.com/watch?v=D_jQLR6zq30)  
 [Emerging from the Lights](https://www.youtube.com/watch?v=hEYC7DabpBk)  
 [Let's Dance Instead](https://www.youtube.com/watch?v=a9CTA3usdoQ)  
-[Re-Energize](https://www.youtube.com/watch?v=xW01slEESKk)  
+[Dark Versus Light](https://www.youtube.com/watch?v=uxD88mxMDQc)  
 [Twilight Metropolis A](https://www.youtube.com/watch?v=k1C1algxG0E)  
 [Dystopian Paradise](https://www.youtube.com/watch?v=j9l6QWj4JqU)  
 [Auto Riff](https://www.youtube.com/watch?v=YtoigIxLE8Y)

@@ -49,7 +49,7 @@ export class RedUfo extends Enemy {
     die() {
         game.audiocontroller.playSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
-        SceneUtils.shakeScreen(6, 0.75);
+        SceneUtils.shakeScreen(5, 0.75);
         this.explode();
         super.die();
     }

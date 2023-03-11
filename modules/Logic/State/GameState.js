@@ -75,9 +75,9 @@ export class GameState {
     toggleBoss() {
         if (!this.boss) {
             this.boss = true;
-            SceneUtils.shakeScreen(6, 0.75);
         } else {
             this.boss = false;
+            game.audiocontroller.playSound('exp_normal');
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
             this.addStageNotification();
@@ -86,6 +86,7 @@ export class GameState {
             game.firelasers.clear();
             game.bluelasers.clear();
         }
+        SceneUtils.shakeScreen(3, 1);
         SceneUtils.flashScreen();
         game.audiocontroller.updateMusic();
     }

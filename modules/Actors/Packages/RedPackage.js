@@ -20,7 +20,7 @@ export class RedPackage extends Enemy {
         super(RADIUS, HP, COINS, SPRITE, SPEED);
         this.hitsound = 'metal';
         game.audiocontroller.playSound('beepRed');
-        SceneUtils.shakeScreen(4, 1);
+        SceneUtils.shakeScreen(3, 1);
         RedPackage.incrementCount();
     }
 
@@ -35,7 +35,7 @@ export class RedPackage extends Enemy {
         game.itemdropcontroller.drop();
         RedPackage.decrementCount();
         SceneUtils.flashScreen();
-        SceneUtils.shakeScreen(4, 1);
+        SceneUtils.shakeScreen(3, 1);
 
         if (!game.state.boss) {
             game.weathercontroller.toggleWeather();
@@ -46,7 +46,7 @@ export class RedPackage extends Enemy {
     vanish() {
         game.audiocontroller.playSound('drain');
         RedPackage.decrementCount();
-        SceneUtils.shakeScreen(4, 1);
+        SceneUtils.shakeScreen(3, 1);
         SceneUtils.flashScreen();
         this.hp = 0;
     }

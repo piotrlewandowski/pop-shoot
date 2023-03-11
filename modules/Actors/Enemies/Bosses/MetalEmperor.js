@@ -142,9 +142,7 @@ export class MetalEmperor extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playSound('exp_big');
         super.die();
-        SceneUtils.shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

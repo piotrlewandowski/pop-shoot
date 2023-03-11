@@ -31,6 +31,6 @@ export class OrangePackage extends Enemy {
         game.audiocontroller.playSound('splash');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.buffcontroller.drop();
-        SceneUtils.shakeScreen(4, 0.5);
+        SceneUtils.shakeScreen(3, 0.5);
     }
 }

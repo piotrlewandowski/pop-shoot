@@ -165,8 +165,6 @@ export class FamiliarSight extends Enemy {
 
     die() {
         super.die();
-        game.audiocontroller.playSound('exp_big');
-        SceneUtils.shakeScreen(6, 2);
         game.state.toggleBoss();
     }
 }

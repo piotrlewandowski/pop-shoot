@@ -2,14 +2,12 @@ import { game } from '../../../app.js';
 import { CANVAS } from '../../Assets/Other.js';
 
 const PAUSEBUTTON = 'Space';
-const UNSETGAMEOVERBUTTON = 'KeyP';
 
 export class Controls {
     static addControls() {
         this.addMouseMovement();
         this.addMouseClicks();
         this.addPauseButton();
-        this.addUnsetGameOverButton();
         this.disableRightClickMenu();
     }
 
@@ -34,10 +32,6 @@ export class Controls {
 
     static addPauseButton() {
         document.addEventListener('keydown', this._pauseButton);
-    }
-
-    static addUnsetGameOverButton() {
-        document.addEventListener('keydown', this._unsetGameOverButton);
     }
 
     static disableRightClickMenu() {
@@ -88,12 +82,6 @@ export class Controls {
             } else {
                 game.state.replay();
             }
-        }
-    }
-
-    static _unsetGameOverButton(evt) {
-        if (evt.code === UNSETGAMEOVERBUTTON && game.state.over) {
-            game.state.unsetGameOver();
         }
     }
 }

@@ -112,20 +112,6 @@ export class GameState {
         game.audiocontroller.updateMusic();
     }
 
-    // this function is only used for development purposes
-    // ----------------------------------------------------
-    unsetGameOver() {
-        this.over = false;
-        Controls.addMouseClicks();
-        Controls.addPauseButton();
-        game.firelasers.clear();
-        game.bluelasers.clear();
-        game.player.shield.charge = 100;
-        window.requestAnimationFrame(gameloop);
-        game.audiocontroller.updateMusic();
-    }
-    // ----------------------------------------------------
-
     replay() {
         // clear screen
         game.enemies.clear(true);

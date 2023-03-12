@@ -33,10 +33,10 @@ export class EnemyPool {
         });
     }
 
-    // if replay variable is set to true, the enemies array will be cleared (used for replay after game-over)
+    // if noCash variable is set to true, the enemies array will be cleared (used for replay after game-over)
     // if set to false, the enemies will be killed normally & cash will be counted (used after killing bosses)
-    clear(replay) {
-        if (replay) {
+    clear(noCash) {
+        if (noCash) {
             this.liveEnemies = [];
         } else {
             this.liveEnemies.forEach((enemy) => {

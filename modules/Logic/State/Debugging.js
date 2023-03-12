@@ -46,6 +46,7 @@ export class Debugging {
     static _warpToStage({ stage, boss }) {
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(3, 1);
+        game.state.boss = false;
         game.state.stage = stage;
         game.state.time = boss ? 300 * stage + 290 : 300 * stage + 1;
         game.audiocontroller.rewindMusic();
@@ -54,7 +55,6 @@ export class Debugging {
         game.enemies.clear(true);
         game.firelasers.clear();
         game.bluelasers.clear();
-        game.state.boss = false;
     }
 
     static addUnsetGameOverButton() {

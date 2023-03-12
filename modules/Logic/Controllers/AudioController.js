@@ -205,7 +205,7 @@ const SOUNDS = {
     siren: {
         audio: SIRENSOUND,
         rewind: true,
-        volume: 1,
+        volume: 0.7,
         loop: true,
     },
     slowmoCharge: {

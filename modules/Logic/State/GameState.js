@@ -15,6 +15,7 @@ import { SceneUtils } from '../../Scene/SceneUtils.js';
 import { Controls } from '../Motion/Controls.js';
 import { ItemActionController } from '../Controllers/ItemActionController.js';
 import { ItemDropController } from '../Controllers/ItemDropController.js';
+import { Debugging } from './Debugging.js';
 
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
 const NOTIFICATION_DURATION = 400; // in ticks. higher = longer
@@ -39,6 +40,7 @@ export class GameState {
         this.time += 1;
         game.audiocontroller.updateMusic();
         this.addStageNotification();
+        Debugging.addDebuggingControls();
         setInterval(() => {
             if (!this.paused && !this.over && !this.boss && !game.player.clock.active) {
                 this.time++;
@@ -51,7 +53,8 @@ export class GameState {
             !this.slowmo &&
             !game.player.clock.active &&
             !game.buffcontroller.noslowmo &&
-            game.player.slowmogauge.charge > 0
+            game.player.slowmogauge.charge > 0 &&
+            this.time
         ) {
             this.slowmo = true;
             game.slowmocontroller.start();
@@ -93,7 +96,7 @@ export class GameState {
 
     togglePause() {
         // only pause if game has started, or game is not on gameover screen
-        if (this.time && !this.over) {
+        if (this.time) {
             if (!this.paused) {
                 Controls.removeMouseClicks();
                 this.paused = true;

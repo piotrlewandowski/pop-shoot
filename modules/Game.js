@@ -14,7 +14,6 @@ import { CollisionDetection } from './Logic/Motion/CollisionDetection.js';
 import { ItemDropController } from './Logic/Controllers/ItemDropController.js';
 import { ItemActionController } from './Logic/Controllers/ItemActionController.js';
 import { SlowmoController } from './Logic/Controllers/SlowmoController.js';
-import { Debugging } from './Logic/State/Debugging.js';
 
 export class Game {
     constructor() {
@@ -40,7 +39,6 @@ export class Game {
         this.slowmocontroller = new SlowmoController();
         this.weathercontroller = new WeatherController();
         Controls.addControls();
-        Debugging.addDebuggingControls();
     }
 
     draw() {

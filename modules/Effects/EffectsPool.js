@@ -1,8 +1,17 @@
 import { game } from '../../app.js';
+import { Notification } from './Misc/Notification.js';
 
 export class EffectsPool {
     constructor() {
         this.liveEffects = [];
+    }
+
+    clearNotifications(type) {
+        this.liveEffects.forEach((effect) => {
+            if (effect.constructor === Notification && effect.type === type) {
+                effect.duration = 0;
+            }
+        });
     }
 
     add(effect) {

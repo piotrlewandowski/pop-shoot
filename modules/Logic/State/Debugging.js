@@ -55,6 +55,7 @@ export class Debugging {
         game.enemies.clear(true);
         game.firelasers.clear();
         game.bluelasers.clear();
+        game.state.addStageNotification();
     }
 
     static addUnsetGameOverButton() {

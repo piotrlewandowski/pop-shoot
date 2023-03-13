@@ -76,6 +76,9 @@ export class ItemDropController {
     }
 
     addItemNotification(item) {
-        game.effects.add(new Notification(NOTIFICATION_X, NOTIFICATION_Y, item.notification, NOTIFICATION_DURATION));
+        game.effects.clearNotifications('item');
+        game.effects.add(
+            new Notification(NOTIFICATION_X, NOTIFICATION_Y, item.notification, NOTIFICATION_DURATION, 'item')
+        );
     }
 }

@@ -153,8 +153,9 @@ export class GameState {
     }
 
     addStageNotification() {
+        game.effects.clearNotifications('stage');
         game.effects.add(
-            new Notification(NOTIFICATION_X, NOTIFICATION_Y, STAGESPRITES[this.stage], NOTIFICATION_DURATION)
+            new Notification(NOTIFICATION_X, NOTIFICATION_Y, STAGESPRITES[this.stage], NOTIFICATION_DURATION, 'stage')
         );
     }
 }

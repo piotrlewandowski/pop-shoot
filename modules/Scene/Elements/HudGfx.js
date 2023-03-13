@@ -149,8 +149,13 @@ export class HudGfx {
         game.itemdropcontroller.aquiredItems.forEach((item) => {
             game.scene.ctx.drawImage(item.icon, currentx, ICON_Y);
             // spray or dmg aquired more than once
-            if (item.repeated > 1) {
-                SceneUtils.drawCenteredText(`x${item.repeated}`, currentx + ICONTEXT_SHIFT, ICONTEXT_Y, ICONTEXT_FONT);
+            if (item.repeated) {
+                SceneUtils.drawCenteredText(
+                    `x${item.repeated + 1}`,
+                    currentx + ICONTEXT_SHIFT,
+                    ICONTEXT_Y,
+                    ICONTEXT_FONT
+                );
             }
             // clock status
             if (item.name === 'clock') {

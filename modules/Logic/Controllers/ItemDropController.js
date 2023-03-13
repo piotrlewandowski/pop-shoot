@@ -43,6 +43,10 @@ export class ItemDropController {
             ITEMS.emp,
             ITEMS.metalshield,
         ];
+
+        // add 'repeated' property only to repeatable items,
+        // to be incremented every time the item is aquired
+        this.repetitivePool.forEach((item) => (item.repeated = 0));
     }
 
     drop() {
@@ -61,11 +65,9 @@ export class ItemDropController {
     }
 
     aquireAndActivate(item) {
-        // if item is already owned, add a 'repeated' property to it,
-        // or increment the 'repeated' property if it already exists
         if (this.aquiredItems.includes(item)) {
             const ownedItem = this.aquiredItems[this.aquiredItems.indexOf(item)];
-            ownedItem.repeated = (ownedItem.repeated || 1) + 1;
+            ownedItem.repeated++;
         } else {
             this.aquiredItems.push(item);
         }

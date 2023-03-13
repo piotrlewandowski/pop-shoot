@@ -36,10 +36,7 @@ export class RedPackage extends Enemy {
         RedPackage.decrementCount();
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(3, 1);
-
-        if (!game.state.boss) {
-            game.weathercontroller.toggleWeather();
-        }
+        game.weathercontroller.toggleWeather();
     }
 
     // called by refresh() when redpackage has left the screen

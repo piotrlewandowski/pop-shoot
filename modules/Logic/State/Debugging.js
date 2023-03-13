@@ -72,7 +72,7 @@ export class Debugging {
         });
     }
 
-    static addItemDropButton() {
+    static addSpawnRedpackageButton() {
         document.addEventListener('keydown', (evt) => {
             if (evt.code === REDPACKAGEBUTTON) {
                 game.enemies.add(new RedPackage());
@@ -80,7 +80,7 @@ export class Debugging {
         });
     }
 
-    static addSpawnRedpackageButton() {
+    static addItemDropButton() {
         document.addEventListener('keydown', (evt) => {
             if (evt.code === DROPITEMBUTTON) {
                 game.itemdropcontroller.drop();

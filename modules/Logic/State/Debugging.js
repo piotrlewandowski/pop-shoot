@@ -14,6 +14,7 @@ const STAGEBUTTONS = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];
 const BOSSBUTTONS = ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT'];
 const REDPACKAGEBUTTON = 'KeyU';
 const ORANGEPACKAGEBUTTON = 'KeyY';
+const KILLENEMIESBUTTON = 'KeyK';
 
 export class Debugging {
     static addDebuggingControls() {
@@ -24,6 +25,7 @@ export class Debugging {
         this.addClearItemsButton();
         this.addSpawnRedPackageButton();
         this.addSpawnOrangePackageButton();
+        this.addKillEnemiesButton();
     }
 
     static addLevelSelectButton() {
@@ -43,6 +45,14 @@ export class Debugging {
                     this._warpToStage({ stage: index, boss: true });
                 }
             });
+        });
+    }
+
+    static addKillEnemiesButton() {
+        document.addEventListener('keydown', (evt) => {
+            if (evt.code === KILLENEMIESBUTTON) {
+                game.enemies.clear();
+            }
         });
     }
 

@@ -85,7 +85,6 @@ export class GameState {
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
             this.addStageNotification();
             game.weathercontroller.stopWeather();
-            game.enemies.clear();
             game.firelasers.clear();
             game.bluelasers.clear();
         }

@@ -154,7 +154,6 @@ export class FamiliarSight extends Enemy {
             : FIRINGRATE_HARDENED;
         this.sprite = FAMILIARSIGHTHARDENEDSPRITE;
         this.hardened = true;
-        game.enemies.clear();
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(3, 0.5);
 

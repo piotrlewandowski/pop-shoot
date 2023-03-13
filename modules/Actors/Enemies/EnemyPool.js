@@ -39,11 +39,7 @@ export class EnemyPool {
         if (noCash) {
             this.liveEnemies = [];
         } else {
-            this.liveEnemies.forEach((enemy) => {
-                if (enemy.constructor !== RedPackage && !enemy.name) {
-                    enemy.hp = 0;
-                }
-            });
+            this.liveEnemies.forEach((enemy) => (enemy.hp = 0));
         }
     }
 

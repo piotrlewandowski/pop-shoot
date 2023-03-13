@@ -24,7 +24,7 @@ The `Logic/State/Debugging.js` file provides some useful keybindings for jumping
 -   Keep playing after gameover: `P`
 -   Receive random item: `O`
 -   Clear items: `I`
--   Spawn red-package: `U`
+-   Spawn RedPackage/OrangePackage: `U`/`Y`
 
 # acknowledgments
 

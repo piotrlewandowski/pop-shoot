@@ -20,12 +20,12 @@ The game includes 5 stages & bosses, as well as many cool features such as bulle
 The `Logic/State/Debugging.js` file provides some useful keybindings for jumping around the game without having to modify the code:
 
 -   Jump to stage keys: `1` `2` `3` `4` `5`
--   Jump to boss keys (10 seconds before boss spawn): `Q` `W` `E` `R` `T`
+-   Jump to current-stage boss (10 seconds before boss spawn): `B`
 -   Keep playing after gameover: `P`
--   Receive random item: `O`
--   Clear items: `I`
+-   Receive random item: `I`
+-   Clear items: `C`
 -   Kill all enemies on-screen: `K`
--   Spawn RedPackage/OrangePackage: `U`/`Y`
+-   Spawn RedPackage: `R` OrangePackage: `O`
 
 # acknowledgments
 

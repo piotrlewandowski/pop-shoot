@@ -8,12 +8,12 @@ import { ItemDropController } from '../Controllers/ItemDropController.js';
 import { Controls } from '../Motion/Controls.js';
 
 const UNSETGAMEOVERBUTTON = 'KeyP';
-const DROPITEMBUTTON = 'KeyO';
-const CLEARITEMSBUTTON = 'KeyI';
+const DROPITEMBUTTON = 'KeyI';
+const CLEARITEMSBUTTON = 'KeyC';
 const STAGEBUTTONS = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];
-const BOSSBUTTONS = ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT'];
-const REDPACKAGEBUTTON = 'KeyU';
-const ORANGEPACKAGEBUTTON = 'KeyY';
+const BOSSBUTTON = 'KeyB';
+const REDPACKAGEBUTTON = 'KeyR';
+const ORANGEPACKAGEBUTTON = 'KeyO';
 const KILLENEMIESBUTTON = 'KeyK';
 
 export class Debugging {
@@ -21,7 +21,7 @@ export class Debugging {
         this.addUnsetGameOverButton();
         this.addItemDropButton();
         this.addLevelSelectButton();
-        this.addBossSelectButton();
+        this.addBossButton();
         this.addClearItemsButton();
         this.addSpawnRedPackageButton();
         this.addSpawnOrangePackageButton();
@@ -38,13 +38,11 @@ export class Debugging {
         });
     }
 
-    static addBossSelectButton() {
+    static addBossButton() {
         document.addEventListener('keydown', (evt) => {
-            BOSSBUTTONS.forEach((button, index) => {
-                if (evt.code === button) {
-                    this._warpToStage({ stage: index, boss: true });
-                }
-            });
+            if (evt.code === BOSSBUTTON) {
+                this._warpToStage({ stage: game.state.stage, boss: true });
+            }
         });
     }
 

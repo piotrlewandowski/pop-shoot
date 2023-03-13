@@ -6,6 +6,8 @@ export class Difficulty {
     static basePlacerHp = 35;
     static baseTerrorHp = 50;
     static baseEmperorHp = 70;
+    static baseRedPackageHp = 100;
+    static baseOrangePackageHp = 50;
 
     static blueHpMultiplier = 3;
     static redHpMultiplier = 9;

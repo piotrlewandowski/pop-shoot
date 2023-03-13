@@ -1,4 +1,5 @@
 import { game, gameloop } from '../../../app.js';
+import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { Clock } from '../../Objects/Clock.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
@@ -12,6 +13,7 @@ const CLEARITEMSBUTTON = 'KeyI';
 const STAGEBUTTONS = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];
 const BOSSBUTTONS = ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT'];
 const REDPACKAGEBUTTON = 'KeyU';
+const ORANGEPACKAGEBUTTON = 'KeyY';
 
 export class Debugging {
     static addDebuggingControls() {
@@ -20,7 +22,8 @@ export class Debugging {
         this.addLevelSelectButton();
         this.addBossSelectButton();
         this.addClearItemsButton();
-        this.addSpawnRedpackageButton();
+        this.addSpawnRedPackageButton();
+        this.addSpawnOrangePackageButton();
     }
 
     static addLevelSelectButton() {
@@ -73,10 +76,18 @@ export class Debugging {
         });
     }
 
-    static addSpawnRedpackageButton() {
+    static addSpawnRedPackageButton() {
         document.addEventListener('keydown', (evt) => {
             if (evt.code === REDPACKAGEBUTTON) {
                 game.enemies.add(new RedPackage());
+            }
+        });
+    }
+
+    static addSpawnOrangePackageButton() {
+        document.addEventListener('keydown', (evt) => {
+            if (evt.code === ORANGEPACKAGEBUTTON) {
+                game.enemies.add(new OrangePackage());
             }
         });
     }

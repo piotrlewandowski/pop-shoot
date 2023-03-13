@@ -15,6 +15,7 @@ const BOSSBUTTON = 'KeyB';
 const REDPACKAGEBUTTON = 'KeyR';
 const ORANGEPACKAGEBUTTON = 'KeyO';
 const KILLENEMIESBUTTON = 'KeyK';
+const TOGGLEWEATHERBUTTON = 'KeyW';
 
 export class Debugging {
     static addDebuggingControls() {
@@ -26,6 +27,7 @@ export class Debugging {
         this.addSpawnRedPackageButton();
         this.addSpawnOrangePackageButton();
         this.addKillEnemiesButton();
+        this.addToggleWeatherButton();
     }
 
     static addLevelSelectButton() {
@@ -35,6 +37,14 @@ export class Debugging {
                     this._warpToStage({ stage: index, boss: false });
                 }
             });
+        });
+    }
+
+    static addToggleWeatherButton() {
+        document.addEventListener('keydown', (evt) => {
+            if (evt.code === TOGGLEWEATHERBUTTON) {
+                game.weathercontroller.toggleWeather();
+            }
         });
     }
 

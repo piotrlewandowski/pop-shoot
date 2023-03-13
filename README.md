@@ -21,11 +21,12 @@ The `Logic/State/Debugging.js` file provides some useful keybindings for jumping
 
 -   Jump to stage keys: `1` `2` `3` `4` `5`
 -   Jump to current-stage boss (10 seconds before boss spawn): `B`
--   Keep playing after gameover: `P`
 -   Receive random item: `I`
 -   Clear items: `C`
 -   Kill all enemies on-screen: `K`
 -   Spawn RedPackage: `R` OrangePackage: `O`
+-   Toggle weather: `W`
+-   Keep playing after gameover: `P`
 
 # acknowledgments
 

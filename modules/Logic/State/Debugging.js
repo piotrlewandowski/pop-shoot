@@ -11,7 +11,7 @@ const UNSETGAMEOVERBUTTON = 'KeyP';
 const DROPITEMBUTTON = 'KeyO';
 const CLEARITEMSBUTTON = 'KeyI';
 const STAGEBUTTONS = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];
-const BOSSBUTTON = 'KeyB';
+const BOSSBUTTONS = ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT'];
 const REDPACKAGEBUTTON = 'KeyU';
 const ORANGEPACKAGEBUTTON = 'KeyY';
 const KILLENEMIESBUTTON = 'KeyK';
@@ -21,7 +21,7 @@ export class Debugging {
         this.addUnsetGameOverButton();
         this.addItemDropButton();
         this.addLevelSelectButton();
-        this.addBossButton();
+        this.addBossSelectButton();
         this.addClearItemsButton();
         this.addSpawnRedPackageButton();
         this.addSpawnOrangePackageButton();
@@ -38,11 +38,13 @@ export class Debugging {
         });
     }
 
-    static addBossButton() {
+    static addBossSelectButton() {
         document.addEventListener('keydown', (evt) => {
-            if (evt.code === BOSSBUTTON) {
-                this._warpToStage({ stage: game.state.stage, boss: true });
-            }
+            BOSSBUTTONS.forEach((button, index) => {
+                if (evt.code === button) {
+                    this._warpToStage({ stage: index, boss: true });
+                }
+            });
         });
     }
 
@@ -59,7 +61,7 @@ export class Debugging {
         SceneUtils.shakeScreen(3, 1);
         game.state.boss = false;
         game.state.stage = stage;
-        game.state.time = boss ? 300 * stage + 295 : 300 * stage + 1;
+        game.state.time = boss ? 300 * stage + 290 : 300 * stage + 1;
         game.audiocontroller.rewindMusic();
         game.audiocontroller.updateMusic();
         game.weathercontroller.stopWeather();

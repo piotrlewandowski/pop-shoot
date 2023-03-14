@@ -30,9 +30,9 @@ export const YELLOWUFOSPRITE = document.getElementById('yellowufo');
 export const DIVERSPRITE = document.getElementById('diver');
 
 // BOSSES
-export const EYEINTHESKYSPRITE = document.getElementById('boss_eyeinthesky');
-export const METALEMPERORSPRITE = document.getElementById('boss_metalemperor');
-export const METALEMPERORHARDENEDSPRITE = document.getElementById('boss_metalemperor_hardened');
+export const GREASYHARVEYSPRITE = document.getElementById('boss_harvey');
+export const EMPRESSSPRITE = document.getElementById('boss_empress');
+export const EMPRESSHARDENEDSPRITE = document.getElementById('boss_empress_hardened');
 export const FAMILIARSIGHTSPRITE = document.getElementById('boss_familiarsight');
 export const FAMILIARSIGHTHARDENEDSPRITE = document.getElementById('boss_familiarsight_hardened');
 export const ABUSERSPRITE = document.getElementById('boss_abuser');

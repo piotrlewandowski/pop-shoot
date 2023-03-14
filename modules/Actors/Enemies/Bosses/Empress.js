@@ -5,7 +5,7 @@ import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { CANVAS } from '../../../Assets/Other.js';
 import { randomInRange } from '../../../Logic/Helpers.js';
-import { METALEMPERORHARDENEDSPRITE, METALEMPERORSPRITE } from '../../../Assets/Enemies.js';
+import { EMPRESSSPRITE, EMPRESSHARDENEDSPRITE } from '../../../Assets/Enemies.js';
 import { SceneUtils } from '../../../Scene/SceneUtils.js';
 
 // MOVEMENT
@@ -31,14 +31,14 @@ const HARDEN_TIME = 10000; // in ms
 const HP = 7000;
 const COINS = 30;
 const RADIUS = 50;
-const SPRITE = METALEMPERORSPRITE;
-const NAME = 'METAL EMPEROR';
+const SPRITE = EMPRESSSPRITE;
+const NAME = 'MELANCHOLIC EMPRESS';
 
 // PHASES
 // Phase 2
 const PHASE2_HP = 0.25;
 
-export class MetalEmperor extends Enemy {
+export class Empress extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         this.x = 250;
@@ -124,7 +124,7 @@ export class MetalEmperor extends Enemy {
         this.hardened = false;
         this.radius = RADIUS;
         SceneUtils.flashScreen();
-        this.sprite = METALEMPERORSPRITE;
+        this.sprite = EMPRESSSPRITE;
         SceneUtils.shakeScreen(3, 0.5);
     }
 
@@ -133,7 +133,7 @@ export class MetalEmperor extends Enemy {
         this.hardened = true;
         this.radius = -1;
         SceneUtils.flashScreen();
-        this.sprite = METALEMPERORHARDENEDSPRITE;
+        this.sprite = EMPRESSHARDENEDSPRITE;
         SceneUtils.shakeScreen(3, 0.5);
 
         setTimeout(() => {

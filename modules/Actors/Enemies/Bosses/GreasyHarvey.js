@@ -5,8 +5,8 @@ import { game } from '../../../../app.js';
 import { FireLaser } from '../../../Lasers/Hostile/FireLaser.js';
 import { CANVAS } from '../../../Assets/Other.js';
 import { randomInRange } from '../../../Logic/Helpers.js';
-import { EYEINTHESKYSPRITE } from '../../../Assets/Enemies.js';
 import { SceneUtils } from '../../../Scene/SceneUtils.js';
+import { GREASYHARVEYSPRITE } from '../../../Assets/Enemies.js';
 
 // MOVEMENT
 const SPEED = 2;
@@ -21,8 +21,8 @@ const BULLETSNUMBER = 15;
 const HP = 1500;
 const COINS = 15;
 const RADIUS = 50;
-const SPRITE = EYEINTHESKYSPRITE;
-const NAME = 'EYE IN THE SKY';
+const SPRITE = GREASYHARVEYSPRITE;
+const NAME = 'GREASY HARVEY';
 
 // PHASES
 // rates, e.g. 0.75 = when boss reaches 75%HP
@@ -33,7 +33,7 @@ const PHASE3_BULLETS = 45;
 const PHASE4_HP = 0.25;
 const PHASE4_BULLETS = 60;
 
-export class EyeInTheSky extends Enemy {
+export class GreasyHarvey extends Enemy {
     constructor() {
         super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE);
         this.x = CANVAS.width / 2;

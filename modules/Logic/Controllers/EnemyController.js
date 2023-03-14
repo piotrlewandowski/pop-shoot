@@ -11,11 +11,9 @@ import { RedTerror } from '../../Actors/Enemies/Types/RedTerror.js';
 import { BlackEmperor } from '../../Actors/Enemies/Types/BlackEmperor.js';
 import { BlackPlacer } from '../../Actors/Enemies/Types/BlackPlacer.js';
 import { BlackInvader } from '../../Actors/Enemies/Types/BlackInvader.js';
-import { EyeInTheSky } from '../../Actors/Enemies/Bosses/EyeInTheSky.js';
 import { RedPlacer } from '../../Actors/Enemies/Types/RedPlacer.js';
 import { BlackTerror } from '../../Actors/Enemies/Types/BlackTerror.js';
 import { YellowUfo } from '../../Actors/Enemies/Types/YellowUfo.js';
-import { MetalEmperor } from '../../Actors/Enemies/Bosses/MetalEmperor.js';
 import { FamiliarSight } from '../../Actors/Enemies/Bosses/FamiliarSight.js';
 import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
 import { Abuser } from '../../Actors/Enemies/Bosses/Abuser.js';
@@ -26,6 +24,8 @@ import { BlueEmperor } from '../../Actors/Enemies/Types/BlueEmperor.js';
 import { BlueTerror } from '../../Actors/Enemies/Types/BlueTerror.js';
 import { Fk77 } from '../../Actors/Enemies/Bosses/Fk77.js';
 import { Diver } from '../../Actors/Enemies/Types/Diver.js';
+import { Empress } from '../../Actors/Enemies/Bosses/Empress.js';
+import { GreasyHarvey } from '../../Actors/Enemies/Bosses/GreasyHarvey.js';
 
 export class EnemyController {
     constructor() {
@@ -51,7 +51,7 @@ export class EnemyController {
         this.addEnemy(BlueUfo, 90, 290, 40);
 
         // boss
-        this.addBoss(EyeInTheSky, 300);
+        this.addBoss(GreasyHarvey, 300);
         // orange package
         this.addEnemy(OrangePackage, 180, 270, 90);
 
@@ -68,7 +68,7 @@ export class EnemyController {
         this.addEnemy(RedUfo, 415, 590, 25);
 
         // boss
-        this.addBoss(MetalEmperor, 600);
+        this.addBoss(Empress, 600);
         // orange package
         this.addEnemy(OrangePackage, 360, 570, 90);
 

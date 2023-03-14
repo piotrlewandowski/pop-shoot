@@ -24,8 +24,8 @@ import { BlueEmperor } from '../../Actors/Enemies/Types/BlueEmperor.js';
 import { BlueTerror } from '../../Actors/Enemies/Types/BlueTerror.js';
 import { Fk77 } from '../../Actors/Enemies/Bosses/Fk77.js';
 import { Diver } from '../../Actors/Enemies/Types/Diver.js';
-import { Empress } from '../../Actors/Enemies/Bosses/Empress.js';
 import { GreasyHarvey } from '../../Actors/Enemies/Bosses/GreasyHarvey.js';
+import { MetalEmperor } from '../../Actors/Enemies/Bosses/MetalEmperor.js';
 
 export class EnemyController {
     constructor() {
@@ -68,7 +68,7 @@ export class EnemyController {
         this.addEnemy(RedUfo, 415, 590, 25);
 
         // boss
-        this.addBoss(Empress, 600);
+        this.addBoss(MetalEmperor, 600);
         // orange package
         this.addEnemy(OrangePackage, 360, 570, 90);
 

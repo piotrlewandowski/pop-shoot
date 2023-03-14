@@ -31,8 +31,8 @@ export const DIVERSPRITE = document.getElementById('diver');
 
 // BOSSES
 export const GREASYHARVEYSPRITE = document.getElementById('boss_harvey');
-export const EMPRESSSPRITE = document.getElementById('boss_empress');
-export const EMPRESSHARDENEDSPRITE = document.getElementById('boss_empress_hardened');
+export const METALEMPERORSPRITE = document.getElementById('boss_emperor');
+export const METALEMPERORHARDENEDSPRITE = document.getElementById('boss_emperor_hardened');
 export const FAMILIARSIGHTSPRITE = document.getElementById('boss_familiarsight');
 export const FAMILIARSIGHTHARDENEDSPRITE = document.getElementById('boss_familiarsight_hardened');
 export const ABUSERSPRITE = document.getElementById('boss_abuser');

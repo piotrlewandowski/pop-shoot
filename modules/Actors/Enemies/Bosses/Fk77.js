@@ -8,7 +8,7 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 import { CANVAS } from '../../../Assets/Other.js';
 
 // MOVEMENT
-const SPEED = 5;
+const SPEED = 10;
 const LOWEST_POINT = 165;
 const XPOS = 560;
 const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
@@ -44,6 +44,7 @@ export class Fk77 extends Enemy {
         game.state.toggleBoss();
 
         this.hardened = false;
+        this.harden();
     }
     move() {
         if (this.y <= LOWEST_POINT) {

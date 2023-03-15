@@ -9,7 +9,7 @@ import { SceneUtils } from '../../../Scene/SceneUtils.js';
 import { GREASYHARVEYSPRITE } from '../../../Assets/Enemies.js';
 
 // MOVEMENT
-const SPEED = 2;
+const SPEED = 3;
 const LOWEST_POINT = 190;
 const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
@@ -39,6 +39,7 @@ export class GreasyHarvey extends Enemy {
         this.x = CANVAS.width / 2;
 
         this.name = NAME;
+        game.audiocontroller.playSound('harvey');
         game.state.toggleBoss();
     }
 

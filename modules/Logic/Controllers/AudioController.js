@@ -50,6 +50,7 @@ import {
     NOAMMOSOUND,
     RAYSOUND,
     EMPSCREAMSOUND,
+    HARVEYSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -123,6 +124,10 @@ const SOUNDS = {
     },
     glitch: {
         audio: GLITCHSOUND,
+        volume: 1,
+    },
+    harvey: {
+        audio: HARVEYSOUND,
         volume: 1,
     },
     hit: {

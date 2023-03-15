@@ -49,6 +49,7 @@ import {
     DRAINSOUND,
     NOAMMOSOUND,
     RAYSOUND,
+    EMPSCREAMSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -105,6 +106,10 @@ const SOUNDS = {
         audio: DRAINSOUND,
         volume: 1,
         clone: true,
+    },
+    empscream: {
+        audio: EMPSCREAMSOUND,
+        volume: 1,
     },
     explosion: {
         audio: EXPLOSIONSOUND,

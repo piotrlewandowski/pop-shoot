@@ -45,6 +45,7 @@ export class MetalEmperor extends Enemy {
         this.y = -this.radius;
 
         this.name = NAME;
+        game.audiocontroller.playSound('empscream');
         game.state.toggleBoss();
     }
 

@@ -42,6 +42,7 @@ export const COINSOUND = document.getElementById('coin_sound');
 export const DRAINSOUND = document.getElementById('drain_sound');
 export const NOAMMOSOUND = document.getElementById('noammo_sound');
 export const RAYSOUND = document.getElementById('ray_sound');
+export const EMPSCREAMSOUND = document.getElementById('empscream_sound');
 
 // RAIN
 export const RAINSOUND = document.getElementById('rain_sound');

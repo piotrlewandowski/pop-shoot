@@ -51,22 +51,34 @@ export class FamiliarSight extends Enemy {
     }
 
     move() {
-        // if out of screen, move back in
         if (!this.hardened) {
+            // if out of screen, move back in
             if (this.y <= this.radius) {
                 this.x += Movement.move(SOUTH, this.speed).x;
                 this.y += Movement.move(SOUTH, this.speed).y;
-            }
+            } else {
+                // if lower than middle of screen, go back up
+                if (this.y >= CANVAS.height * 0.5) {
+                    this.x += Movement.move(NORTH, this.speed).x;
+                    this.y += Movement.move(NORTH, this.speed).y;
+                }
 
-            // if lower than middle of screen, go back up
-            if (this.y >= CANVAS.height * 0.5) {
-                this.x += Movement.move(NORTH, this.speed).x;
-                this.y += Movement.move(NORTH, this.speed).y;
+                // follow player
+                this.x += Movement.moveTowards(
+                    this.x,
+                    this.y,
+                    game.player.x,
+                    game.player.y - ENGAGEDISTANCE,
+                    this.speed
+                ).x;
+                this.y += Movement.moveTowards(
+                    this.x,
+                    this.y,
+                    game.player.x,
+                    game.player.y - ENGAGEDISTANCE,
+                    this.speed
+                ).y;
             }
-
-            // follow player
-            this.x += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y - ENGAGEDISTANCE, this.speed).x;
-            this.y += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y - ENGAGEDISTANCE, this.speed).y;
         } else {
             this.x += Movement.moveTowards(this.x, this.y, CANVAS.width / 2, 90, this.speed).x;
             this.y += Movement.moveTowards(this.x, this.y, CANVAS.width / 2, 90, this.speed).y;

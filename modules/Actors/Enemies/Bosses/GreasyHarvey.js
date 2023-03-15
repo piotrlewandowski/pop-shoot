@@ -18,7 +18,7 @@ const FIRINGRATE = 100;
 const BULLETSNUMBER = 15;
 
 // STATE
-const HP = 1500;
+const HP = 1750;
 const COINS = 15;
 const RADIUS = 50;
 const SPRITE = GREASYHARVEYSPRITE;

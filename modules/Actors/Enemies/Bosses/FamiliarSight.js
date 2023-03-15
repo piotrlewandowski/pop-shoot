@@ -44,6 +44,7 @@ export class FamiliarSight extends Enemy {
         super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE_NORMAL);
 
         this.name = NAME;
+        game.audiocontroller.playSound('appear');
         game.state.toggleBoss();
 
         this.hardened = false;

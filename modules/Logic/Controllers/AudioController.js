@@ -52,6 +52,7 @@ import {
     EMPSCREAMSOUND,
     HARVEYSOUND,
     ICUSOUND,
+    APPEARSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -79,6 +80,10 @@ const SOUNDS = {
 
     anxiety: {
         audio: ANXIETYSOUND,
+        volume: 1,
+    },
+    appear: {
+        audio: APPEARSOUND,
         volume: 1,
     },
     beepRed: {

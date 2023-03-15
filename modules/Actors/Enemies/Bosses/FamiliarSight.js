@@ -164,6 +164,7 @@ export class FamiliarSight extends Enemy {
     }
 
     die() {
+        game.audiocontroller.stopSound('familiarMg');
         super.die();
         game.state.toggleBoss();
     }

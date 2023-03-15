@@ -42,7 +42,7 @@ The `Logic/State/Debugging.js` file provides some useful keybindings for jumping
 [Lost in the Ether](https://www.youtube.com/watch?v=q2DFmJ46jFw)  
 [Electronic Sunrise](https://www.youtube.com/watch?v=yjCWwkuOX7U)  
 [City Lanes](https://www.youtube.com/watch?v=caPQEDHfaOI)  
-[Let's Dance Instead](https://www.youtube.com/watch?v=a9CTA3usdoQ)  
+[Nineteen Eighty Seven](https://www.youtube.com/watch?v=j6XKMywP3-g)  
 [Dark Versus Light](https://www.youtube.com/watch?v=uxD88mxMDQc)  
 [Twilight Metropolis A](https://www.youtube.com/watch?v=k1C1algxG0E)  
 [Dystopian Paradise](https://www.youtube.com/watch?v=j9l6QWj4JqU)  

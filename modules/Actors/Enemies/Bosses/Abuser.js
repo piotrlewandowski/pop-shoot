@@ -157,6 +157,7 @@ export class Abuser extends Enemy {
     pushBack() {}
 
     die() {
+        game.audiocontroller.stopSound('siren');
         super.die();
         game.state.toggleBoss();
     }

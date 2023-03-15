@@ -51,6 +51,7 @@ import {
     RAYSOUND,
     EMPSCREAMSOUND,
     HARVEYSOUND,
+    ICUSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -147,6 +148,10 @@ const SOUNDS = {
         clone: true,
         volume: 0.5,
         limit: 5,
+    },
+    icu: {
+        audio: ICUSOUND,
+        volume: 1,
     },
     laser: {
         audio: LASERSOUND,

@@ -50,6 +50,7 @@ export class Abuser extends Enemy {
         this.x = CANVAS.width / 2;
 
         this.name = NAME;
+        game.audiocontroller.playSound('icu');
         game.state.toggleBoss();
 
         this.hardened = false;

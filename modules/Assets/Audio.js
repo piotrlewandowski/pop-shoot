@@ -44,6 +44,7 @@ export const NOAMMOSOUND = document.getElementById('noammo_sound');
 export const RAYSOUND = document.getElementById('ray_sound');
 export const EMPSCREAMSOUND = document.getElementById('empscream_sound');
 export const HARVEYSOUND = document.getElementById('harvey_sound');
+export const ICUSOUND = document.getElementById('icu_sound');
 
 // RAIN
 export const RAINSOUND = document.getElementById('rain_sound');

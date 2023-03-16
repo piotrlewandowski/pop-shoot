@@ -35,7 +35,7 @@ const SPRITE = METALEMPERORSPRITE;
 const NAME = 'METAL EMPEROR';
 
 // PHASES
-// Phase 2
+// rates, e.g. 0.75 = when boss reaches 75% of HP
 const PHASE2_HP = 0.25;
 
 export class MetalEmperor extends Enemy {
@@ -68,25 +68,18 @@ export class MetalEmperor extends Enemy {
             this.x += this.speed * Math.sin(this.steps / 275);
         }
 
-        // smoke effect
-        if (this.hardened && this.steps % 15 === 0) {
-            game.effects.add(new Animation(this.x, this.y, 'smoke_normal'));
-        }
         this.step();
     }
 
     shoot() {
-        // set the laser speed according to the boss phase
-        let laserspeed = LASERSPEED;
-
         // fire lasers
-        game.firelasers.add(new FireLaser(this.x, this.y, -this.steps % 360, laserspeed));
-        game.firelasers.add(new FireLaser(this.x, this.y, this.steps % 360, laserspeed));
+        game.firelasers.add(new FireLaser(this.x, this.y, -this.steps % 360, LASERSPEED));
+        game.firelasers.add(new FireLaser(this.x, this.y, this.steps % 360, LASERSPEED));
 
         // if hardened or in phase 2, fire additional bullets
         if (this.hardened || this.hp <= HP * PHASE2_HP) {
-            game.firelasers.add(new FireLaser(this.x, this.y, -this.steps % 360, laserspeed / 2));
-            game.firelasers.add(new FireLaser(this.x, this.y, this.steps % 360, laserspeed / 2));
+            game.firelasers.add(new FireLaser(this.x, this.y, -this.steps % 360, LASERSPEED / 2));
+            game.firelasers.add(new FireLaser(this.x, this.y, this.steps % 360, LASERSPEED / 2));
         }
     }
 
@@ -94,10 +87,14 @@ export class MetalEmperor extends Enemy {
         if (!this.hardened) {
             SceneUtils.shakeScreen(6, 0.75);
 
+            // get a random gap starting point
             const gapstart = randomInRange(0, CANVAS.width - GAPSIZE);
+
+            // shoot bullet wall
             for (let i = 0; i < CANVAS.width; i += 15) {
                 if (i < gapstart || i > gapstart + GAPSIZE) {
-                    // wall bullet shape
+                    // each iteration of the second loop draws a single bullet
+                    // consisting of several stacked bullets to get the 'thick' shape
                     for (let j = 2; j <= 8; j += 2) {
                         game.firelasers.add(new FireLaser(i, 0 + j, 90, BULLETWALL_SPEED));
                     }
@@ -117,6 +114,11 @@ export class MetalEmperor extends Enemy {
         // harden
         if (this.steps % HARDEN_RATE === 0) {
             this.harden();
+        }
+
+        // smoke effect
+        if (this.hardened && this.steps % 15 === 0) {
+            game.effects.add(new Animation(this.x, this.y, 'smoke_normal'));
         }
     }
 

@@ -15,7 +15,7 @@ const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
 const FIRINGRATE = 100;
-const BULLETSNUMBER = 15;
+const BULLETS = 15;
 
 // STATE
 const HP = 1750;
@@ -25,7 +25,7 @@ const SPRITE = GREASYHARVEYSPRITE;
 const NAME = 'GREASY HARVEY';
 
 // PHASES
-// rates, e.g. 0.75 = when boss reaches 75%HP
+// rates, e.g. 0.75 = when boss reaches 75% of HP
 const PHASE2_HP = 0.75;
 const PHASE2_BULLETS = 30;
 const PHASE3_HP = 0.5;
@@ -54,22 +54,15 @@ export class GreasyHarvey extends Enemy {
     shoot() {
         SceneUtils.shakeScreen(4, 0.5);
 
-        // set the number of lasers to shoot according to boss phase
-        let bulletsnumber = BULLETSNUMBER;
-
-        if (this.hp < HP * PHASE2_HP) {
-            bulletsnumber = PHASE2_BULLETS;
-        }
-        if (this.hp < HP * PHASE3_HP) {
-            bulletsnumber = PHASE3_BULLETS;
-        }
-        if (this.hp < HP * PHASE4_HP) {
-            bulletsnumber = PHASE4_BULLETS;
-        }
-
-        // fire lasers
-        for (let i = 0; i < bulletsnumber; i++)
+        for (let i = 0; i < this.getBulletsNumber(); i++)
             game.firelasers.add(new FireLaser(this.x, this.y, randomInRange(0, 360), randomInRange(2, 6)));
+    }
+
+    getBulletsNumber() {
+        if (this.hp < HP * PHASE4_HP) return PHASE4_BULLETS;
+        if (this.hp < HP * PHASE3_HP) return PHASE3_BULLETS;
+        if (this.hp < HP * PHASE2_HP) return PHASE2_BULLETS;
+        return BULLETS;
     }
 
     takeDamage(damage) {

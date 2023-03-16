@@ -15,18 +15,18 @@ const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 const NORTH = 270; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
-const SHOWERSPEED = 8;
 const BURSTSPEED = 10;
-const FIRINGRATE_NORMAL = 75;
-const FIRINGRATE_HARDENED = 3;
+const BURSTRATE = 75;
 const BURSTLENGTH = 100;
+const MACHINEGUN_SPEED = 8;
+const MACHINEGUN_RATE = 3;
 
 // PHASES
 // rates, e.g. 0.75 = when boss reaches 75% of HP
 const PHASE2_HP = 0.5;
-const PHASE2_BURST_LENGTH = 175;
+const PHASE2_BURSTLENGTH = 175;
 const PHASE3_HP = 0.2;
-const PHASE3_BURST_LENGTH = 250;
+const PHASE3_BURSTLENGTH = 250;
 
 // HARDEN
 const HARDEN_RATE = 2000; // in ticks. lower = faster
@@ -41,7 +41,7 @@ const NAME = 'FAMILIAR SIGHT';
 
 export class FamiliarSight extends Enemy {
     constructor() {
-        super(RADIUS, HP, COINS, SPRITE, SPEED, FIRINGRATE_NORMAL);
+        super(RADIUS, HP, COINS, SPRITE, SPEED, BURSTRATE);
 
         this.name = NAME;
         game.audiocontroller.playSound('appear');
@@ -80,58 +80,51 @@ export class FamiliarSight extends Enemy {
                 ).y;
             }
         } else {
+            // move towards "hardened" position coordinates
             this.x += Movement.moveTowards(this.x, this.y, CANVAS.width / 2, 90, this.speed).x;
             this.y += Movement.moveTowards(this.x, this.y, CANVAS.width / 2, 90, this.speed).y;
-        }
-
-        // smoke effect
-        if (this.steps % 10 === 0) {
-            game.effects.add(new Animation(this.x, this.y - 45, 'smoke_normal'));
         }
 
         this.step();
     }
 
     shoot() {
-        if (!this.hardened) {
-            this.fireBursts();
+        if (this.hardened) {
+            this.fireMachinegun();
         } else {
-            this.fireShower();
+            this.fireBursts();
         }
     }
 
     fireBursts() {
-        // laser line burst
-        let burstLength = BURSTLENGTH;
+        const randomOffset = randomInRange(-60, 60);
 
-        if (this.hp < HP * PHASE2_HP) {
-            burstLength = PHASE2_BURST_LENGTH;
-        }
-
-        if (this.hp < HP * PHASE3_HP) {
-            burstLength = PHASE3_BURST_LENGTH;
-        }
-
-        const random = randomInRange(-60, 60);
-        for (let i = 0; i < burstLength; i += 10) {
+        for (let i = 0; i < this.getBurstLength(); i += 10) {
             setTimeout(() => {
-                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH - 90 + random, BURSTSPEED));
-                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH - 60 + random, BURSTSPEED));
-                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH - 30 + random, BURSTSPEED));
-                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + random, BURSTSPEED));
-                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + 30 + random, BURSTSPEED));
-                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + 60 + random, BURSTSPEED));
-                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + 90 + random, BURSTSPEED));
+                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH - 90 + randomOffset, BURSTSPEED));
+                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH - 60 + randomOffset, BURSTSPEED));
+                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH - 30 + randomOffset, BURSTSPEED));
+                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + randomOffset, BURSTSPEED));
+                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + 30 + randomOffset, BURSTSPEED));
+                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + 60 + randomOffset, BURSTSPEED));
+                game.firelasers.add(new FireLaser(this.x, this.y, SOUTH + 90 + randomOffset, BURSTSPEED));
             }, i);
         }
     }
 
-    fireShower() {
+    getBurstLength() {
+        if (this.hp < HP * PHASE3_HP) return PHASE3_BURSTLENGTH;
+        if (this.hp < HP * PHASE2_HP) return PHASE2_BURSTLENGTH;
+        return BURSTLENGTH;
+    }
+
+    fireMachinegun() {
         SceneUtils.shakeScreen(5, 0.25);
 
-        const randomdirection = randomInRange(0, 180);
+        const randomDirection = randomInRange(0, 180);
+
         for (let i = 0; i <= 6; i += 2) {
-            game.firelasers.add(new FireLaser(this.x, this.y + i, randomdirection, SHOWERSPEED));
+            game.firelasers.add(new FireLaser(this.x, this.y + i, randomDirection, MACHINEGUN_SPEED));
         }
     }
 
@@ -147,13 +140,18 @@ export class FamiliarSight extends Enemy {
         if (this.steps % HARDEN_RATE === 0) {
             this.harden();
         }
+
+        // smoke effect
+        if (this.steps % 10 === 0) {
+            game.effects.add(new Animation(this.x, this.y - 45, 'smoke_normal'));
+        }
     }
 
     soften() {
         game.audiocontroller.playSound('powerDown');
         game.audiocontroller.stopSound('familiarMg');
         this.sprite = FAMILIARSIGHTSPRITE;
-        this.firingrate = game.state.slowmo ? FIRINGRATE_NORMAL / game.slowmocontroller.slowmorate : FIRINGRATE_NORMAL;
+        this.firingrate = game.state.slowmo ? BURSTRATE / game.slowmocontroller.slowmorate : BURSTRATE;
         this.hardened = false;
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(3, 0.5);
@@ -162,9 +160,7 @@ export class FamiliarSight extends Enemy {
     harden() {
         game.audiocontroller.playSound('powerDown');
         game.audiocontroller.playSound('familiarMg');
-        this.firingrate = game.state.slowmo
-            ? FIRINGRATE_NORMAL * game.slowmocontroller.slowmorate
-            : FIRINGRATE_HARDENED;
+        this.firingrate = game.state.slowmo ? MACHINEGUN_RATE / game.slowmocontroller.slowmorate : MACHINEGUN_RATE;
         this.sprite = FAMILIARSIGHTHARDENEDSPRITE;
         this.hardened = true;
         SceneUtils.flashScreen();

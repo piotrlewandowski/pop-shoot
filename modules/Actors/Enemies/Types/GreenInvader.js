@@ -29,14 +29,16 @@ export class GreenInvader extends Enemy {
     }
 
     move() {
-        const enemyStillInCanvas = this.y >= this.radius;
+        const invaderStillInCanvas = this.y >= this.radius;
+        const invaderAbovePlayer = game.player.y > this.y;
         const playerInProximity = Math.abs(game.player.x - this.x) < RANGETOENGAGE;
-        const playerAboveEnemy = game.player.y > this.y;
 
-        if (playerInProximity && playerAboveEnemy && enemyStillInCanvas) {
+        if (invaderStillInCanvas && invaderAbovePlayer && playerInProximity) {
+            // engage player
             this.x += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y - ENGAGEDISTANCE, this.speed).x;
             this.y += Movement.moveTowards(this.x, this.y, game.player.x, game.player.y - ENGAGEDISTANCE, this.speed).y;
         } else {
+            // move south
             this.x += Movement.move(MOVEDIRECTION, this.speed).x;
             this.y += Movement.move(MOVEDIRECTION, this.speed).y;
         }

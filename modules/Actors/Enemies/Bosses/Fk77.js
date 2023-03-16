@@ -15,8 +15,8 @@ const SOUTH = 90; // 0=EAST 90=South 180=WEST 270=NORTH
 
 // SHOOTING
 const RAYRATE = 150; // shooting rate. lower = faster
-const P2_RAYRATE = 75; // shooting rate. lower = faster
-const P3_RAYRATE = 50; // shootnig rate. lower = faster
+const PHASE2_RAYRATE = 75; // shooting rate. lower = faster
+const PHASE3_RAYRATE = 50; // shooting rate. lower = faster
 
 // HARDEN
 const HARDEN_RATE = 2000; // in ticks. lower = faster
@@ -92,18 +92,17 @@ export class Fk77 extends Enemy {
         game.firelasers.add(new FireLaser(this.x, this.y, randomInRange(0, 360), HARDEN_BULLETSPEED));
     }
 
+    getRayRate() {
+        if (this.hp < HP * PHASE3_HP) return PHASE3_RAYRATE;
+        if (this.hp < HP * PHASE2_HP) return PHASE2_RAYRATE;
+        return RAYRATE;
+    }
+
     step() {
         super.step();
-        let rayrate = RAYRATE;
-        if (this.hp < HP * PHASE2_HP) {
-            rayrate = P2_RAYRATE;
-        }
-        if (this.hp < HP * PHASE3_HP) {
-            rayrate = P3_RAYRATE;
-        }
 
         // shoot ray
-        if (this.steps % rayrate === 0) {
+        if (this.steps % this.getRayRate() === 0) {
             this.shootRay();
         }
 

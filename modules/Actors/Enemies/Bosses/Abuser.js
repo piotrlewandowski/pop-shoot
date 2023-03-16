@@ -93,34 +93,34 @@ export class Abuser extends Enemy {
     }
 
     fireWalls() {
-        if (!this.hardened) {
-            if (this.hp <= HP * PHASE4_HP) {
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE4_LANGLE, 10));
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE4_RANGLE, 10));
-            } else if (this.hp <= HP * PHASE3_HP) {
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE3_LANGLE, 10));
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE3_RANGLE, 10));
-            } else if (this.hp <= HP * PHASE2_HP) {
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE2_LANGLE, 10));
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE2_RANGLE, 10));
-            } else {
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE1_LANGLE, 10));
-                game.firelasers.add(new FireLaser(this.x, this.y, PHASE1_RANGLE, 10));
-            }
-        } else {
-            for (let i = 20; i <= 160; i += 20) {
-                SceneUtils.shakeScreen(20, 0.25);
-                game.firelasers.add(new FireLaser(this.x + randomInRange(-2, 2), this.y, i, randomInRange(5, 10)));
-            }
+        game.firelasers.add(new FireLaser(this.x, this.y, this.getWallAngles().left, 10));
+        game.firelasers.add(new FireLaser(this.x, this.y, this.getWallAngles().right, 10));
+    }
+
+    shootShower() {
+        for (let i = 20; i <= 160; i += 20) {
+            SceneUtils.shakeScreen(20, 0.25);
+            game.firelasers.add(new FireLaser(this.x + randomInRange(-2, 2), this.y, i, randomInRange(5, 10)));
         }
+    }
+
+    getWallAngles() {
+        if (this.hp <= HP * PHASE4_HP) return { left: PHASE4_LANGLE, right: PHASE4_RANGLE };
+        if (this.hp <= HP * PHASE3_HP) return { left: PHASE3_LANGLE, right: PHASE3_RANGLE };
+        if (this.hp <= HP * PHASE2_HP) return { left: PHASE2_LANGLE, right: PHASE2_RANGLE };
+        return { left: PHASE1_LANGLE, right: PHASE1_RANGLE };
     }
 
     step() {
         super.step();
 
         // start the walls AFTER entrance is done (aka when lowest point is reached)
-        if (this.y >= LOWEST_POINT) {
+        if (this.y >= LOWEST_POINT && !this.hardened) {
             this.fireWalls();
+        }
+
+        if (this.hardened) {
+            this.shootShower();
         }
 
         // harden
@@ -147,10 +147,6 @@ export class Abuser extends Enemy {
         setTimeout(() => {
             this.soften();
         }, HARDEN_TIME);
-    }
-
-    takeDamage(damage) {
-        super.takeDamage(damage);
     }
 
     // intentionally overridden & kept empty to prevent ugly wall effect if pushback is used

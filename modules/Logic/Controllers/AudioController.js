@@ -162,6 +162,7 @@ const SOUNDS = {
         audio: LASERSOUND,
         clone: true,
         volume: 0.7,
+        limit: 5,
     },
     matrix: {
         audio: MATRIXSOUND,

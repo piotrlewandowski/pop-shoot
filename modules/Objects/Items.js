@@ -49,15 +49,12 @@ import {
     TOXIC_ICON,
     TOXIC_NOTIFICATION,
     TOXIC_PAUSE,
-    DRONES_ICON,
-    DRONES_NOTIFICATION,
-    DRONES_PAUSE,
     AIRSTRIKE_ICON,
     AIRSTRIKE_PAUSE,
     AIRSTRIKE_NOTIFICATION,
-    DEBRIS_ICON,
-    DEBRIS_PAUSE,
-    DEBRIS_NOTIFICATION,
+    SHOTGUN_ICON,
+    SHOTGUN_PAUSE,
+    SHOTGUN_NOTIFICATION,
 } from '../Assets/Hud.js';
 
 export const ITEMS = {
@@ -88,20 +85,6 @@ export const ITEMS = {
         icon: DARTS_ICON,
         pause: DARTS_PAUSE,
         notification: DARTS_NOTIFICATION,
-    },
-    debris: {
-        name: 'debris',
-        activate: () => game.itemactioncontroller.addDebris(),
-        icon: DEBRIS_ICON,
-        pause: DEBRIS_PAUSE,
-        notification: DEBRIS_NOTIFICATION,
-    },
-    drones: {
-        name: 'drones',
-        activate: () => (game.itemactioncontroller.drones = true),
-        icon: DRONES_ICON,
-        pause: DRONES_PAUSE,
-        notification: DRONES_NOTIFICATION,
     },
     emp: {
         name: 'emp',
@@ -165,6 +148,13 @@ export const ITEMS = {
         icon: SEEKERS_ICON,
         pause: SEEKERS_PAUSE,
         notification: SEEKERS_NOTIFICATION,
+    },
+    shotgun: {
+        name: 'shotgun',
+        activate: () => (game.player.shotgun.owned = true),
+        icon: SHOTGUN_ICON,
+        pause: SHOTGUN_PAUSE,
+        notification: SHOTGUN_NOTIFICATION,
     },
     spray: {
         name: 'spray',

@@ -19,7 +19,6 @@ export const GLASSSTAGE5SPRITE = document.getElementById('glassstage5');
 
 // UPGRADES NOTIFICATIONS
 export const BOMBS_NOTIFICATION = document.getElementById('bombs_notification');
-export const DRONES_NOTIFICATION = document.getElementById('drones_notification');
 export const TOXIC_NOTIFICATION = document.getElementById('toxic_notification');
 export const MACHINEGUN_NOTIFICATION = document.getElementById('machinegun_notification');
 export const GREED_NOTIFICATION = document.getElementById('greed_notification');
@@ -36,11 +35,10 @@ export const EMP_NOTIFICATION = document.getElementById('emp_notification');
 export const SEEKERS_NOTIFICATION = document.getElementById('seekers_notification');
 export const CLOCK_NOTIFICATION = document.getElementById('clock_notification');
 export const AIRSTRIKE_NOTIFICATION = document.getElementById('airstrike_notification');
-export const DEBRIS_NOTIFICATION = document.getElementById('debris_notification');
+export const SHOTGUN_NOTIFICATION = document.getElementById('shotgun_notification');
 
 // UPGRADES PAUSE DESCRIPTIONS
 export const BOMBS_PAUSE = document.getElementById('bombs_pause');
-export const DRONES_PAUSE = document.getElementById('drones_pause');
 export const TOXIC_PAUSE = document.getElementById('toxic_pause');
 export const MACHINEGUN_PAUSE = document.getElementById('machinegun_pause');
 export const GREED_PAUSE = document.getElementById('greed_pause');
@@ -57,11 +55,10 @@ export const EMP_PAUSE = document.getElementById('emp_pause');
 export const SEEKERS_PAUSE = document.getElementById('seekers_pause');
 export const CLOCK_PAUSE = document.getElementById('clock_pause');
 export const AIRSTRIKE_PAUSE = document.getElementById('airstrike_pause');
-export const DEBRIS_PAUSE = document.getElementById('debris_pause');
+export const SHOTGUN_PAUSE = document.getElementById('shotgun_pause');
 
 // UPGRADES ICONS
 export const BOMBS_ICON = document.getElementById('bombs_icon');
-export const DRONES_ICON = document.getElementById('drones_icon');
 export const TOXIC_ICON = document.getElementById('toxic_icon');
 export const MACHINEGUN_ICON = document.getElementById('machinegun_icon');
 export const GREED_ICON = document.getElementById('greed_icon');
@@ -78,4 +75,4 @@ export const EMP_ICON = document.getElementById('emp_icon');
 export const SEEKERS_ICON = document.getElementById('seekers_icon');
 export const CLOCK_ICON = document.getElementById('clock_icon');
 export const AIRSTRIKE_ICON = document.getElementById('airstrike_icon');
-export const DEBRIS_ICON = document.getElementById('debris_icon');
+export const SHOTGUN_ICON = document.getElementById('shotgun_icon');

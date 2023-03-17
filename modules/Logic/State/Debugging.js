@@ -2,6 +2,7 @@ import { game, gameloop } from '../../../app.js';
 import { OrangePackage } from '../../Actors/Packages/OrangePackage.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { Clock } from '../../Objects/Clock.js';
+import { Shotgun } from '../../Objects/Shotgun.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
 import { ItemActionController } from '../Controllers/ItemActionController.js';
 import { ItemDropController } from '../Controllers/ItemDropController.js';
@@ -124,6 +125,7 @@ export class Debugging {
                 game.itemdropcontroller = new ItemDropController();
                 game.itemactioncontroller = new ItemActionController();
                 game.player.clock = new Clock();
+                game.player.shotgun = new Shotgun();
             }
         });
     }

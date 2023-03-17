@@ -16,6 +16,7 @@ import { Controls } from '../Motion/Controls.js';
 import { ItemActionController } from '../Controllers/ItemActionController.js';
 import { ItemDropController } from '../Controllers/ItemDropController.js';
 import { Debugging } from './Debugging.js';
+import { Shotgun } from '../../Objects/Shotgun.js';
 
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
 const NOTIFICATION_DURATION = 400; // in ticks. higher = longer
@@ -135,6 +136,7 @@ export class GameState {
         game.player.shield.charge = 100;
         game.player.slowmogauge.charge = 100;
         game.player.clock = new Clock();
+        game.player.shotgun = new Shotgun();
         game.itemdropcontroller = new ItemDropController();
         game.itemactioncontroller = new ItemActionController();
         game.buffcontroller = new BuffController();

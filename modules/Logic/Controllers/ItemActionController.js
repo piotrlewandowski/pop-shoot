@@ -17,7 +17,7 @@ const MACHINEGUNRATE = 110; // shooting-rate of the machine gun. lower = faster 
 const ROCKETCHANCE = 15; // % of firing a rocket
 const ROCKETDAMAGE = 3; // damage multiplier dealth by rocket (1 = full damage)
 const SEEKERRATE = 0.5; // damage multiplier dealt by seekers (1 = full damage)
-const SHOTGUNSHELLRATE = 3; // damage multiplier dealt by shotgun shells (1 = full damage)
+const SHOTGUNSHELLRATE = 2; // damage multiplier dealt by shotgun shells (1 = full damage)
 const STUNTIME = 1250; // time to stun enemies in ms
 const TOXICRATE = 0.4; // damage multiplier dealt to enemies by toxic slowmo (1 = full damage)
 

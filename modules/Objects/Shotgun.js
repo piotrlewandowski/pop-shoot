@@ -28,7 +28,7 @@ export class Shotgun {
     }
 
     fireShells() {
-        for (let i = 0; i < 50; i += 5) {
+        for (let i = 0; i < 100; i += 5) {
             setTimeout(() => {
                 game.bluelasers.add(new Shell());
             }, i);

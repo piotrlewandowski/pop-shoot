@@ -4,8 +4,6 @@ import { BlueLaser } from '../../Lasers/Friendly/BlueLaser.js';
 import { Dart } from '../../Lasers/Friendly/Dart.js';
 import { Rocket } from '../../Lasers/Friendly/Rocket.js';
 import { Seeker } from '../../Lasers/Friendly/Seeker.js';
-import { Shell } from '../../Lasers/Friendly/Shell.js';
-import { SceneUtils } from '../../Scene/SceneUtils.js';
 import { getClosestEnemyTo, randomInRange } from '../Helpers.js';
 
 // OFFENSIVE ITEMS MODIFIERS
@@ -19,9 +17,7 @@ const MACHINEGUNRATE = 110; // shooting-rate of the machine gun. lower = faster 
 const ROCKETCHANCE = 15; // % of firing a rocket
 const ROCKETDAMAGE = 3; // damage multiplier dealth by rocket (1 = full damage)
 const SEEKERRATE = 0.5; // damage multiplier dealt by seekers (1 = full damage)
-const SHOTGUNRATE = 3; // damage multiplier dealt by shotgun shells (1 = full damage)
-const SHOTGUNRELOADSPEED = 2; // higher = faster
-const SHOTGUNSHELLNUMBER = 50; // # of shotgun shells to fire
+const SHOTGUNSHELLRATE = 3; // damage multiplier dealt by shotgun shells (1 = full damage)
 const STUNTIME = 1250; // time to stun enemies in ms
 const TOXICRATE = 0.4; // damage multiplier dealt to enemies by toxic slowmo (1 = full damage)
 
@@ -43,7 +39,6 @@ export class ItemActionController {
         this.nitrogen = false;
         this.metalshield = false;
         this.rocket = false;
-        this.shotgun = false;
         this.toxic = false;
         this.seekers = false;
         this.uranium = false;
@@ -61,13 +56,11 @@ export class ItemActionController {
         this.rocketdamage = ROCKETDAMAGE;
         this.rocketchance = ROCKETCHANCE;
         this.seekerrate = SEEKERRATE;
-        this.shotgunrate = SHOTGUNRATE;
-        this.shotgunshellnumber = SHOTGUNSHELLNUMBER;
+        this.shotgunshellrate = SHOTGUNSHELLRATE;
         this.stuntime = STUNTIME;
         this.toxicrate = TOXICRATE;
         this.uraniumrate = URANIUMRATE;
 
-        this.shotgunreload = 100; // 0% = empty - 100% = full
         this.spray = 0;
         this.dmgMultiplier = 1;
     }
@@ -89,25 +82,6 @@ export class ItemActionController {
             return this.dmgMultiplier * 2;
         }
         return this.dmgMultiplier;
-    }
-
-    fireShotgun() {
-        this.shotgunreload = 0;
-        SceneUtils.shakeScreen(4, 0.5);
-        game.audiocontroller.playSound('reload');
-
-        for (let i = 0; i < 50; i += 5) {
-            setTimeout(() => {
-                game.bluelasers.add(new Shell());
-            }, i);
-        }
-
-        const reload = setInterval(() => {
-            if (this.shotgunreload >= 100) {
-                return clearInterval(reload);
-            }
-            this.shotgunreload += SHOTGUNRELOADSPEED;
-        }, 100);
     }
 
     get greedMultiplier() {

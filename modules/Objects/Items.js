@@ -151,7 +151,7 @@ export const ITEMS = {
     },
     shotgun: {
         name: 'shotgun',
-        activate: () => (game.itemactioncontroller.shotgun = true),
+        activate: () => (game.player.shotgun.owned = true),
         icon: SHOTGUN_ICON,
         pause: SHOTGUN_PAUSE,
         notification: SHOTGUN_NOTIFICATION,

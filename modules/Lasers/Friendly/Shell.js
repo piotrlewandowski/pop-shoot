@@ -13,6 +13,6 @@ export class Shell extends BlueLaser {
         this.speed = SPEED;
         this.sprite = SPRITE[randomInRange(0, SPRITE.length - 1)];
         this.direction = 270 + randomInRange(-SPREAD, +SPREAD);
-        this.damage *= game.itemactioncontroller.shotgunrate;
+        this.damage *= game.itemactioncontroller.shotgunshellrate;
     }
 }

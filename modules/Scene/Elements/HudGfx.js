@@ -172,13 +172,13 @@ export class HudGfx {
             }
             // shotgun
             if (item.name === 'shotgun') {
-                if (game.itemactioncontroller.shotgunreload < 100) {
+                if (!game.player.shotgun.isLoaded) {
                     SceneUtils.drawBigBar(
                         currentx + SHOTGUNBAR_X_OFFSET,
                         SHOTGUNBAR_Y,
                         SHOTGUNBAR_WIDTH,
                         SHOTGUNBAR_HEIGHT,
-                        game.itemactioncontroller.shotgunreload / 100
+                        game.player.shotgun.chargeRatio
                     );
                 }
             }

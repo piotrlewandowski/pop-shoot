@@ -6,6 +6,7 @@ import { Clock } from '../../Objects/Clock.js';
 import { SlowmoGauge } from './SlowmoGauge.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
+import { Shotgun } from '../../Objects/Shotgun.js';
 
 const SPRAYDISTANCE = 5; // distance between laser streams when spray upgrade is acquired
 const LASERANGLE = 270; // default laser direction. 270 = NORTH
@@ -23,6 +24,7 @@ export class Player {
         this.slowmogauge = new SlowmoGauge();
         this.shield = new Shield();
         this.clock = new Clock();
+        this.shotgun = new Shotgun();
     }
 
     shoot() {
@@ -70,8 +72,8 @@ export class Player {
             }
 
             // SHOTGUN
-            if (game.itemactioncontroller.shotgun && game.itemactioncontroller.shotgunreload >= 100) {
-                game.itemactioncontroller.fireShotgun();
+            if (this.shotgun.owned && this.shotgun.isLoaded) {
+                this.shotgun.shoot();
             }
 
             // QUAD-DAMAGE & THOR'S HAMMER

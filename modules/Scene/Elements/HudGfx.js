@@ -172,15 +172,13 @@ export class HudGfx {
             }
             // shotgun
             if (item.name === 'shotgun') {
-                if (!game.player.shotgun.isLoaded) {
-                    SceneUtils.drawBigBar(
-                        currentx + SHOTGUNBAR_X_OFFSET,
-                        SHOTGUNBAR_Y,
-                        SHOTGUNBAR_WIDTH,
-                        SHOTGUNBAR_HEIGHT,
-                        game.player.shotgun.chargeRatio
-                    );
-                }
+                SceneUtils.drawBigBar(
+                    currentx + SHOTGUNBAR_X_OFFSET,
+                    SHOTGUNBAR_Y,
+                    SHOTGUNBAR_WIDTH,
+                    SHOTGUNBAR_HEIGHT,
+                    game.player.shotgun.chargeRatio
+                );
             }
             currentx += ICON_GAP;
         });

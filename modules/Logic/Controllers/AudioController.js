@@ -203,6 +203,7 @@ const SOUNDS = {
     },
     reload: {
         audio: RELOADSOUND,
+        clone: true,
         volume: 1,
     },
     sand: {

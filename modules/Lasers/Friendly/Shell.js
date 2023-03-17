@@ -5,7 +5,7 @@ import { SHELL0SPRITE, SHELL1SPRITE, SHELL2SPRITE, SHELL3SPRITE } from '../../As
 
 const SPRITE = [SHELL0SPRITE, SHELL1SPRITE, SHELL2SPRITE, SHELL3SPRITE];
 const SPEED = 20;
-const SPREAD = 20;
+const SPREAD = 15;
 
 export class Shell extends BlueLaser {
     constructor() {

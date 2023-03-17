@@ -75,7 +75,7 @@ export class Player {
             }
 
             // SHOTGUN
-            if (game.itemactioncontroller.shotgun && game.itemactioncontroller.shotgunreload === 100) {
+            if (game.itemactioncontroller.shotgun && game.itemactioncontroller.shotgunreload >= 100) {
                 game.itemactioncontroller.fireShotgun();
             }
 

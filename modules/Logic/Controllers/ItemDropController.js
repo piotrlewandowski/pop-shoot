@@ -20,7 +20,7 @@ export class ItemDropController {
         // POOLS PREPARATION
 
         this.pool1 = [ITEMS.uranium, ITEMS.timefreeze];
-        this.pool2 = [ITEMS.clock, ITEMS.greed, ITEMS.loopers, ITEMS.debris];
+        this.pool2 = [ITEMS.clock, ITEMS.greed, ITEMS.loopers, ITEMS.shotgun];
 
         this.randomfrompool1 = this.pool1[randomInRange(0, this.pool1.length - 1)];
         this.randomfrompool2 = this.pool2[randomInRange(0, this.pool2.length - 1)];

@@ -74,6 +74,11 @@ export class Player {
                 game.itemactioncontroller.shootDart();
             }
 
+            // SHOTGUN
+            if (game.itemactioncontroller.shotgun && game.itemactioncontroller.shotgunreload === 100) {
+                game.itemactioncontroller.fireShotgun();
+            }
+
             // QUAD-DAMAGE & THOR'S HAMMER
             if (game.buffcontroller.quaddamage || game.buffcontroller.thorshammer) {
                 SceneUtils.shakeScreen(3, 0.25);

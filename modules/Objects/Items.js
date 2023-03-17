@@ -55,9 +55,9 @@ import {
     AIRSTRIKE_ICON,
     AIRSTRIKE_PAUSE,
     AIRSTRIKE_NOTIFICATION,
-    DEBRIS_ICON,
-    DEBRIS_PAUSE,
-    DEBRIS_NOTIFICATION,
+    SHOTGUN_ICON,
+    SHOTGUN_PAUSE,
+    SHOTGUN_NOTIFICATION,
 } from '../Assets/Hud.js';
 
 export const ITEMS = {
@@ -88,13 +88,6 @@ export const ITEMS = {
         icon: DARTS_ICON,
         pause: DARTS_PAUSE,
         notification: DARTS_NOTIFICATION,
-    },
-    debris: {
-        name: 'debris',
-        activate: () => game.itemactioncontroller.addDebris(),
-        icon: DEBRIS_ICON,
-        pause: DEBRIS_PAUSE,
-        notification: DEBRIS_NOTIFICATION,
     },
     drones: {
         name: 'drones',
@@ -165,6 +158,13 @@ export const ITEMS = {
         icon: SEEKERS_ICON,
         pause: SEEKERS_PAUSE,
         notification: SEEKERS_NOTIFICATION,
+    },
+    shotgun: {
+        name: 'shotgun',
+        activate: () => (game.itemactioncontroller.shotgun = true),
+        icon: SHOTGUN_ICON,
+        pause: SHOTGUN_PAUSE,
+        notification: SHOTGUN_NOTIFICATION,
     },
     spray: {
         name: 'spray',

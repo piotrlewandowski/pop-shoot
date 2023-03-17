@@ -14,6 +14,10 @@ export const DRONES0SPRITE = document.getElementById('drones0');
 export const DRONES1SPRITE = document.getElementById('drones1');
 export const DRONES2SPRITE = document.getElementById('drones2');
 export const DRONES3SPRITE = document.getElementById('drones3');
+export const SHELL0SPRITE = document.getElementById('shell0');
+export const SHELL1SPRITE = document.getElementById('shell1');
+export const SHELL2SPRITE = document.getElementById('shell2');
+export const SHELL3SPRITE = document.getElementById('shell3');
 
 // HOSTILE LASERS
 export const FIRELASERSPRITE = document.getElementById('firelaser');

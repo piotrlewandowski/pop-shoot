@@ -1,5 +1,4 @@
 import { Game } from './modules/Game.js';
-import { ITEMS } from './modules/Objects/Items.js';
 
 const FPS = 60;
 const interval = 1000 / FPS;
@@ -33,5 +32,3 @@ export function gameloop(timestamp) {
         return game.scene.drawPause();
     }
 }
-
-game.itemdropcontroller.aquireAndActivate(ITEMS.shotgun);

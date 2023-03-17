@@ -49,9 +49,6 @@ import {
     TOXIC_ICON,
     TOXIC_NOTIFICATION,
     TOXIC_PAUSE,
-    DRONES_ICON,
-    DRONES_NOTIFICATION,
-    DRONES_PAUSE,
     AIRSTRIKE_ICON,
     AIRSTRIKE_PAUSE,
     AIRSTRIKE_NOTIFICATION,
@@ -88,13 +85,6 @@ export const ITEMS = {
         icon: DARTS_ICON,
         pause: DARTS_PAUSE,
         notification: DARTS_NOTIFICATION,
-    },
-    drones: {
-        name: 'drones',
-        activate: () => (game.itemactioncontroller.drones = true),
-        icon: DRONES_ICON,
-        pause: DRONES_PAUSE,
-        notification: DRONES_NOTIFICATION,
     },
     emp: {
         name: 'emp',

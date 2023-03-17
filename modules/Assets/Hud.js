@@ -19,7 +19,6 @@ export const GLASSSTAGE5SPRITE = document.getElementById('glassstage5');
 
 // UPGRADES NOTIFICATIONS
 export const BOMBS_NOTIFICATION = document.getElementById('bombs_notification');
-export const DRONES_NOTIFICATION = document.getElementById('drones_notification');
 export const TOXIC_NOTIFICATION = document.getElementById('toxic_notification');
 export const MACHINEGUN_NOTIFICATION = document.getElementById('machinegun_notification');
 export const GREED_NOTIFICATION = document.getElementById('greed_notification');
@@ -40,7 +39,6 @@ export const SHOTGUN_NOTIFICATION = document.getElementById('shotgun_notificatio
 
 // UPGRADES PAUSE DESCRIPTIONS
 export const BOMBS_PAUSE = document.getElementById('bombs_pause');
-export const DRONES_PAUSE = document.getElementById('drones_pause');
 export const TOXIC_PAUSE = document.getElementById('toxic_pause');
 export const MACHINEGUN_PAUSE = document.getElementById('machinegun_pause');
 export const GREED_PAUSE = document.getElementById('greed_pause');
@@ -61,7 +59,6 @@ export const SHOTGUN_PAUSE = document.getElementById('shotgun_pause');
 
 // UPGRADES ICONS
 export const BOMBS_ICON = document.getElementById('bombs_icon');
-export const DRONES_ICON = document.getElementById('drones_icon');
 export const TOXIC_ICON = document.getElementById('toxic_icon');
 export const MACHINEGUN_ICON = document.getElementById('machinegun_icon');
 export const GREED_ICON = document.getElementById('greed_icon');

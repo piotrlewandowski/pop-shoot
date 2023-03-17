@@ -64,11 +64,6 @@ export class Player {
                 game.itemactioncontroller.shootSeeker();
             }
 
-            // DRONES
-            if (game.itemactioncontroller.drones) {
-                game.itemactioncontroller.shootDrone();
-            }
-
             // DARTS
             if (game.itemactioncontroller.darts) {
                 game.itemactioncontroller.shootDart();

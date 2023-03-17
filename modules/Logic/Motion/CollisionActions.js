@@ -1,7 +1,6 @@
 import { game } from '../../../app.js';
 import { DamageNumber } from '../../Effects/Misc/DamageNumber.js';
 import { Movement } from './Movement.js';
-import { Drone } from '../../Lasers/Friendly/Drone.js';
 import { Dart } from '../../Lasers/Friendly/Dart.js';
 import { Slash } from '../../Effects/Misc/Slash.js';
 import { RedPackage } from '../../Actors/Packages/RedPackage.js';
@@ -10,8 +9,8 @@ import { SceneUtils } from '../../Scene/SceneUtils.js';
 
 export class CollisionActions {
     static BluelasersEnemies(enemy, laser) {
-        // skip pushback & sound if laser is drone or dart
-        if (laser.constructor !== Drone && laser.constructor !== Dart) {
+        // skip pushback & sound if laser is a dart
+        if (laser.constructor !== Dart) {
             game.audiocontroller.playSound(this._determineHitSound(enemy));
             enemy.pushBack();
         }

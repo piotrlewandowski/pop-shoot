@@ -2,12 +2,22 @@ import { game } from '../../app.js';
 import { SceneUtils } from '../Scene/SceneUtils.js';
 import { Shell } from '../Lasers/Friendly/Shell.js';
 
-const RELOADSPEED = 1;
+const RELOADSPEED = 40; // in ms. charge increases by 1 for every 'reloadspeed' ms
 
 export class Shotgun {
     constructor() {
         this.charge = 100;
         this.owned = false;
+        this.setObserver();
+    }
+
+    setObserver() {
+        let fn = () => {
+            if (this.charge < 100) {
+                this.charge++;
+            }
+        };
+        setInterval(fn.bind(this), RELOADSPEED);
     }
 
     shoot() {
@@ -15,7 +25,6 @@ export class Shotgun {
         SceneUtils.shakeScreen(4, 0.5);
         game.audiocontroller.playSound('reload');
         this.fireShells();
-        this.reload();
     }
 
     fireShells() {
@@ -24,16 +33,6 @@ export class Shotgun {
                 game.bluelasers.add(new Shell());
             }, i);
         }
-    }
-
-    reload() {
-        const reloader = setInterval(() => {
-            if (this.charge >= 100) {
-                this.charge = 100;
-                return clearInterval(reloader);
-            }
-            this.charge += RELOADSPEED;
-        }, 100);
     }
 
     get isLoaded() {

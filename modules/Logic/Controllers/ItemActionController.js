@@ -17,6 +17,7 @@ const MACHINEGUNRATE = 110; // shooting-rate of the machine gun. lower = faster 
 const ROCKETCHANCE = 15; // % of firing a rocket
 const ROCKETDAMAGE = 3; // damage multiplier dealth by rocket (1 = full damage)
 const SEEKERRATE = 0.5; // damage multiplier dealt by seekers (1 = full damage)
+const SPRAYDISTANCE = 5; // distance between laser streams when spray upgrade is acquired
 const STUNTIME = 1250; // time to stun enemies in ms
 const TOXICRATE = 0.4; // damage multiplier dealt to enemies by toxic slowmo (1 = full damage)
 
@@ -125,6 +126,30 @@ export class ItemActionController {
 
     shootSeeker() {
         game.bluelasers.add(new Seeker(getClosestEnemyTo(game.player)));
+    }
+
+    shootSpray(weapon) {
+        const NORTH = 270;
+
+        // if the spray number is even, skew the laser's angle by 2.5 degrees
+        let direction = this.spray % 2 ? NORTH - 2.5 : NORTH;
+
+        // fire the first laser
+        game.bluelasers.add(new weapon(direction));
+
+        // calculate the remaning sprays directions & fire them
+        let spraycount = 1;
+        for (let i = 0; i < this.spray; i++) {
+            // spray left
+            if (i % 2) {
+                game.bluelasers.add(new weapon(direction - SPRAYDISTANCE * spraycount));
+                spraycount++;
+            }
+            // spray right
+            else {
+                game.bluelasers.add(new weapon(direction + SPRAYDISTANCE * spraycount));
+            }
+        }
     }
 
     startToxic() {

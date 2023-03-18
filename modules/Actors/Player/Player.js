@@ -8,8 +8,6 @@ import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
 import { Shotgun } from '../../Objects/Shotgun.js';
 
-const SPRAYDISTANCE = 5; // distance between laser streams when spray upgrade is acquired
-const LASERANGLE = 270; // default laser direction. 270 = NORTH
 const RADIUS = 13; // player hitbox radius. 13 matches the current sprite
 const DEFAULTSHOOTINGRATE = 150; // default shooting rate (speed) if not upgraded to machine gun
 
@@ -40,26 +38,7 @@ export class Player {
             let weapon = game.itemactioncontroller.getWeaponType();
 
             // SPRAY
-
-            // if the spray number is even, skew the laser's angle by 2.5 degrees
-            let direction = game.itemactioncontroller.spray % 2 ? LASERANGLE - 2.5 : LASERANGLE;
-
-            // fire the first laser
-            game.bluelasers.add(new weapon(direction));
-
-            // calculate the remaning sprays directions & fire them
-            let spraycount = 1;
-            for (let i = 0; i < game.itemactioncontroller.spray; i++) {
-                // spray left
-                if (i % 2) {
-                    game.bluelasers.add(new weapon(direction - SPRAYDISTANCE * spraycount));
-                    spraycount++;
-                }
-                // spray right
-                else {
-                    game.bluelasers.add(new weapon(direction + SPRAYDISTANCE * spraycount));
-                }
-            }
+            game.itemactioncontroller.shootSpray(weapon);
 
             // SEEKERS
             if (game.enemies.enemiesOnScreen() && game.itemactioncontroller.seekers) {

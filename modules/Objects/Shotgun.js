@@ -2,7 +2,7 @@ import { game } from '../../app.js';
 import { SceneUtils } from '../Scene/SceneUtils.js';
 import { Shell } from '../Lasers/Friendly/Shell.js';
 
-const RELOADSPEED = 40; // in ms. charge increases by 1 for every 'reloadspeed' ms
+const RELOADSPEED = 20; // in ms. charge increases by 1 for every 'reloadspeed' ms
 
 export class Shotgun {
     constructor() {

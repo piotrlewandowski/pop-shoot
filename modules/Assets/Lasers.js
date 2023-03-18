@@ -13,7 +13,6 @@ export const AIRSTRIKESPRITE = document.getElementById('airstrike');
 export const SHELL0SPRITE = document.getElementById('shell0');
 export const SHELL1SPRITE = document.getElementById('shell1');
 export const SHELL2SPRITE = document.getElementById('shell2');
-export const SHELL3SPRITE = document.getElementById('shell3');
 
 // HOSTILE LASERS
 export const FIRELASERSPRITE = document.getElementById('firelaser');

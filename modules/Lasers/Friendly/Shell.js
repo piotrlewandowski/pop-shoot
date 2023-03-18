@@ -1,8 +1,8 @@
 import { BlueLaser } from './BlueLaser.js';
 import { randomInRange } from '../../Logic/Helpers.js';
-import { SHELL0SPRITE, SHELL1SPRITE, SHELL2SPRITE, SHELL3SPRITE } from '../../Assets/Lasers.js';
+import { SHELL0SPRITE, SHELL1SPRITE, SHELL2SPRITE } from '../../Assets/Lasers.js';
 
-const SPRITE = [SHELL0SPRITE, SHELL1SPRITE, SHELL2SPRITE, SHELL3SPRITE];
+const SPRITE = [SHELL0SPRITE, SHELL1SPRITE, SHELL2SPRITE];
 const SPEED = 20;
 
 const SPREAD = 15; // horizontal spread

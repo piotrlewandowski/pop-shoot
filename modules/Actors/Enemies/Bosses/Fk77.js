@@ -24,7 +24,7 @@ const HARDEN_TIME = 15000; // in ms
 const HARDEN_BULLETSPEED = 3;
 
 // STATE
-const HP = 50000;
+const HP = 40000;
 const COINS = 120;
 const RADIUS = 50;
 const SPRITE = FK77SPRITE;

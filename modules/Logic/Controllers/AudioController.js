@@ -53,6 +53,7 @@ import {
     HARVEYSOUND,
     ICUSOUND,
     APPEARSOUND,
+    SNIPERSHOTSOUND,
 } from '../../Assets/Audio.js';
 
 const MUSIC = {
@@ -219,11 +220,6 @@ const SOUNDS = {
         audio: SHIELDUPSOUND,
         volume: 1,
     },
-    slowmoEmpty: {
-        audio: SLOWMOEMPTYSOUND,
-        clone: true,
-        volume: 1,
-    },
     siren: {
         audio: SIRENSOUND,
         rewind: true,
@@ -235,6 +231,11 @@ const SOUNDS = {
         rewind: true,
         volume: 1,
     },
+    slowmoEmpty: {
+        audio: SLOWMOEMPTYSOUND,
+        clone: true,
+        volume: 1,
+    },
     smallThunder: {
         audio: THUNDER1SOUND,
         volume: 1,
@@ -242,6 +243,10 @@ const SOUNDS = {
     smoke: {
         audio: SMOKESOUND,
         clone: true,
+        volume: 1,
+    },
+    snipershot: {
+        audio: SNIPERSHOTSOUND,
         volume: 1,
     },
     splash: {

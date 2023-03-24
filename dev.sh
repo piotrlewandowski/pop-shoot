@@ -5,9 +5,9 @@ session_name='POP'
 ##### NEW SESSION
 tmux new-session -d -s $session_name
 
-# PODMAN
+# DOCKER
 tmux rename-window -t 0 'nginx'
-tmux send-keys -t $session_name:0 'podman-compose -f nginx.yaml up' C-m
+tmux send-keys -t $session_name:0 'docker-compose -f nginx.yaml up' C-m
 
 # CODE
 tmux new-window -t $session1:1 -n 'code'

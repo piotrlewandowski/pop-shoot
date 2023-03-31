@@ -1,17 +1,17 @@
 #!/bin/bash
 
-session_name='POP'
+session='POP'
 
-##### NEW SESSION
-tmux new-session -d -s $session_name
+# create session
+tmux new-session -d -s $session
 
-# DOCKER
-tmux rename-window -t 0 'nginx'
-tmux send-keys -t $session_name:0 'docker-compose -f nginx.yaml up' C-m
+# code
+tmux rename-window -t 0 'code'
+tmux send-keys -t $session:0 'nvim' C-m
 
-# CODE
-tmux new-window -t $session1:1 -n 'code'
-tmux send-keys -t $session1:1 'nvim' C-m
+# docker
+tmux new-window -t $session:1 -n 'docker'
+tmux send-keys -t $session:1 'docker-compose -f nginx.yaml up' C-m
 
-# ATTACH
+# attach
 tmux a

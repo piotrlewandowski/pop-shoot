@@ -13,7 +13,7 @@ export class Shotgun {
 
     setObserver() {
         let fn = () => {
-            if (this.charge < 100) {
+            if (!this.isLoaded() & !game.state.paused) {
                 this.charge++;
             }
         };
@@ -35,7 +35,7 @@ export class Shotgun {
         }
     }
 
-    get isLoaded() {
+    isLoaded() {
         return this.charge === 100;
     }
 

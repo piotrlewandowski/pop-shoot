@@ -51,7 +51,7 @@ export class Player {
             }
 
             // SHOTGUN
-            if (this.shotgun.owned && this.shotgun.isLoaded) {
+            if (this.shotgun.owned && this.shotgun.isLoaded()) {
                 this.shotgun.shoot();
             }
 

@@ -79,13 +79,13 @@ export class GameState {
     toggleBoss() {
         if (!this.boss) {
             this.boss = true;
+            game.weathercontroller.stopWeather();
         } else {
             this.boss = false;
             game.audiocontroller.playSound('explosion');
             this.time = this.stage === 4 ? 1 : this.time + 1;
             this.stage = this.stage === 4 ? 0 : this.stage + 1;
             this.addStageNotification();
-            game.weathercontroller.stopWeather();
             game.firelasers.clear();
             game.bluelasers.clear();
         }

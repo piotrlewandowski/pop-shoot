@@ -23,10 +23,12 @@ export class WeatherController {
     }
 
     toggleWeather() {
-        if (this.weatherActive) {
-            this.stopWeather();
-        } else {
-            this.startWeather();
+        if (!game.state.boss) {
+            if (this.weatherActive) {
+                this.stopWeather();
+            } else {
+                this.startWeather();
+            }
         }
     }
 

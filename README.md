@@ -28,6 +28,15 @@ The `Logic/State/Debugging.js` file provides some useful keybindings for jumping
 -   Toggle weather: `W`
 -   Keep playing after gameover: `P`
 
+# license
+
+This repository consists of two major parts:
+
+-   The _source-code_, mostly contained within the ./modules directory
+    is under the [GNU GPL-3.0 License](https://github.com/kiwphi/pop-shoot/blob/main/LICENSE).
+-   The _assets_, which are all contained within the ./assets directory were fetched from several sources
+    (mentionned in the _acknowledgments_ section) and are not under the same license. Each asset is owned by its respective author.
+
 # acknowledgments
 
 :musical_note: Music by [TeknoAxe](https://open.spotify.com/artist/0Hyqsw7GWssXIOVgy36ohS)  

@@ -37,7 +37,11 @@ export class GameoverGfx {
             STATS_FONTSIZE
         );
         SceneUtils.drawCenteredText(`YOU DIED AT STAGE ${game.state.stage + 1}`, DIED_X, DIED_Y, STATS_FONTSIZE);
-        SceneUtils.drawCenteredText(`EARNED CASH: ${game.cashcontroller.cash}`, EARNED_X, EARNED_Y, STATS_FONTSIZE);
+        SceneUtils.drawCenteredText(`EARNED SATS: ${game.cashcontroller.cash}`, EARNED_X, EARNED_Y, STATS_FONTSIZE);
+
+// add function to show qr code to redeem sats
+
+
         SceneUtils.drawCenteredText(`PRESS SPACE TO REPLAY`, SPACE_X, SPACE_Y, STATS_FONTSIZE);
     }
 }

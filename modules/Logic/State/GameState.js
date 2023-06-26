@@ -132,6 +132,8 @@ export class GameState {
         Controls.addMouseClicks();
         Controls.addPauseButton();
 
+        // add more controls for touch and joystick 
+
         // reset player state
         game.player.shield.charge = 100;
         game.player.slowmogauge.charge = 100;

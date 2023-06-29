@@ -22,7 +22,7 @@ img {
     display: none;
 }
 
-#game-container {
+game-container {
   width: 100vw;
   height: 100vh;
   display: flex;

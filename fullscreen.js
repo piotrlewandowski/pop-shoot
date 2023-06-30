@@ -19,11 +19,20 @@ document.addEventListener('fullscreenchange', handleFullscreenChange);
 document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 document.addEventListener('mozfullscreenchange', handleFullscreenChange);
 document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+window.addEventListener('resize', handleResize);
 
 function handleFullscreenChange() {
   if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
     fullscreenButton.style.display = 'none';
+    handleResize();
   } else {
     fullscreenButton.style.display = 'block';
+  }
+}
+
+function handleResize() {
+  if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+    var windowHeight = window.innerHeight;
+    gameContainer.style.height = windowHeight + 'px';
   }
 }
